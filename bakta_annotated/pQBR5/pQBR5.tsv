@@ -1,0 +1,596 @@
+# Annotated with Bakta
+# Software: v1.8.2
+# Database: v5.0, full
+# DOI: 10.1099/mgen.0.000685
+# URL: github.com/oschwengers/bakta
+#Sequence Id	Type	Start	Stop	Strand	Locus Tag	Gene	Product	DbXrefs
+pQBR5_contig_1	cds	1	1131	+	PQBR5_00005		Replication protein	SO:0001217, UniRef:UniRef50_A0A3M3DPG4, UniRef:UniRef90_A0A3M3DPG4
+pQBR5_contig_1	cds	2554	2997	+	PQBR5_00010	lrgA	Antiholin-like protein LrgA	RefSeq:WP_078465895.1, SO:0001217, UniParc:UPI00099882E3, UniRef:UniRef100_A0A7Y0WK04, UniRef:UniRef50_A0A1X0ZH10, UniRef:UniRef90_A0A7Y0WK04
+pQBR5_contig_1	cds	2997	3407	+	PQBR5_00015		Peroxin-19	RefSeq:WP_011923246.1, SO:0001217, UniParc:UPI00015066BA, UniRef:UniRef100_A4V7E3, UniRef:UniRef50_A0A1D3K7H8, UniRef:UniRef90_A4V7E3
+pQBR5_contig_1	cds	3404	3733	+	PQBR5_00020		Peroxin-19	RefSeq:WP_011923247.1, SO:0001217, UniParc:UPI00015066BB, UniRef:UniRef100_A4V7E4, UniRef:UniRef50_A4V7E4, UniRef:UniRef90_A4V7E4
+pQBR5_contig_1	cds	3730	4008	-	PQBR5_00025		DUF5598 domain-containing protein	RefSeq:WP_116827408.1, SO:0001217, UniParc:UPI00065A3327, UniRef:UniRef100_UPI00065A3327, UniRef:UniRef50_A0A3M3DPP4, UniRef:UniRef90_A0A3M3DPP4
+pQBR5_contig_1	cds	4167	4562	+	PQBR5_00030		Response regulatory domain-containing protein	RefSeq:WP_011923248.1, SO:0001217, UniParc:UPI00015066BC, UniRef:UniRef100_A4V7E5, UniRef:UniRef50_A0A3M3DQF6, UniRef:UniRef90_A4V7E5
+pQBR5_contig_1	cds	4571	5203	+	PQBR5_00035		Lipoprotein	RefSeq:WP_193069054.1, SO:0001217, UniParc:UPI000658AD95, UniRef:UniRef100_A4V7E6, UniRef:UniRef50_A4V7E6, UniRef:UniRef90_A4V7E6
+pQBR5_contig_1	cds	5200	5547	+	PQBR5_00040		Conserved domain protein	RefSeq:WP_011923250.1, SO:0001217, UniParc:UPI00015066BE, UniRef:UniRef100_A4V7E7, UniRef:UniRef50_A0A0C2S1G5, UniRef:UniRef90_A4V7E7
+pQBR5_contig_1	cds	5558	6025	+	PQBR5_00045		Conserved domain protein	RefSeq:WP_011923251.1, SO:0001217, UniParc:UPI00015192C8, UniRef:UniRef100_A4V7E8, UniRef:UniRef50_A0A0C2MQG6, UniRef:UniRef90_A0A3M3DP95
+pQBR5_contig_1	cds	6279	7058	+	PQBR5_00050		DUF1376 domain-containing protein	RefSeq:WP_011923252.1, SO:0001217, UniParc:UPI00015192C9, UniRef:UniRef100_A4V7E9, UniRef:UniRef50_A0A1D3K7G8, UniRef:UniRef90_A0A1D3K7G8
+pQBR5_contig_1	cds	7175	8998	+	PQBR5_00055	parB	ParB domain-containing protein	KEGG:K03497, SO:0001217, UniParc:UPI00015066C1, UniRef:UniRef100_A4V7F0, UniRef:UniRef50_A0A212BJ65, UniRef:UniRef90_A0A3M3DS96
+pQBR5_contig_1	cds	9040	9513	+	PQBR5_00060		PRTRC system protein E	RefSeq:WP_011923254.1, SO:0001217, UniParc:UPI00015066C2, UniRef:UniRef100_A4V7F1, UniRef:UniRef50_A0A0G4E6D3, UniRef:UniRef90_A4V7F1
+pQBR5_contig_1	cds	9523	9735	+	PQBR5_00065		PRTRC system protein C	RefSeq:WP_078465885.1, SO:0001217, UniParc:UPI000659CAD9, UniRef:UniRef100_A0A7Y0WJZ6, UniRef:UniRef50_F1LIR8, UniRef:UniRef90_A0A1D3K7L0
+pQBR5_contig_1	cds	9838	11304	+	PQBR5_00070		Histidine kinase	RefSeq:WP_011923255.1, SO:0001217, UniParc:UPI00015066C3, UniRef:UniRef100_A4V7F2, UniRef:UniRef50_A4V7F2, UniRef:UniRef90_A4V7F2
+pQBR5_contig_1	cds	11291	11989	+	PQBR5_00075		PRTRC system protein B	RefSeq:WP_116827401.1, SO:0001217, UniParc:UPI0006586D4D, UniRef:UniRef100_A0A7Y0WJW1, UniRef:UniRef50_A0A0C2S4H2, UniRef:UniRef90_A0A3M3DP73
+pQBR5_contig_1	cds	11986	12762	+	PQBR5_00080	thiF	ThiF domain-containing protein	RefSeq:WP_011923257.1, SO:0001217, UniParc:UPI00015066DC, UniRef:UniRef100_A4V7F4, UniRef:UniRef50_A0A5P9WA27, UniRef:UniRef90_A4V7F4
+pQBR5_contig_1	cds	12744	13040	-	PQBR5_00085		Ferredoxin	SO:0001217, UniRef:UniRef50_A0A3M3DQE6, UniRef:UniRef90_A0A7Y0WJT3
+pQBR5_contig_1	cds	13244	14641	+	PQBR5_00090		Exodeoxyribonuclease I	RefSeq:WP_011923259.1, SO:0001217, UniParc:UPI00015066DE, UniRef:UniRef100_A4V7F6, UniRef:UniRef50_A0A1X0ZMB9, UniRef:UniRef90_A0A1T1IXK6
+pQBR5_contig_1	cds	14645	15403	+	PQBR5_00095		DUF89 domain-containing protein	RefSeq:WP_011923260.1, SO:0001217, UniParc:UPI00015066DF, UniRef:UniRef100_A4V7F7, UniRef:UniRef50_A0A0C2NER0, UniRef:UniRef90_A4V7F7
+pQBR5_contig_1	cds	15407	16384	+	PQBR5_00100		Tetratricopeptide repeat protein	RefSeq:WP_011923261.1, SO:0001217, UniParc:UPI00015192CA, UniRef:UniRef100_A4V7F8, UniRef:UniRef50_A4V7F8, UniRef:UniRef90_A4V7F8
+pQBR5_contig_1	cds	16542	17651	+	PQBR5_00105	dnaN	DNA polymerase III subunit beta	EC:2.7.7.7, KEGG:K02338, RefSeq:WP_011923262.1, SO:0001217, UniParc:UPI00015066E1, UniRef:UniRef100_A4V7F9, UniRef:UniRef50_A4V7F9, UniRef:UniRef90_A4V7F9
+pQBR5_contig_1	cds	17674	19272	+	PQBR5_00110		RNA-pol-sigma70 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DP81, UniRef:UniRef90_A0A3M3DP81
+pQBR5_contig_1	cds	19269	19637	+	PQBR5_00115		SCP2 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DRX5
+pQBR5_contig_1	cds	19589	20044	-	PQBR5_00120		DUF4129 domain-containing protein	RefSeq:WP_116827396.1, SO:0001217, UniParc:UPI00065994AD, UniRef:UniRef100_UPI00065994AD, UniRef:UniRef50_A0A7Y0ZDM9, UniRef:UniRef90_A0A7Y0ZDM9
+pQBR5_contig_1	cds	20166	20714	+	PQBR5_00125		Phage tail protein	RefSeq:WP_011923265.1, SO:0001217, UniParc:UPI00015066E4, UniRef:UniRef100_A4V7G2, UniRef:UniRef50_A0A0C2MQF7, UniRef:UniRef90_A0A1E4X380
+pQBR5_contig_1	cds	20745	21119	+	PQBR5_00130	ykgJ	YkgJ family cysteine cluster protein	SO:0001217, UniRef:UniRef50_A0A166QLU0, UniRef:UniRef90_A0A1T1IXI4
+pQBR5_contig_1	cds	21178	22179	+	PQBR5_00135		Twin-arginine translocation signal domain-containing protein	RefSeq:WP_116827395.1, SO:0001217, UniParc:UPI0002ECCF77, UniRef:UniRef100_A4V7G3, UniRef:UniRef50_A0A2E7E5H1, UniRef:UniRef90_A4V7G3
+pQBR5_contig_1	cds	22236	22535	+	PQBR5_00140		DUF1421 domain-containing protein	RefSeq:WP_011923267.1, SO:0001217, UniParc:UPI00015066E6, UniRef:UniRef100_A4V7G4, UniRef:UniRef50_A0A3M3DRZ3, UniRef:UniRef90_A0A3M3DRZ3
+pQBR5_contig_1	cds	22574	23509	-	PQBR5_00145		CheB-type methylesterase domain-containing protein	RefSeq:WP_011923268.1, SO:0001217, UniParc:UPI00015066E7, UniRef:UniRef100_A0A7Y0ZDM6, UniRef:UniRef50_A0A3M3DS76, UniRef:UniRef90_A0A3M3DS76
+pQBR5_contig_1	cds	23506	29346	-	PQBR5_00150		histidine kinase	SO:0001217, UniRef:UniRef50_A4V7G6, UniRef:UniRef90_A4V7G6
+pQBR5_contig_1	cds	29339	30130	-	PQBR5_00155		CheR-type methyltransferase domain-containing protein	RefSeq:WP_011923270.1, SO:0001217, UniParc:UPI00015066E9, UniRef:UniRef100_A0A1T1IY96, UniRef:UniRef50_A0A0C2S1F1, UniRef:UniRef90_A0A1E4X940
+pQBR5_contig_1	cds	30133	32124	-	PQBR5_00160		Methyl-accepting transducer domain-containing protein	RefSeq:WP_155007404.1, SO:0001217, UniParc:UPI0003058024, UniRef:UniRef100_A4V7G8, UniRef:UniRef50_A0A1E4X922, UniRef:UniRef90_A0A1E4X922
+pQBR5_contig_1	cds	32147	32632	-	PQBR5_00165		CheW-like domain-containing protein	RefSeq:WP_162886998.1, SO:0001217, UniParc:UPI0013C373AF, UniRef:UniRef100_A0A7Y0WJU5, UniRef:UniRef50_A0A1X0ZNY1, UniRef:UniRef90_A0A1E4X983
+pQBR5_contig_1	cds	32625	33005	-	PQBR5_00170		Transcriptional regulator	RefSeq:WP_011923273.1, SO:0001217, UniParc:UPI0001506701, UniRef:UniRef100_A0A7Y0WJU4, UniRef:UniRef50_A0A379PIG9, UniRef:UniRef90_A0A1E4X938
+pQBR5_contig_1	cds	33125	33802	+	PQBR5_00175	rusA	RusA family crossover junction endodeoxyribonuclease	RefSeq:WP_011923274.1, SO:0001217, UniParc:UPI0001506702, UniRef:UniRef100_A4V7H1, UniRef:UniRef50_A0A1E4X943, UniRef:UniRef90_A4V7H1
+pQBR5_contig_1	cds	33970	34830	+	PQBR5_00180	parB	putative chromosome-partitioning protein ParB	RefSeq:WP_011923275.1, SO:0001217, UniParc:UPI0001506703, UniRef:UniRef100_A4V7H2, UniRef:UniRef50_A0A1D3K7C0, UniRef:UniRef90_A0A1D3K7C0
+pQBR5_contig_1	cds	34899	36614	+	PQBR5_00185		TPR-REGION domain-containing protein	RefSeq:WP_234288209.1, SO:0001217, UniParc:UPI00030DAFB6, UniRef:UniRef100_A4V7H3, UniRef:UniRef50_A0A1E4X8Y2, UniRef:UniRef90_A0A1T1IYD8
+pQBR5_contig_1	cds	36761	37612	+	PQBR5_00190		AAA-31 domain-containing protein	KEGG:K03496, RefSeq:WP_011922811.1, SO:0001217, UniParc:UPI0001506594, UniRef:UniRef100_A0A1T1IXJ6, UniRef:UniRef50_A0A1E4X927, UniRef:UniRef90_A0A1E4X927
+pQBR5_contig_1	cds	37612	38823	+	PQBR5_00195	parB	ParB domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4X955, UniRef:UniRef90_A0A1T1IXH9
+pQBR5_contig_1	cds	39921	41177	+	PQBR5_00200		Toprim domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3R8V8G8, UniRef:UniRef90_A0A3M3DQB0
+pQBR5_contig_1	cds	41613	41771	+	PQBR5_00205		AbrB/MazE/SpoVT family DNA-binding domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DRP9, UniRef:UniRef90_A0A1D3K7S0
+pQBR5_contig_1	cds	41845	42789	+	PQBR5_00210		PDDEXK-1 domain-containing protein	RefSeq:WP_011922816.1, SO:0001217, UniParc:UPI0001506599, UniRef:UniRef100_A4V7A5, UniRef:UniRef50_A4V7A5, UniRef:UniRef90_A4V7A5
+pQBR5_contig_1	cds	42850	43308	+	PQBR5_00215		BRCT domain-containing protein	RefSeq:WP_011922817.1, SO:0001217, UniParc:UPI000150659A, UniRef:UniRef100_A4V7A6, UniRef:UniRef50_A4V7A6, UniRef:UniRef90_A4V7A6
+pQBR5_contig_1	cds	43426	43680	+	PQBR5_00220		Integral membrane protein	RefSeq:WP_078465865.1, SO:0001217, UniParc:UPI000998A3CA, UniRef:UniRef100_A0A7Y0ZDM2, UniRef:UniRef50_A0A1X0ZH20, UniRef:UniRef90_A0A8T8CBD8
+pQBR5_contig_1	cds	44028	44333	+	PQBR5_00225		Inner membrane protein	SO:0001217, UniRef:UniRef50_A0A3M3DNX7
+pQBR5_contig_1	cds	44459	44890	+	PQBR5_00230	araC	AraC family transcriptional regulator	RefSeq:WP_011922819.1, SO:0001217, UniParc:UPI000150659C, UniRef:UniRef100_A4V7A8, UniRef:UniRef50_A0A3M3DRN7, UniRef:UniRef90_A4V7A8
+pQBR5_contig_1	cds	45196	45486	+	PQBR5_00235		Phospholipid scramblase	RefSeq:WP_116826566.1, SO:0001217, UniParc:UPI000E324D27, UniRef:UniRef100_A4V7A9, UniRef:UniRef50_A0A3M3DPN0, UniRef:UniRef90_A0A3M3DPN0
+pQBR5_contig_1	cds	45648	46817	+	PQBR5_00240		AAA-5 domain-containing protein	RefSeq:WP_011922821.1, SO:0001217, UniParc:UPI000150659E, UniRef:UniRef100_A4V7B0, UniRef:UniRef50_A4V7B0, UniRef:UniRef90_A4V7B0
+pQBR5_contig_1	cds	46833	47651	+	PQBR5_00245		DUF3800 domain-containing protein	RefSeq:WP_011922822.1, SO:0001217, UniParc:UPI000150659F, UniRef:UniRef100_A4V7B1, UniRef:UniRef50_A0A3M3DPK1, UniRef:UniRef90_A0A3M3DPK1
+pQBR5_contig_1	cds	47812	48033	+	PQBR5_00250		HEPN domain-containing protein	RefSeq:WP_007250479.1, SO:0001217, UniParc:UPI0002094528, UniRef:UniRef100_A0A8T8CAU1, UniRef:UniRef50_A0A1V0M5U0, UniRef:UniRef90_A0A3M3DPS5
+pQBR5_contig_1	cds	48194	48409	+	PQBR5_00255		Transposase	RefSeq:WP_078465861.1, SO:0001217, UniParc:UPI000998926E, UniRef:UniRef100_A0A7Y0WJY0, UniRef:UniRef50_A0A3M3DPS6, UniRef:UniRef90_A0A3M3DPS6
+pQBR5_contig_1	cds	48412	50466	+	PQBR5_00260		VWFA domain-containing protein	EC:6.6.1.2, KEGG:K09883, SO:0001217, UniRef:UniRef50_A4V7B4, UniRef:UniRef90_A4V7B4
+pQBR5_contig_1	cds	50568	50834	+	PQBR5_00265		3HCDH domain-containing protein	RefSeq:WP_078465859.1, SO:0001217, UniParc:UPI00099656C1, UniRef:UniRef100_A0A7Y0WK28, UniRef:UniRef50_A0A3M3DRJ1, UniRef:UniRef90_A0A1D3K7C4
+pQBR5_contig_1	cds	50861	50986	-	PQBR5_00270		hypothetical protein	
+pQBR5_contig_1	cds	50988	51230	+	PQBR5_00275		Oxidase	SO:0001217, UniRef:UniRef50_A0A3M3DSP9, UniRef:UniRef90_UPI001F2F0525
+pQBR5_contig_1	cds	51396	52640	+	PQBR5_00280		AH domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7B6, UniRef:UniRef90_A4V7B6
+pQBR5_contig_1	cds	52714	53604	+	PQBR5_00285		DUF659 domain-containing protein	RefSeq:WP_193069058.1, SO:0001217, UniParc:UPI001867CF72, UniRef:UniRef100_A4V7B7, UniRef:UniRef50_A4V7B7, UniRef:UniRef90_A4V7B7
+pQBR5_contig_1	cds	53700	54314	+	PQBR5_00290		PH domain-containing protein	RefSeq:WP_011922828.1, SO:0001217, UniParc:UPI00015065C4, UniRef:UniRef100_A0A7Y0ZDM1, UniRef:UniRef50_A0A0C2MQE2, UniRef:UniRef90_A0A7Y0ZDM1
+pQBR5_contig_1	cds	54435	54806	+	PQBR5_00295		RNA-dependent RNA polymerase	RefSeq:WP_011922829.1, SO:0001217, UniParc:UPI00015065C5, UniRef:UniRef100_A4V7B9, UniRef:UniRef50_A0A1X0ZGV8, UniRef:UniRef90_A4V7B9
+pQBR5_contig_1	cds	54990	55907	+	PQBR5_00300		Transmembrane protein	RefSeq:WP_011922830.1, SO:0001217, UniParc:UPI00015065C6, UniRef:UniRef100_A4V7C0, UniRef:UniRef50_A0A3M3DSK7, UniRef:UniRef90_A0A3M3DSK7
+pQBR5_contig_1	cds	55897	56808	+	PQBR5_00305		LAM-G-DOMAIN domain-containing protein	RefSeq:WP_193069059.1, SO:0001217, UniParc:UPI001866CA3F, UniRef:UniRef100_A4V7C1, UniRef:UniRef50_A0A3M3DP40, UniRef:UniRef90_A4V7C1
+pQBR5_contig_1	cds	56848	57543	+	PQBR5_00310		SprT-like domain-containing protein	RefSeq:WP_078465854.1, SO:0001217, UniParc:UPI000997A942, UniRef:UniRef100_A0A7Y0WJT4, UniRef:UniRef50_A0A0C2NEP1, UniRef:UniRef90_A4V7C2
+pQBR5_contig_1	cds	57507	58910	+	PQBR5_00315		TrwB-AAD-bind domain-containing protein	RefSeq:WP_234288211.1, SO:0001217, UniParc:UPI0002FFBB6A, UniRef:UniRef100_UPI0002FFBB6A, UniRef:UniRef50_A4V7C3, UniRef:UniRef90_A0A3M3DSI8
+pQBR5_contig_1	cds	58907	59401	+	PQBR5_00320		Lipoprotein	SO:0001217, UniParc:UPI00015065CA, UniRef:UniRef100_A4V7C4, UniRef:UniRef50_A0A1X0ZRP3, UniRef:UniRef90_A0A1T1IYV9
+pQBR5_contig_1	cds	59454	60935	-	PQBR5_00325		HD domain-containing protein	SO:0001217, UniParc:UPI00015065CB, UniRef:UniRef100_A4V7C5, UniRef:UniRef50_A0A0C2RQ58, UniRef:UniRef90_A0A1T1IYV2
+pQBR5_contig_1	cds	61102	61983	+	PQBR5_00330		DUF1471 domain-containing protein	RefSeq:WP_169904230.1, SO:0001217, UniParc:UPI001475E55A, UniRef:UniRef100_A0A7Y0WJT2, UniRef:UniRef50_A0A1T1IXH6, UniRef:UniRef90_A0A1T1IXH6
+pQBR5_contig_1	cds	61998	63650	+	PQBR5_00335		Pilus assembly protein	RefSeq:WP_011922837.1, SO:0001217, UniParc:UPI00015065CD, UniRef:UniRef100_A0A7Y0WJP3, UniRef:UniRef50_A0A379PIU4, UniRef:UniRef90_A0A3M3DSP2
+pQBR5_contig_1	cds	63650	64579	+	PQBR5_00340		Transmembrane protein	RefSeq:WP_011922838.1, SO:0001217, UniParc:UPI00015065CE, UniRef:UniRef100_A0A1T1IXF6, UniRef:UniRef50_A0A3M3DR29, UniRef:UniRef90_A0A3M3DR29
+pQBR5_contig_1	cds	64653	65075	+	PQBR5_00345		RNAse-A-bac domain-containing protein	RefSeq:WP_011922839.1, SO:0001217, UniParc:UPI00015065CF, UniRef:UniRef100_A4V7Z6, UniRef:UniRef50_A4V7Z6, UniRef:UniRef90_A4V7Z6
+pQBR5_contig_1	cds	65077	65757	+	PQBR5_00350	pilP	Type IV pilus biogenesis protein PilP	RefSeq:WP_011922840.1, SO:0001217, UniParc:UPI00015065D0, UniRef:UniRef100_A0A7Y0WK18, UniRef:UniRef50_A0A1X0ZGZ1, UniRef:UniRef90_A0A1D3K7A5
+pQBR5_contig_1	cds	65760	67553	+	PQBR5_00355		AAA domain-containing protein	RefSeq:WP_011922841.1, SO:0001217, UniParc:UPI00015065D1, UniRef:UniRef100_A0A7Y0WJX3, UniRef:UniRef50_A0A6G6J7T9, UniRef:UniRef90_A0A3M3DPM1
+pQBR5_contig_1	cds	67832	68299	+	PQBR5_00360		Pilus assembly protein	RefSeq:WP_193069061.1, SO:0001217, UniParc:UPI0018686DD5, UniRef:UniRef100_A4V7Z9, UniRef:UniRef50_A0A3M3DPX2, UniRef:UniRef90_A0A3M3DPX2
+pQBR5_contig_1	cds	68315	69484	+	PQBR5_00365		T2SSF domain-containing protein	RefSeq:WP_011922843.1, SO:0001217, UniParc:UPI00015065D3, UniRef:UniRef100_A0A1T1IXX5, UniRef:UniRef50_A0A3M3DP91, UniRef:UniRef90_A0A3M3DP91
+pQBR5_contig_1	cds	69481	70005	+	PQBR5_00370		Putative transmembrane pilus-related protein	RefSeq:WP_011922844.1, SO:0001217, UniParc:UPI00015065D4, UniRef:UniRef100_A4V801, UniRef:UniRef50_A0A5P9WAA3, UniRef:UniRef90_A4V801
+pQBR5_contig_1	cds	69989	70999	+	PQBR5_00375		Prepilin-type N-terminal cleavage/methylation domain-containing protein	RefSeq:WP_011922845.1, SO:0001217, UniParc:UPI00015065D5, UniRef:UniRef100_A4V802, UniRef:UniRef50_A0A3M3DPL8, UniRef:UniRef90_A0A3M3DPL8
+pQBR5_contig_1	cds	71041	72237	+	PQBR5_00380		Arylsulfatase regulatory protein	RefSeq:WP_011922846.1, SO:0001217, UniParc:UPI00015065D6, UniRef:UniRef100_A4V803, UniRef:UniRef50_A0A3M3DPT9, UniRef:UniRef90_A0A3M3DPT9
+pQBR5_contig_1	cds	72237	73379	+	PQBR5_00385		Radical SAM core domain-containing protein	RefSeq:WP_011922847.1, SO:0001217, UniParc:UPI0001506607, UniRef:UniRef100_A4V804, UniRef:UniRef50_A0A3M3DPX6, UniRef:UniRef90_A0A3M3DPX6
+pQBR5_contig_1	cds	73376	74494	+	PQBR5_00390		Radical SAM core domain-containing protein	RefSeq:WP_193069062.1, SO:0001217, UniParc:UPI0003159AF4, UniRef:UniRef100_A4V805, UniRef:UniRef50_V4GSL0, UniRef:UniRef90_A4V805
+pQBR5_contig_1	cds	74731	75105	+	PQBR5_00395		Copper resistance protein	RefSeq:WP_078465843.1, SO:0001217, UniParc:UPI0008652E4D, UniRef:UniRef100_A4V806, UniRef:UniRef50_A4V806, UniRef:UniRef90_A4V806
+pQBR5_contig_1	cds	75118	76689	+	PQBR5_00400		Transmembrane protein	RefSeq:WP_193069063.1, SO:0001217, UniParc:UPI0002E7E542, UniRef:UniRef100_A4V807, UniRef:UniRef50_A0A1T1IY94, UniRef:UniRef90_A0A1T1IY94
+pQBR5_contig_1	cds	76732	77790	+	PQBR5_00405		Radical SAM protein	SO:0001217, UniRef:UniRef50_A0A0Q6Z8D1, UniRef:UniRef90_A4V808
+pQBR5_contig_1	cds	77900	79519	+	PQBR5_00410		Radical SAM protein	SO:0001217, UniRef:UniRef50_A0A3M3DQG3, UniRef:UniRef90_A0A3M3DQG3
+pQBR5_contig_1	cds	79595	81424	+	PQBR5_00415		Radical SAM protein	RefSeq:WP_011922853.1, SO:0001217, UniParc:UPI000150660D, UniRef:UniRef100_A4V810, UniRef:UniRef50_V4GRJ1, UniRef:UniRef90_A4V810
+pQBR5_contig_1	cds	81421	84852	+	PQBR5_00420		DUF4350 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DPW7, UniRef:UniRef90_A0A1T1IXW2
+pQBR5_contig_1	cds	84845	86488	+	PQBR5_00425		Radical SAM protein	SO:0001217, UniRef:UniRef50_A0A1L7NNC5, UniRef:UniRef90_A0A3M3DP93
+pQBR5_contig_1	cds	86485	87681	+	PQBR5_00430		Radical SAM protein	RefSeq:WP_011922856.1, SO:0001217, UniParc:UPI0001506610, UniRef:UniRef100_A4V812, UniRef:UniRef50_V4H8N1, UniRef:UniRef90_A4V812
+pQBR5_contig_1	cds	87678	88322	+	PQBR5_00435		Fe2OG dioxygenase domain-containing protein	RefSeq:WP_011922857.1, SO:0001217, UniParc:UPI0001506611, UniRef:UniRef100_A4V813, UniRef:UniRef50_A0A3M3DSB8, UniRef:UniRef90_A0A3M3DSB8
+pQBR5_contig_1	cds	88319	89098	+	PQBR5_00440		Transcription-repair coupling factor	SO:0001217, UniRef:UniRef50_A4V814, UniRef:UniRef90_A4V814
+pQBR5_contig_1	cds	89083	90330	+	PQBR5_00445		Radical SAM protein	RefSeq:WP_011922859.1, SO:0001217, UniParc:UPI0001506613, UniRef:UniRef100_A4V815, UniRef:UniRef50_A4V815, UniRef:UniRef90_A4V815
+pQBR5_contig_1	cds	90327	90647	+	PQBR5_00450		DUF1330 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1X0ZHD1, UniRef:UniRef90_A0A1T1IYD0
+pQBR5_contig_1	cds	90628	91797	+	PQBR5_00455		Transcriptional regulator	RefSeq:WP_234288214.1, SO:0001217, UniParc:UPI001F40302C, UniRef:UniRef100_UPI001F40302C, UniRef:UniRef50_A0A3M3DQ68, UniRef:UniRef90_A0A3M3DQ68
+pQBR5_contig_1	cds	91808	92845	+	PQBR5_00460		T2SP-E domain-containing protein	SO:0001217, UniParc:UPI0001506631, UniRef:UniRef100_A4V817, UniRef:UniRef50_A0A3M3DNY3, UniRef:UniRef90_A0A3M3DNY3
+pQBR5_contig_1	cds	92874	93587	-	PQBR5_00465		EAL domain-containing protein	RefSeq:WP_193069065.1, SO:0001217, UniParc:UPI00186865B4, UniRef:UniRef100_UPI00186865B4, UniRef:UniRef50_A0A3M3DPH4, UniRef:UniRef90_A0A1T1IXD4
+pQBR5_contig_1	cds	93790	96486	+	PQBR5_00470		PDDEXK-1 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A0A7Q436, UniRef:UniRef90_A4V819
+pQBR5_contig_1	cds	96665	100030	+	PQBR5_00475		DNA helicase	SO:0001217, UniRef:UniRef50_A0A379PIS0, UniRef:UniRef90_A4V820
+pQBR5_contig_1	cds	100033	100557	-	PQBR5_00480		PDDEXK-5 domain-containing protein	RefSeq:WP_078465829.1, SO:0001217, UniParc:UPI0009973A72, UniRef:UniRef100_A0A7Y0WJQ7, UniRef:UniRef50_A0A3M3DPD6, UniRef:UniRef90_A0A1D3K764
+pQBR5_contig_1	cds	100559	100780	-	PQBR5_00485	yjcZ	Sporulation protein YjcZ	RefSeq:WP_078465828.1, SO:0001217, UniParc:UPI0009960B74, UniRef:UniRef100_A0A7Y0WJM1, UniRef:UniRef50_A0A3M3DP70, UniRef:UniRef90_A0A7Y0WJM1
+pQBR5_contig_1	cds	100759	101484	-	PQBR5_00490		Crp/Fnr family transcriptional regulator	SO:0001217, UniRef:UniRef50_A0A0C2MQW6, UniRef:UniRef90_A0A1T1IYF9
+pQBR5_contig_1	cds	101484	101897	-	PQBR5_00495		30S ribosomal protein S10	RefSeq:WP_193069067.1, SO:0001217, UniParc:UPI0018660A96, UniRef:UniRef100_A4V822, UniRef:UniRef50_A0A7Y0WJT5, UniRef:UniRef90_A0A7Y0WJT5
+pQBR5_contig_1	cds	101973	102239	-	PQBR5_00500		Peroxisomal membrane protein PEX16	SO:0001217, UniRef:UniRef50_A0A3M3DQZ3, UniRef:UniRef90_A0A1T1IZ36
+pQBR5_contig_1	cds	102236	103201	-	PQBR5_00505		Transmembrane protein	SO:0001217, UniRef:UniRef50_A0A3M3DQ29, UniRef:UniRef90_A0A1T1IYU9
+pQBR5_contig_1	cds	103388	103756	+	PQBR5_00510	pilZ	PilZ domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DP13, UniRef:UniRef90_A0A3M3DP13
+pQBR5_contig_1	cds	104303	105460	-	PQBR5_00515		DNA helicase	SO:0001217, UniRef:UniRef50_A0A0C2RQ48, UniRef:UniRef90_A4V825
+pQBR5_contig_1	cds	105463	105996	-	PQBR5_00520		Sel1 repeat family protein	SO:0001217, UniRef:UniRef50_V4GLY1, UniRef:UniRef90_A0A3M3DSI4
+pQBR5_contig_1	cds	106011	106991	-	PQBR5_00525		Integrase catalytic domain-containing protein	RefSeq:WP_011922871.1, SO:0001217, UniParc:UPI000150663B, UniRef:UniRef100_A4V827, UniRef:UniRef50_A4V827, UniRef:UniRef90_A4V827
+pQBR5_contig_1	cds	107121	108773	+	PQBR5_00530		TPR-REGION domain-containing protein	RefSeq:WP_011922872.1, SO:0001217, UniParc:UPI000150663C, UniRef:UniRef100_A4V828, UniRef:UniRef50_A4V828, UniRef:UniRef90_A4V828
+pQBR5_contig_1	cds	108763	109380	+	PQBR5_00535		DUF922 domain-containing protein	SO:0001217, UniParc:UPI000150663D, UniRef:UniRef100_A4V7J9, UniRef:UniRef50_A0A3M3DPU4, UniRef:UniRef90_A0A1D3K7G2
+pQBR5_contig_1	cds	109441	110553	+	PQBR5_00540		Endonuclease/exonuclease/phosphatase family protein	RefSeq:WP_193069072.1, SO:0001217, UniParc:UPI0003109C1F, UniRef:UniRef100_A4V7K0, UniRef:UniRef50_A0A1H4ZMY3, UniRef:UniRef90_A0A7Y0WJT8
+pQBR5_contig_1	cds	110876	111085	-	PQBR5_00545		hypothetical protein	
+pQBR5_contig_1	cds	111428	111658	+	PQBR5_00550		Cytochrome B5	RefSeq:WP_193069073.1, SO:0001217, UniParc:UPI001865FC2F, UniRef:UniRef100_UPI001865FC2F, UniRef:UniRef50_A0A1E5X7B9, UniRef:UniRef90_UPI001865FC2F
+pQBR5_contig_1	cds	111763	112212	+	PQBR5_00555		Putative exported protein	RefSeq:WP_011922876.1, SO:0001217, UniParc:UPI0001506640, UniRef:UniRef100_A4V7K2, UniRef:UniRef50_A0A0Q6YXU3, UniRef:UniRef90_A4V7K2
+pQBR5_contig_1	cds	112316	112453	+	PQBR5_00560		hypothetical protein	
+pQBR5_contig_1	cds	112465	112701	+	PQBR5_00565		Type III secretion system protein	RefSeq:WP_193069075.1, SO:0001217, UniParc:UPI001865E361, UniRef:UniRef100_A4V7K3, UniRef:UniRef50_A4V7K3, UniRef:UniRef90_A4V7K3
+pQBR5_contig_1	cds	112812	113270	+	PQBR5_00570		PaREP2b	RefSeq:WP_011922878.1, SO:0001217, UniParc:UPI0001506642, UniRef:UniRef100_A4V7K4, UniRef:UniRef50_V4GSN8, UniRef:UniRef90_A4V7K4
+pQBR5_contig_1	cds	113283	113639	+	PQBR5_00575		Lytic transglycosylase	RefSeq:WP_011922879.1, SO:0001217, UniParc:UPI0001506643, UniRef:UniRef100_A4V7K5, UniRef:UniRef50_A0A241XRB0, UniRef:UniRef90_A4V7K5
+pQBR5_contig_1	cds	113653	114021	+	PQBR5_00580		Putative transmembrane protein	SO:0001217, UniRef:UniRef50_A4V7K6, UniRef:UniRef90_A4V7K6
+pQBR5_contig_1	cds	114036	114191	+	PQBR5_00585		hypothetical protein	RefSeq:WP_234288219.1, SO:0001217, UniParc:UPI001F17EDEF, UniRef:UniRef100_UPI001F17EDEF, UniRef:UniRef50_UPI001F17EDEF, UniRef:UniRef90_UPI001F17EDEF
+pQBR5_contig_1	cds	114313	114651	+	PQBR5_00590		Putative transmembrane protein	RefSeq:WP_011922881.1, SO:0001217, UniParc:UPI0001506663, UniRef:UniRef100_A4V7K7, UniRef:UniRef50_A4V7K7, UniRef:UniRef90_A4V7K7
+pQBR5_contig_1	cds	114670	114939	+	PQBR5_00595		Secreted protein	SO:0001217, UniRef:UniRef50_A0A3M3DP34
+pQBR5_contig_1	cds	114972	115619	-	PQBR5_00600		Putative cyclic amp receptor-family protein	SO:0001217, UniRef:UniRef50_A0A3M3DSN1, UniRef:UniRef90_A4V7K8
+pQBR5_contig_1	cds	115814	118228	+	PQBR5_00605		Putative UvrD/Rep family helicase	RefSeq:WP_011922883.1, SO:0001217, UniParc:UPI0001506665, UniRef:UniRef100_A4V7K9, UniRef:UniRef50_A0A1X0ZW03, UniRef:UniRef90_A4V7K9
+pQBR5_contig_1	cds	118485	118886	-	PQBR5_00610		Transglut-core3 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7L0, UniRef:UniRef90_A4V7L0
+pQBR5_contig_1	cds	119012	120292	+	PQBR5_00615		Methyltransferase	RefSeq:WP_011922885.1, SO:0001217, UniParc:UPI0001506667, UniRef:UniRef100_A4V7L1, UniRef:UniRef50_A0A0D5M9U8, UniRef:UniRef90_A4V7L1
+pQBR5_contig_1	cds	120302	120964	+	PQBR5_00620		PG-binding-3 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4X931, UniRef:UniRef90_A4V7L2
+pQBR5_contig_1	cds	121171	121818	+	PQBR5_00625		DUF2170 domain-containing protein	RefSeq:WP_011922887.1, SO:0001217, UniParc:UPI0001506669, UniRef:UniRef100_A4V7I5, UniRef:UniRef50_A0A077LQ69, UniRef:UniRef90_A4V7I5
+pQBR5_contig_1	cds	121846	122544	+	PQBR5_00630		PspA/IM30 family protein	RefSeq:WP_011922888.1, SO:0001217, UniParc:UPI000150666A, UniRef:UniRef100_A4V7H4, UniRef:UniRef50_W0MTR8, UniRef:UniRef90_A0A3M3DS02
+pQBR5_contig_1	cds	122618	123166	+	PQBR5_00635		Putative transmembrane rhomboid family protein	SO:0001217, UniRef:UniRef50_N2IPA7, UniRef:UniRef90_A4V7H5
+pQBR5_contig_1	cds	123241	123906	+	PQBR5_00640		DUF2491 domain-containing protein	RefSeq:WP_011922890.1, SO:0001217, UniParc:UPI000150666C, UniRef:UniRef100_A4V7H6, UniRef:UniRef50_A0A0C2F309, UniRef:UniRef90_A4V7H6
+pQBR5_contig_1	cds	123920	124345	+	PQBR5_00645		Transmembrane protein	RefSeq:WP_011922891.1, SO:0001217, UniParc:UPI000150666D, UniRef:UniRef100_A4V7H7, UniRef:UniRef50_E2XYS5, UniRef:UniRef90_A0A3M3DSJ7
+pQBR5_contig_1	cds	124363	125127	+	PQBR5_00650		Lipoprotein	RefSeq:WP_011922892.1, SO:0001217, UniParc:UPI000150666E, UniRef:UniRef100_A4V7H8, UniRef:UniRef50_Q1ICE9, UniRef:UniRef90_A4V7H8
+pQBR5_contig_1	cds	125138	126295	+	PQBR5_00655		GSP-synth domain-containing protein	SO:0001217, UniRef:UniRef50_A0A0F7Y8P9, UniRef:UniRef90_A0A3M3DP31
+pQBR5_contig_1	cds	126425	127045	+	PQBR5_00660		Putative transmembrane protein	SO:0001217, UniParc:UPI0001506670, UniRef:UniRef100_A4V7I0, UniRef:UniRef50_A4V7I0, UniRef:UniRef90_A4V7I0
+pQBR5_contig_1	cds	127084	129015	+	PQBR5_00665		PHB domain-containing protein	RefSeq:WP_011922895.1, SO:0001217, UniParc:UPI0001506671, UniRef:UniRef100_A4V7I1, UniRef:UniRef50_A4V7I1, UniRef:UniRef90_A4V7I1
+pQBR5_contig_1	cds	129129	134375	+	PQBR5_00670		DNA repair protein	SO:0001217, UniRef:UniRef50_A0A7U9HM80, UniRef:UniRef90_A4V7I2
+pQBR5_contig_1	cds	134439	134810	-	PQBR5_00675		Transcriptional regulator	RefSeq:WP_193069079.1, SO:0001217, UniParc:UPI0002F869CA, UniRef:UniRef100_UPI0002F869CA, UniRef:UniRef50_I7BF70, UniRef:UniRef90_A0A3M3DPR0
+pQBR5_contig_1	cds	135346	136197	+	PQBR5_00680		S4 RNA-binding domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7I4, UniRef:UniRef90_A4V7I4
+pQBR5_contig_1	cds	136393	137574	+	PQBR5_00685		zf-C2H2-3 domain-containing protein	RefSeq:WP_011922899.1, SO:0001217, UniParc:UPI0001506696, UniRef:UniRef100_A4V7J8, UniRef:UniRef50_A0A1E4WZ57, UniRef:UniRef90_A4V7J8
+pQBR5_contig_1	cds	137792	137983	+	PQBR5_00690		Phage protein	RefSeq:WP_234288220.1, SO:0001217, UniParc:UPI001F204B21, UniRef:UniRef100_UPI001F204B21, UniRef:UniRef50_A0A1H4ZN57, UniRef:UniRef90_UPI001F204B21
+pQBR5_contig_1	cds	138039	138377	-	PQBR5_00695		Tail assembly chaperone	RefSeq:WP_193069080.1, SO:0001217, UniParc:UPI0003069BCF, UniRef:UniRef100_A4V7I6, UniRef:UniRef50_A4V7I6, UniRef:UniRef90_A4V7I6
+pQBR5_contig_1	cds	138476	138685	-	PQBR5_00700		Small CPxCG-related zinc finger protein	RefSeq:WP_193069081.1, SO:0001217, UniParc:UPI0018667820, UniRef:UniRef100_UPI0018667820, UniRef:UniRef50_A0A3E1UMN7, UniRef:UniRef90_UPI0018667820
+pQBR5_contig_1	cds	138749	139159	-	PQBR5_00705		hypothetical protein	
+pQBR5_contig_1	cds	139176	139517	-	PQBR5_00710		DUF1330 domain-containing protein	RefSeq:WP_011922901.1, SO:0001217, UniParc:UPI0001506698, UniRef:UniRef100_A4V7I7, UniRef:UniRef50_A4V7I7, UniRef:UniRef90_A4V7I7
+pQBR5_contig_1	cds	139650	140588	-	PQBR5_00715		Transcriptional regulator	SO:0001217, UniRef:UniRef50_A4V7I8, UniRef:UniRef90_A4V7I8
+pQBR5_contig_1	cds	140715	141905	-	PQBR5_00720		Nup96 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7I9, UniRef:UniRef90_A4V7I9
+pQBR5_contig_1	cds	142285	142959	+	PQBR5_00725		Dynein-AAA-lid domain-containing protein	RefSeq:WP_193069082.1, SO:0001217, UniParc:UPI001867215B, UniRef:UniRef100_A4V7J0, UniRef:UniRef50_A0A1E4WZ70, UniRef:UniRef90_A4V7J0
+pQBR5_contig_1	cds	142983	144011	+	PQBR5_00730		PLDc-2 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7J1, UniRef:UniRef90_A4V7J1
+pQBR5_contig_1	cds	144593	145729	+	PQBR5_00735		Putative DNA-binding protein	SO:0001217, UniRef:UniRef50_A4V7J2, UniRef:UniRef90_A4V7J2
+pQBR5_contig_1	cds	145879	146958	+	PQBR5_00740		Putative transmembrane protein	SO:0001217, UniRef:UniRef50_A0A1E4WZ69, UniRef:UniRef90_A4V7J3
+pQBR5_contig_1	cds	147022	147957	+	PQBR5_00745		DUF808 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A0Q5M076, UniRef:UniRef90_A0A1E4WZ77
+pQBR5_contig_1	cds	148061	148630	+	PQBR5_00750		Putative transmembrane protein	SO:0001217, UniRef:UniRef50_A0A3M3DNX2, UniRef:UniRef90_A4V7J5
+pQBR5_contig_1	cds	148641	150317	+	PQBR5_00755		Lactate permease	SO:0001217, UniRef:UniRef50_A0A1E4WZ68, UniRef:UniRef90_A0A7Y0WJJ9
+pQBR5_contig_1	cds	150542	150979	+	PQBR5_00760		TM2 domain-containing protein	RefSeq:WP_078465773.1, SO:0001217, UniParc:UPI00099667E9, UniRef:UniRef100_A0A7Y0WJP7, UniRef:UniRef50_A0A1E4WZ64, UniRef:UniRef90_A0A7Y0WJP7
+pQBR5_contig_1	cds	151043	151447	+	PQBR5_00765		Putative response regulator domain-only transcriptional regulator	RefSeq:WP_011922912.1, SO:0001217, UniParc:UPI00015066A3, UniRef:UniRef100_A4V7M3, UniRef:UniRef50_A0A0C2NDA0, UniRef:UniRef90_A4V7M3
+pQBR5_contig_1	cds	151546	152070	-	PQBR5_00770		Sema domain-containing protein	SO:0001217, UniRef:UniRef50_A0A7Y0WJK4, UniRef:UniRef90_A0A7Y0WJK4
+pQBR5_contig_1	cds	152163	153050	+	PQBR5_00775		Prepilin leader peptidase/N-methyltransferase	SO:0001217, UniRef:UniRef50_A4V7L3, UniRef:UniRef90_A4V7L3
+pQBR5_contig_1	cds	153043	154308	+	PQBR5_00780		Tyr recombinase domain-containing protein	SO:0001217, UniRef:UniRef50_U3B5G6, UniRef:UniRef90_A0A1E4WZ92
+pQBR5_contig_1	cds	154342	154668	-	PQBR5_00785		Secreted protein	SO:0001217, UniRef:UniRef50_A0A1T1IXY8
+pQBR5_contig_1	cds	155112	156548	-	PQBR5_00790		Myb-like domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1T1IXP8, UniRef:UniRef90_A0A1T1IXP8
+pQBR5_contig_1	cds	156807	157958	-	PQBR5_00795		DUF3800 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7L7, UniRef:UniRef90_A4V7L7
+pQBR5_contig_1	cds	157981	158841	-	PQBR5_00800		KfrA-N domain-containing protein	SO:0001217, UniRef:UniRef50_A0A5E7E7T6, UniRef:UniRef90_A4V7L8
+pQBR5_contig_1	cds	159001	160173	+	PQBR5_00805		Putative phage-related integrase/recombinase	RefSeq:WP_011922919.1, SO:0001217, UniParc:UPI00015066C5, UniRef:UniRef100_A4V7L9, UniRef:UniRef50_A0A0J8FXD7, UniRef:UniRef90_A4V7L9
+pQBR5_contig_1	cds	160199	160642	+	PQBR5_00810		DUF2511 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7M0, UniRef:UniRef90_A4V7M0
+pQBR5_contig_1	cds	160802	161137	+	PQBR5_00815		Crp/Fnr family transcriptional regulator	SO:0001217, UniRef:UniRef50_A4V7M1, UniRef:UniRef90_A4V7M1
+pQBR5_contig_1	cds	161084	161278	-	PQBR5_00820		hypothetical protein	
+pQBR5_contig_1	cds	161355	162035	+	PQBR5_00825		Putative partitioning protein	KEGG:K03497, SO:0001217, UniRef:UniRef50_A0A3M3DPJ1, UniRef:UniRef90_A4V7M2
+pQBR5_contig_1	cds	162261	162656	+	PQBR5_00830		Tail protein	RefSeq:WP_011922923.1, SO:0001217, UniParc:UPI00015066C9, UniRef:UniRef100_A4V7M4, UniRef:UniRef50_A4V7M4, UniRef:UniRef90_A4V7M4
+pQBR5_contig_1	cds	162699	163127	-	PQBR5_00835		Transposase	RefSeq:WP_011922924.1, SO:0001217, UniParc:UPI00015066CA, UniRef:UniRef100_A4V7M5, UniRef:UniRef50_A4V7M5, UniRef:UniRef90_A4V7M5
+pQBR5_contig_1	cds	163143	163649	-	PQBR5_00840		Putative transmembrane protein	SO:0001217, UniRef:UniRef50_A0A1T1IXN6, UniRef:UniRef90_A4V7M6
+pQBR5_contig_1	cds	163747	164184	-	PQBR5_00845		Putative transmembrane protein	RefSeq:WP_011922926.1, SO:0001217, UniParc:UPI00015066CC, UniRef:UniRef100_A4V7M7, UniRef:UniRef50_A0A1E4WZ73, UniRef:UniRef90_A4V7M7
+pQBR5_contig_1	cds	164249	164632	-	PQBR5_00850		Mrr-N domain-containing protein	RefSeq:WP_011922927.1, SO:0001217, UniParc:UPI00015066CD, UniRef:UniRef100_A4V7M8, UniRef:UniRef50_A4V7M8, UniRef:UniRef90_A4V7M8
+pQBR5_contig_1	cds	164642	166354	-	PQBR5_00855	dsbD	Putative transmembrane thiol:disulfide interchange protein DsbD	EC:1.8.4.16, KEGG:K04084, SO:0001217, UniRef:UniRef50_A0A1T1IX77, UniRef:UniRef90_A4V7M9
+pQBR5_contig_1	cds	166453	167019	-	PQBR5_00860		Zpr1 domain-containing protein	RefSeq:WP_193069091.1, SO:0001217, UniParc:UPI0018695825, UniRef:UniRef100_UPI0018695825, UniRef:UniRef50_A0A3M3DP35, UniRef:UniRef90_UPI0018695825
+pQBR5_contig_1	cds	167585	168067	+	PQBR5_00865		Lipoprotein	SO:0001217, UniRef:UniRef50_A4V7N1, UniRef:UniRef90_A4V7N1
+pQBR5_contig_1	cds	168182	168910	-	PQBR5_00870		Integral membrane protein	SO:0001217, UniRef:UniRef50_A0A1T1IY04, UniRef:UniRef90_A0A1T1IY04
+pQBR5_contig_1	cds	169084	169320	+	PQBR5_00875		Plasmid stabilization protein	RefSeq:WP_078465749.1, SO:0001217, UniParc:UPI00099817DB, UniRef:UniRef100_A0A7Y0WJH0, UniRef:UniRef50_A0A8T8CAI3, UniRef:UniRef90_A0A7Y0WJH0
+pQBR5_contig_1	cds	169332	170135	+	PQBR5_00880		Peptidase-M48 domain-containing protein	EC:3.4.24.-, KEGG:K23010, RefSeq:WP_234288223.1, SO:0001217, UniParc:UPI001F1E8ADD, UniRef:UniRef100_A4V7N3, UniRef:UniRef50_A0A3M3DP56, UniRef:UniRef90_A0A3M3DP56
+pQBR5_contig_1	cds	170338	170601	+	PQBR5_00885		Carbam-trans-N domain-containing protein	RefSeq:WP_193069094.1, SO:0001217, UniParc:UPI00186742FA, UniRef:UniRef100_UPI00186742FA, UniRef:UniRef50_A0A7V8J5J9, UniRef:UniRef90_UPI00186742FA
+pQBR5_contig_1	cds	170705	171949	-	PQBR5_00890		BIG2 domain-containing protein	SO:0001217, UniParc:UPI00015066D3, UniRef:UniRef100_A4V7N4, UniRef:UniRef50_A4V7N4, UniRef:UniRef90_A4V7N4
+pQBR5_contig_1	cds	172078	172818	+	PQBR5_00895	tonB	TonB family protein	RefSeq:WP_011922934.1, SO:0001217, UniParc:UPI00015066D4, UniRef:UniRef100_A4V7N5, UniRef:UniRef50_A0A3M3DPE5, UniRef:UniRef90_A0A3M3DPE5
+pQBR5_contig_1	cds	172871	173395	-	PQBR5_00900		Phage tail protein	SO:0001217, UniRef:UniRef50_A0A3M3DQD6, UniRef:UniRef90_A4V7N6
+pQBR5_contig_1	cds	173343	174044	-	PQBR5_00905		DNA-binding protein	RefSeq:WP_011922936.1, SO:0001217, UniParc:UPI00015066D6, UniRef:UniRef100_A4V7N7, UniRef:UniRef50_A0A3M3DPT0, UniRef:UniRef90_A0A3M3DPT0
+pQBR5_contig_1	cds	174214	175167	+	PQBR5_00910		Conserved hypothetical exported protein	SO:0001217, UniParc:UPI00015066D7, UniRef:UniRef100_A4V7N8, UniRef:UniRef50_A0A1X0ZVX3, UniRef:UniRef90_A4V7N8
+pQBR5_contig_1	cds	175252	175782	-	PQBR5_00915		Putative transmembrane protein	SO:0001217, UniParc:UPI00015066D8, UniRef:UniRef100_A4V7N9, UniRef:UniRef50_A4V7N9, UniRef:UniRef90_A4V7N9
+pQBR5_contig_1	cds	175823	175996	-	PQBR5_00920		ATPase	SO:0001217, UniRef:UniRef50_A0A7Y1FBQ0, UniRef:UniRef90_A0A8T8CB85
+pQBR5_contig_1	cds	176089	176751	-	PQBR5_00925		Putative transmembrane protein	SO:0001217, UniRef:UniRef50_A0A3M3DPB0, UniRef:UniRef90_A4V7P0
+pQBR5_contig_1	cds	176796	177032	-	PQBR5_00930		CheW-like domain-containing protein	RefSeq:WP_193069100.1, SO:0001217, UniParc:UPI0002F86389, UniRef:UniRef100_UPI0002F86389, UniRef:UniRef50_A0A3M3DRN9, UniRef:UniRef90_UPI0002F86389
+pQBR5_contig_1	cds	177116	177691	-	PQBR5_00935		CxC5 domain-containing protein	RefSeq:WP_011922940.1, SO:0001217, UniParc:UPI00015066DA, UniRef:UniRef100_A4V7Q2, UniRef:UniRef50_A0A3M3DPF6, UniRef:UniRef90_A0A8T8CAD5
+pQBR5_contig_1	cds	177727	178536	-	PQBR5_00940		Alpha/beta hydrolase	RefSeq:WP_234288225.1, SO:0001217, UniParc:UPI001F43DDEF, UniRef:UniRef100_A4V7P2, UniRef:UniRef50_A0A3M3DPE6, UniRef:UniRef90_A0A1T1IZ53
+pQBR5_contig_1	cds	178655	181255	-	PQBR5_00945		Autotransporter domain-containing protein	RefSeq:WP_011922942.1, SO:0001217, UniParc:UPI00015066EC, UniRef:UniRef100_A4V7P3, UniRef:UniRef50_A0A3M3DQ99, UniRef:UniRef90_A0A3M3DQ99
+pQBR5_contig_1	cds	181858	182709	+	PQBR5_00950		HTH psq-type domain-containing protein	RefSeq:WP_011922943.1, SO:0001217, UniParc:UPI00015066ED, UniRef:UniRef100_A4V7P4, UniRef:UniRef50_A4V7P4, UniRef:UniRef90_A4V7P4
+pQBR5_contig_1	cds	182784	184934	+	PQBR5_00955		VWFA domain-containing protein	RefSeq:WP_011922944.1, SO:0001217, UniParc:UPI00015066EE, UniRef:UniRef100_A4V7P5, UniRef:UniRef50_A0A2N5B729, UniRef:UniRef90_A4V7P5
+pQBR5_contig_1	cds	184943	185476	-	PQBR5_00960		RNA-binding protein	SO:0001217, UniRef:UniRef50_A0A1X0Z4D9, UniRef:UniRef90_A4V7P6
+pQBR5_contig_1	cds	185826	186251	-	PQBR5_00965		GCR1-C domain-containing protein	RefSeq:WP_193069101.1, SO:0001217, UniParc:UPI0018665DC2, UniRef:UniRef100_A4V7P8, UniRef:UniRef50_A4V7P8, UniRef:UniRef90_A4V7P8
+pQBR5_contig_1	cds	186539	186895	+	PQBR5_00970		Peptidyl-prolyl cis-trans isomerase	RefSeq:WP_193069102.1, SO:0001217, UniParc:UPI001868A556, UniRef:UniRef100_A4V7P9, UniRef:UniRef50_A0A7Y1FAZ5, UniRef:UniRef90_A0A7Y0WM37
+pQBR5_contig_1	cds	186922	187155	+	PQBR5_00975		hypothetical protein	RefSeq:WP_193069103.1, SO:0001217, UniParc:UPI0018676085, UniRef:UniRef100_UPI0018676085, UniRef:UniRef50_UPI0018676085, UniRef:UniRef90_UPI0018676085
+pQBR5_contig_1	cds	187255	188526	+	PQBR5_00980		PLD phosphodiesterase domain-containing protein	RefSeq:WP_011922949.1, SO:0001217, UniParc:UPI00015066F3, UniRef:UniRef100_A4V7Q0, UniRef:UniRef50_A4V7Q0, UniRef:UniRef90_A4V7Q0
+pQBR5_contig_1	cds	188702	189820	+	PQBR5_00985		DUF1963 domain-containing protein	RefSeq:WP_011922950.1, SO:0001217, UniParc:UPI00015066F4, UniRef:UniRef100_A4V7Q1, UniRef:UniRef50_A4V7Q1, UniRef:UniRef90_A4V7Q1
+pQBR5_contig_1	cds	190956	191624	+	PQBR5_00990		Octopine-DH domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7Q4, UniRef:UniRef90_A4V7Q4
+pQBR5_contig_1	cds	191644	191814	-	PQBR5_00995		Transposase	RefSeq:WP_193069104.1, SO:0001217, UniParc:UPI0018679DFD, UniRef:UniRef100_UPI0018679DFD, UniRef:UniRef50_A0A3M3DP86, UniRef:UniRef90_UPI0018679DFD
+pQBR5_contig_1	cds	191960	193204	-	PQBR5_01000		DUF3800 domain-containing protein	RefSeq:WP_193069105.1, SO:0001217, UniParc:UPI001869248E, UniRef:UniRef100_A4V7Q5, UniRef:UniRef50_A4V7Q5, UniRef:UniRef90_A4V7Q5
+pQBR5_contig_1	cds	193220	193633	-	PQBR5_01005		Interferon alpha inducible protein 27 like 1	RefSeq:WP_193069106.1, SO:0001217, UniParc:UPI001865C80F, UniRef:UniRef100_A4V7Q6, UniRef:UniRef50_A4V7Q6, UniRef:UniRef90_A4V7Q6
+pQBR5_contig_1	cds	193904	194203	+	PQBR5_01010		Regulatory protein	SO:0001217, UniParc:UPI00015066F9, UniRef:UniRef100_A4V7Q7, UniRef:UniRef50_A0A3M6FEP2, UniRef:UniRef90_A4V7Q7
+pQBR5_contig_1	cds	194255	195523	+	PQBR5_01015		RNase NYN domain-containing protein	RefSeq:WP_011922956.1, SO:0001217, UniParc:UPI00015066FA, UniRef:UniRef100_A4V7Q8, UniRef:UniRef50_A4V7Q8, UniRef:UniRef90_A4V7Q8
+pQBR5_contig_1	cds	195540	196301	-	PQBR5_01020		NAD-dependent protein deacylase	RefSeq:WP_011922957.1, SO:0001217, UniParc:UPI00015066FB, UniRef:UniRef100_A4V7Q9, UniRef:UniRef50_A0A157Q1V1, UniRef:UniRef90_A4V7Q9
+pQBR5_contig_1	cds	196405	196812	-	PQBR5_01025		TPR-REGION domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4XA11, UniRef:UniRef90_A4V7R0
+pQBR5_contig_1	cds	197140	198153	-	PQBR5_01030	yejK	nucleoid-associated protein YejK	RefSeq:WP_011922959.1, SO:0001217, UniParc:UPI00015066FD, UniRef:UniRef100_A4V7R1, UniRef:UniRef50_C1DPE2, UniRef:UniRef90_A0A3M3DQ01
+pQBR5_contig_1	cds	198240	198545	-	PQBR5_01035		Transcriptional regulator	RefSeq:WP_011922960.1, SO:0001217, UniParc:UPI00015066FE, UniRef:UniRef100_A4V7R2, UniRef:UniRef50_A0A3M3DP54, UniRef:UniRef90_A4V7R2
+pQBR5_contig_1	cds	198679	198993	-	PQBR5_01040		TRAP transporter large permease subunit	RefSeq:WP_193069109.1, SO:0001217, UniParc:UPI001867E4CE, UniRef:UniRef100_UPI001867E4CE, UniRef:UniRef50_A0A3M3DPQ2, UniRef:UniRef90_A0A7Y0WM53
+pQBR5_contig_1	cds	199131	201056	-	PQBR5_01045		Restriction endonuclease subunit S	RefSeq:WP_011922962.1, SO:0001217, UniParc:UPI00015192CC, UniRef:UniRef100_A4V7R4, UniRef:UniRef50_A4V7R4, UniRef:UniRef90_A4V7R4
+pQBR5_contig_1	cds	201582	202436	+	PQBR5_01050		Putative pilin-related protein	RefSeq:WP_011922963.1, SO:0001217, UniParc:UPI0001506709, UniRef:UniRef100_A4V7R5, UniRef:UniRef50_A0A6H1Q8Q1, UniRef:UniRef90_A4V7R5
+pQBR5_contig_1	cds	202713	203723	+	PQBR5_01055		Invasin	SO:0001217, UniRef:UniRef50_A0A1T1HN85, UniRef:UniRef90_A0A1T1HN85
+pQBR5_contig_1	cds	203922	204353	+	PQBR5_01060		Peptidase-S24 domain-containing protein	RefSeq:WP_011922965.1, SO:0001217, UniParc:UPI000150670B, UniRef:UniRef100_A4V7C7, UniRef:UniRef50_A0A098FL80, UniRef:UniRef90_A0A1D3K907
+pQBR5_contig_1	cds	204343	205623	+	PQBR5_01065	umuC	UmuC domain-containing protein	RefSeq:WP_011922966.1, SO:0001217, UniParc:UPI000150670C, UniRef:UniRef100_A4V7C8, UniRef:UniRef50_A0A5M9IEB6, UniRef:UniRef90_A0A3M3DQD0
+pQBR5_contig_1	cds	205627	205824	-	PQBR5_01070	abrB	AbrB family transcriptional regulator	SO:0001217, UniRef:UniRef50_A0A1Q5VLN8, UniRef:UniRef90_UPI0002DDE6B3
+pQBR5_contig_1	cds	205908	206111	-	PQBR5_01075		Transposase	RefSeq:WP_193069112.1, SO:0001217, UniParc:UPI00186832CF, UniRef:UniRef100_UPI00186832CF, UniRef:UniRef50_A0A3M3DP03, UniRef:UniRef90_UPI00186832CF
+pQBR5_contig_1	cds	206159	206350	-	PQBR5_01080		Conserved membrane protein	RefSeq:WP_193069113.1, SO:0001217, UniParc:UPI00031FF3A4, UniRef:UniRef100_UPI00031FF3A4, UniRef:UniRef50_A0A5E9N620, UniRef:UniRef90_A0A5E9N620
+pQBR5_contig_1	cds	206451	206588	-	PQBR5_01085		DNA-binding protein	SO:0001217, UniRef:UniRef50_C1DRE5
+pQBR5_contig_1	cds	206611	206946	-	PQBR5_01090		Arginine--tRNA ligase	SO:0001217, UniRef:UniRef50_A0A109LL36, UniRef:UniRef90_A4V7C9
+pQBR5_contig_1	cds	207035	207490	-	PQBR5_01095		SLT domain-containing protein	RefSeq:WP_193069115.1, SO:0001217, UniParc:UPI001868BF0E, UniRef:UniRef100_UPI001868BF0E, UniRef:UniRef50_A0A3M3DPE7, UniRef:UniRef90_A0A3M3DPE7
+pQBR5_contig_1	cds	207503	207754	-	PQBR5_01100		Zinc-finger	SO:0001217, UniRef:UniRef50_A0A3M4K3N9, UniRef:UniRef90_A0A3M4K3N9
+pQBR5_contig_1	cds	207778	207963	-	PQBR5_01105		Type III secretion effector protein	RefSeq:WP_193069117.1, SO:0001217, UniParc:UPI0018684835, UniRef:UniRef100_UPI0018684835, UniRef:UniRef50_A0A3G1DH06, UniRef:UniRef90_UPI0018684835
+pQBR5_contig_1	cds	207990	208346	-	PQBR5_01110		DUF2793 domain-containing protein	RefSeq:WP_011922970.1, SO:0001217, UniParc:UPI0001506710, UniRef:UniRef100_A4V7D2, UniRef:UniRef50_A4V7D2, UniRef:UniRef90_A4V7D2
+pQBR5_contig_1	cds	208443	208871	-	PQBR5_01115		hypothetical protein	RefSeq:WP_193069118.1, SO:0001217, UniParc:UPI00186696EF, UniRef:UniRef100_UPI00186696EF, UniRef:UniRef50_UPI00186696EF, UniRef:UniRef90_UPI00186696EF
+pQBR5_contig_1	cds	208898	209533	-	PQBR5_01120		hypothetical protein	SO:0001217, UniRef:UniRef50_UPI0003027605, UniRef:UniRef90_UPI0003027605
+pQBR5_contig_1	cds	209576	209812	-	PQBR5_01125		DNA-damage-inducible protein J	RefSeq:WP_193069120.1, SO:0001217, UniParc:UPI000308274F, UniRef:UniRef100_UPI000308274F, UniRef:UniRef50_A0A0I9SQF6, UniRef:UniRef90_A0A8I0VM38
+pQBR5_contig_1	cds	209918	210235	-	PQBR5_01130		hypothetical protein	RefSeq:WP_193069121.1, SO:0001217, UniParc:UPI00186740E3, UniRef:UniRef100_UPI00186740E3, UniRef:UniRef50_A0A166QN72, UniRef:UniRef90_UPI00186740E3
+pQBR5_contig_1	cds	210666	210875	+	PQBR5_01135		hypothetical protein	
+pQBR5_contig_1	cds	211411	212073	+	PQBR5_01140		VWFA domain-containing protein	RefSeq:WP_011922975.1, SO:0001217, UniParc:UPI0001506715, UniRef:UniRef100_A4V7D7, UniRef:UniRef50_P76396, UniRef:UniRef90_A4V7D7
+pQBR5_contig_1	cds	212094	212828	+	PQBR5_01145		Protein phosphatase 2C domain-containing protein	RefSeq:WP_193069122.1, SO:0001217, UniParc:UPI0018661D89, UniRef:UniRef100_UPI0018661D89, UniRef:UniRef50_A0A3M3DNY5, UniRef:UniRef90_A4V7D8
+pQBR5_contig_1	cds	212830	214773	+	PQBR5_01150		Protein kinase domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7D9, UniRef:UniRef90_A4V7D9
+pQBR5_contig_1	cds	214863	215324	+	PQBR5_01155		ABC2-membrane domain-containing protein	RefSeq:WP_155007464.1, SO:0001217, UniParc:UPI0012B72897, UniRef:UniRef100_UPI0013C364FF, UniRef:UniRef50_A0A3M3DS52, UniRef:UniRef90_A0A7Y0WMX7
+pQBR5_contig_1	cds	215567	216193	-	PQBR5_01160	rnhB	ribonuclease HII	RefSeq:WP_011922979.1, SO:0001217, UniParc:UPI0001506719, UniRef:UniRef100_A4V7R6, UniRef:UniRef50_B4ECL7, UniRef:UniRef90_A4V7R6
+pQBR5_contig_1	cds	216220	216876	-	PQBR5_01165		SMI1/KNR4 family protein	SO:0001217, UniRef:UniRef50_A4V7R7, UniRef:UniRef90_A4V7R7
+pQBR5_contig_1	cds	217030	217125	-	PQBR5_01170		hypothetical protein	
+pQBR5_contig_1	cds	217166	217465	+	PQBR5_01175		Putative exported protein	RefSeq:WP_011922981.1, SO:0001217, UniParc:UPI000150671B, UniRef:UniRef100_A4V7R8, UniRef:UniRef50_A0A3M3DPI1, UniRef:UniRef90_A4V7R8
+pQBR5_contig_1	cds	217565	218227	-	PQBR5_01180		MEDS domain-containing protein	SO:0001217, UniParc:UPI000150671C, UniRef:UniRef100_A4V7R9, UniRef:UniRef50_A4V7R9, UniRef:UniRef90_A4V7R9
+pQBR5_contig_1	cds	218231	218647	-	PQBR5_01185	dksA	DksA C4-type domain-containing protein	RefSeq:WP_011922983.1, SO:0001217, UniParc:UPI000150671D, UniRef:UniRef100_A4V7S0, UniRef:UniRef50_A0A3M3DQ42, UniRef:UniRef90_A0A3M3DQ42
+pQBR5_contig_1	cds	218796	219152	+	PQBR5_01190		DUF3077 domain-containing protein	RefSeq:WP_116827060.1, SO:0001217, UniParc:UPI000E31FEE8, UniRef:UniRef100_A4V7S1, UniRef:UniRef50_A4V7S1, UniRef:UniRef90_A4V7S1
+pQBR5_contig_1	cds	219186	219515	+	PQBR5_01195		Bacitracin resistance protein	RefSeq:WP_011922985.1, SO:0001217, UniParc:UPI000150671F, UniRef:UniRef100_A0A7Y0WM72, UniRef:UniRef50_A0A7Y0WM72, UniRef:UniRef90_A0A7Y0WM72
+pQBR5_contig_1	cds	219596	219874	+	PQBR5_01200		DNA-binding protein HU	SO:0001217, UniParc:UPI0001506720, UniRef:UniRef100_A4V7S3, UniRef:UniRef50_Q46121, UniRef:UniRef90_A0A1D3K8P2
+pQBR5_contig_1	cds	219953	220750	+	PQBR5_01205		Pirin-C domain-containing protein	RefSeq:WP_011922987.1, SO:0001217, UniParc:UPI0001506721, UniRef:UniRef100_A4V7S4, UniRef:UniRef50_A0A3M3DQB7, UniRef:UniRef90_A0A3M3DQB7
+pQBR5_contig_1	cds	220878	221372	+	PQBR5_01210		DUF3768 domain-containing protein	RefSeq:WP_193069125.1, SO:0001217, UniParc:UPI001867FFCF, UniRef:UniRef100_A4V7S5, UniRef:UniRef50_A0A0C2NF30, UniRef:UniRef90_A4V7S5
+pQBR5_contig_1	cds	221369	223591	+	PQBR5_01215		Putative exodeoxyribonuclease	RefSeq:WP_011922989.1, SO:0001217, UniParc:UPI0001506525, UniRef:UniRef100_A4V7S6, UniRef:UniRef50_A0A2L1KDX5, UniRef:UniRef90_A4V7S6
+pQBR5_contig_1	cds	223692	225494	+	PQBR5_01220	traG	Conjugal transfer protein TraG	RefSeq:WP_193069126.1, SO:0001217, UniParc:UPI0002F6D4CD, UniRef:UniRef100_A4V6Q3, UniRef:UniRef50_A0A0G4E4J1, UniRef:UniRef90_A0A1D3K916
+pQBR5_contig_1	cds	225533	225874	+	PQBR5_01225		Transmembrane protein	RefSeq:WP_011922991.1, SO:0001217, UniParc:UPI0001506527, UniRef:UniRef100_A0A7Y0ZEP8, UniRef:UniRef50_A0A1X0ZJK3, UniRef:UniRef90_A0A7Y0ZEP8
+pQBR5_contig_1	cds	225966	226316	+	PQBR5_01230		Conjugal transfer protein	RefSeq:WP_078466119.1, SO:0001217, UniParc:UPI0009981C46, UniRef:UniRef100_A4V6Q5, UniRef:UniRef50_A0A1D3K8I8, UniRef:UniRef90_A0A1D3K8I8
+pQBR5_contig_1	cds	226276	226704	+	PQBR5_01235		TrbC/VirB2 family protein	SO:0001217, UniRef:UniRef50_A0A3M3DPF8
+pQBR5_contig_1	cds	226720	227103	+	PQBR5_01240		Bestrophin-like protein	RefSeq:WP_193069128.1, SO:0001217, UniParc:UPI0018673663, UniRef:UniRef100_UPI0018673663, UniRef:UniRef50_A0A0C2S4U6, UniRef:UniRef90_A0A3M3DQ09
+pQBR5_contig_1	cds	227106	227738	+	PQBR5_01245		Conjugal transfer protein	RefSeq:WP_011922994.1, SO:0001217, UniParc:UPI000150652A, UniRef:UniRef100_A0A7Y0WM33, UniRef:UniRef50_A0A0Q6Z644, UniRef:UniRef90_A0A3M3DQB6
+pQBR5_contig_1	cds	227735	228529	+	PQBR5_01250	traK	Type-F conjugative transfer system secretin TraK	RefSeq:WP_011922995.1, SO:0001217, UniParc:UPI000150652B, UniRef:UniRef100_A4V6Q8, UniRef:UniRef50_A0A0C2S1R0, UniRef:UniRef90_A0A3M3DQ08
+pQBR5_contig_1	cds	228526	230106	+	PQBR5_01255	traB	Conjugal transfer protein TraB	RefSeq:WP_011922996.1, SO:0001217, UniParc:UPI000150652C, UniRef:UniRef100_A4V6Q9, UniRef:UniRef50_A0A1H4ZBL4, UniRef:UniRef90_A0A3M3DQ77
+pQBR5_contig_1	cds	230120	230518	+	PQBR5_01260		Putative conjugative transfer protein	SO:0001217, UniRef:UniRef50_A0A3M3DQB8, UniRef:UniRef90_A4V6R0
+pQBR5_contig_1	cds	230506	230982	+	PQBR5_01265	gspD	Type II secretion system protein GspD	RefSeq:WP_011922998.1, SO:0001217, UniParc:UPI000150652E, UniRef:UniRef100_A4V6R1, UniRef:UniRef50_A0A0C2NF20, UniRef:UniRef90_A4V6R1
+pQBR5_contig_1	cds	230975	233857	+	PQBR5_01270		P-loop-TraG domain-containing protein	RefSeq:WP_011922999.1, SO:0001217, UniParc:UPI000150652F, UniRef:UniRef100_A4V6R2, UniRef:UniRef50_A4V6R2, UniRef:UniRef90_A4V6R2
+pQBR5_contig_1	cds	233841	234218	+	PQBR5_01275		Lipoprotein	RefSeq:WP_078466112.1, SO:0001217, UniParc:UPI000996E446, UniRef:UniRef100_A0A7Y0WM35, UniRef:UniRef50_A0A2L1KFM0, UniRef:UniRef90_A0A3M3DQ93
+pQBR5_contig_1	cds	234215	235537	+	PQBR5_01280	lysM	Peptigoglycan-binding protein LysM	SO:0001217, UniRef:UniRef50_A4V6R3, UniRef:UniRef90_A4V6R3
+pQBR5_contig_1	cds	235518	236177	+	PQBR5_01285		WLM domain-containing protein	RefSeq:WP_011923001.1, SO:0001217, UniParc:UPI0001506531, UniRef:UniRef100_A4V6R4, UniRef:UniRef50_A0A0C2S1Q6, UniRef:UniRef90_A0A3M3DPX7
+pQBR5_contig_1	cds	236174	236863	+	PQBR5_01290		SLT domain-containing protein	RefSeq:WP_234288227.1, SO:0001217, UniParc:UPI001F32F5D5, UniRef:UniRef100_A4V6S9, UniRef:UniRef50_A0A3M3DPY6, UniRef:UniRef90_A4V6S9
+pQBR5_contig_1	cds	236832	237629	+	PQBR5_01295		Sel1 repeat family protein	SO:0001217, UniRef:UniRef50_A0A2R3J5X8, UniRef:UniRef90_A0A1D3K8G3
+pQBR5_contig_1	cds	237637	238518	+	PQBR5_01300		Thioredoxin-like-fold domain-containing protein	RefSeq:WP_011923004.1, SO:0001217, UniParc:UPI0001506534, UniRef:UniRef100_A4V6R6, UniRef:UniRef50_A0A3M3DP16, UniRef:UniRef90_A0A3M3DP16
+pQBR5_contig_1	cds	238521	239918	+	PQBR5_01305	traH	Conjugal transfer protein TraH	RefSeq:WP_193069131.1, SO:0001217, UniParc:UPI0002EB35DD, UniRef:UniRef100_A4V6R7, UniRef:UniRef50_A0A1X0ZNB1, UniRef:UniRef90_A0A1D3K8Z8
+pQBR5_contig_1	cds	239918	241948	+	PQBR5_01310		TraG-N domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DQJ5, UniRef:UniRef90_A0A3M3DQJ5
+pQBR5_contig_1	cds	242109	243059	+	PQBR5_01315		Lipoprotein	SO:0001217, UniRef:UniRef50_A0A6H1Q7J7, UniRef:UniRef90_A0A3M3DR65
+pQBR5_contig_1	cds	243056	243604	+	PQBR5_01320		FAA-hydrolase domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DQL4, UniRef:UniRef90_A4V6S0
+pQBR5_contig_1	cds	243677	244090	+	PQBR5_01325		AsmA-2 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V6S1, UniRef:UniRef90_A4V6S1
+pQBR5_contig_1	cds	244090	244350	+	PQBR5_01330		DUF3480 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DPT7, UniRef:UniRef90_UPI001866C63F
+pQBR5_contig_1	cds	244347	244958	-	PQBR5_01335		MIF4G domain-containing protein	RefSeq:WP_011923010.1, SO:0001217, UniParc:UPI000150653A, UniRef:UniRef100_A4V6S2, UniRef:UniRef50_A0A1X1A5D6, UniRef:UniRef90_A4V6S2
+pQBR5_contig_1	cds	244951	246021	-	PQBR5_01340		ALP-N domain-containing protein	KEGG:K18640, RefSeq:WP_011923011.1, SO:0001217, UniParc:UPI000150653B, UniRef:UniRef100_A4V6S3, UniRef:UniRef50_A0A0C2RQI0, UniRef:UniRef90_A4V6S3
+pQBR5_contig_1	cds	246037	247053	-	PQBR5_01345		Transposase	RefSeq:WP_011923012.1, SO:0001217, UniParc:UPI000150653C, UniRef:UniRef100_A4V6S4, UniRef:UniRef50_A4V6S4, UniRef:UniRef90_A4V6S4
+pQBR5_contig_1	cds	247075	247248	-	PQBR5_01350		hypothetical protein	
+pQBR5_contig_1	cds	247560	248042	+	PQBR5_01355		HTH-17 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1D3K8L1, UniRef:UniRef90_A4V6S5
+pQBR5_contig_1	cds	249072	249404	-	PQBR5_01360		Reductase	SO:0001217, UniRef:UniRef50_A0A3M3DSL6, UniRef:UniRef90_A0A1T1IYP6
+pQBR5_contig_1	cds	249870	250601	+	PQBR5_01365		Sigma-70 family RNA polymerase sigma factor	RefSeq:WP_011923016.1, SO:0001217, UniParc:UPI0001506540, UniRef:UniRef100_A4V6S8, UniRef:UniRef50_A0A0C2MQS4, UniRef:UniRef90_A0A3M3DRS1
+pQBR5_contig_1	cds	250598	251986	+	PQBR5_01370		DNA primase	RefSeq:WP_011923017.1, SO:0001217, UniParc:UPI0001506541, UniRef:UniRef100_A4V6U1, UniRef:UniRef50_A0A0C2NF07, UniRef:UniRef90_A0A3M3DPB3
+pQBR5_contig_1	cds	251979	252290	+	PQBR5_01375		Secreted protein	RefSeq:WP_011923018.1, SO:0001217, UniParc:UPI0001506542, UniRef:UniRef100_A4V6T0, UniRef:UniRef50_A0A3M3DQ13, UniRef:UniRef90_A0A3M3DQ13
+pQBR5_contig_1	cds	252300	252905	+	PQBR5_01380		Translation initiation factor IF-2	RefSeq:WP_011923019.1, SO:0001217, UniParc:UPI0001506543, UniRef:UniRef100_A4V6T1, UniRef:UniRef50_A4V6T1, UniRef:UniRef90_A4V6T1
+pQBR5_contig_1	cds	252918	254150	+	PQBR5_01385		Transmembrane protein	SO:0001217, UniRef:UniRef50_A0A3R9ARB3, UniRef:UniRef90_A0A3M3DQD8
+pQBR5_contig_1	cds	254211	255764	-	PQBR5_01390		Response regulator receiver modulated diguanylate cyclase	RefSeq:WP_193068955.1, SO:0001217, UniParc:UPI000305CBB9, UniRef:UniRef100_A4V6T3, UniRef:UniRef50_A0A3M3DSF9, UniRef:UniRef90_A0A3M3DSF9
+pQBR5_contig_1	cds	255918	257123	+	PQBR5_01395		HEPN-Apea domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1D3K8K0, UniRef:UniRef90_A4V6T4
+pQBR5_contig_1	cds	257346	257897	+	PQBR5_01400		CHAT domain-containing protein	RefSeq:WP_193068956.1, SO:0001217, UniParc:UPI001868C1A2, UniRef:UniRef100_A4V6T5, UniRef:UniRef50_A4V6T5, UniRef:UniRef90_A4V6T5
+pQBR5_contig_1	cds	257990	258523	+	PQBR5_01405		DUF4265 domain-containing protein	RefSeq:WP_011923024.1, SO:0001217, UniParc:UPI0001506548, UniRef:UniRef100_A4V6T6, UniRef:UniRef50_A0A3M3DP51, UniRef:UniRef90_A4V6T6
+pQBR5_contig_1	cds	258627	259001	+	PQBR5_01410		Phytanoyl-CoA dioxygenase	SO:0001217, UniRef:UniRef50_A0A3M3DQB5, UniRef:UniRef90_A4V6T7
+pQBR5_contig_1	cds	259093	259650	+	PQBR5_01415		Integrase	RefSeq:WP_193068958.1, SO:0001217, UniParc:UPI0003143941, UniRef:UniRef100_A4V6T8, UniRef:UniRef50_A0A6H1Q7N4, UniRef:UniRef90_A4V6T8
+pQBR5_contig_1	cds	259862	260218	+	PQBR5_01420		Lipoprotein	RefSeq:WP_011923027.1, SO:0001217, UniParc:UPI000150654B, UniRef:UniRef100_A4V6T9, UniRef:UniRef50_A0A3M3DPN2, UniRef:UniRef90_A4V6T9
+pQBR5_contig_1	cds	260334	261044	+	PQBR5_01425		Ig-like domain-containing protein	RefSeq:WP_193068959.1, SO:0001217, UniParc:UPI001867B2F2, UniRef:UniRef100_A4V6U0, UniRef:UniRef50_V4H728, UniRef:UniRef90_A4V6U0
+pQBR5_contig_1	cds	261041	261268	+	PQBR5_01430		Zf-TFIIB domain-containing protein	RefSeq:WP_193068960.1, SO:0001217, UniParc:UPI00186928A1, UniRef:UniRef100_UPI00186928A1, UniRef:UniRef50_A0A3M3DS62, UniRef:UniRef90_UPI000E31AA62
+pQBR5_contig_1	cds	261559	262203	+	PQBR5_01435		DNA-binding protein	RefSeq:WP_011923029.1, SO:0001217, UniParc:UPI000150654D, UniRef:UniRef100_A4V6V3, UniRef:UniRef50_A0A8T8CAW8, UniRef:UniRef90_A0A1T1IY61
+pQBR5_contig_1	cds	262297	264366	+	PQBR5_01440		LPD1 domain-containing protein	RefSeq:WP_011923030.1, SO:0001217, UniParc:UPI000150654E, UniRef:UniRef100_A4V6U2, UniRef:UniRef50_A4V6U2, UniRef:UniRef90_A4V6U2
+pQBR5_contig_1	cds	264386	264823	-	PQBR5_01445	asnC	AsnC family protein	RefSeq:WP_011923031.1, SO:0001217, UniParc:UPI000150654F, UniRef:UniRef100_A4V6U3, UniRef:UniRef50_A4V6U3, UniRef:UniRef90_A4V6U3
+pQBR5_contig_1	cds	264861	265304	-	PQBR5_01450		Putative exported protein	RefSeq:WP_193068961.1, SO:0001217, UniParc:UPI001868A248, UniRef:UniRef100_A4V6U4, UniRef:UniRef50_A0A3M3DPM2, UniRef:UniRef90_A4V6U4
+pQBR5_contig_1	cds	265346	265534	+	PQBR5_01455		hypothetical protein	
+pQBR5_contig_1	cds	265534	266031	+	PQBR5_01460		Putative transmembrane protein	RefSeq:WP_193068962.1, SO:0001217, UniParc:UPI001867896C, UniRef:UniRef100_A4V6U5, UniRef:UniRef50_A4V6U5, UniRef:UniRef90_A4V6U5
+pQBR5_contig_1	cds	266107	266334	+	PQBR5_01465		TFIIB-type domain-containing protein	RefSeq:WP_169904015.1, SO:0001217, UniParc:UPI0014754730, UniRef:UniRef100_A0A7Y0WM13, UniRef:UniRef50_A0A3M3DPV5, UniRef:UniRef90_A0A1T1IYN5
+pQBR5_contig_1	cds	266436	266813	+	PQBR5_01470		Inner membrane protein	RefSeq:WP_011923034.1, SO:0001217, UniParc:UPI0001506552, UniRef:UniRef100_A4V6U6, UniRef:UniRef50_A0A1T1IYM6, UniRef:UniRef90_A0A1T1IYM6
+pQBR5_contig_1	cds	266953	268125	+	PQBR5_01475		ATP-binding protein	RefSeq:WP_011923035.1, SO:0001217, UniParc:UPI0001506553, UniRef:UniRef100_A4V6U7, UniRef:UniRef50_G8Q2F4, UniRef:UniRef90_A4V6U7
+pQBR5_contig_1	cds	268375	268608	+	PQBR5_01480		Peptidase	SO:0001217, UniRef:UniRef50_A0A4V2VX42, UniRef:UniRef90_A0A1E4WZR4
+pQBR5_contig_1	cds	268649	268855	+	PQBR5_01485		HNH endonuclease	RefSeq:WP_078466079.1, SO:0001217, UniParc:UPI000998BCA1, UniRef:UniRef100_A0A1T1IYL8, UniRef:UniRef50_A0A3M3DNY0, UniRef:UniRef90_A0A1T1IYL8
+pQBR5_contig_1	cds	269058	269378	+	PQBR5_01490	clpS	ClpS domain-containing protein	RefSeq:WP_193068963.1, SO:0001217, UniParc:UPI00186832BE, UniRef:UniRef100_A4V6U9, UniRef:UniRef50_A4V6U9, UniRef:UniRef90_A4V6U9
+pQBR5_contig_1	cds	269442	269672	+	PQBR5_01495		Phage protein	RefSeq:WP_193068964.1, SO:0001217, UniParc:UPI0002D77D5E, UniRef:UniRef100_UPI0002D77D5E, UniRef:UniRef50_A0A1E4WZU9, UniRef:UniRef90_A0A1E4WZU9
+pQBR5_contig_1	cds	269751	270932	+	PQBR5_01500		Transmembrane protein	RefSeq:WP_011923039.1, SO:0001217, UniParc:UPI0001506557, UniRef:UniRef100_A4V6V1, UniRef:UniRef50_A0A1E4WZU7, UniRef:UniRef90_A0A1E4WZU7
+pQBR5_contig_1	cds	271019	271648	+	PQBR5_01505		DUF998 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4X004, UniRef:UniRef90_A0A1E4X004
+pQBR5_contig_1	cds	271745	272371	+	PQBR5_01510		Aminopyrimidine aminohydrolase	SO:0001217, UniRef:UniRef50_A0A1E4WZS5, UniRef:UniRef90_A0A1E4WZS5
+pQBR5_contig_1	cds	272576	273109	+	PQBR5_01515		N-acetyltransferase domain-containing protein	RefSeq:WP_011923042.1, SO:0001217, UniParc:UPI000150655A, UniRef:UniRef100_A4V6V5, UniRef:UniRef50_A0A010RGN9, UniRef:UniRef90_A4V6V5
+pQBR5_contig_1	cds	273147	273308	+	PQBR5_01520		SAM-dependent methyltransferase	RefSeq:WP_193068966.1, SO:0001217, UniParc:UPI0008653288, UniRef:UniRef100_A0A1D3K8N2, UniRef:UniRef50_A0A3M3DPM9, UniRef:UniRef90_A0A1D3K8N2
+pQBR5_contig_1	cds	273475	273612	+	PQBR5_01525	ydcD	Programmed cell death antitoxin YdcD	SO:0001217, UniRef:UniRef50_A0A1D3K8B6, UniRef:UniRef90_A0A1D3K8B6
+pQBR5_contig_1	cds	273665	273850	+	PQBR5_01530		hypothetical protein	RefSeq:WP_193068968.1, SO:0001217, UniParc:UPI001867877B, UniRef:UniRef100_UPI001867877B, UniRef:UniRef50_A0A3M3DPV0, UniRef:UniRef90_UPI001867877B
+pQBR5_contig_1	cds	273966	274268	+	PQBR5_01535		DUF3700 domain-containing protein	RefSeq:WP_193068969.1, SO:0001217, UniParc:UPI0002ED34E0, UniRef:UniRef100_A4V6V6, UniRef:UniRef50_A4V6V6, UniRef:UniRef90_A4V6V6
+pQBR5_contig_1	cds	274324	274698	+	PQBR5_01540		L-rhamnose mutarotase	RefSeq:WP_011923044.1, SO:0001217, UniParc:UPI000150655C, UniRef:UniRef100_A4V6V7, UniRef:UniRef50_A4V6V7, UniRef:UniRef90_A4V6V7
+pQBR5_contig_1	cds	274756	275439	-	PQBR5_01545		Restriction endonuclease	RefSeq:WP_193068970.1, SO:0001217, UniParc:UPI001868CBCC, UniRef:UniRef100_A4V6V8, UniRef:UniRef50_A0A3M3DPT8, UniRef:UniRef90_A0A1E4WZS4
+pQBR5_contig_1	cds	275694	276329	+	PQBR5_01550		TENA-THI-4 domain-containing protein	RefSeq:WP_011923046.1, SO:0001217, UniParc:UPI000150655E, UniRef:UniRef100_A4V6V9, UniRef:UniRef50_A0A1E5X7S3, UniRef:UniRef90_A4V6V9
+pQBR5_contig_1	cds	276398	276559	-	PQBR5_01555		hypothetical protein	RefSeq:WP_193068971.1, SO:0001217, UniParc:UPI00186823AD, UniRef:UniRef100_UPI00186823AD, UniRef:UniRef50_UPI00186823AD, UniRef:UniRef90_UPI00186823AD
+pQBR5_contig_1	cds	276894	277298	+	PQBR5_01560		SHSP domain-containing protein	RefSeq:WP_193068972.1, SO:0001217, UniParc:UPI001865EFF0, UniRef:UniRef100_A4V6W0, UniRef:UniRef50_A4V6W0, UniRef:UniRef90_A4V6W0
+pQBR5_contig_1	cds	277371	277958	+	PQBR5_01565		DUF262 domain-containing protein	RefSeq:WP_193068973.1, SO:0001217, UniParc:UPI00030051B0, UniRef:UniRef100_A4V6W1, UniRef:UniRef50_A0A1E4WZW0, UniRef:UniRef90_A4V6W1
+pQBR5_contig_1	cds	278069	278560	+	PQBR5_01570		DUF2591 domain-containing protein	RefSeq:WP_011923049.1, SO:0001217, UniParc:UPI0001506561, UniRef:UniRef100_A4V6W2, UniRef:UniRef50_A4V6W2, UniRef:UniRef90_A4V6W2
+pQBR5_contig_1	cds	278863	279210	+	PQBR5_01575		WH2 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DP74, UniRef:UniRef90_A4V6W3
+pQBR5_contig_1	cds	279215	279430	+	PQBR5_01580		Ada-Zn-binding domain-containing protein	RefSeq:WP_181082271.1, SO:0001217, UniParc:UPI0015E389E4, UniRef:UniRef100_UPI0015E389E4, UniRef:UniRef50_A0A3M3DP77, UniRef:UniRef90_A0A1D3K8T9
+pQBR5_contig_1	cds	279765	280007	+	PQBR5_01585		DUF222 domain-containing protein	RefSeq:WP_155007451.1, SO:0001217, UniParc:UPI0012B72E59, UniRef:UniRef100_A4V6W4, UniRef:UniRef50_A4V6W4, UniRef:UniRef90_A4V6W4
+pQBR5_contig_1	cds	280182	280886	+	PQBR5_01590		Tellurium resistance protein	RefSeq:WP_011923052.1, SO:0001217, UniParc:UPI0001506564, UniRef:UniRef100_A4V6W5, UniRef:UniRef50_A4V6W5, UniRef:UniRef90_A4V6W5
+pQBR5_contig_1	cds	281005	281184	+	PQBR5_01595		Conserved domain protein	RefSeq:WP_011923053.1, SO:0001217, UniParc:UPI0001506565, UniRef:UniRef100_A4V6W6, UniRef:UniRef50_A0A1E4X011, UniRef:UniRef90_A0A1E4X011
+pQBR5_contig_1	cds	281280	281780	+	PQBR5_01600	ybjN	YbjN domain-containing protein	RefSeq:WP_193068975.1, SO:0001217, UniParc:UPI0018661300, UniRef:UniRef100_A4V6W7, UniRef:UniRef50_A4V6W7, UniRef:UniRef90_A4V6W7
+pQBR5_contig_1	cds	281875	282573	+	PQBR5_01605		Chemotaxis protein	SO:0001217, UniRef:UniRef50_A4V6W8, UniRef:UniRef90_A4V6W8
+pQBR5_contig_1	cds	282671	283072	+	PQBR5_01610		LPD25 domain-containing protein	RefSeq:WP_011923056.1, SO:0001217, UniParc:UPI0001506568, UniRef:UniRef100_A4V6W9, UniRef:UniRef50_A4V6W9, UniRef:UniRef90_A4V6W9
+pQBR5_contig_1	cds	283217	284521	+	PQBR5_01615		HNHc domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DQY3, UniRef:UniRef90_A0A1E4WZV0
+pQBR5_contig_1	cds	284531	284809	-	PQBR5_01620	icmV	Intracellular multiplication protein IcmV	SO:0001217, UniRef:UniRef50_A0A1T1IY38
+pQBR5_contig_1	cds	284802	284969	-	PQBR5_01625		hypothetical protein	
+pQBR5_contig_1	cds	284979	285293	-	PQBR5_01630		tRNA-edit domain-containing protein	SO:0001217, UniRef:UniRef50_A0A7Y0WM20, UniRef:UniRef90_A0A7Y0WM20
+pQBR5_contig_1	cds	285485	285817	-	PQBR5_01635		DUF4367 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4WZT4, UniRef:UniRef90_A0A1E4WZT4
+pQBR5_contig_1	cds	286152	286346	-	PQBR5_01640		DUF2829 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4X019
+pQBR5_contig_1	cds	286539	287057	-	PQBR5_01645		DUF2059 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V6X4, UniRef:UniRef90_A4V6X4
+pQBR5_contig_1	cds	287098	287289	+	PQBR5_01650		Transposase	RefSeq:WP_194941107.1, SO:0001217, UniParc:UPI001892689B, UniRef:UniRef100_UPI001892689B, UniRef:UniRef50_A0A7X2BNH5, UniRef:UniRef90_A0A3M3DPE4
+pQBR5_contig_1	cds	287440	287766	+	PQBR5_01655		Znf/thioredoxin-put domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DQ40
+pQBR5_contig_1	cds	287763	288425	+	PQBR5_01660		Morphogenetic protein	SO:0001217, UniRef:UniRef50_A0A1E4WZV9, UniRef:UniRef90_A0A1E4WZV9
+pQBR5_contig_1	cds	288473	289675	+	PQBR5_01665		SAVED domain-containing protein	SO:0001217, UniRef:UniRef50_A4V6X7, UniRef:UniRef90_A4V6X7
+pQBR5_contig_1	cds	289687	289884	+	PQBR5_01670		Transposase	SO:0001217, UniRef:UniRef50_A0A1D3K8E3
+pQBR5_contig_1	cds	289946	290470	+	PQBR5_01675		Transmembrane protein	SO:0001217, UniRef:UniRef50_A0A1E4WZU5, UniRef:UniRef90_A0A7Y0WLS2
+pQBR5_contig_1	cds	290659	290949	+	PQBR5_01680		DUF5611 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V6X9, UniRef:UniRef90_A4V6X9
+pQBR5_contig_1	cds	291026	291355	+	PQBR5_01685		YHS domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1T1IYI8, UniRef:UniRef90_A4V6Y0
+pQBR5_contig_1	cds	291400	292098	-	PQBR5_01690		DUF4261 domain-containing protein	RefSeq:WP_011923068.1, SO:0001217, UniParc:UPI00015192CF, UniRef:UniRef100_A4V6Y1, UniRef:UniRef50_A4V6Y1, UniRef:UniRef90_A4V6Y1
+pQBR5_contig_1	cds	292282	292935	+	PQBR5_01695		AAA-5 domain-containing protein	RefSeq:WP_011923069.1, SO:0001217, UniParc:UPI0001506575, UniRef:UniRef100_A4V6Y2, UniRef:UniRef50_A4V6Y2, UniRef:UniRef90_A4V6Y2
+pQBR5_contig_1	cds	293128	293442	-	PQBR5_01700		HTH merR-type domain-containing protein	RefSeq:WP_193068984.1, SO:0001217, UniParc:UPI0018664613, UniRef:UniRef100_A4V6Y3, UniRef:UniRef50_A4V6Y3, UniRef:UniRef90_A4V6Y3
+pQBR5_contig_1	cds	293662	293865	+	PQBR5_01705		Talin-middle domain-containing protein	RefSeq:WP_193068985.1, SO:0001217, UniParc:UPI00186612CC, UniRef:UniRef100_A4V6Y4, UniRef:UniRef50_A4V6Y4, UniRef:UniRef90_A4V6Y4
+pQBR5_contig_1	cds	293873	294292	-	PQBR5_01710		Putative transmembrane protein	RefSeq:WP_011923072.1, SO:0001217, UniParc:UPI0001506578, UniRef:UniRef100_A4V6Y5, UniRef:UniRef50_A0A1T1IY45, UniRef:UniRef90_A4V6Y5
+pQBR5_contig_1	cds	294400	295104	+	PQBR5_01715		DUF3846 domain-containing protein	RefSeq:WP_011923073.1, SO:0001217, UniParc:UPI0001506579, UniRef:UniRef100_A4V6Y6, UniRef:UniRef50_A0A1E4WYN6, UniRef:UniRef90_A4V6Y6
+pQBR5_contig_1	cds	295101	295427	-	PQBR5_01720		Malate synthase	RefSeq:WP_193068986.1, SO:0001217, UniParc:UPI001867931E, UniRef:UniRef100_A4V6Y7, UniRef:UniRef50_A4V6Y7, UniRef:UniRef90_A4V6Y7
+pQBR5_contig_1	cds	295671	296087	+	PQBR5_01725		Restriction endonuclease	SO:0001217, UniRef:UniRef50_A0A1E4WYM3, UniRef:UniRef90_A0A1T1IYJ3
+pQBR5_contig_1	cds	296164	296367	+	PQBR5_01730		DNA primase	SO:0001217, UniRef:UniRef50_L1M6C9, UniRef:UniRef90_A0A1T1IYI4
+pQBR5_contig_1	cds	296384	296593	+	PQBR5_01735		MBL fold metallo-hydrolase	RefSeq:WP_193068989.1, SO:0001217, UniParc:UPI00186954DD, UniRef:UniRef100_UPI00186954DD, UniRef:UniRef50_A0A1E4WYM1, UniRef:UniRef90_UPI00186954DD
+pQBR5_contig_1	cds	296643	297074	+	PQBR5_01740		Transferred entry: 5-62-1	SO:0001217, UniRef:UniRef50_A0A1E4WYM9, UniRef:UniRef90_A4V6Y9
+pQBR5_contig_1	cds	297208	297471	+	PQBR5_01745		Ribosomal protein S3	RefSeq:WP_193068991.1, SO:0001217, UniParc:UPI0018689D78, UniRef:UniRef100_UPI0018689D78, UniRef:UniRef50_A0A0G4E5L0, UniRef:UniRef90_UPI0018689D78
+pQBR5_contig_1	cds	297479	297781	+	PQBR5_01750		Exported protein	RefSeq:WP_011923077.1, SO:0001217, UniParc:UPI000150657D, UniRef:UniRef100_A4V6Z0, UniRef:UniRef50_A4V6Z0, UniRef:UniRef90_A4V6Z0
+pQBR5_contig_1	cds	297862	298629	+	PQBR5_01755		N-acetyltransferase	RefSeq:WP_011923078.1, SO:0001217, UniParc:UPI000150657E, UniRef:UniRef100_A4V6Z1, UniRef:UniRef50_A0A3M3DS56, UniRef:UniRef90_A4V6Z1
+pQBR5_contig_1	cds	298834	299136	+	PQBR5_01760		Signal peptide protein	RefSeq:WP_078466039.1, SO:0001217, UniParc:UPI0009971AC5, UniRef:UniRef100_A0A1T1IY30, UniRef:UniRef50_A0A1E4WYP6, UniRef:UniRef90_A0A1E4WYP6
+pQBR5_contig_1	cds	299196	299681	-	PQBR5_01765		ERF1-2 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4WYQ4, UniRef:UniRef90_A4V6Z3
+pQBR5_contig_1	cds	299743	300114	-	PQBR5_01770		Transglut-core3 domain-containing protein	RefSeq:WP_011923081.1, SO:0001217, UniParc:UPI0001506581, UniRef:UniRef100_A4V6Z4, UniRef:UniRef50_Q5NWZ2, UniRef:UniRef90_A4V6Z4
+pQBR5_contig_1	cds	300135	300524	-	PQBR5_01775		Roadblock/LC7 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DS26, UniRef:UniRef90_A4V6Z5
+pQBR5_contig_1	cds	300599	301087	-	PQBR5_01780		Restriction endonuclease	RefSeq:WP_193068993.1, SO:0001217, UniParc:UPI001866FE0A, UniRef:UniRef100_UPI001866FE0A, UniRef:UniRef50_A0A024HDZ8, UniRef:UniRef90_A0A1E4WYN2
+pQBR5_contig_1	cds	301263	301493	-	PQBR5_01785		(pseudo) MT domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4WYL9, UniRef:UniRef90_A4V6Z7
+pQBR5_contig_1	cds	301763	303589	+	PQBR5_01790		PAPS-reduct domain-containing protein	SO:0001217, UniRef:UniRef50_A4V6Z8, UniRef:UniRef90_A4V6Z8
+pQBR5_contig_1	cds	303665	304000	+	PQBR5_01795		DUF1989 domain-containing protein	RefSeq:WP_221730319.1, SO:0001217, UniParc:UPI001C8C4497, UniRef:UniRef100_UPI001C8C4497, UniRef:UniRef50_A0A3M3DP24, UniRef:UniRef90_A4V6Z9
+pQBR5_contig_1	cds	304207	304419	+	PQBR5_01800		Ald-Xan-dh-C2 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A0D5MA93, UniRef:UniRef90_A0A1T1IYI3
+pQBR5_contig_1	cds	304546	305046	+	PQBR5_01805		DUF3800 domain-containing protein	RefSeq:WP_116827151.1, SO:0001217, UniParc:UPI000E30EB6C, UniRef:UniRef100_UPI000E30EB6C, UniRef:UniRef50_A0A3M3DPU7, UniRef:UniRef90_A4V702
+pQBR5_contig_1	cds	305106	305387	+	PQBR5_01810		Phage protein	RefSeq:WP_221730318.1, SO:0001217, UniParc:UPI001C8C9D3F, UniRef:UniRef100_UPI001C8C9D3F, UniRef:UniRef50_A4V703, UniRef:UniRef90_A4V703
+pQBR5_contig_1	cds	305493	305975	+	PQBR5_01815		DUF4303 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DSP8, UniRef:UniRef90_A0A1T1IYH0
+pQBR5_contig_1	cds	306102	306476	+	PQBR5_01820		DUF5615 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V705, UniRef:UniRef90_A4V705
+pQBR5_contig_1	cds	306553	307338	+	PQBR5_01825		Pentapeptide repeat-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DPG6, UniRef:UniRef90_A4V706
+pQBR5_contig_1	cds	307322	308122	+	PQBR5_01830		DUF551 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1D3K8D7, UniRef:UniRef90_A4V707
+pQBR5_contig_1	cds	308663	308938	+	PQBR5_01835		CNNM transmembrane domain-containing protein	SO:0001217, UniParc:UPI000997AB7A, UniRef:UniRef100_A0A1T1IYU3, UniRef:UniRef50_A0A1T1IYU3, UniRef:UniRef90_A0A1T1IYU3
+pQBR5_contig_1	cds	309304	310014	-	PQBR5_01840		CPBP family intramembrane metalloprotease	RefSeq:WP_161952150.1, SO:0001217, UniParc:UPI00137B69A9, UniRef:UniRef100_UPI00137B69A9, UniRef:UniRef50_A0A3M3SJN6, UniRef:UniRef90_A0A1T1IY25
+pQBR5_contig_1	cds	310095	310208	+	PQBR5_01845		hypothetical protein	
+pQBR5_contig_1	cds	310215	310406	+	PQBR5_01850		Fumarase D	RefSeq:WP_078466024.1, SO:0001217, UniParc:UPI000997763E, UniRef:UniRef100_A0A1T1IYR8, UniRef:UniRef50_A0A0C2NEZ1, UniRef:UniRef90_A0A1T1IYR8
+pQBR5_contig_1	cds	310426	310656	+	PQBR5_01855		Tail fiber protein	RefSeq:WP_011923099.1, SO:0001217, UniParc:UPI00015065AE, UniRef:UniRef100_A4V712, UniRef:UniRef50_A0A1H6NT34, UniRef:UniRef90_A0A1D3K864
+pQBR5_contig_1	cds	310682	310915	+	PQBR5_01860		Transposase	SO:0001217, UniRef:UniRef50_S6B312, UniRef:UniRef90_A0A1T1IYG4
+pQBR5_contig_1	cds	310930	311148	+	PQBR5_01865		DUF190 domain-containing protein	RefSeq:WP_078466022.1, SO:0001217, UniParc:UPI0002E7B59E, UniRef:UniRef100_A0A1T1IXZ8, UniRef:UniRef50_A0A4U0FRN7, UniRef:UniRef90_A0A1T1IXZ8
+pQBR5_contig_1	cds	311271	311519	+	PQBR5_01870		DUF3077 domain-containing protein	RefSeq:WP_078466021.1, SO:0001217, UniParc:UPI000996473B, UniRef:UniRef100_A0A1T1IYF8, UniRef:UniRef50_A0A1E5X7W0, UniRef:UniRef90_A0A1T1IYF8
+pQBR5_contig_1	cds	311660	312067	-	PQBR5_01875		Type III effector protein	RefSeq:WP_011923101.1, SO:0001217, UniParc:UPI00015065B0, UniRef:UniRef100_A4V714, UniRef:UniRef50_A0A3M3DNW8, UniRef:UniRef90_A4V714
+pQBR5_contig_1	cds	312294	312932	+	PQBR5_01880		Abasic site processing protein	RefSeq:WP_011923102.1, SO:0001217, UniParc:UPI00015065B1, UniRef:UniRef100_A4V715, UniRef:UniRef50_A0A4R6RG59, UniRef:UniRef90_A4V715
+pQBR5_contig_1	cds	313115	313612	+	PQBR5_01885		DUF1281 domain-containing protein	RefSeq:WP_011923103.1, SO:0001217, UniParc:UPI00015065B2, UniRef:UniRef100_A4V716, UniRef:UniRef50_A4V716, UniRef:UniRef90_A4V716
+pQBR5_contig_1	cds	313634	314101	-	PQBR5_01890	eamA	EamA domain-containing protein	RefSeq:WP_011923104.1, SO:0001217, UniParc:UPI00015065B3, UniRef:UniRef100_A0A7Y0WLU7, UniRef:UniRef50_A0A3M3DQ80, UniRef:UniRef90_A0A7Y0WLU7
+pQBR5_contig_1	cds	314128	315117	-	PQBR5_01895		RsbR, positive regulator of sigma-B	RefSeq:WP_011923105.1, SO:0001217, UniParc:UPI00015192D0, UniRef:UniRef100_A4V718, UniRef:UniRef50_A4V718, UniRef:UniRef90_A4V718
+pQBR5_contig_1	cds	315415	316401	+	PQBR5_01900	parB	ParB domain-containing protein	SO:0001217, UniRef:UniRef50_A4V719, UniRef:UniRef90_A4V719
+pQBR5_contig_1	cds	316550	316927	+	PQBR5_01905		DUF2591 domain-containing protein	RefSeq:WP_011923107.1, SO:0001217, UniParc:UPI00015065B6, UniRef:UniRef100_A4V720, UniRef:UniRef50_A0A104Z6Z5, UniRef:UniRef90_A4V720
+pQBR5_contig_1	cds	317018	317476	+	PQBR5_01910		Translation initiation factor IF-2	RefSeq:WP_011923108.1, SO:0001217, UniParc:UPI00015065B7, UniRef:UniRef100_A4V721, UniRef:UniRef50_A4V721, UniRef:UniRef90_A4V721
+pQBR5_contig_1	cds	317473	317760	-	PQBR5_01915		Thiolase-N domain-containing protein	RefSeq:WP_193069003.1, SO:0001217, UniParc:UPI0018677104, UniRef:UniRef100_UPI0018677104, UniRef:UniRef50_A0A3M3DQ69, UniRef:UniRef90_A0A1T1IYF7
+pQBR5_contig_1	cds	317765	318655	-	PQBR5_01920		ANK-REP-REGION domain-containing protein	RefSeq:WP_011923109.1, SO:0001217, UniParc:UPI00015065B8, UniRef:UniRef100_A4V722, UniRef:UniRef50_A0A1T1IXY9, UniRef:UniRef90_A0A1T1IXY9
+pQBR5_contig_1	cds	318680	319192	-	PQBR5_01925		ADF-H domain-containing protein	RefSeq:WP_221730311.1, SO:0001217, UniParc:UPI001C8C5B92, UniRef:UniRef100_UPI001C8C5B92, UniRef:UniRef50_A0A241XRP4, UniRef:UniRef90_UPI0018AC972E
+pQBR5_contig_1	cds	319299	319730	-	PQBR5_01930		DUF2958 domain-containing protein	RefSeq:WP_193069005.1, SO:0001217, UniParc:UPI00186785C6, UniRef:UniRef100_A4V724, UniRef:UniRef50_A4V724, UniRef:UniRef90_A4V724
+pQBR5_contig_1	cds	319854	321167	+	PQBR5_01935		PLD phosphodiesterase domain-containing protein	RefSeq:WP_011923112.1, SO:0001217, UniParc:UPI00015065BB, UniRef:UniRef100_A4V725, UniRef:UniRef50_A4V725, UniRef:UniRef90_A4V725
+pQBR5_contig_1	cds	321229	321417	-	PQBR5_01940		PAC domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1T1IXY3, UniRef:UniRef90_A0A7Y0ZDS4
+pQBR5_contig_1	cds	321470	321772	-	PQBR5_01945		Phage protein	SO:0001217, UniRef:UniRef50_A0A1C7W380, UniRef:UniRef90_A0A1D3K837
+pQBR5_contig_1	cds	322000	322227	+	PQBR5_01950	vbhA	VbhA domain-containing protein	RefSeq:WP_193069008.1, SO:0001217, UniParc:UPI0018674C66, UniRef:UniRef100_UPI0018674C66, UniRef:UniRef50_A0A3M3DP37, UniRef:UniRef90_A0A1T1IXY1
+pQBR5_contig_1	cds	322288	322608	+	PQBR5_01955		Pept-C1 domain-containing protein	RefSeq:WP_193069009.1, SO:0001217, UniParc:UPI001869467C, UniRef:UniRef100_A4V727, UniRef:UniRef50_A4V727, UniRef:UniRef90_A4V727
+pQBR5_contig_1	cds	322668	322949	+	PQBR5_01960		Glyco-hydro-3 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1T1IY05, UniRef:UniRef90_A0A1T1IY05
+pQBR5_contig_1	cds	322960	323655	-	PQBR5_01965		Putative acetyltransferase	RefSeq:WP_011923115.1, SO:0001217, UniParc:UPI00015192D1, UniRef:UniRef100_A4V728, UniRef:UniRef50_A0A3M6AGA6, UniRef:UniRef90_A4V728
+pQBR5_contig_1	cds	323950	324267	+	PQBR5_01970		DUF4253 domain-containing protein	RefSeq:WP_193069010.1, SO:0001217, UniParc:UPI001867A81B, UniRef:UniRef100_UPI001867A81B, UniRef:UniRef50_A0A1X0Z7D2, UniRef:UniRef90_A0A1T1IYF3
+pQBR5_contig_1	cds	324343	324669	+	PQBR5_01975		Aminoacyl-tRNA hydrolase	SO:0001217, UniRef:UniRef50_A4V730, UniRef:UniRef90_A4V730
+pQBR5_contig_1	cds	324857	325654	+	PQBR5_01980		DUF58 domain-containing protein	RefSeq:WP_011923117.1, SO:0001217, UniParc:UPI00015065C0, UniRef:UniRef100_A4V731, UniRef:UniRef50_A0A3M3DS00, UniRef:UniRef90_A4V731
+pQBR5_contig_1	cds	325823	326413	+	PQBR5_01985		GST C-terminal domain-containing protein	RefSeq:WP_193069011.1, SO:0001217, UniParc:UPI0018687FD0, UniRef:UniRef100_A4V732, UniRef:UniRef50_A0A8T8C9L8, UniRef:UniRef90_A0A8T8C9L8
+pQBR5_contig_1	cds	326631	327149	+	PQBR5_01990		NADAR domain-containing protein	RefSeq:WP_011923119.1, SO:0001217, UniParc:UPI00015192D2, UniRef:UniRef100_A4V733, UniRef:UniRef50_A4V733, UniRef:UniRef90_A4V733
+pQBR5_contig_1	cds	327471	327854	+	PQBR5_01995		Transmembrane protein	SO:0001217, UniParc:UPI00015065D7, UniRef:UniRef100_A0A1T1IXZ0, UniRef:UniRef50_A0A1T1IXZ0, UniRef:UniRef90_A0A1T1IXZ0
+pQBR5_contig_1	cds	327984	328199	+	PQBR5_02000		SH3 domain-containing protein	RefSeq:WP_193069012.1, SO:0001217, UniParc:UPI001867A179, UniRef:UniRef100_UPI001867A179, UniRef:UniRef50_A0A1T1IXX4, UniRef:UniRef90_A0A1T1IXX4
+pQBR5_contig_1	cds	328367	328684	-	PQBR5_02005		DUF4379 domain-containing protein	RefSeq:WP_193069013.1, SO:0001217, UniParc:UPI00186774E8, UniRef:UniRef100_UPI00186774E8, UniRef:UniRef50_A4V735, UniRef:UniRef90_A4V735
+pQBR5_contig_1	cds	328860	329123	+	PQBR5_02010	vbhA	VbhA domain-containing protein	SO:0001217, UniParc:UPI00015192C1, UniRef:UniRef100_A4V736, UniRef:UniRef50_A4V736, UniRef:UniRef90_A4V736
+pQBR5_contig_1	cds	329190	329807	+	PQBR5_02015		YIP1 family protein	RefSeq:WP_193069015.1, SO:0001217, UniParc:UPI001865C4FF, UniRef:UniRef100_Q708A9, UniRef:UniRef50_A0A1T1IXZ7, UniRef:UniRef90_A0A1T1IXZ7
+pQBR5_contig_1	cds	329905	330366	+	PQBR5_02020		Alpha/beta hydrolase	RefSeq:WP_011923124.1, SO:0001217, UniParc:UPI00015065DA, UniRef:UniRef100_A4V738, UniRef:UniRef50_A4V738, UniRef:UniRef90_A4V738
+pQBR5_contig_1	cds	330443	331015	+	PQBR5_02025	orn	oligoribonuclease	RefSeq:WP_193069016.1, SO:0001217, UniParc:UPI001867E259, UniRef:UniRef100_Q708B1, UniRef:UniRef50_A0A7Y0ZDK6, UniRef:UniRef90_A0A7Y0ZDK6
+pQBR5_contig_1	cds	331097	331570	+	PQBR5_02030		Lipoprotein	RefSeq:WP_011923126.1, SO:0001217, UniParc:UPI0000232F5E, UniRef:UniRef100_Q708B2, UniRef:UniRef50_A0A1D3K840, UniRef:UniRef90_A0A1D3K840
+pQBR5_contig_1	cds	331599	332081	+	PQBR5_02035	abiV	AbiV family abortive infection protein	RefSeq:WP_011923127.1, SO:0001217, UniParc:UPI0000232F5D, UniRef:UniRef100_Q708B3, UniRef:UniRef50_A0A1T1IXW9, UniRef:UniRef90_A0A1T1IXW9
+pQBR5_contig_1	cds	332199	332618	+	PQBR5_02040		Transcriptional regulator	SO:0001217, UniRef:UniRef50_A0A1T1IYD1, UniRef:UniRef90_A0A1T1IYD1
+pQBR5_contig_1	cds	332684	333205	+	PQBR5_02045		Transposase	RefSeq:WP_011923129.1, SO:0001217, UniParc:UPI0000232F5B, UniRef:UniRef100_Q708B5, UniRef:UniRef50_A0A1X0Z7I7, UniRef:UniRef90_A0A8T8C9T8
+pQBR5_contig_1	cds	333237	333680	+	PQBR5_02050		DUF4359 domain-containing protein	RefSeq:WP_011923130.1, SO:0001217, UniParc:UPI00015065DB, UniRef:UniRef100_A4V744, UniRef:UniRef50_A4V744, UniRef:UniRef90_A4V744
+pQBR5_contig_1	cds	333815	334243	-	PQBR5_02055		Putative transmembrane protein	RefSeq:WP_169922133.1, SO:0001217, UniParc:UPI0014745631, UniRef:UniRef100_Q708B6, UniRef:UniRef50_A4V745, UniRef:UniRef90_A4V745
+pQBR5_contig_1	cds	334486	335184	+	PQBR5_02060		Nucleotidyl transferase AbiEii/AbiGii toxin family protein	SO:0001217, UniRef:UniRef50_A4V746, UniRef:UniRef90_A4V746
+pQBR5_contig_1	cds	335256	335570	+	PQBR5_02065		DUF4065 domain-containing protein	RefSeq:WP_234288205.1, SO:0001217, UniParc:UPI001F406C59, UniRef:UniRef100_UPI001F406C59, UniRef:UniRef50_A0A3M3DP23, UniRef:UniRef90_A0A1D3K829
+pQBR5_contig_1	cds	335668	336177	+	PQBR5_02070		Nucleoside 2-deoxyribosyltransferase	RefSeq:WP_169922131.1, SO:0001217, UniParc:UPI0014735B0C, UniRef:UniRef100_A0A7Y0WK17, UniRef:UniRef50_A0A1T1IYM7, UniRef:UniRef90_A0A1T1IYM7
+pQBR5_contig_1	cds	336335	336598	+	PQBR5_02075		Phage protein	RefSeq:WP_011923135.1, SO:0001217, UniParc:UPI00015065E0, UniRef:UniRef100_A4V749, UniRef:UniRef50_A0A3M3DQ05, UniRef:UniRef90_A4V749
+pQBR5_contig_1	cds	336665	336997	+	PQBR5_02080		DUF1281 domain-containing protein	RefSeq:WP_011923136.1, SO:0001217, UniParc:UPI00015065E1, UniRef:UniRef100_A4V750, UniRef:UniRef50_A4V750, UniRef:UniRef90_A4V750
+pQBR5_contig_1	cds	337028	337705	+	PQBR5_02085		CBAH domain-containing protein	SO:0001217, UniParc:UPI00015065E2, UniRef:UniRef100_A4V751, UniRef:UniRef50_A4V751, UniRef:UniRef90_A4V751
+pQBR5_contig_1	cds	337783	338139	+	PQBR5_02090	parA	ParA family protein	RefSeq:WP_193069018.1, SO:0001217, UniParc:UPI00031B0EFD, UniRef:UniRef100_UPI00031B0EFD, UniRef:UniRef50_A0A3M3DP85, UniRef:UniRef90_A0A3M3DP85
+pQBR5_contig_1	cds	338265	338543	+	PQBR5_02095		Conjugal transfer protein	RefSeq:WP_078465982.1, SO:0001217, UniParc:UPI00031410D4, UniRef:UniRef100_A0A7Y0WK82, UniRef:UniRef50_A0A8T8CB21, UniRef:UniRef90_A0A8T8CB21
+pQBR5_contig_1	cds	338808	339218	+	PQBR5_02100		Methyltransferase	SO:0001217, UniRef:UniRef50_A4V753, UniRef:UniRef90_A4V753
+pQBR5_contig_1	cds	339311	340252	+	PQBR5_02105		SCP domain-containing protein	RefSeq:WP_011923140.1, SO:0001217, UniParc:UPI00015065E5, UniRef:UniRef100_A4V754, UniRef:UniRef50_A0A8T8CC13, UniRef:UniRef90_A4V754
+pQBR5_contig_1	cds	340367	341152	+	PQBR5_02110		Putative transmembrane protein	RefSeq:WP_011923141.1, SO:0001217, UniParc:UPI00015065E6, UniRef:UniRef100_A4V755, UniRef:UniRef50_A4V755, UniRef:UniRef90_A4V755
+pQBR5_contig_1	cds	341240	341839	+	PQBR5_02115		DUF3846 domain-containing protein	RefSeq:WP_011923142.1, SO:0001217, UniParc:UPI00015065E7, UniRef:UniRef100_A4V756, UniRef:UniRef50_A0A3M3DRU6, UniRef:UniRef90_A4V756
+pQBR5_contig_1	cds	342112	342441	+	PQBR5_02120		DUF3301 domain-containing protein	RefSeq:WP_193069019.1, SO:0001217, UniParc:UPI00031F89C4, UniRef:UniRef100_A4V757, UniRef:UniRef50_A4V757, UniRef:UniRef90_A4V757
+pQBR5_contig_1	cds	342578	343495	+	PQBR5_02125		DNA-binding protein	RefSeq:WP_011923144.1, SO:0001217, UniParc:UPI00015065E9, UniRef:UniRef100_A0A7Y0WK23, UniRef:UniRef50_A0A7Y0WK23, UniRef:UniRef90_A0A7Y0WK23
+pQBR5_contig_1	cds	343546	343872	+	PQBR5_02130		DUF4262 domain-containing protein	RefSeq:WP_011923145.1, SO:0001217, UniParc:UPI00015192C2, UniRef:UniRef100_A4V759, UniRef:UniRef50_N2IK40, UniRef:UniRef90_A4V759
+pQBR5_contig_1	cds	343940	344629	+	PQBR5_02135		Glyco-hydro-15 domain-containing protein	RefSeq:WP_011923146.1, SO:0001217, UniParc:UPI00015065EB, UniRef:UniRef100_A4V760, UniRef:UniRef50_A0A3M3DQG8, UniRef:UniRef90_A0A3M3DQG8
+pQBR5_contig_1	cds	344667	344888	+	PQBR5_02140		Phage tail protein	RefSeq:WP_078465976.1, SO:0001217, UniParc:UPI000657D869, UniRef:UniRef100_A0A1T1IYB0, UniRef:UniRef50_A0A3M3DPU3, UniRef:UniRef90_A0A1T1IYB0
+pQBR5_contig_1	cds	344974	345456	+	PQBR5_02145		4a-hydroxytetrahydrobiopterin dehydratase	RefSeq:WP_116827199.1, SO:0001217, UniParc:UPI000659F9B1, UniRef:UniRef100_A4V761, UniRef:UniRef50_A4V761, UniRef:UniRef90_A4V761
+pQBR5_contig_1	cds	345477	345788	+	PQBR5_02150		Roadblock/LC7 domain-containing protein	RefSeq:WP_011923148.1, SO:0001217, UniParc:UPI00015065ED, UniRef:UniRef100_A4V762, UniRef:UniRef50_A4V762, UniRef:UniRef90_A4V762
+pQBR5_contig_1	cds	346030	346644	+	PQBR5_02155		Transmembrane protein	RefSeq:WP_193069020.1, SO:0001217, UniParc:UPI0006585C43, UniRef:UniRef100_A4V763, UniRef:UniRef50_A4V763, UniRef:UniRef90_A4V763
+pQBR5_contig_1	cds	346708	347100	+	PQBR5_02160		DNA-binding protein	SO:0001217, UniRef:UniRef50_A4V764, UniRef:UniRef90_A4V764
+pQBR5_contig_1	cds	347497	347829	+	PQBR5_02165		Arc family DNA-binding protein	RefSeq:WP_011923151.1, SO:0001217, UniParc:UPI00015065F0, UniRef:UniRef100_A0A7Y0WK61, UniRef:UniRef50_A0A3M3DRX1, UniRef:UniRef90_A0A7Y0WK61
+pQBR5_contig_1	cds	347940	348293	+	PQBR5_02170		RNHCP domain-containing protein	SO:0001217, UniParc:UPI00015065F1, UniRef:UniRef100_A4V766, UniRef:UniRef50_A0A3M3DPH8, UniRef:UniRef90_A4V766
+pQBR5_contig_1	cds	348371	349006	+	PQBR5_02175		RNase III domain-containing protein	RefSeq:WP_169904093.1, SO:0001217, UniParc:UPI0006594814, UniRef:UniRef100_A0A7Y0WK51, UniRef:UniRef50_A4V767, UniRef:UniRef90_A4V767
+pQBR5_contig_1	cds	349052	349405	+	PQBR5_02180		Amidophosphoribosyltransferase	RefSeq:WP_011923154.1, SO:0001217, UniParc:UPI0001506616, UniRef:UniRef100_A4V768, UniRef:UniRef50_A0A3M3DPH3, UniRef:UniRef90_A4V768
+pQBR5_contig_1	cds	349496	350071	+	PQBR5_02185		Phage protein	RefSeq:WP_193069021.1, SO:0001217, UniParc:UPI00030264BA, UniRef:UniRef100_A4V769, UniRef:UniRef50_A4V769, UniRef:UniRef90_A4V769
+pQBR5_contig_1	cds	350148	350591	+	PQBR5_02190		Integral membrane protein	RefSeq:WP_169904095.1, SO:0001217, UniParc:UPI000659AC13, UniRef:UniRef100_A0A7Y0ZDU2, UniRef:UniRef50_A0A7Y0ZDU2, UniRef:UniRef90_A0A7Y0ZDU2
+pQBR5_contig_1	cds	350835	351665	+	PQBR5_02195	rpoH	RNA polymerase sigma factor RpoH	SO:0001217, UniParc:UPI001F334EFF, UniRef:UniRef100_A4V771, UniRef:UniRef50_A0A0W0VPK5, UniRef:UniRef90_A4V771
+pQBR5_contig_1	cds	351931	352254	+	PQBR5_02200		DUF2574 domain-containing protein	RefSeq:WP_011923158.1, SO:0001217, UniParc:UPI000150661A, UniRef:UniRef100_A4V772, UniRef:UniRef50_A0A3M3DPR6, UniRef:UniRef90_A0A3M3DPR6
+pQBR5_contig_1	cds	352328	352648	+	PQBR5_02205		Transposase	RefSeq:WP_011923159.1, SO:0001217, UniParc:UPI000150661B, UniRef:UniRef100_A4V773, UniRef:UniRef50_A4V773, UniRef:UniRef90_A4V773
+pQBR5_contig_1	cds	352674	353135	+	PQBR5_02210		TNase-like domain-containing protein	RefSeq:WP_011923160.1, SO:0001217, UniParc:UPI000150661C, UniRef:UniRef100_A4V774, UniRef:UniRef50_A4V774, UniRef:UniRef90_A4V774
+pQBR5_contig_1	cds	353334	353648	+	PQBR5_02215		Lipoprotein	SO:0001217, UniRef:UniRef50_A0A3M3DP29, UniRef:UniRef90_A0A3M3DP29
+pQBR5_contig_1	cds	353769	354152	+	PQBR5_02220		Amidohydro-3 domain-containing protein	RefSeq:WP_116827475.1, SO:0001217, UniParc:UPI000E31DCA0, UniRef:UniRef100_A4V776, UniRef:UniRef50_A4V776, UniRef:UniRef90_A4V776
+pQBR5_contig_1	cds	354235	354480	+	PQBR5_02225		3-phosphoshikimate 1-carboxyvinyltransferase	RefSeq:WP_193069023.1, SO:0001217, UniParc:UPI0018661E2D, UniRef:UniRef100_A4V777, UniRef:UniRef50_A4V777, UniRef:UniRef90_A4V777
+pQBR5_contig_1	cds	354511	355050	+	PQBR5_02230		PIN domain-containing protein	RefSeq:WP_011923164.1, SO:0001217, UniParc:UPI0001506620, UniRef:UniRef100_A4V778, UniRef:UniRef50_A0A3M3DPI7, UniRef:UniRef90_A4V778
+pQBR5_contig_1	cds	355137	355619	+	PQBR5_02235		Phasin-2 domain-containing protein	RefSeq:WP_193069024.1, SO:0001217, UniParc:UPI0006598787, UniRef:UniRef100_A4V779, UniRef:UniRef50_A4V779, UniRef:UniRef90_A4V779
+pQBR5_contig_1	cds	355622	355993	+	PQBR5_02240		Protein-tyrosine-phosphatase	RefSeq:WP_011923166.1, SO:0001217, UniParc:UPI00015192C3, UniRef:UniRef100_A4V780, UniRef:UniRef50_A4V780, UniRef:UniRef90_A4V780
+pQBR5_contig_1	cds	356077	356493	+	PQBR5_02245		CBM-48 domain-containing protein	RefSeq:WP_193069025.1, SO:0001217, UniParc:UPI0018687D5E, UniRef:UniRef100_A4V781, UniRef:UniRef50_A4V781, UniRef:UniRef90_A4V781
+pQBR5_contig_1	cds	356490	358430	+	PQBR5_02250		Putative helicase	RefSeq:WP_011923168.1, SO:0001217, UniParc:UPI0001506624, UniRef:UniRef100_A4V782, UniRef:UniRef50_Q708B9, UniRef:UniRef90_Q708B9
+pQBR5_contig_1	cds	358499	359059	+	PQBR5_02255		Lipoprotein	RefSeq:WP_011923169.1, SO:0001217, UniParc:UPI0001506625, UniRef:UniRef100_A4V783, UniRef:UniRef50_A4V783, UniRef:UniRef90_A4V783
+pQBR5_contig_1	cds	359314	360288	+	PQBR5_02260		OrfB-Zn-ribbon domain-containing protein	SO:0001217, UniRef:UniRef50_A4V784, UniRef:UniRef90_A4V784
+pQBR5_contig_1	cds	360451	361257	-	PQBR5_02265		Putative cold shock domain transmembrane protein	SO:0001217, UniRef:UniRef50_A0A3M3DP48, UniRef:UniRef90_A4V785
+pQBR5_contig_1	cds	361405	361866	+	PQBR5_02270		DUF4376 domain-containing protein	RefSeq:WP_011923172.1, SO:0001217, UniParc:UPI0001506628, UniRef:UniRef100_A4V799, UniRef:UniRef50_A0A3M3DQE4, UniRef:UniRef90_A4V799
+pQBR5_contig_1	cds	361912	362289	+	PQBR5_02275		Barstar domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DQ32, UniRef:UniRef90_A4V786
+pQBR5_contig_1	cds	362460	362714	+	PQBR5_02280	pnuC	Nicotinamide riboside transporter PnuC	RefSeq:WP_078465949.1, SO:0001217, UniParc:UPI00065A1757, UniRef:UniRef100_A0A7Y0ZDT8, UniRef:UniRef50_A0A1X0ZMZ1, UniRef:UniRef90_A0A7Y0ZDT8
+pQBR5_contig_1	cds	362750	363250	+	PQBR5_02285		Putative DNAJ family protein	RefSeq:WP_161952147.1, SO:0001217, UniParc:UPI0009CE1EFC, UniRef:UniRef100_A0A7Y0ZDR0, UniRef:UniRef50_A0A3M3DRM0, UniRef:UniRef90_A4V787
+pQBR5_contig_1	cds	363319	364302	+	PQBR5_02290		MIB/HERC2 domain-containing protein	RefSeq:WP_078465947.1, SO:0001217, UniParc:UPI000659A52B, UniRef:UniRef100_A0A7Y0ZDJ1, UniRef:UniRef50_A4V788, UniRef:UniRef90_A4V788
+pQBR5_contig_1	cds	364373	364792	+	PQBR5_02295		DUF222 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1T1IYX1, UniRef:UniRef90_A0A1T1IYX1
+pQBR5_contig_1	cds	364843	365319	+	PQBR5_02300		VRR-NUC domain-containing protein	SO:0001217, UniParc:UPI000997AC3D, UniRef:UniRef100_A0A1T1IY79, UniRef:UniRef50_A0A8T8CAM9, UniRef:UniRef90_A4V790
+pQBR5_contig_1	cds	365316	366980	+	PQBR5_02305		Helicase ATP-binding domain-containing protein	RefSeq:WP_011923178.1, SO:0001217, UniParc:UPI000150662E, UniRef:UniRef100_A0A7Y0WK05, UniRef:UniRef50_A0A163GPZ3, UniRef:UniRef90_A0A3M3DPK7
+pQBR5_contig_1	cds	367040	367555	+	PQBR5_02310		Reelin domain-containing protein	SO:0001217, UniRef:UniRef50_A4V792, UniRef:UniRef90_A4V792
+pQBR5_contig_1	cds	367646	368380	+	PQBR5_02315		KilA-N domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1D3K856, UniRef:UniRef90_A0A1D3K856
+pQBR5_contig_1	cds	368413	368559	+	PQBR5_02320		hypothetical protein	
+pQBR5_contig_1	cds	368619	368942	+	PQBR5_02325		Beta-ketoacyl synthase	SO:0001217, UniRef:UniRef50_A4V794, UniRef:UniRef90_A4V794
+pQBR5_contig_1	cds	369003	369530	+	PQBR5_02330		DUF262 domain-containing protein	RefSeq:WP_078465942.1, SO:0001217, UniParc:UPI000659BC55, UniRef:UniRef100_A0A1T1IYL0, UniRef:UniRef50_A0A1T1IYL0, UniRef:UniRef90_A0A1T1IYL0
+pQBR5_contig_1	cds	370174	370671	+	PQBR5_02335		DUF3568 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V796, UniRef:UniRef90_A4V796
+pQBR5_contig_1	cds	370836	371324	+	PQBR5_02340		Arc domain-containing protein	SO:0001217, UniRef:UniRef50_A0A6H1Q892, UniRef:UniRef90_A0A1E4X3C2
+pQBR5_contig_1	cds	371843	372232	+	PQBR5_02345		Transposase	SO:0001217, UniParc:UPI00001E0958, UniRef:UniRef100_Q70MR7, UniRef:UniRef50_A0A2A3M8S4, UniRef:UniRef90_A0A2N7XWT5
+pQBR5_contig_1	cds	372229	372573	+	PQBR5_02350	tnpB	IS66 family insertion sequence element accessory protein TnpB	RefSeq:WP_003425037.1, SO:0001217, UniParc:UPI00001E0957, UniRef:UniRef100_Q70MR8, UniRef:UniRef50_P50359, UniRef:UniRef90_A0A2T6GB03
+pQBR5_contig_1	cds	372611	374116	+	PQBR5_02355		IS66 family transposase	RefSeq:WP_003425038.1, SO:0001217, UniParc:UPI000150668B, UniRef:UniRef100_A0A5E7A7Z0, UniRef:UniRef50_Q144L9, UniRef:UniRef90_A0A2A3M8T9
+pQBR5_contig_1	cds	374120	374419	+	PQBR5_02360	tnpR	TnpR protein	SO:0001217, UniParc:UPI00001E0955, UniRef:UniRef100_A0A6B7Q3R4, UniRef:UniRef50_A0A1C2KBM6, UniRef:UniRef90_A0A6B7Q3R4
+pQBR5_contig_1	cds	374512	375150	-	PQBR5_02365	merB	organomercurial lyase MerB	NCBIFam:NF033555.1, RefSeq:WP_003425042.1, SO:0001217, UniParc:UPI000150668C, UniRef:UniRef100_A0A6B7Q571, UniRef:UniRef50_Q8G9P0, UniRef:UniRef90_K4IYP7
+pQBR5_contig_1	cds	375163	376845	-	PQBR5_02370	merA	mercury(II) reductase	NCBIFam:TIGR02053.1, RefSeq:WP_003425044.1, SO:0001217, UniParc:UPI00015066AA, UniRef:UniRef100_A0A6B7Q148, UniRef:UniRef50_P00392, UniRef:UniRef90_A0A0P9GRN2
+pQBR5_contig_1	cds	376881	377315	-	PQBR5_02375	merC	organomercurial transporter MerC	NCBIFam:NF033784.1, RefSeq:WP_003425046.1, SO:0001217, UniParc:UPI00015066AB, UniRef:UniRef100_A0A6B7PWM4, UniRef:UniRef50_A0A0A1H6J0, UniRef:UniRef90_Q53IQ9
+pQBR5_contig_1	cds	377328	377603	-	PQBR5_02380	merP	mercury resistance system periplasmic binding protein MerP	NCBIFam:TIGR02052.1, RefSeq:WP_003425048.1, SO:0001217, UniParc:UPI0000509F17, UniRef:UniRef100_A0A6B7PWH3, UniRef:UniRef50_Q51770, UniRef:UniRef90_A0A6B7PWH3
+pQBR5_contig_1	cds	377621	377971	-	PQBR5_02385	merT	mercuric ion transporter MerT	RefSeq:WP_003425049.1, SO:0001217, UniParc:UPI00015066AC, UniRef:UniRef100_A0A6B7PYP4, UniRef:UniRef50_D6CT51, UniRef:UniRef90_Q53IQ8
+pQBR5_contig_1	cds	378043	378474	+	PQBR5_02390	merR	Hg(II)-responsive transcriptional regulator	RefSeq:WP_011923233.1, SO:0001217, UniParc:UPI00015066AD, UniRef:UniRef100_A4V7S8, UniRef:UniRef50_A0A4P7P1X8, UniRef:UniRef90_A4V7S8
+pQBR5_contig_1	cds	378759	378923	-	PQBR5_02395		(pseudo) hypothetical protein	SO:0001217, UniRef:UniRef50_UPI0009F497D4, UniRef:UniRef90_UPI0009F497D4
+pQBR5_contig_1	cds	379117	379923	+	PQBR5_02400		N6-Mtase domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7Z0, UniRef:UniRef90_A4V7Z0
+pQBR5_contig_1	cds	379993	380247	+	PQBR5_02405	yebG	YebG family protein	SO:0001217, UniRef:UniRef50_A0A1X1A106, UniRef:UniRef90_A0A1E4X3A9
+pQBR5_contig_1	cds	380292	380555	-	PQBR5_02410		UPF0033 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1D3K7T5, UniRef:UniRef90_A0A1D3K7T5
+pQBR5_contig_1	cds	380730	380951	+	PQBR5_02415		Transposase	SO:0001217, UniRef:UniRef50_A0A1X0ZH32, UniRef:UniRef90_UPI001866F313
+pQBR5_contig_1	cds	380948	381205	+	PQBR5_02420		HPr kinase/phosphorylase	SO:0001217, UniRef:UniRef50_A0A1T1IY69, UniRef:UniRef90_A0A1T1IY69
+pQBR5_contig_1	cds	381225	381623	+	PQBR5_02425	ybjN	YbjN domain-containing protein	RefSeq:WP_017848234.1, SO:0001217, UniParc:UPI000361B4A8, UniRef:UniRef100_A0A1E4X3D0, UniRef:UniRef50_A0A0A7Q4S8, UniRef:UniRef90_A0A1E4X3D0
+pQBR5_contig_1	cds	383109	384266	-	PQBR5_02430		Replication protein	SO:0001217, UniRef:UniRef50_A0A3M3DPI4, UniRef:UniRef90_A0A3M3DPI4
+pQBR5_contig_1	cds	384485	384775	+	PQBR5_02435		DUF4371 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A142IDV5, UniRef:UniRef90_A0A142IDV5
+pQBR5_contig_1	cds	384763	385152	+	PQBR5_02440		Sulfate exporter family transporter	SO:0001217, UniRef:UniRef50_A0A7Y0WJZ7, UniRef:UniRef90_A0A7Y0WJZ7
+pQBR5_contig_1	cds	385229	385984	+	PQBR5_02445		Insecticidal toxin protein	SO:0001217, UniRef:UniRef50_A0A1X0ZMG7, UniRef:UniRef90_A4V7Y3
+pQBR5_contig_1	cds	386235	386603	+	PQBR5_02450		Nitro-FeMo-Co domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1E4X3F2, UniRef:UniRef90_A0A1E4X3F2
+pQBR5_contig_1	cds	386786	387949	+	PQBR5_02455		PAPS-reduct domain-containing protein	RefSeq:WP_078465932.1, SO:0001217, UniParc:UPI00065827B4, UniRef:UniRef100_A0A7Y0WJZ0, UniRef:UniRef50_V4GTA4, UniRef:UniRef90_A4V7Y5
+pQBR5_contig_1	cds	387961	388485	+	PQBR5_02460		Cupin	SO:0001217, UniRef:UniRef50_A0A3M3DSH7, UniRef:UniRef90_A0A1E4X3I1
+pQBR5_contig_1	cds	388482	388952	+	PQBR5_02465		WYL domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7Y7, UniRef:UniRef90_A4V7Y7
+pQBR5_contig_1	cds	389027	389341	+	PQBR5_02470	hicB	Antitoxin HicB	SO:0001217, UniRef:UniRef50_A0A1E4X399, UniRef:UniRef90_A4V7Y8
+pQBR5_contig_1	cds	389338	390426	+	PQBR5_02475		Exported protein	RefSeq:WP_078465931.1, SO:0001217, UniParc:UPI0006597A05, UniRef:UniRef100_A0A1T1IXP4, UniRef:UniRef50_A0A3M3DPM4, UniRef:UniRef90_A0A1E4X3E8
+pQBR5_contig_1	cds	390507	390962	-	PQBR5_02480	cpxP	CpxP family protein	SO:0001217, UniRef:UniRef50_A0A1T1IYF6, UniRef:UniRef90_A0A1T1IYF6
+pQBR5_contig_1	cds	391242	392423	+	PQBR5_02485	tniQ	TniQ protein	SO:0001217, UniParc:UPI000000FE13, UniRef:UniRef100_Q88BX9, UniRef:UniRef50_Q88BX9, UniRef:UniRef90_Q88BX9
+pQBR5_contig_1	cds	392465	392731	+	PQBR5_02490		Xre-MbcA-ParS-C domain-containing protein	RefSeq:WP_079732562.1, SO:0001217, UniParc:UPI0009A5EE57, UniRef:UniRef100_A0A8F8BXJ6, UniRef:UniRef50_A0A136QA74, UniRef:UniRef90_A0A136QA74
+pQBR5_contig_1	cds	393017	394615	-	PQBR5_02495	tnsD	TnsD domain-containing protein	RefSeq:WP_010955882.1, SO:0001217, UniParc:UPI000000FE12, UniRef:UniRef100_A0A8F8C089, UniRef:UniRef50_A0A3M3XZU6, UniRef:UniRef90_A0A5F0WJL3
+pQBR5_contig_1	cds	395295	396257	+	PQBR5_02500		Transposase	RefSeq:WP_010955881.1, SO:0001217, UniParc:UPI000000FE11, UniRef:UniRef100_Q88BY1, UniRef:UniRef50_A0A5E7C2N0, UniRef:UniRef90_Q88BY1
+pQBR5_contig_1	cds	396254	398266	+	PQBR5_02505		Transposase	SO:0001217, UniParc:UPI000000FE10, UniRef:UniRef100_Q88BY2, UniRef:UniRef50_A0A0P8XJF9, UniRef:UniRef90_Q88BY2
+pQBR5_contig_1	cds	398263	399609	+	PQBR5_02510		Transposase	RefSeq:WP_010955879.1, SO:0001217, UniParc:UPI000000FE0F, UniRef:UniRef100_A0A8F8BZ91, UniRef:UniRef50_A0A0S4I931, UniRef:UniRef90_A0A0P7DJ39
+pQBR5_contig_1	cds	399632	399937	-	PQBR5_02515		Small CPxCG-related zinc finger protein	SO:0001217, UniRef:UniRef50_Q88BY4, UniRef:UniRef90_Q88BY4
+pQBR5_contig_1	cds	399998	400294	-	PQBR5_02520		DUF1722 domain-containing protein	SO:0001217, UniParc:UPI0007763F3E, UniRef:UniRef100_A0A140FWU4, UniRef:UniRef50_A0A140FWU4, UniRef:UniRef90_A0A140FWU4
+pQBR5_contig_1	cds	400353	401009	-	PQBR5_02525		Phage protein	RefSeq:WP_049588460.1, SO:0001217, UniParc:UPI00066B9046, UniRef:UniRef100_A0A8F8BYK0, UniRef:UniRef50_B1J3W6, UniRef:UniRef90_B1J3W6
+pQBR5_contig_1	cds	401217	402005	+	PQBR5_02530	cobB	NAD-dependent protein deacylase	COG:COG0846, COG:O, EC:2.3.1.286, GO:0005737, GO:0006476, GO:0008270, GO:0016740, GO:0034979, GO:0036054, GO:0036055, GO:0070403, RefSeq:WP_010955877.1, SO:0001217, UniParc:UPI000000FE0D, UniRef:UniRef100_Q88BY5, UniRef:UniRef50_Q88BY5, UniRef:UniRef90_Q88BY5
+pQBR5_contig_1	cds	403026	403145	+	PQBR5_02535		hypothetical protein	
+pQBR5_contig_1	cds	403258	403899	-	PQBR5_02540		PINc domain-containing protein	RefSeq:WP_010955876.1, SO:0001217, UniParc:UPI000000FE0C, UniRef:UniRef100_A0A8F8BWJ9, UniRef:UniRef50_A0A3M3DB37, UniRef:UniRef90_A0A136QBC4
+pQBR5_contig_1	cds	403908	404921	-	PQBR5_02545		ImmA/IrrE family metallo-endopeptidase	RefSeq:WP_049588464.1, SO:0001217, UniParc:UPI00066A20F4, UniRef:UniRef100_Q88BY7, UniRef:UniRef50_Q88BY7, UniRef:UniRef90_Q88BY7
+pQBR5_contig_1	cds	404902	405297	-	PQBR5_02550	asnC	AsnC family protein	SO:0001217, UniParc:UPI0009A8367D, UniRef:UniRef100_A0A2V4FVR1, UniRef:UniRef50_A0A560NY87, UniRef:UniRef90_A0A2V4FVR1
+pQBR5_contig_1	cds	405415	406140	+	PQBR5_02555		Ig-GlcNase domain-containing protein	SO:0001217, UniRef:UniRef50_Q88BY8, UniRef:UniRef90_Q88BY8
+pQBR5_contig_1	cds	406346	406666	+	PQBR5_02560	insE	Transposase InsE and inactivated derivatives	COG:COG2963, COG:X, RefSeq:WP_010955144.1, SO:0001217, UniParc:UPI000000FA66, UniRef:UniRef100_A0A8F8G6A8, UniRef:UniRef50_A0A2L2L184, UniRef:UniRef90_A0A2L2L184
+pQBR5_contig_1	cds	406663	406998	+	PQBR5_02565	tnpB	IS66 family insertion sequence element accessory protein TnpB	COG:COG3436, COG:X, RefSeq:WP_010955145.1, SO:0001217, UniParc:UPI000000FA67, UniRef:UniRef100_A0A8F8G638, UniRef:UniRef50_A0A8B6UZ25, UniRef:UniRef90_A0A7X1WYZ4
+pQBR5_contig_1	cds	407062	408597	+	PQBR5_02570	tnp	IS66 family ISPpu14 transposase	COG:COG3436, COG:X, IS:ISPpu14, RefSeq:WP_010955146.1, SO:0001217, UniParc:UPI000000FA68, UniRef:UniRef100_A0A8F8BWK4, UniRef:UniRef50_C9YFD7, UniRef:UniRef90_A0A108WH72
+pQBR5_contig_1	cds	408628	409116	-	PQBR5_02575	adkA	Archaeal adenylate kinase	COG:COG2019, COG:F, RefSeq:WP_049588370.1, SO:0001217, UniParc:UPI00066B63B2, UniRef:UniRef100_A0A136QA30, UniRef:UniRef50_A0A136QA30, UniRef:UniRef90_A0A136QA30
+pQBR5_contig_1	cds	409133	409708	-	PQBR5_02580		Glyco-hydro-42C domain-containing protein	RefSeq:WP_049588372.1, SO:0001217, UniParc:UPI00066B3C3A, UniRef:UniRef100_A0A8F8G736, UniRef:UniRef50_A0A160FQI0, UniRef:UniRef90_A0A8F8G736
+pQBR5_contig_1	cds	409701	410540	-	PQBR5_02585	bpsA	Aminopropyltransferase BpsA, N(4)-bis(aminopropyl)spermidine biosynthesis	COG:COG1568, COG:Q, RefSeq:WP_049588375.1, SO:0001217, UniParc:UPI00066D6E64, UniRef:UniRef100_A0A8F8G531, UniRef:UniRef50_Q88BY9, UniRef:UniRef90_Q88BY9
+pQBR5_contig_1	cds	411010	412590	+	PQBR5_02590		heavy metal translocating P-type ATPase	SO:0001217, UniRef:UniRef50_UPI00111E623C, UniRef:UniRef90_UPI00111E623C
+pQBR5_contig_1	cds	412606	413379	+	PQBR5_02595		Cation-transporting P-type ATPase	SO:0001217, UniRef:UniRef50_A0A377E2Y0
+pQBR5_contig_1	cds	413720	413920	+	PQBR5_02600	copZ	Copper chaperone CopZ	COG:COG2608, COG:P, RefSeq:WP_004575963.1, SO:0001217, UniParc:UPI000000FE08, UniRef:UniRef100_A5VWE5, UniRef:UniRef50_A5VWE5, UniRef:UniRef90_A5VWE5
+pQBR5_contig_1	cds	414186	415208	+	PQBR5_02605		40-residue YVTN family beta-propeller repeat protein	RefSeq:WP_028700032.1, SO:0001217, UniParc:UPI000491B3E7, UniRef:UniRef100_A0A8F8C079, UniRef:UniRef50_A0A059V6C7, UniRef:UniRef90_A0A059V6C7
+pQBR5_contig_1	cds	415344	415799	+	PQBR5_02610		Signal peptide protein	RefSeq:WP_049588399.1, SO:0001217, UniParc:UPI00066B3E59, UniRef:UniRef100_Q88BZ2, UniRef:UniRef50_A0A2S0N0Z7, UniRef:UniRef90_Q88BZ2
+pQBR5_contig_1	cds	415825	416100	+	PQBR5_02615		DUF2933 domain-containing protein	RefSeq:WP_010955870.1, SO:0001217, UniParc:UPI000000FE05, UniRef:UniRef100_A0A059V414, UniRef:UniRef50_F4GGE9, UniRef:UniRef90_B1J3V7
+pQBR5_contig_1	cds	416097	416756	+	PQBR5_02620	sTE14	Protein-S-isoprenylcysteine O-methyltransferase Ste14	COG:COG2020, COG:O, RefSeq:WP_010955869.1, SO:0001217, UniParc:UPI000000FE04, UniRef:UniRef100_A0A4U9MSQ7, UniRef:UniRef50_Q5P5T2, UniRef:UniRef90_B1J3V6
+pQBR5_contig_1	cds	417072	417563	+	PQBR5_02625		PLDc-2 domain-containing protein	SO:0001217, UniParc:UPI000684EB58, UniRef:UniRef100_A0A140FWT8, UniRef:UniRef50_A0A140FWT8, UniRef:UniRef90_A0A140FWT8
+pQBR5_contig_1	cds	417775	418116	-	PQBR5_02630	cusF	Periplasmic Cu and Ag efflux protein CusF	COG:COG5569, COG:P, RefSeq:WP_010955868.1, SO:0001217, UniParc:UPI000000FE03, UniRef:UniRef100_A0A4U9MP29, UniRef:UniRef50_A0A136QBB7, UniRef:UniRef90_A0A136QBB7
+pQBR5_contig_1	cds	418113	421271	-	PQBR5_02635	cusA	Cu/Ag efflux pump CusA	COG:COG3696, COG:P, KEGG:K07787, RefSeq:WP_010955867.1, SO:0001217, UniParc:UPI000000FE02, UniRef:UniRef100_A0A4U9MQM7, UniRef:UniRef50_P38054, UniRef:UniRef90_A0A0S4I6T5
+pQBR5_contig_1	cds	421268	422740	-	PQBR5_02640	cusF	Periplasmic Cu and Ag efflux protein CusF	COG:COG5569, COG:P, RefSeq:WP_010955866.1, SO:0001217, UniParc:UPI000000FE01, UniRef:UniRef100_A0A4V6K0J0, UniRef:UniRef50_A0A172YZX5, UniRef:UniRef90_A0A0S4I6S0
+pQBR5_contig_1	cds	422737	423990	-	PQBR5_02645	tolC	Outer membrane protein TolC	COG:COG1538, COG:M, RefSeq:WP_010955865.1, SO:0001217, UniParc:UPI000000FE00, UniRef:UniRef100_A0A4U9MSR5, UniRef:UniRef50_A0A0C5E1C5, UniRef:UniRef90_V9V565
+pQBR5_contig_1	cds	424467	425876	-	PQBR5_02650	baeS	Signal transduction histidine kinase	COG:COG0642, COG:T, SO:0001217, UniParc:UPI000000FDFF, UniRef:UniRef100_Q88BZ9, UniRef:UniRef50_A0A1G8F4Y1, UniRef:UniRef90_Q88BZ9
+pQBR5_contig_1	cds	425873	426550	-	PQBR5_02655	ompR	DNA-binding response regulator, OmpR family, contains REC and winged-helix (wHTH) domain	COG:COG0745, COG:TK, RefSeq:WP_010955863.1, SO:0001217, UniParc:UPI000000FDFE, UniRef:UniRef100_A0A1Y5KT42, UniRef:UniRef50_V9WL81, UniRef:UniRef90_A0A2J7YAF0
+pQBR5_contig_1	cds	426743	427102	+	PQBR5_02660		Periplasmic heavy metal sensor	RefSeq:WP_010955862.1, SO:0001217, UniParc:UPI000000FDFD, UniRef:UniRef100_A0A059V6C2, UniRef:UniRef50_A0A0K1QJ35, UniRef:UniRef90_A0A059V6C2
+pQBR5_contig_1	cds	427294	427500	+	PQBR5_02665		Signal peptide protein	RefSeq:WP_019752835.1, SO:0001217, UniParc:UPI0002EAA3F2, UniRef:UniRef100_V9V559, UniRef:UniRef50_B1JFS1, UniRef:UniRef90_V9V559
+pQBR5_contig_1	cds	427684	429693	+	PQBR5_02670		Copper resistance system multicopper oxidase	RefSeq:WP_010955860.1, SO:0001217, UniParc:UPI000000FDFB, UniRef:UniRef100_A0A4U9MS50, UniRef:UniRef50_P12374, UniRef:UniRef90_A0A7W2LER0
+pQBR5_contig_1	cds	429708	430025	+	PQBR5_02675	pcoB	Uncharacterized conserved protein involved in copper resistance	COG:COG3667, COG:P, RefSeq:WP_061405729.1, SO:0001217, UniParc:UPI0002EF6FCB, UniRef:UniRef100_A0A5F0WJS3, UniRef:UniRef50_B1J3Z5, UniRef:UniRef90_V9V7E8
+pQBR5_contig_1	cds	430015	431094	+	PQBR5_02680	pcoB	Uncharacterized conserved protein involved in copper resistance	COG:COG3667, COG:P, RefSeq:WP_049588384.1, SO:0001217, UniParc:UPI0002ED723D, UniRef:UniRef100_A0A4U9MQP0, UniRef:UniRef50_A0A5E7U2N9, UniRef:UniRef90_V9V6U1
+pQBR5_contig_1	cds	431104	431886	+	PQBR5_02685		Cystathionine gamma-lyase	RefSeq:WP_010955858.1, SO:0001217, UniParc:UPI000000FDF9, UniRef:UniRef100_A0A5F0WLJ8, UniRef:UniRef50_B1J3Z3, UniRef:UniRef90_V9V9T7
+pQBR5_contig_1	cds	431876	432331	+	PQBR5_02690		DUF411 domain-containing protein	COG:COG3019, COG:S, RefSeq:WP_010955857.1, SO:0001217, UniParc:UPI000000FDF8, UniRef:UniRef100_A0A8F8BZ71, UniRef:UniRef50_A0A024HNF0, UniRef:UniRef90_V9V554
+pQBR5_contig_1	cds	432398	432730	-	PQBR5_02695		DUF2790 domain-containing protein	RefSeq:WP_010955856.1, SO:0001217, UniParc:UPI000000FDF7, UniRef:UniRef100_A0A8F8C1L4, UniRef:UniRef50_A0A024EKJ8, UniRef:UniRef90_A0A059V4Q5
+pQBR5_contig_1	cds	433226	433417	+	PQBR5_02700		Holin	SO:0001217, UniParc:UPI000658E908, UniRef:UniRef100_A0A1T1IY58, UniRef:UniRef50_A0A1E4X389, UniRef:UniRef90_A0A1E4X389
+pQBR5_contig_1	cds	433869	434177	+	PQBR5_02705		ABC transporter permease	SO:0001217, UniRef:UniRef50_A0A7Y0WK79, UniRef:UniRef90_A0A7Y0WK79
+pQBR5_contig_1	cds	434245	434577	+	PQBR5_02710		LPD18 domain-containing protein	RefSeq:WP_078465926.1, SO:0001217, UniParc:UPI000659E068, UniRef:UniRef100_A4V7W8, UniRef:UniRef50_A0A1E4X3E2, UniRef:UniRef90_A4V7W8
+pQBR5_contig_1	cds	434614	435249	+	PQBR5_02715		DUF2958 domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7W9, UniRef:UniRef90_A4V7W9
+pQBR5_contig_1	cds	435262	436086	+	PQBR5_02720		DUF1963 domain-containing protein	RefSeq:WP_011923203.1, SO:0001217, UniParc:UPI000150665B, UniRef:UniRef100_A4V7X0, UniRef:UniRef50_A0A3M3DPW2, UniRef:UniRef90_A4V7X0
+pQBR5_contig_1	cds	436195	436482	+	PQBR5_02725		Alpha-carbonic anhydrase domain-containing protein	RefSeq:WP_234288206.1, SO:0001217, UniParc:UPI00065A681A, UniRef:UniRef100_UPI00065A681A, UniRef:UniRef50_A4V7X1, UniRef:UniRef90_A4V7X1
+pQBR5_contig_1	cds	436493	437110	+	PQBR5_02730		Lipoprotein	SO:0001217, UniRef:UniRef50_A4V7X2, UniRef:UniRef90_A4V7X2
+pQBR5_contig_1	cds	437163	437537	+	PQBR5_02735		HTH araC/xylS-type domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7X3, UniRef:UniRef90_A4V7X3
+pQBR5_contig_1	cds	437598	438476	+	PQBR5_02740		DUF1611 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A1X1A0Z4, UniRef:UniRef90_A4V7X4
+pQBR5_contig_1	cds	438586	440079	+	PQBR5_02745		DNA helicase	SO:0001217, UniRef:UniRef50_A4V7X5, UniRef:UniRef90_A4V7X5
+pQBR5_contig_1	cds	440195	441058	+	PQBR5_02750		MOSC domain-containing protein	SO:0001217, UniRef:UniRef50_A4V7X6, UniRef:UniRef90_A4V7X6
+pQBR5_contig_1	cds	441118	442719	+	PQBR5_02755		DUF4942 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DP28, UniRef:UniRef90_A0A3M3DP28
+pQBR5_contig_1	cds	442850	443512	+	PQBR5_02760		OmpA-like domain-containing protein	RefSeq:WP_011923211.1, SO:0001217, UniParc:UPI0001506675, UniRef:UniRef100_A4V7X8, UniRef:UniRef50_A4V7X8, UniRef:UniRef90_A4V7X8
+pQBR5_contig_1	cds	443516	444223	-	PQBR5_02765		DUF882 domain-containing protein	SO:0001217, UniParc:UPI0001506676, UniRef:UniRef100_A0A7Y0WJX6, UniRef:UniRef50_A0A1T1IZ60, UniRef:UniRef90_A0A1T1IZ60
+pQBR5_contig_1	cds	444379	445026	+	PQBR5_02770		DUF1330 domain-containing protein	RefSeq:WP_193069039.1, SO:0001217, UniParc:UPI000659617E, UniRef:UniRef100_A4V7Y0, UniRef:UniRef50_A0A3M3DQ31, UniRef:UniRef90_A4V7Y0
+pQBR5_contig_1	cds	445108	446481	+	PQBR5_02775		DNA-LIGASE-A3 domain-containing protein	RefSeq:WP_011923214.1, SO:0001217, UniParc:UPI0001506678, UniRef:UniRef100_A4V7V3, UniRef:UniRef50_A0A3M3DP61, UniRef:UniRef90_A0A3M3DP61
+pQBR5_contig_1	cds	446545	447018	-	PQBR5_02780		Transmembrane protein	RefSeq:WP_011923215.1, SO:0001217, UniParc:UPI0001506679, UniRef:UniRef100_A4V7V4, UniRef:UniRef50_A0A3M3DSE9, UniRef:UniRef90_A0A7Y0WK03
+pQBR5_contig_1	cds	447720	447998	-	PQBR5_02785		hypothetical protein	
+pQBR5_contig_1	cds	448025	448558	+	PQBR5_02790	ybjN	YbjN domain-containing protein	RefSeq:WP_193069040.1, SO:0001217, UniParc:UPI00065894F1, UniRef:UniRef100_A4V7V5, UniRef:UniRef50_A0A3M3DQ28, UniRef:UniRef90_A0A3M3DQ28
+pQBR5_contig_1	cds	448846	449088	+	PQBR5_02795		Transcriptional regulator	RefSeq:WP_193069041.1, SO:0001217, UniParc:UPI0018663C7A, UniRef:UniRef100_UPI0018663C7A, UniRef:UniRef50_A0A1D3K7P5, UniRef:UniRef90_UPI0018663C7A
+pQBR5_contig_1	cds	449116	449346	+	PQBR5_02800		DUF2185 domain-containing protein	RefSeq:WP_193069042.1, SO:0001217, UniParc:UPI00065A58B6, UniRef:UniRef100_UPI00065A58B6, UniRef:UniRef50_A0A3M3DP84, UniRef:UniRef90_A0A1T1IXP9
+pQBR5_contig_1	cds	449430	449684	+	PQBR5_02805		Restriction endonuclease subunit S	SO:0001217, UniRef:UniRef50_A0A1T1IYE6, UniRef:UniRef90_A0A1T1IYE6
+pQBR5_contig_1	cds	449783	450358	+	PQBR5_02810		Peptidase-M78 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DPY5, UniRef:UniRef90_A4V7V7
+pQBR5_contig_1	cds	450351	450878	+	PQBR5_02815		HD domain-containing protein	SO:0001217, UniRef:UniRef50_A0A6H1Q8F8, UniRef:UniRef90_A0A1T1IY53
+pQBR5_contig_1	cds	450935	451348	+	PQBR5_02820		DUF551 domain-containing protein	RefSeq:WP_193069043.1, SO:0001217, UniParc:UPI001868F790, UniRef:UniRef100_UPI001868F790, UniRef:UniRef50_A0A3M3DP96, UniRef:UniRef90_A0A1T1IXM3
+pQBR5_contig_1	cds	451451	452002	+	PQBR5_02825		Single-stranded DNA-binding protein	RefSeq:WP_011923220.1, SO:0001217, UniParc:UPI000150667E, UniRef:UniRef100_A4V7V9, UniRef:UniRef50_A0A7Y0ZDP4, UniRef:UniRef90_A0A7Y0ZDP4
+pQBR5_contig_1	cds	452278	453009	+	PQBR5_02830		Tail assembly chaperone	SO:0001217, UniRef:UniRef50_A0A1X1A0V1, UniRef:UniRef90_A4V7W0
+pQBR5_contig_1	cds	453095	453409	+	PQBR5_02835		Lipoprotein	RefSeq:WP_011923222.1, SO:0001217, UniParc:UPI0001506680, UniRef:UniRef100_A4V7W1, UniRef:UniRef50_A0A3M3DPL9, UniRef:UniRef90_A0A3M3DPL9
+pQBR5_contig_1	cds	453479	454516	+	PQBR5_02840		Exported protein	RefSeq:WP_193069045.1, SO:0001217, UniParc:UPI0002F6B4F5, UniRef:UniRef100_A4V7W2, UniRef:UniRef50_A0A3M3DNX1, UniRef:UniRef90_A0A3M3DNX1
+pQBR5_contig_1	cds	454576	454803	+	PQBR5_02845		Rieske domain-containing protein	RefSeq:WP_193069046.1, SO:0001217, UniParc:UPI0018677974, UniRef:UniRef100_UPI0018677974, UniRef:UniRef50_A0A1D3K7Y6, UniRef:UniRef90_UPI0018677974
+pQBR5_contig_1	cds	454803	455054	+	PQBR5_02850	yheU	YheU family protein	RefSeq:WP_116827422.1, SO:0001217, UniParc:UPI0002EF5461, UniRef:UniRef100_UPI0002EF5461, UniRef:UniRef50_A0A1D3K7P2, UniRef:UniRef90_A0A8T8CAT7
+pQBR5_contig_1	cds	455167	455832	+	PQBR5_02855		FGGY-N domain-containing protein	RefSeq:WP_011923224.1, SO:0001217, UniParc:UPI0001506682, UniRef:UniRef100_A4V7W3, UniRef:UniRef50_A4V7W3, UniRef:UniRef90_A4V7W3
+pQBR5_contig_1	cds	455957	456268	+	PQBR5_02860		Prevent-host-death protein	RefSeq:WP_011923225.1, SO:0001217, UniParc:UPI0001506683, UniRef:UniRef100_A4V7W4, UniRef:UniRef50_A0A3M3DRL0, UniRef:UniRef90_A4V7W4
+pQBR5_contig_1	cds	456419	457531	+	PQBR5_02865		Sel1 repeat family protein	RefSeq:WP_193069047.1, SO:0001217, UniParc:UPI00186821FB, UniRef:UniRef100_A4V7W5, UniRef:UniRef50_A4V7W5, UniRef:UniRef90_A4V7W5
+pQBR5_contig_1	cds	457528	457833	-	PQBR5_02870		Transcriptional regulator	RefSeq:WP_011923227.1, SO:0001217, UniParc:UPI0001506685, UniRef:UniRef100_A4V7T9, UniRef:UniRef50_A4V7T9, UniRef:UniRef90_A4V7T9
+pQBR5_contig_1	cds	458037	458435	+	PQBR5_02875		Response regulator	RefSeq:WP_011923228.1, SO:0001217, UniParc:UPI0001506686, UniRef:UniRef100_A0A7Y0WK12, UniRef:UniRef50_A0A838JJD0, UniRef:UniRef90_A0A7Y0WK12
+pQBR5_contig_1	cds	458635	459078	+	PQBR5_02880		DUF3995 domain-containing protein	RefSeq:WP_011923229.1, SO:0001217, UniParc:UPI0001506687, UniRef:UniRef100_A0A7Y0WJZ1, UniRef:UniRef50_A0A3M3DPG8, UniRef:UniRef90_A0A7Y0WJZ1
+pQBR5_contig_1	cds	459151	459453	+	PQBR5_02885		Glycine dehydrogenase	RefSeq:WP_193069048.1, SO:0001217, UniParc:UPI00065A157F, UniRef:UniRef100_UPI00065A157F, UniRef:UniRef50_A0A1X1A160, UniRef:UniRef90_A0A1T1IXL7
+pQBR5_contig_1	cds	459453	459992	+	PQBR5_02890		Bacteriophage protein	RefSeq:WP_193069049.1, SO:0001217, UniParc:UPI00186770CC, UniRef:UniRef100_UPI00186770CC, UniRef:UniRef50_A0A3M3DQF0, UniRef:UniRef90_A4V7U3
+pQBR5_contig_1	cds	460090	460494	+	PQBR5_02895		DUF913 domain-containing protein	SO:0001217, UniRef:UniRef50_A0A3M3DSV9, UniRef:UniRef90_A0A1T1IYX4
+pQBR5_contig_1	cds	460616	461311	+	PQBR5_02900	csgG	Curli production assembly/transport component CsgG	RefSeq:WP_193069050.1, SO:0001217, UniParc:UPI0006598276, UniRef:UniRef100_A4V7S9, UniRef:UniRef50_A0A3M3DPV8, UniRef:UniRef90_A4V7S9
+pQBR5_contig_1	cds	461308	461760	+	PQBR5_02905		DUF2513 domain-containing protein	RefSeq:WP_011923235.1, SO:0001217, UniParc:UPI00015066AF, UniRef:UniRef100_A4V7T0, UniRef:UniRef50_A0A3M3DQ78, UniRef:UniRef90_A4V7T0
+pQBR5_contig_1	cds	461792	462181	+	PQBR5_02910		HTH cro/C1-type domain-containing protein	RefSeq:WP_078465903.1, SO:0001217, UniParc:UPI0006580A0F, UniRef:UniRef100_A0A7Y0ZDP0, UniRef:UniRef50_A0A1X0ZME2, UniRef:UniRef90_A0A3M3DPJ7
+pQBR5_contig_1	cds	462282	463202	+	PQBR5_02915	rdgC	recombination-associated protein RdgC	RefSeq:WP_011923236.1, SO:0001217, UniParc:UPI00015066B0, UniRef:UniRef100_A4V7T1, UniRef:UniRef50_Q88M72, UniRef:UniRef90_A4V7T1
+pQBR5_contig_1	cds	463247	463492	+	PQBR5_02920		Addiction module protein	RefSeq:WP_078465901.1, SO:0001217, UniParc:UPI000658A7C5, UniRef:UniRef100_A0A7Y0ZDP1, UniRef:UniRef50_A0A1X0ZMX5, UniRef:UniRef90_A0A7Y0ZDP1
+pQBR5_contig_1	cds	463485	464177	+	PQBR5_02925		Menaquinone-specific isochorismate synthase	SO:0001217, UniRef:UniRef50_A0A3M3DRX3, UniRef:UniRef90_A4V7T2
+pQBR5_contig_1	cds	464174	464650	+	PQBR5_02930		Hypothetical exported protein	RefSeq:WP_011923238.1, SO:0001217, UniParc:UPI00015066B2, UniRef:UniRef100_A4V7T3, UniRef:UniRef50_A0A1X1A0Y5, UniRef:UniRef90_A4V7T3
+pQBR5_contig_1	cds	464647	465180	+	PQBR5_02935		HD-domain domain-containing protein	RefSeq:WP_011923239.1, SO:0001217, UniParc:UPI00015066B3, UniRef:UniRef100_A4V7T4, UniRef:UniRef50_A4V7T4, UniRef:UniRef90_A4V7T4
+pQBR5_contig_1	cds	465225	465620	-	PQBR5_02940		Lipoprotein	RefSeq:WP_011923240.1, SO:0001217, UniParc:UPI00015066B4, UniRef:UniRef100_A4V7T5, UniRef:UniRef50_A0A1X1A137, UniRef:UniRef90_A4V7T5
+pQBR5_contig_1	cds	465613	465801	-	PQBR5_02945	csrA	carbon storage regulator CsrA	RefSeq:WP_011923241.1, SO:0001217, UniParc:UPI00015066B5, UniRef:UniRef100_A4V7T6, UniRef:UniRef50_C3K072, UniRef:UniRef90_A4V7T6
+pQBR5_contig_1	cds	465977	466399	+	PQBR5_02950		Tetratricopeptide repeat protein	SO:0001217, UniParc:UPI00015066B6, UniRef:UniRef100_A4V7T7, UniRef:UniRef50_A0A3M3DQ50, UniRef:UniRef90_A0A1T1IY15

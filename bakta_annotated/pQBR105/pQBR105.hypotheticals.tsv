@@ -1,0 +1,8 @@
+#Annotated with Bakta v1.8.2, https://github.com/oschwengers/bakta
+#Database v5.0, https://doi.org/10.5281/zenodo.4247252
+#Sequence Id	Start	Stop	Strand	Locus Tag	Mol Weight [kDa]	Iso El. Point	Pfam hits	Dbxrefs
+pQBR105_contig_1	12021	12230	+	PQBR105_00065	7.9	6.6		
+pQBR105_contig_1	23810	24424	+	PQBR105_00135	23.1	9.8		
+pQBR105_contig_1	28122	28445	+	PQBR105_00165	12.2	9.3		SO:0001217, UniParc:UPI0003CCC22B, UniRef:UniRef100_A0A533IJD2, UniRef:UniRef50_A0A4D6XDX2, UniRef:UniRef90_A0A4D6XDX2
+pQBR105_contig_1	118109	118786	+	PQBR105_00630	24.3	9.7		
+pQBR105_contig_1	148808	149485	-	PQBR105_00775	24.3	9.7		

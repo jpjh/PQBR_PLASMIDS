@@ -1,0 +1,502 @@
+---
+title: "Assembling complete pQBR plasmids using long and short reads"
+date: "2024-05-14"
+author: "jpjh"
+output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Overview of approach
+
+The plasmids were sequenced alongside *P. putida* UWC1, a derivative of *P. putida* KT2440. Initial Illumina sequencing was performed by MicrobesNG. These data were analysed in an attempt to generate closed plasmid sequences as follows:
+
+1. Map all reads against the *P. putida* KT2440 genome using `bwa-mem` 0.7.17-r1188. 
+2. Collect all reads that did not map to the chromosome and assemble *de novo* using SPAdes v3.15.5 with k-mer length of 21, 33, 55, 77. 
+3. Long (>5kb), deep (>10x coverage) contigs were identified as putative pQBR plasmid contigs, and were used for initial comparative analysis.
+
+Alongside this analysis, putative plasmids were identified by the whole genome *de novo* SPAdes assemblies that were provided by MicrobesNG by visualising the assembly graphs in Bandage and identifying and extracting closed circular contigs.
+
+For plasmids that did not produced closed genomes by either of these methods, we followed up with ONT sequencing of pools of samples, grouping distinct plasmids based on the Illumina contigs, to provide scaffolds that could then be polished with the Illumina reads.
+
+### Plasmid status
+
+'Groups' are based on the RFLP analyses of [Lilley et al. 1996](dx.doi.org/10.1111/j.1574-6941.1996.tb00320.x).
+
+#### Group I (pQBR103)-like
+
+- pQBR4 — ONT sequencing in pool 2
+- pQBR5 — ONT sequencing in pool 1
+- pQBR11 — ONT sequencing in pool 5, but this doesn’t seem to have resolved in the sample.
+- pQBR43 — ONT sequencing in (individual strain)
+- pQBR47 — ONT sequencing in pool 6
+- pQBR49 — ONT sequencing in pool 4
+- pQBR50 — ONT sequencing in pool (individual strain)
+- pQBR103 — closed by Illumina alone. This is resequenced: pQBR103 was previously sequenced ([Tett et al. 2007](dx.doi.org/10.1038/ismej.2007.47))
+- pQBR106 — ONT sequencing in pool 7
+- pQBR124 — ONT sequencing in pool 3
+- pQBR127 — ONT sequencing (individual strain)
+
+#### Group II
+
+- pQBR23 — ONT sequencing in pool 2
+- pQBR24 — ONT sequencing in pool 1
+- pQBR26 — ONT sequencing (individual strain)
+
+#### Group III (pQBR55)-like
+
+- pQBR28 — closed by Illumina alone
+- pQBR53 — closed by Illumina alone
+- pQBR55 — closed by Illumina alone. This is resequenced: pQBR55 was previously sequenced ([Hall et al. 2007](dx.doi.org/10.1111/1462-2920.12901))
+- pQBR132 — closed by Illumina alone
+
+#### Group IV (pQBR57)-like
+
+- pQBR30 — ONT sequencing in pool 1
+- pQBR51 — ONT sequencing in pool 5
+- pQBR56 — ONT sequencing in pool 3
+- pQBR57 — ONT sequencing in pool 2. This is resequenced: pQBR57 was previously sequenced ([Hall et al. 2007](dx.doi.org/10.1111/1462-2920.12901))
+- pQBR102 — closed by Illumina alone
+- pQBR150 — ONT sequencing in pool 4
+
+#### Group V
+
+- pQBR1 — Illumina indicated no plasmid present. Instead, and in contrast to the ~70-kb plasmid referred to by Lilley et al. (1996), the assembly of unmapped reads shows a 9.9 kb sequence that has integrated into the chromosome. This suggests that the stock strain has lost the plasmid but kept the transposon, as described in various lab studies with other pQBR plasmids. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid has been lost.
+
+#### Others
+
+- pQBR8 — Illumina inducated low coverage for regions of interest, suggesting that the plasmid was in the process of being lost when the sample was sequenced. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid has been lost. 
+- pQBR58 — Illumina assembly of unmapped reads gave one non-circular contig, 73.7 kb. Was not included in ONT sequencing.
+- pQBR105 — ONT sequencing in pool 3
+
+
+
+### Notes on assembly
+
+The long-read contigs that matched each plasmid were identified by BLASTing the ONT assemblies for each sample against the contigs assembled by Illumina. The long-read contigs were extracted and named. 
+
+Some manual analysis was required for the following, possibly due to sequence loss, possibly due to chromosome integration, possibly both. This requires further analysis.
+
+#### pQBR26
+
+pQBR26 was previously identified as a Group II plasmid, like pQBR23 and pQBR24. However, though transconjugants into *P. fluorescens* SBW25 were easily generated, they did not give a positive PCR product for the primers designed for Group II plasmids. Analysis of the Illumina reads showed another contig that also contained a predicted merA gene, and primers designed against this contig did give a positive product when applied to transconjugant colonies. Long-read sequencing of UWC1(pQBR26) showed two extrachromosomal replicons, one of which resembled pQBR23 (394 kb) but had a copy number of <1, and the other with a copy number of ~1 that matched the contig that was capable of conjugating (229 kb). We infer that UWC1(pQBR26) contained two different mer plasmids, one of which is less stable and/or less conjugative than the other, and the 229-kb conjugative plasmid is indicated as the canonical pQBR26 plasmid. 
+
+#### pQBR11
+
+pQBR11 produced Group I-like contigs when the short reads were analysed. However, the sample did not resolve in the long read sequencing. 
+
+***To investigate:*** check DNA and attempt resequencing. 
+
+#### pQBR43
+
+This sequence didn't fully resolve owing to a duplicate sequence in the chromosome. Two possibilities: both the chromosome and the plasmid contain the same duplicated element (possibly a transposon) but remain separate replicons, or the plasmid has integrated into the chromosome, flanked by copies of the duplication. 
+
+***To investigate:*** look for long reads that map both to plasmid and chromosome. 
+
+#### pQBR50
+
+This sequence didn't fully resolve owing to duplicate sequences in the chromosome and multiple copies of Tn6290. 
+
+***To investigate:*** look for long reads that map both to plasmid and chromosome. 
+
+#### pQBR127
+
+Analysis of short-read sequencing suggested that this strain harboured replicons that both resembled Group I and Group III plasmids. 
+
+![Screenshot 2024-02-20 at 17.52.36](/Users/jpjh/Library/Application Support/typora-user-images/Screenshot 2024-02-20 at 17.52.36.png)
+
+Performed long-read sequencing to resolve, which showed a distinct Group III replicon and no Group I replicon. Infer that two plasmids were present, of which only one remains in our sample. 
+
+#### pQBR47
+
+This sequence didn't fully resolve owing to a duplicate sequence in the chromosome, and the sequence is assembled as a single contig. Perhaps the plasmid has also integrated into the chromosome.
+
+Do ACT comparison with chromosome.
+
+```{bash, eval=FALSE}
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=AE015451&amp;rettype=fasta" > ../ref/AE015451.fasta
+
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=AM235768&amp;rettype=fasta" > ../ref/AM235768.fasta
+
+makeblastdb -in ../ref/AE015451.fasta -dbtype nucl
+
+makeblastdb -in ../ref/AM235768.fasta -dbtype nucl
+
+blastn -query ./contigs/pQBR47_contig.fasta \
+  -db ../ref/AE015451.fasta \
+  -outfmt 6 > ./scratch/pQBR47_chromosome.blastn
+  
+blastn -query ./contigs/pQBR47_contig.fasta \
+  -db ../ref/AM235768.fasta \
+  -outfmt 6 > ./scratch/pQBR47_pQBR103.blastn
+```
+
+ ![Screenshot 2024-04-30 at 15.39.05](/Users/jpjh/Library/Application Support/typora-user-images/Screenshot 2024-04-30 at 15.39.05.png)
+
+Like with pQBR43 and pQBR50 this plasmid appears to have integrated into the chromosome, and lost a portion of the sequence relative to pQBR103.
+
+***To investigate:*** look for long reads that map both to plasmid and chromosome. 
+
+#### pQBR106
+
+Similarly, this sequence didn't fully resolve, possibly due to loss of (part of) the plasmid.
+
+***To investigate.***
+
+### Polishing
+
+Polish sequences using [PolyPolish](https://github.com/rrwick/Polypolish).
+
+Align reads to draft genomes with bwa and run PolyPolish.
+
+```{bash, eval=FALSE}
+find ./contigs -name "pQBR*" -type f |
+  sed 's/.*pQBR/pQBR/g' | sed 's/_contig.fasta//g' \
+  > long_reads_draft.txt
+
+find ./illumina/*_1_trimmed.fastq.gz > 1.tmp
+find ./illumina/*_2_trimmed.fastq.gz > 2.tmp
+awk -v FS="_" '{print $2}' 1.tmp > n.tmp
+paste n.tmp 1.tmp 2.tmp > ctrlsamp.txt
+rm *.tmp
+  
+cat long_reads_draft.txt | while read SAMPLE
+do
+grep "${SAMPLE}_" ./ctrlsamp.txt | while read STR R1 R2
+do 
+echo "---"
+echo "Next plasmid is $SAMPLE"
+echo "---"
+bwa index ./contigs/${SAMPLE}_contig.fasta
+bwa mem -t 16 -a ./contigs/${SAMPLE}_contig.fasta $R1 > alignments_1.sam
+bwa mem -t 16 -a ./contigs/${SAMPLE}_contig.fasta $R2 > alignments_2.sam
+/pub60/jamesh/bin/polypolish_insert_filter.py --in1 alignments_1.sam --in2 alignments_2.sam \
+  --out1 filtered_1.sam --out2 filtered_2.sam
+polypolish ./contigs/${SAMPLE}_contig.fasta filtered_1.sam filtered_2.sam > ./polished/${SAMPLE}_polished.fasta
+done
+done
+```
+
+
+### Orienting/aligning
+
+Checked with blastn and ACT to look for repeated sequences at the ends of the 'polished' assemblies. Direct repeats, particularly from the Illumina assemblies, likely indicates circularisation. Use [ccfind](https://github.com/yosuken/ccfind) to identify and remove such repeats.
+
+```{bash, eval=FALSE}
+mkdir ./ccfind
+
+find ./polished -name "*.fasta" -exec basename -- {} .fasta \; \
+  | while read FASTA 
+  do 
+  ccfind ./polished/${FASTA}.fasta ./ccfind/${FASTA}
+  done
+
+mkdir ./archive
+
+find ./ccfind/*/result -name "circ.detected.list" -exec wc -l {} \; \
+  | awk '$1 == 1 {print $0}' | awk -v FS="/" '{print $3}' \
+  | while read PLASMID
+  do
+  echo $PLASMID
+  mv ./polished/${PLASMID}.fasta ./archive/${PLASMID}_withTR.fasta
+  cp ./ccfind/${PLASMID}/result/circ.noTR.fasta ./polished/${PLASMID}.fasta
+  done
+```
+
+Next, orient the sequences so they start at a similar/comparable position. Use the first coding base of the putative replicase. 
+
+- For pQBR57-like (Group IV), use PQBR57_0001 in the reference sequence LN713926.
+- For pQBR103-like (Group I) this is at 388361 in the reference sequence AM235768 (PQBR0445).
+- For pQBR55-like (Group III), use the first of the dnaB genes referred to in Turner et al. (2002), which is PQBR55_0049. 
+
+For the others, do an analysis to check they are oriented correctly relative to one another.
+
+Create a blastn database of the three above CDS and blast all against it to find the direction and first base of the corresponding gene in each assembly.
+
+```{bash, eval=FALSE}
+cat ./ref/PQBR55_0049.fasta ./ref/PQBR57_0001.fasta ./ref/pQBR0445.fasta > ./ref/rep.fasta
+
+makeblastdb -in ./ref/rep.fasta -dbtype nucl
+
+find ./polished -name "*.fasta" -exec blastn -query {} -db ./ref/rep.fasta -outfmt 6 \; \
+  >  ./working/blast_rep.blastn
+```
+
+Use this output to realign the sequences using EMBOSS.
+
+```{bash, eval=FALSE}
+mkdir ./complete
+
+cat ./working/blast_rep.blastn | while read SEQ MATCH PERC LEN GAP MM QSTART QFIN SSTART SFIN EVAL BITSC
+do
+let endposf=$QSTART-1
+let endposr=$QFIN+1
+filename=`echo $SEQ | sed 's/_polypolish/_polished/g'`
+seqname=`echo $filename | sed 's/_polished//g'`
+if [ $SFIN -lt $SSTART ]
+then
+echo "$SEQ is in reverse direction"
+seqret -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send ${QFIN} \
+  -srev \
+  -sequence ./polished/${filename}.fasta \
+  -filter > tmp1.fasta
+seqret -sformat1 fasta \
+  -osformat2 fasta \
+  -srev \
+  -sbegin1 $endposr \
+  -sequence ./polished/${filename}.fasta \
+  -filter > tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 ${seqname} \
+  | sed 's/_polypolish//g' \
+  > ./complete/${seqname}.fasta  
+else
+echo "$SEQ is in forward direction"
+seqret -sequence ./polished/${filename}.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin ${QSTART} \
+  -outseq tmp1.fasta
+seqret -sequence ./polished/${filename}.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send1 $endposf \
+  -outseq tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 ${seqname} \
+  | sed 's/_polypolish//g' \
+  > ./complete/${seqname}.fasta
+fi
+done
+```
+
+This gives complete, oriented assemblies for most sequences. Some are missing due to a lack of blastn matches: the Group II plasmids pQBR23 and pQBR24, pQBR26, pQBR105 (no similar plasmids amongst the groups), and pQBR50 (for unclear reasons, should be related to pQBR103 — preliminary ACT comparisons suggests further work is probably required to resolve this plasmid). 
+
+For pQBR23 and pQBR24, these should be oriented to the same point. Run a quick Prokka annotation and identify a putative replicase.
+
+```{bash, eval=FALSE}
+prokka ./polished/pQBR23_polished.fasta -out ./working/pQBR23_annot
+```
+
+Finds a putative dnaA gene at position 307883..308686. Extract and blast against pQBR24.
+
+```{bash, eval=FALSE}
+awk -v seq="PROKKA_00415" -v RS='>' '$1 == seq {print RS $0}' ./working/pQBR23_annot/PROKKA_12212023.ffn \
+  > ./working/pQBR23_repA.fasta
+  
+makeblastdb -in ./working/pQBR23_repA.fasta -dbtype nucl
+
+blastn -query ./polished/pQBR24_polished.fasta -db ./working/pQBR23_repA.fasta -outfmt 6 \
+  >  ./working/pQBR24_rep.blastn
+```
+
+Identifies the sequence in pQBR24 at 224536..225339, in reverse. So 225339 is the start of the gene, and 224536 is the end. 
+
+```{bash, eval=FALSE}
+seqret -sequence ./polished/pQBR23_polished.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 307883 \
+  -outseq tmp1.fasta
+seqret -sequence ./polished/pQBR23_polished.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send1 307882 \
+  -outseq tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 pQBR23 \
+  | sed 's/_polypolish//g' \
+  > ./complete/pQBR23.fasta
+  
+seqret -sequence ./polished/pQBR24_polished.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send1 225339 \
+  -srev \
+  -outseq tmp1.fasta
+seqret -sequence ./polished/pQBR24_polished.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 225339 \
+  -srev \
+  -outseq tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 pQBR24 \
+  | sed 's/_polypolish//g' \
+  > ./complete/pQBR24.fasta
+```
+
+Do similar for pQBR26.
+
+```{bash, eval=FALSE}
+prokka ./polished/pQBR26.fasta -out ./working/pQBR26_annot
+```
+
+Finds a repE-like replicase gene starting as position 112373.
+
+```{bash, eval=FALSE}
+seqret -sequence ./polished/pQBR26.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 112373 \
+  -outseq tmp1.fasta
+seqret -sequence ./polished/pQBR26.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send1 112373 \
+  -outseq tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 pQBR26 \
+  | sed 's/_polypolish//g' \
+  > ./complete/pQBR26.fasta
+```
+
+...and pQBR105.
+
+```{bash, eval=FALSE}
+prokka ./polished/pQBR105_polished.fasta -out ./working/pQBR105_annot
+```
+
+This couldn't find a putative replicase, so the sequence was just copied across. 
+
+```{bash, eval=FALSE}
+sed 's/_polypolish//g' ./polished/pQBR105_polished.fasta > ./complete/pQBR105.fasta
+```
+
+Add 'R' to pQBR103, pQBR55, and pQBR57 to indicate these variants have been resequenced (this was done manually).
+
+Download and re-centre the originally-sequenced pQBR103, pQBR55, and pQBR57 to analyse alongside.
+
+pQBR103:
+
+```{bash, eval=FALSE}
+mkdir ./originals
+
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=AM235768&amp;rettype=fasta" \
+  > ./originals/pQBR103.fasta
+
+blastn -query ./originals/pQBR103.fasta -db ./ref/rep.fasta -outfmt 6 \
+  > pQBR103_rep.blastn
+  
+# check and align
+# 388361	389491
+
+seqret -sequence ./originals/pQBR103.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 388361 \
+  -outseq tmp1.fasta
+seqret -sequence ./originals/pQBR103.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send1 388360 \
+  -outseq tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 pQBR103 \
+  > ./originals/pQBR103.fasta
+  
+gzip ./originals/pQBR103.fasta
+```
+
+pQBR57:
+
+```{bash, eval=FALSE}
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=LN713926&amp;rettype=fasta" \
+  > ./originals/pQBR57.fasta
+
+blastn -query ./originals/pQBR57.fasta -db ./ref/rep.fasta -outfmt 6 \
+  > pQBR57_rep.blastn
+  
+# 542
+
+seqret -sequence ./originals/pQBR57.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 542 \
+  -outseq tmp1.fasta
+seqret -sequence ./originals/pQBR57.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send1 541 \
+  -outseq tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 pQBR57 \
+  > ./originals/pQBR57.fasta
+  
+gzip ./originals/pQBR57.fasta
+```
+
+pQBR55:
+
+```{bash, eval=FALSE}
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=LN713927&amp;rettype=fasta" \
+  > ./originals/pQBR55.fasta
+
+blastn -query ./originals/pQBR55.fasta -db ./ref/rep.fasta -outfmt 6 \
+  > pQBR55_rep.blastn
+  
+# 34006
+
+seqret -sequence ./originals/pQBR55.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 34006 \
+  -outseq tmp1.fasta
+seqret -sequence ./originals/pQBR55.fasta \
+  -sformat1 fasta \
+  -osformat2 fasta \
+  -sbegin 1 \
+  -send1 34005 \
+  -outseq tmp2.fasta
+cat tmp1.fasta tmp2.fasta \
+  | union -filter -osname2 pQBR55 \
+  > ./originals/pQBR55.fasta
+  
+gzip ./originals/pQBR55.fasta
+```
+
+Annotate with Bakta. Use metagenome mode to ensure that the same CDS prediction model is used across all of the plasmids, to aid identification of homologues on related sequences. 
+
+```{bash, eval=FALSE}
+find ./complete -name "pQBR*.fasta" -exec gzip {} \;
+
+cp ./originals/*.fasta.gz ./complete
+
+find ./complete -name "pQBR*.fasta.gz" -exec basename -- {} .fasta.gz \; \
+  > ./list_of_pQBR_plasmids.txt
+  
+cat list_of_pQBR_plasmids.txt |
+while read PLASMID
+do
+bakta --db /pub60/jamesh/db --prefix ${PLASMID} \
+  --complete \
+  --locus ${PLASMID}_contig \
+  --verbose \
+  --output ./bakta_a/${PLASMID} \
+  --plasmid ${PLASMID} \
+  --threads 128 \
+  --locus-tag ${PLASMID^^} \
+  --meta \
+  ./complete/${PLASMID}.fasta.gz
+done
+```
+
+These annotations (bakta_annotated) used for subsequent analyses.
+
+---
+
+Note: these analyses are a work in progress and subject to revision!
+

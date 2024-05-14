@@ -1,0 +1,530 @@
+14:31:02.927 - INFO - UTILS - version=1.8.2
+14:31:02.927 - INFO - UTILS - developer: Oliver Schwengers, github.com/oschwengers
+14:31:02.927 - INFO - UTILS - command: /pub60/jamesh/miniforge3/envs/bakta_env/bin/bakta --db /pub60/jamesh/db --prefix pQBR55R --complete --locus pQBR55R_contig --verbose --output ./bakta_a/pQBR55R --plasmid pQBR55R --threads 128 --locus-tag PQBR55R --meta ./complete/pQBR55R.fasta.gz
+14:31:02.927 - INFO - UTILS - local time: 2024-03-08 14:31:02
+14:31:02.930 - INFO - UTILS - machine: type=, cores=192
+14:31:02.930 - INFO - UTILS - system: type=Linux, release=5.10.40
+14:31:02.930 - INFO - UTILS - python: version=3.10.13, implementation=CPython
+14:31:02.930 - INFO - CONFIG - threads=128
+14:31:02.930 - INFO - CONFIG - verbose=True
+14:31:02.931 - INFO - CONFIG - debug=False
+14:31:02.931 - INFO - CONFIG - database: type=parameter, path=/pub60/jamesh/db
+14:31:02.932 - INFO - CONFIG - tmp-path=/tmp/tmpu6u60uy2
+14:31:02.932 - INFO - CONFIG - genome-path=/pub60/jamesh/PQBR/complete/pQBR55R.fasta.gz
+14:31:02.932 - INFO - CONFIG - min_contig_length=1
+14:31:02.932 - INFO - CONFIG - prefix=pQBR55R
+14:31:02.932 - INFO - CONFIG - output-path=/pub60/jamesh/PQBR/bakta_a/pQBR55R
+14:31:02.932 - INFO - CONFIG - force=False
+14:31:02.932 - INFO - CONFIG - genus=None
+14:31:02.932 - INFO - CONFIG - species=None
+14:31:02.932 - INFO - CONFIG - strain=None
+14:31:02.932 - INFO - CONFIG - plasmid=pQBR55R
+14:31:02.932 - INFO - CONFIG - complete=True
+14:31:02.932 - INFO - CONFIG - prodigal_tf=None
+14:31:02.932 - INFO - CONFIG - translation_table=11
+14:31:02.932 - INFO - CONFIG - gram=?
+14:31:02.932 - INFO - CONFIG - compliant=False
+14:31:02.932 - INFO - CONFIG - meta=True
+14:31:02.933 - INFO - CONFIG - locus=pQBR55R_contig
+14:31:02.933 - INFO - CONFIG - locus-tag=PQBR55R
+14:31:02.933 - INFO - CONFIG - keep_contig_headers=False
+14:31:02.933 - INFO - CONFIG - replicon-table=None
+14:31:02.933 - INFO - CONFIG - skip-tRNA=False
+14:31:02.933 - INFO - CONFIG - skip-tmRNA=False
+14:31:02.933 - INFO - CONFIG - skip-rRNA=False
+14:31:02.933 - INFO - CONFIG - skip-ncRNA=False
+14:31:02.933 - INFO - CONFIG - skip-ncRNA-region=False
+14:31:02.933 - INFO - CONFIG - skip-CRISPR=False
+14:31:02.933 - INFO - CONFIG - skip-CDS=False
+14:31:02.933 - INFO - CONFIG - skip-pseudo=False
+14:31:02.933 - INFO - CONFIG - skip-sORF=False
+14:31:02.933 - INFO - CONFIG - skip-gap=False
+14:31:02.933 - INFO - CONFIG - skip-ori=False
+14:31:02.933 - INFO - CONFIG - skip-plot=False
+14:31:02.933 - INFO - DB - detected: major=5, minor=0, type=full, date=2023-02-20
+14:31:03.038 - INFO - UTILS - dependency: tool=tRNAscan-SE, version=v2.0.12, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/tRNAscan-SE
+14:31:03.041 - INFO - UTILS - dependency: tool=Aragorn, version=v1.2.41, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/aragorn
+14:31:03.047 - INFO - UTILS - dependency: tool=CMscan, version=v1.1.4, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/cmscan
+14:31:03.051 - INFO - UTILS - dependency: tool=PilerCR, version=v1.6.0, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/pilercr
+14:31:03.106 - INFO - UTILS - dependency: tool=Pyrodigal, version=v2.3.0, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/python
+14:31:03.111 - INFO - UTILS - dependency: tool=AMRFinderPlus, version=v3.11.26, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/amrfinder
+14:31:03.201 - INFO - UTILS - dependency: tool=Pyhmmer, version=v0.10.4, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/python
+14:31:03.209 - INFO - UTILS - dependency: tool=Diamond, version=v2.1.8, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/diamond
+14:31:03.337 - INFO - UTILS - dependency: tool=Blastn, version=v2.15.0, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/blastn
+14:31:03.736 - INFO - UTILS - dependency: tool=Circos, version=v0.69.8, path=/pub60/jamesh/miniforge3/envs/bakta_env/bin/circos
+14:31:03.781 - INFO - FASTA - imported: id=pQBR55R, length=140432, description=, genomic=True, dna=True
+14:31:03.782 - INFO - MAIN - imported sequences=1
+14:31:03.782 - INFO - UTILS - qc: revised sequence: id=pQBR55R_contig_1, orig-id=pQBR55R, type=plasmid, complete=True, topology=circular, name=pQBR55R, description='[gcode=11] [completeness=complete] [topology=circular] [plasmid-name=pQBR55R]', orig-description=''
+14:31:03.782 - INFO - FASTA - write genome sequences: path=/tmp/tmpu6u60uy2/contigs.fna, description=False, wrap=False
+14:31:04.806 - INFO - T_RNA - predicted=0
+14:31:04.857 - INFO - TM_RNA - predicted=0
+14:31:05.050 - INFO - R_RNA - predicted=0
+14:31:06.123 - INFO - NC_RNA - predicted=0
+14:31:06.526 - INFO - NC_RNA_REGION - predicted=0
+14:31:06.589 - INFO - CRISPR - predicted=0
+14:31:06.589 - INFO - CDS - skip creation of prodigal training info object: meta=True, closed=False
+14:31:07.744 - INFO - CDS - contig=pQBR55R_contig_1, start=1, stop=1524, strand=+, frame=1, truncated=5-prime, start-type=Edge, RBS-motif=None
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=1598, stop=2992, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=3077, stop=3301, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=3395, stop=3685, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=3866, stop=4369, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=4380, stop=4616, strand=-, frame=1, truncated=no, start-type=GTG, RBS-motif=GGAG/GAGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=4745, stop=5071, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=5106, stop=5297, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=5482, stop=5646, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=6033, stop=6206, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=6288, stop=6767, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=6880, stop=7071, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=7138, stop=7515, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=7618, stop=7755, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGxGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=7755, stop=8807, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=8915, stop=9340, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=9376, stop=9573, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.745 - INFO - CDS - contig=pQBR55R_contig_1, start=9624, stop=10265, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=10294, stop=11592, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=11589, stop=12023, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=12220, stop=13317, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=13391, stop=14038, strand=-, frame=2, truncated=no, start-type=GTG, RBS-motif=GGAG/GAGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=14117, stop=14869, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=15850, stop=16743, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=16816, stop=16998, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=18694, stop=18957, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=19017, stop=19496, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=19975, stop=20988, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=20992, stop=21342, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=21441, stop=22091, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.746 - INFO - CDS - contig=pQBR55R_contig_1, start=22114, stop=22803, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=23182, stop=23742, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=23742, stop=24218, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=24215, stop=24865, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=24904, stop=26385, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGxAG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=27194, stop=28006, strand=+, frame=2, truncated=no, start-type=GTG, RBS-motif=GGAG/GAGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=28006, stop=28980, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=29087, stop=29560, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=30296, stop=31249, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGxAGG/AGGxGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=31306, stop=32130, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=32325, stop=32558, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=32747, stop=33124, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=33535, stop=34104, strand=-, frame=3, truncated=no, start-type=TTG, RBS-motif=GGAG/GAGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=34234, stop=37203, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.747 - INFO - CDS - contig=pQBR55R_contig_1, start=37203, stop=38627, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=38611, stop=39639, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=39639, stop=39941, strand=-, frame=1, truncated=no, start-type=GTG, RBS-motif=AGGAG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=40086, stop=40964, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=41443, stop=41904, strand=-, frame=3, truncated=no, start-type=TTG, RBS-motif=GGA/GAG/AGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=41870, stop=42604, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=42694, stop=42978, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=42987, stop=44114, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=44264, stop=44404, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=44414, stop=44536, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=44749, stop=44862, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=44916, stop=45128, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=45613, stop=46308, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=46421, stop=47149, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=47216, stop=47596, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=47823, stop=48044, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=48063, stop=48944, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=49026, stop=49271, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=49480, stop=49932, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=50008, stop=51723, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.748 - INFO - CDS - contig=pQBR55R_contig_1, start=51793, stop=52977, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=53045, stop=53506, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=53503, stop=54549, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=54845, stop=55840, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=55919, stop=57016, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=57081, stop=57602, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=57852, stop=58037, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=58122, stop=58397, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=58394, stop=58504, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=58820, stop=59578, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=59680, stop=60525, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=60635, stop=60880, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=60894, stop=61127, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=61300, stop=61626, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=61613, stop=61858, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=61855, stop=62085, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=62471, stop=65170, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=65179, stop=66201, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=66202, stop=66882, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=66879, stop=68015, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=68009, stop=68527, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=68524, stop=68832, strand=-, frame=3, truncated=no, start-type=TTG, RBS-motif=AGGAG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=68829, stop=71228, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=71236, stop=71925, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.749 - INFO - CDS - contig=pQBR55R_contig_1, start=72075, stop=78782, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=78898, stop=79257, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=79286, stop=79807, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=79891, stop=81213, strand=-, frame=3, truncated=no, start-type=GTG, RBS-motif=AGxAGG/AGGxGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=81227, stop=82285, strand=-, frame=2, truncated=no, start-type=GTG, RBS-motif=AGGAG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=82269, stop=82916, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=82925, stop=83206, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=83203, stop=84057, strand=-, frame=3, truncated=no, start-type=GTG, RBS-motif=AGGAG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=84152, stop=84796, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=84798, stop=85220, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=85261, stop=87132, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=87129, stop=89861, strand=-, frame=1, truncated=no, start-type=GTG, RBS-motif=GGA/GAG/AGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=89960, stop=90607, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA/GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=90682, stop=91509, strand=-, frame=3, truncated=no, start-type=GTG, RBS-motif=GGA/GAG/AGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=91525, stop=91809, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=92131, stop=93144, strand=+, frame=1, truncated=no, start-type=GTG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=93171, stop=93356, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=93594, stop=95378, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=95417, stop=95896, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=95906, stop=96118, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=96215, stop=97681, strand=+, frame=2, truncated=no, start-type=GTG, RBS-motif=AGxAGG/AGGxGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=97674, stop=98375, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=98372, stop=99142, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.750 - INFO - CDS - contig=pQBR55R_contig_1, start=99196, stop=99690, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=100047, stop=100208, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=100393, stop=100647, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=100644, stop=100991, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=101017, stop=101283, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=101371, stop=101496, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=101524, stop=101817, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=101864, stop=102931, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGxAGG/AGGxGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=103277, stop=103519, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGxAGG/AGGxGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=103736, stop=104005, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=104212, stop=104655, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=104748, stop=105188, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=105198, stop=105404, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=105509, stop=105874, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=105898, stop=106473, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=106598, stop=106936, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=106900, stop=107055, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=107377, stop=109542, strand=+, frame=1, truncated=no, start-type=GTG, RBS-motif=AGGAG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=109539, stop=109919, strand=+, frame=3, truncated=no, start-type=TTG, RBS-motif=GGAG/GAGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=110115, stop=110504, strand=+, frame=3, truncated=no, start-type=GTG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=110501, stop=110845, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGxAG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=110883, stop=112388, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=112392, stop=112691, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGA/GGAG/GAGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=112784, stop=113422, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=113435, stop=115117, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=115153, stop=115587, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=115600, stop=115875, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=115893, stop=116243, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.751 - INFO - CDS - contig=pQBR55R_contig_1, start=116315, stop=116746, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=117031, stop=117303, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=117504, stop=119000, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=119011, stop=119367, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=119395, stop=119544, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=119648, stop=119878, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=AGxAGG/AGGxGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=119885, stop=119983, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGAG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=120000, stop=120872, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=121043, stop=121447, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=121607, stop=122509, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=122484, stop=122933, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=123084, stop=124826, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=125018, stop=125515, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=125712, stop=126200, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=126197, stop=126640, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=126732, stop=127205, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=127311, stop=127730, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=127787, stop=128485, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=128800, stop=129054, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=129221, stop=130156, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=130175, stop=130540, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=130752, stop=130907, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=130963, stop=131346, strand=+, frame=1, truncated=no, start-type=ATG, RBS-motif=GGAG/GAGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=131373, stop=132476, strand=+, frame=3, truncated=no, start-type=GTG, RBS-motif=AGGAG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=132521, stop=132754, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=132837, stop=133034, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=133197, stop=133469, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=133570, stop=134073, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=134186, stop=134932, strand=-, frame=2, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.752 - INFO - CDS - contig=pQBR55R_contig_1, start=135054, stop=136016, strand=-, frame=1, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=136084, stop=136710, strand=-, frame=3, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=137375, stop=139081, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=GGA/GAG/AGG
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=139206, stop=139571, strand=+, frame=3, truncated=no, start-type=ATG, RBS-motif=AGGA
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=139565, stop=139945, strand=+, frame=2, truncated=no, start-type=ATG, RBS-motif=None
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=139957, stop=140136, strand=+, frame=1, truncated=no, start-type=GTG, RBS-motif=AGGA
+14:31:07.753 - INFO - CDS - truncated CDS: contig=pQBR55R_contig_1, start=1, stop=1524, strand=+, frame=1, truncated=5-prime, start-type=Edge, RBS-motif=None, aa-hexdigest=23b6aa07d69a113a890429785e1102cc, aa=[MTRLTTDAPT..TRRAPSRPKK]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=1598, stop=2992, strand=+, nt=[ATGAACGACA..CGATGAATAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=3077, stop=3301, strand=-, nt=[ATGGCTAAAA..AAATAGCTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=3395, stop=3685, strand=-, nt=[ATGAAATCTA..GACAAAGTAA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=3866, stop=4369, strand=-, nt=[ATGGACTTGA..CGAGAGTTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=4380, stop=4616, strand=-, nt=[GTGGACAATC..CGAAAGGTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=4745, stop=5071, strand=-, nt=[ATGACTGTGC..CAGGTTCTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=5106, stop=5297, strand=-, nt=[ATGGCAATTA..CATGAGCTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=5482, stop=5646, strand=-, nt=[ATGGTTTGGC..GGATAGGTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=6033, stop=6206, strand=-, nt=[ATGGACAACG..CGTTTCTTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=6288, stop=6767, strand=-, nt=[ATGATGACCA..GTCGAAGTAA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=6880, stop=7071, strand=-, nt=[ATGAACAAGT..ACACAACTGA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=7138, stop=7515, strand=-, nt=[ATGACGCGGA..AAGAAAATAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=7618, stop=7755, strand=-, nt=[ATGAGCATGA..GTCCAGTTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=7755, stop=8807, strand=-, nt=[ATGGCTATCA..GGCGGCATGA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=8915, stop=9340, strand=-, nt=[ATGGAACGTA..CATCTACTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=9376, stop=9573, strand=-, nt=[ATGACCAAAG..CAAGGACTAA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=9624, stop=10265, strand=-, nt=[ATGTGCAGTC..CGCCATGTGA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=10294, stop=11592, strand=-, nt=[ATGAACATGA..CGCCAATTGA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=11589, stop=12023, strand=-, nt=[ATGAGCGTTA..TTCGTCATGA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=12220, stop=13317, strand=-, nt=[ATGACAGATG..ACTGATGTAG]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=13391, stop=14038, strand=-, nt=[GTGGATGTCA..AGAACAATGA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=14117, stop=14869, strand=-, nt=[ATGAACGATA..GGTGGGTTGA]
+14:31:07.753 - INFO - CDS - contig=pQBR55R_contig_1, start=15850, stop=16743, strand=+, nt=[ATGACTATCA..GACGCAATGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=16816, stop=16998, strand=+, nt=[ATGCAAAATT..AGCCCCCTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=18694, stop=18957, strand=-, nt=[ATGCGAGAGC..ATCGCGTTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=19017, stop=19496, strand=-, nt=[ATGACTGAAA..GCAGATGTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=19975, stop=20988, strand=+, nt=[ATGGCAAAAA..GGCAGTCTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=20992, stop=21342, strand=+, nt=[ATGCCCTCCA..CATGTCTTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=21441, stop=22091, strand=+, nt=[ATGCCAGAAA..CAGTCTGTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=22114, stop=22803, strand=-, nt=[ATGAGTGATG..CCCCCTGTAG]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=23182, stop=23742, strand=+, nt=[ATGAGAAAAA..GGTGAACTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=23742, stop=24218, strand=+, nt=[ATGTTTGAAT..AAAGCTATGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=24215, stop=24865, strand=+, nt=[ATGAGCCAGG..TAGCCACTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=24904, stop=26385, strand=+, nt=[ATGTACGTAC..AGAAAATTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=27194, stop=28006, strand=+, nt=[GTGGGAAGCA..GGAAGCATAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=28006, stop=28980, strand=+, nt=[ATGGTTGCTA..TAAAGAGTAG]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=29087, stop=29560, strand=+, nt=[ATGATTTCCC..ACCTAGATAG]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=30296, stop=31249, strand=+, nt=[ATGATTTTCG..GAAAACGTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=31306, stop=32130, strand=+, nt=[ATGAATTATT..GGATCGTTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=32325, stop=32558, strand=+, nt=[ATGCAGCGCA..GACTAAATAG]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=32747, stop=33124, strand=+, nt=[ATGAATAAGC..GGGGAAATGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=33535, stop=34104, strand=-, nt=[TTGGCTAAAT..GCAAAATTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=34234, stop=37203, strand=-, nt=[ATGGCCGCCG..TGGGCAGTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=37203, stop=38627, strand=-, nt=[ATGAAATTTC..ATCCAACTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=38611, stop=39639, strand=-, nt=[ATGATTGAAA..TTCCCCGTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=39639, stop=39941, strand=-, nt=[GTGAGCGCAT..TGATCGCTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=40086, stop=40964, strand=-, nt=[ATGCTGGGGG..AGATTTCTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=41443, stop=41904, strand=-, nt=[TTGCAACTAT..TTTGGTTTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=41870, stop=42604, strand=-, nt=[ATGTCGGTTG..TGACAACTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=42694, stop=42978, strand=-, nt=[ATGACGAGTT..CTGCCATTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=42987, stop=44114, strand=-, nt=[ATGCGAAACC..CGCTGCGTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=44264, stop=44404, strand=-, nt=[ATGAGTAATC..GAGAAAGTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=44414, stop=44536, strand=-, nt=[ATGGCTGCTG..CGTTTATTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=44749, stop=44862, strand=-, nt=[ATGATGAGTC..GACACGTTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=44916, stop=45128, strand=-, nt=[ATGAAAAACT..AGGCGGTTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=45613, stop=46308, strand=-, nt=[ATGAATACAG..CAAAGTTTAA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=46421, stop=47149, strand=-, nt=[ATGCGTTTTC..GCGGCTTTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=47216, stop=47596, strand=-, nt=[ATGTCCTCGC..CACTTATTGA]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=47823, stop=48044, strand=-, nt=[ATGGGGCAAA..GTTGCTGTAG]
+14:31:07.754 - INFO - CDS - contig=pQBR55R_contig_1, start=48063, stop=48944, strand=-, nt=[ATGTTTAATT..GGCTTCTTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=49026, stop=49271, strand=-, nt=[ATGAGTCCTA..CGTTCACTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=49480, stop=49932, strand=-, nt=[ATGCAAATGA..GATCGCTTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=50008, stop=51723, strand=-, nt=[ATGAAAACAT..AGTGGCCTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=51793, stop=52977, strand=-, nt=[ATGAAAATTC..ATGGTTTTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=53045, stop=53506, strand=-, nt=[ATGAATCACG..TTGGTTTTAG]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=53503, stop=54549, strand=-, nt=[ATGCAATTTG..TGAGGCATGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=54845, stop=55840, strand=-, nt=[ATGCGAGTCG..CTGGTTCTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=55919, stop=57016, strand=-, nt=[ATGTCCAATC..ATCAGCATGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=57081, stop=57602, strand=-, nt=[ATGGCTCGTG..AGGTATTTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=57852, stop=58037, strand=-, nt=[ATGATCGACG..GGTTGCTTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=58122, stop=58397, strand=-, nt=[ATGACTTCTC..AGTCGACTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=58394, stop=58504, strand=-, nt=[ATGAAATACC..TGCAAAATGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=58820, stop=59578, strand=+, nt=[ATGTCAGCAG..AGTCGCCTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=59680, stop=60525, strand=+, nt=[ATGTCAAAAA..AGTTTATTAG]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=60635, stop=60880, strand=+, nt=[ATGAATAGCA..GGCGAACTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=60894, stop=61127, strand=+, nt=[ATGTCGATTC..CGAAGGGTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=61300, stop=61626, strand=+, nt=[ATGCCGTTAC..CCTCTCGTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=61613, stop=61858, strand=+, nt=[ATGACCTCTC..GCCGGCATGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=61855, stop=62085, strand=+, nt=[ATGAGCCAGG..GACGGCATGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=62471, stop=65170, strand=-, nt=[ATGAATATCT..GGTGAAATAG]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=65179, stop=66201, strand=-, nt=[ATGAAATCAC..GACTTTGTAG]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=66202, stop=66882, strand=-, nt=[ATGACTTTTA..GTCCAATTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=66879, stop=68015, strand=-, nt=[ATGGTGAGGT..CACAGAATGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=68009, stop=68527, strand=-, nt=[ATGAAAAAAA..GCTATGGTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=68524, stop=68832, strand=-, nt=[TTGAAAATTG..GCCTCAATGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=68829, stop=71228, strand=-, nt=[ATGGGCATTT..ACGAGTTTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=71236, stop=71925, strand=-, nt=[ATGACCAAAT..TAAGGGCTGA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=72075, stop=78782, strand=-, nt=[ATGACTCCCT..CATCTGGTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=78898, stop=79257, strand=-, nt=[ATGCAAAACC..ATTCGTTTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=79286, stop=79807, strand=-, nt=[ATGCGCGGAC..AAGTCCGTAG]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=79891, stop=81213, strand=-, nt=[GTGACATTTA..TCAACCATAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=81227, stop=82285, strand=-, nt=[GTGAACGTGC..GTTGAATTAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=82269, stop=82916, strand=-, nt=[ATGCTCAGCA..TGCACAATAA]
+14:31:07.755 - INFO - CDS - contig=pQBR55R_contig_1, start=82925, stop=83206, strand=-, nt=[ATGAAGCAAG..ACTGCACTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=83203, stop=84057, strand=-, nt=[GTGCCTACTG..CACTCAATGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=84152, stop=84796, strand=-, nt=[ATGGAAGAAA..GCGTCTCTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=84798, stop=85220, strand=-, nt=[ATGGAGGTTT..GAGAAAATGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=85261, stop=87132, strand=-, nt=[ATGAGTGAGT..TGCAGCGTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=87129, stop=89861, strand=-, nt=[GTGATTCCTG..ACTGGTATGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=89960, stop=90607, strand=+, nt=[ATGTCGATCA..TCAGAAATAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=90682, stop=91509, strand=-, nt=[GTGAAACAGC..GGAATCGTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=91525, stop=91809, strand=-, nt=[ATGTCCGCAC..CACTTACTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=92131, stop=93144, strand=+, nt=[GTGAGTACCA..TGCTGATTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=93171, stop=93356, strand=+, nt=[ATGCTGATTC..TACTGCGTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=93594, stop=95378, strand=+, nt=[ATGAGCCAAG..AACAGCTTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=95417, stop=95896, strand=+, nt=[ATGAACCAAA..AGAGTTTTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=95906, stop=96118, strand=+, nt=[ATGGCCACAG..CCGCGGCTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=96215, stop=97681, strand=+, nt=[GTGGAATCTT..GAATGCTTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=97674, stop=98375, strand=+, nt=[ATGCTTAACT..TGCAGCATGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=98372, stop=99142, strand=+, nt=[ATGACTCAAG..AGCTTCATAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=99196, stop=99690, strand=-, nt=[ATGAGACAAG..CCAATACTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=100047, stop=100208, strand=+, nt=[ATGCCTGAGC..CGACTGGTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=100393, stop=100647, strand=+, nt=[ATGGAAGTCA..TGAAGCATGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=100644, stop=100991, strand=+, nt=[ATGAAGCGGG..TATTGAGTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=101017, stop=101283, strand=+, nt=[ATGACGAAGT..GCAGAACTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=101371, stop=101496, strand=+, nt=[ATGCTCTCCG..GGCCGAGTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=101524, stop=101817, strand=+, nt=[ATGACATCTA..AGAAGACTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=101864, stop=102931, strand=+, nt=[ATGGGTGGTA..GAGCTACTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=103277, stop=103519, strand=+, nt=[ATGACAACGA..AATTGTTTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=103736, stop=104005, strand=+, nt=[ATGGCTTTGA..GCGCAGTTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=104212, stop=104655, strand=+, nt=[ATGGCTGTAG..CAATTTGTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=104748, stop=105188, strand=+, nt=[ATGGAAGCAG..AAACAGATAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=105198, stop=105404, strand=+, nt=[ATGTTCTACG..GTCGAAGTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=105509, stop=105874, strand=+, nt=[ATGCGGATCA..GCATTCGTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=105898, stop=106473, strand=+, nt=[ATGTCGAAGC..TCGTGGGTAA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=106598, stop=106936, strand=+, nt=[ATGAGCCAAC..GCCGTTCTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=106900, stop=107055, strand=-, nt=[ATGTATGAGC..CGGCGAGTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=107377, stop=109542, strand=+, nt=[GTGGCCCTGA..TGGACTTTGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=109539, stop=109919, strand=+, nt=[TTGAACGGTG..ACAGTGTTAG]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=110115, stop=110504, strand=+, nt=[GTGGACACTA..AGTGCGATGA]
+14:31:07.756 - INFO - CDS - contig=pQBR55R_contig_1, start=110501, stop=110845, strand=+, nt=[ATGATTGCCC..CGCGGTCTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=110883, stop=112388, strand=+, nt=[ATGACCCTCG..GGCCGCCTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=112392, stop=112691, strand=+, nt=[ATGGTCAAAA..ATTCCGCTAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=112784, stop=113422, strand=-, nt=[ATGAAATTTG..AACATCGTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=113435, stop=115117, strand=-, nt=[ATGACCACAC..CGCTGGATGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=115153, stop=115587, strand=-, nt=[ATGAGAAATC..AAAACAGTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=115600, stop=115875, strand=-, nt=[ATGAAAAAGC..CAAGCAATAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=115893, stop=116243, strand=-, nt=[ATGTCTGAAT..GTTTTACTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=116315, stop=116746, strand=+, nt=[ATGAAAAACA..CGCGCCTTAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=117031, stop=117303, strand=-, nt=[ATGAGCCTGA..ATTTGAGTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=117504, stop=119000, strand=+, nt=[ATGAAAAAGC..CAACCCATAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=119011, stop=119367, strand=+, nt=[ATGGCGAGTA..TTTCACCTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=119395, stop=119544, strand=+, nt=[ATGACCGAGC..TGATTCGTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=119648, stop=119878, strand=+, nt=[ATGGCTAGTC..CCGTCGTTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=119885, stop=119983, strand=-, nt=[ATGGTAAAAA..TCCCCGCTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=120000, stop=120872, strand=-, nt=[ATGAACTTCA..TAGCCAGTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=121043, stop=121447, strand=-, nt=[ATGACAAGAG..AGTGGCGTAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=121607, stop=122509, strand=+, nt=[ATGATGTTCA..CTTCGAATAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=122484, stop=122933, strand=-, nt=[ATGGATATGA..CCACCTGTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=123084, stop=124826, strand=-, nt=[ATGCTGAACC..CAAACAGTAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=125018, stop=125515, strand=+, nt=[ATGTCTGGAT..ACAGCCCTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=125712, stop=126200, strand=+, nt=[ATGAGTGAGT..GCGGTCATGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=126197, stop=126640, strand=+, nt=[ATGACCATCT..GAGTAATTAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=126732, stop=127205, strand=+, nt=[ATGACTACTC..CTACGTGTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=127311, stop=127730, strand=+, nt=[ATGAAAAAGC..AAAACTCTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=127787, stop=128485, strand=-, nt=[ATGATTCGCT..CCCCGCTTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=128800, stop=129054, strand=-, nt=[ATGAACTTTG..TATGCTGTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=129221, stop=130156, strand=-, nt=[ATGGACATGA..TTTGCAATGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=130175, stop=130540, strand=-, nt=[ATGACAAGAC..TCTGGTCTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=130752, stop=130907, strand=+, nt=[ATGCTGGTCA..TATGGGTTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=130963, stop=131346, strand=+, nt=[ATGATGAGTG..TCTGCAGTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=131373, stop=132476, strand=+, nt=[GTGGACATTC..AGATGGATAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=132521, stop=132754, strand=+, nt=[ATGACCACCA..GGATGACTAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=132837, stop=133034, strand=-, nt=[ATGTCTATTG..TTCGCAGTAG]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=133197, stop=133469, strand=+, nt=[ATGAGCAATT..TGTGAATTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=133570, stop=134073, strand=-, nt=[ATGGCATCCG..CTCAAGGTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=134186, stop=134932, strand=-, nt=[ATGAGTACCA..TGAGTATTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=135054, stop=136016, strand=-, nt=[ATGAAGCTCT..AGCTTACTAA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=136084, stop=136710, strand=-, nt=[ATGGCTTCCT..AGCAACCTGA]
+14:31:07.757 - INFO - CDS - contig=pQBR55R_contig_1, start=137375, stop=139081, strand=+, nt=[ATGACAGACC..GAAGCGATAG]
+14:31:07.758 - INFO - CDS - contig=pQBR55R_contig_1, start=139206, stop=139571, strand=+, nt=[ATGAACGTGT..CCAATGCTAA]
+14:31:07.758 - INFO - CDS - contig=pQBR55R_contig_1, start=139565, stop=139945, strand=+, nt=[ATGCTAAAGG..AGAAGCATAG]
+14:31:07.758 - INFO - CDS - contig=pQBR55R_contig_1, start=139957, stop=140136, strand=+, nt=[GTGGAAGCAA..CAACGCATAG]
+14:31:07.758 - INFO - CDS - contig=pQBR55R_contig_1, start=1, stop=1524, strand=+, nt=[ATGACCCGAC..GAAGAAGTAG]
+14:31:07.796 - INFO - CDS - predicted=174
+14:31:07.866 - INFO - ORF - discarded=0
+14:31:07.929 - INFO - UPS - looked-up=155
+14:31:07.966 - INFO - IPS - looked-up=155
+14:31:07.968 - INFO - ORF - write internal aa seqs: # seqs=19, path=/tmp/tmpu6u60uy2/cds.psc.faa
+14:32:41.900 - INFO - PSC - found: PSC=12, PSCC=2
+14:32:41.987 - INFO - PSC - looked-up=169
+14:32:42.014 - INFO - PSCC - looked-up=165
+14:32:42.015 - INFO - ORF - write internal aa seqs: # seqs=174, path=/tmp/tmpu6u60uy2/cds.expert.faa
+14:32:43.294 - INFO - EXPERT-AMRFINDER - found=4
+14:32:45.582 - INFO - EXPERT_AA_SEQ - found=0
+14:32:45.582 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=vbhA
+14:32:45.583 - INFO - ANNOTATION - fix product: replace domain name underscores. new=tRNA-synt-2c domain-containing protein, old=tRNA-synt_2c domain-containing protein
+14:32:45.583 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=ccmD
+14:32:45.583 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=tssA
+14:32:45.583 - INFO - ANNOTATION - marked as hypothetical: contig=pQBR55R_contig_1, start=7755, stop=8807, strand=-
+14:32:45.583 - INFO - ANNOTATION - fix product: replace domain name underscores. new=AlbA-2 domain-containing protein, old=AlbA_2 domain-containing protein
+14:32:45.583 - INFO - ANNOTATION - fix product: replace domain name underscores. new=HEPN-Cthe2314 domain-containing protein, old=HEPN_Cthe2314 domain-containing protein
+14:32:45.584 - INFO - ANNOTATION - fix product: replace domain name underscores. new=ALP-N domain-containing protein, old=ALP_N domain-containing protein
+14:32:45.584 - INFO - ANNOTATION - fix product: replace domain name underscores. new=Methylase-S domain-containing protein, old=Methylase_S domain-containing protein
+14:32:45.584 - INFO - ANNOTATION - fix product: replace domain name underscores. new=MCD-N domain-containing protein, old=MCD_N domain-containing protein
+14:32:45.584 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=flhC
+14:32:45.584 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=parB
+14:32:45.584 - INFO - ANNOTATION - fix product: replace domain name underscores. new=TraG-N domain-containing protein, old=TraG_N domain-containing protein
+14:32:45.584 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traH
+14:32:45.585 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=incF
+14:32:45.585 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traF
+14:32:45.585 - INFO - ANNOTATION - fix product: replace domain name underscores. new=LAGLIDADG-2 domain-containing protein, old=LAGLIDADG_2 domain-containing protein
+14:32:45.585 - INFO - ANNOTATION - marked as hypothetical: contig=pQBR55R_contig_1, start=42694, stop=42978, strand=-
+14:32:45.585 - INFO - ANNOTATION - fix product: replace domain name underscores. new=Prim-Zn-Ribbon domain-containing protein, old=Prim_Zn_Ribbon domain-containing protein
+14:32:45.585 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=copG
+14:32:45.585 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=metS
+14:32:45.585 - INFO - ANNOTATION - fix product: revise DUF. new=DUF4299 domain-containing protein, old=DUF4299 family protein
+14:32:45.586 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=yqaJ
+14:32:45.586 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=recT
+14:32:45.586 - INFO - ANNOTATION - marked as hypothetical: contig=pQBR55R_contig_1, start=58394, stop=58504, strand=-
+14:32:45.586 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traN
+14:32:45.586 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traU
+14:32:45.586 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=incF
+14:32:45.586 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traW
+14:32:45.586 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=cpaB
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traC
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traA
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traV
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=incF
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traB
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=incF
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traK
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=incF
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traE
+14:32:45.587 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=traL
+14:32:45.587 - INFO - ANNOTATION - fix product: replace domain name underscores. new=Thioredoxin-like-fold domain-containing protein, old=Thioredoxin-like_fold domain-containing protein
+14:32:45.588 - INFO - ANNOTATION - fix product: replace domain name underscores. new=TraI-2 domain-containing protein, old=TraI_2 domain-containing protein
+14:32:45.588 - INFO - ANNOTATION - fix product: replace putative synonyms. new=putative transcriptional regulators, old=Predicted transcriptional regulators
+14:32:45.588 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=csrA
+14:32:45.588 - INFO - ANNOTATION - fix product: replace putative synonyms. new=putative chromosome-partitioning protein ParB, old=Probable chromosome-partitioning protein ParB
+14:32:45.588 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=parB
+14:32:45.588 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=ycaO
+14:32:45.588 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=thiF
+14:32:45.588 - INFO - ANNOTATION - fix product: replace domain name underscores. new=PDDEXK-1 domain-containing protein, old=PDDEXK_1 domain-containing protein
+14:32:45.588 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=pbsX
+14:32:45.588 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=chpB
+14:32:45.589 - INFO - ANNOTATION - fix product: replace domain name underscores. new=AAA-lid-3 domain-containing protein, old=AAA_lid_3 domain-containing protein
+14:32:45.589 - INFO - ANNOTATION - fix product: revise DUF. new=DUF4363 domain-containing protein, old=DUF4363 family protein
+14:32:45.589 - INFO - ANNOTATION - marked as hypothetical: contig=pQBR55R_contig_1, start=105898, stop=106473, strand=+
+14:32:45.589 - INFO - ANNOTATION - fix product: replace domain name underscores. new=CYTOSOL-AP domain-containing protein, old=CYTOSOL_AP domain-containing protein
+14:32:45.589 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=tnpB
+14:32:45.589 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=tnpR
+14:32:45.589 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=merB
+14:32:45.590 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=merC
+14:32:45.590 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=merP
+14:32:45.590 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=merT
+14:32:45.590 - INFO - ANNOTATION - marked as hypothetical: contig=pQBR55R_contig_1, start=117031, stop=117303, strand=-
+14:32:45.590 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=fprA
+14:32:45.590 - INFO - ANNOTATION - marked as hypothetical: contig=pQBR55R_contig_1, start=119885, stop=119983, strand=-
+14:32:45.590 - INFO - ANNOTATION - marked as hypothetical: contig=pQBR55R_contig_1, start=130752, stop=130907, strand=+
+14:32:45.591 - INFO - ANNOTATION - fix product: replace domain name underscores. new=HTH-35 domain-containing protein, old=HTH_35 domain-containing protein
+14:32:45.591 - INFO - ANNOTATION - fix gene: extract symbol from protein name. symbol=copG
+14:32:45.591 - INFO - ANNOTATION - fix product: replace domain name underscores. new=PAPS-reduct domain-containing protein, old=PAPS_reduct domain-containing protein
+14:32:45.591 - INFO - ANNOTATION - fix product: replace domain name underscores. new=Zf-DNA-Pol domain-containing protein, old=Zf-DNA_Pol domain-containing protein
+14:32:45.591 - INFO - ANNOTATION - fix product: replace domain name underscores. new=PKS-DH domain-containing protein, old=PKS_DH domain-containing protein
+14:32:45.592 - INFO - ORF - write internal aa seqs: # seqs=7, path=/tmp/tmpu6u60uy2/cds.pseudo.candidates.faa
+14:34:07.038 - INFO - CDS - found: pseudogene-candidates=0
+14:34:07.040 - INFO - PSC - looked-up=0
+14:34:07.040 - INFO - PSCC - looked-up=0
+14:34:08.309 - INFO - CDS - predicted-pfams=0, CDS-w/-pfams=0
+14:34:08.465 - INFO - S_ORF - predicted=1608
+14:34:08.980 - INFO - S_ORF - sORF filter: # valid=313, # discarded=1295
+14:34:09.075 - INFO - ORF - discarded=0
+14:34:09.272 - INFO - UPS - looked-up=0
+14:34:09.276 - INFO - IPS - looked-up=0
+14:34:09.276 - INFO - ORF - write internal aa seqs: # seqs=313, path=/tmp/tmpu6u60uy2/sorf.faa
+14:34:09.747 - INFO - S_ORF - found=0
+14:34:09.748 - INFO - PSC - looked-up=0
+14:34:09.748 - INFO - PSCC - looked-up=0
+14:34:10.860 - INFO - ORI - predicted=0
+14:34:11.051 - INFO - ORI - predicted=0
+14:34:11.052 - INFO - UTILS - generated sequence tag prefix: prefix=EJBKPCKFLK, length=10, MD5=E3B49C4F54BD65405AC2ECC548853C5E
+14:34:11.053 - INFO - MAIN - selected features=174
+14:34:11.053 - INFO - MAIN - locus tag prefix=PQBR55R
+14:34:11.054 - INFO - UTILS - genome-size=140432
+14:34:11.056 - INFO - UTILS - GC=0.516
+14:34:11.056 - INFO - UTILS - N=0.000
+14:34:11.056 - INFO - UTILS - N50=140432
+14:34:11.056 - INFO - UTILS - coding-ratio=0.849
+14:34:11.057 - INFO - TSV - write tsv: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.tsv
+14:34:11.059 - INFO - GFF - write GFF3: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.gff3
+14:34:11.067 - INFO - INSDC - write GenBank: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.gbff
+14:34:11.083 - INFO - INSDC - write EMBL: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.embl
+14:34:11.100 - INFO - FASTA - write genome sequences: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.fna, description=True, wrap=True
+14:34:11.102 - INFO - FASTA - write feature nucleotide sequences: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.ffn
+14:34:11.104 - INFO - FASTA - write translated CDS/sORF: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.faa
+14:34:11.105 - INFO - TSV - write hypothetical tsv: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.hypotheticals.tsv
+14:34:11.105 - INFO - FASTA - write translated CDS/sORF: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.hypotheticals.faa
+14:34:11.106 - INFO - JSON - write JSON: path=/pub60/jamesh/PQBR/bakta_a/pQBR55R/pQBR55R.json
+14:34:11.121 - INFO - MAIN - removed tmp dir: /tmp/tmpu6u60uy2
