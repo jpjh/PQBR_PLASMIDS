@@ -1,11 +1,12 @@
 Assembling complete pQBR plasmids using long and short reads
 ================
-revised Jan 2025
+revised 2025
 
 ## Overview of approach
 
 The plasmids were sequenced inside *P. putida* UWC1, a derivative of *P.
-putida* KT2440. Initial Illumina sequencing was performed by MicrobesNG.
+putida* KT2440. Initial Illumina sequencing was performed by MicrobesNG
+and provided by Damian Rivett (Manchester Metropolitan University).
 These data were analysed in a preliminary attempt to generate closed
 plasmid sequences as follows:
 
@@ -16,6 +17,10 @@ plasmid sequences as follows:
 3.  Long (\>5kb), deep (\>10x coverage) contigs were identified as
     putative pQBR plasmid contigs, and were used for initial comparative
     analysis.
+
+Note that this analysis struggles with plasmids which have regions
+matching the *P. putida* UWC1 chromosome (see [Hall et
+al. 2015](https://pubmed.ncbi.nlm.nih.gov/25969927/)).
 
 Alongside this analysis, putative plasmids were identified by the whole
 genome *de novo* SPAdes assemblies that were provided by MicrobesNG by
@@ -106,7 +111,8 @@ ggplot(summary, aes(x=log10(length), y=log10(cov), colour=node)) + geom_point() 
 This gives a good overview summary. It shows that for some samples,
 there are just one or two contigs that are big, and have reasonable
 coverage. These look most promising. Other samples have not assembled so
-well.
+well. Note there were two non-pQBR plasmids included in the sequencing
+run, UWC1UG451 and UWC1UG452, that are not analysed further.
 
 How long are the assemblies for each sample?
 
@@ -255,7 +261,8 @@ pqbr_details %>% group_by(plasmid) %>%
 | UWC1pQBR58  |               1 |      73703 |      73703 |      13.86419 |
 | UWC1pQBR8   |               1 |       8488 |       8488 |      20.53846 |
 
-Calculate mash distances
+Calculate mash distances. Use a high value for sketch size to detect
+distant similarities between sequences.
 
 - S = default seed function
 - s = default sketch size
@@ -334,13 +341,14 @@ However, there are also some other observations, supported by manual
 examination of the long, deep, unmapped assemblies, and the plots above.
 
 **pQBR1**: Illumina sequencing indicated no plasmid present. Instead,
-and in contrast to the ~70-kb plasmid referred to by Lilley et
-al. (1996), an integrated analysis of the assembly of all and unmapped
-reads shows a 9.9 kb sequence that has integrated into the chromosome.
-This suggests that the stock strain has lost the plasmid but kept the
-transposon, as described in various lab studies with other pQBR
-plasmids. We were not able to detect conjugation in the lab, further
-supporting our inference that the plasmid has been lost.
+and in contrast to the ~70-kb plasmid referred to by [Lilley et
+al. (1996)](https://doi.org/10.1111/j.1574-6941.1996.tb00320.x), an
+integrated analysis of the assembly of all and unmapped reads shows a
+9.9 kb sequence that has integrated into the chromosome. This suggests
+that the stock strain has lost the plasmid but kept the transposon, as
+described in various lab studies with other pQBR plasmids. We were not
+able to detect conjugation in the lab, further supporting our inference
+that the plasmid has been lost.
 
 **pQBR8**: Illumina sequencing inducated low coverage for regions of
 interest, suggesting that the plasmid was in the process of being lost
@@ -361,7 +369,7 @@ by Plasmidsaurus.
 The long-read contigs that matched each plasmid were identified by
 BLASTing the ONT assemblies for each sample against the contigs
 assembled by Illumina. The long-read contigs were extracted, named, and
-placed in `./contigs` ready for polishing.
+placed in `./contigs` for polishing.
 
 Some manual analysis was required for the following, possibly due to
 sequence loss, chromosome integration, multiple plasmids, or some
@@ -373,22 +381,22 @@ pQBR26 was previously identified as a Group II plasmid, like pQBR23 and
 pQBR24. However, though transconjugants into *P. fluorescens* SBW25 were
 easily generated, they did not give a positive PCR product for the
 primers designed for Group II plasmids. Analysis of the Illumina reads
-showed another contig that also contained a predicted merA gene, and
+showed another contig that also contained a predicted *merA* gene, and
 primers designed against this contig did give a positive product when
 applied to transconjugant colonies. Long-read sequencing of UWC1(pQBR26)
 showed two extrachromosomal replicons, one of which resembled pQBR23
 (394 kb) but had a copy number of \<1, and the other with a copy number
 of ~1 that matched the contig that was capable of conjugating (229 kb).
-We infer that UWC1(pQBR26) contained two different mer plasmids, one of
-which is less stable and/or less conjugative than the other, and the
+We infer that UWC1(pQBR26) contained two different *mer* plasmids, one
+of which is less stable and/or less conjugative than the other, and the
 229-kb conjugative plasmid is indicated as the canonical pQBR26 plasmid.
 
 #### pQBR11 (Group I)
 
 pQBR11 produced Group I-like contigs when the short reads were analysed.
-However, the sample did not resolve in the long read sequencing.
-
-***To investigate:*** check DNA and attempt resequencing.
+However, the sample did not resolve in the long read sequencing. The
+sequence therefore remains as a draft (pQBR11d) based on the Illumina
+unmapped read assembly.
 
 #### pQBR43 (Group I)
 
@@ -401,16 +409,38 @@ chromosome, flanked by copies of the duplication.
 Resolving this is complex, as the duplicated element is 42 kb long and
 there are insufficient reads overlapping the junction.
 
-The longest plasmid contig was extracted for analysis.
+A path containing the plasmid contigs and Tn6290 transposon was
+extracted for analysis.
 
 #### pQBR50 (Group I)
 
 This sequence didn’t fully resolve owing to duplicate sequences in the
-chromosome and multiple copies of Tn6290.
+chromosome and multiple copies of Tn6290. The mean depth of the
+chromosome (from the Illumina sequencing) was ~21x, the mean depth of
+Tn6290 was ~130x! Suggesting there are between 6 and 7 copies of Tn6290
+(5-6 of which likely on or associated with the plasmid). Interestingly,
+this plasmid seems to be at approximately 2x copy number of the
+chromosome in the Illumina sequencing, but a bit lower in the ONT
+sequencing.
 
-As with pQBR43, this couldn’t be resolved due to the length of Tn6290.
+As with pQBR43, this couldn’t be resolved due to the length of Tn6290,
+even with the long-read sequencing.
 
-The longest plasmid contig was extracted for analysis.
+The sequence therefore remains a draft (pQBR50d) based on conjoining the
+largest contigs from the ONT sequencing.
+
+``` bash
+awk -v RS=">" '$1 ~ /^contig_3/ {print RS $0}' ./working/pQBR50_consensus_cov.fna \
+  | revseq -filter > ./working/pQBR50_consensus_contigs.fasta
+  
+awk -v RS=">" '$1 ~ /^contig_6/ {print RS $0}' ./working/pQBR50_consensus_cov.fna \
+  >> ./working/pQBR50_consensus_contigs.fasta
+
+union ./working/pQBR50_consensus_contigs.fasta -filter \
+  | sed 's/>.*/>pQBR50d/g' > ./working/pQBR50d_contig.fasta
+```
+
+These were polished as described below.
 
 #### pQBR127 (“Group IV”)
 
@@ -447,6 +477,26 @@ pQBR47, with a single contig including the chromosome.
 
 The whole contig was used for downstream analysis, and the
 plasmid-specific portion was extracted (see below).
+
+#### pQBR44 (Group I)
+
+pQBR44 was previously sequenced in [Hall et
+al. 2015](https://pubmed.ncbi.nlm.nih.gov/25969927/). It was not
+resequenced here. The two sequences identified could not be resolved,
+due to transposon insertions.
+
+It was downloaded and the two contigs were concatenated (pQBR44d).
+
+``` bash
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=CDLQ010000002.1&amp;rettype=fasta" \
+  > ./working/pQBR44_1.fasta
+  
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=CDLQ010000001.1&amp;rettype=fasta" \
+  >> ./working/pQBR44_1.fasta
+  
+union -sequence ./working/pQBR44_1.fasta -filter \
+  | sed 's/>.*/>pQBR44d/g' > ./polished/pQBR44d.fasta
+```
 
 ### Polishing
 
@@ -535,7 +585,7 @@ cat ./ref/PQBR55_0049.fasta ./ref/PQBR57_0001.fasta ./ref/pQBR0445.fasta > ./ref
 makeblastdb -in ./ref/rep.fasta -dbtype nucl
 
 find ./polished -name "*.fasta" -exec blastn -query {} -db ./ref/rep.fasta -outfmt 6 \; \
-  >  ./working/blast_rep.blastn
+  > ./working/blast_rep.blastn
 ```
 
 Use this output to realign the sequences using EMBOSS.
@@ -592,10 +642,7 @@ done
 
 This gives complete, oriented assemblies for most sequences. Some are
 missing due to a lack of blastn matches: the Group II plasmids pQBR23
-and pQBR24, pQBR26, pQBR105 (no similar plasmids amongst the groups),
-and pQBR50 (for unclear reasons, should be related to pQBR103 —
-preliminary ACT comparisons suggests further work is probably required
-to resolve this plasmid).
+and pQBR24, pQBR26, pQBR105 (no similar plasmids amongst the groups).
 
 For pQBR23 and pQBR24, these should be oriented to the same point. Run a
 quick Prokka annotation and identify a putative replicase.
@@ -825,17 +872,52 @@ Make a table of information for each sequence:
 
 ``` bash
 grep "Length: " ./bakta_annotated/*/*.txt \
-  | sed 's:./bakta_annotated/::g' | sed 's;/pQBR[0-9R]*.txt:Length: ;\t;g' | sort -k2
+  | sed 's:./bakta_annotated/::g' | sed 's;/pQBR[0-9Rpd]*.txt:Length: ;\t;g' | sort -n -k2
 ```
+
+    ## pQBR106p 98802
+    ## pQBR50   119014
+    ## pQBR132  139938
+    ## pQBR127  140415
+    ## pQBR55R  140432
+    ## pQBR28   141505
+    ## pQBR53   157450
+    ## pQBR105  161330
+    ## pQBR26   228742
+    ## pQBR47p  293223
+    ## pQBR56   307330
+    ## pQBR57   307330
+    ## pQBR30   310323
+    ## pQBR57R  324348
+    ## pQBR102  334884
+    ## pQBR150  366385
+    ## pQBR51   366385
+    ## pQBR23   393597
+    ## pQBR24   393605
+    ## pQBR124  424568
+    ## pQBR103  425094
+    ## pQBR103R 425094
+    ## pQBR11d  430820
+    ## pQBR5    466604
+    ## pQBR43   510643
+    ## pQBR4    525650
+    ## pQBR50d  563271
+    ## pQBR49   587656
+    ## pQBR106  6320937
+    ## pQBR47   6515328
 
 Shows that pQBR106 and pQBR47 are abnormally large. The specific
 plasmid-encoding portions were identified using ACT with comparison to
 the KT2440 chromosome.
 
+Note that the concatenation between pQBR44 contigs is at position
+92628-92629 in pQBR44d.
+
 #### pQBR47 plasmid-specific portion
 
 The plasmid-specific portion, with a single integrated copy of Tn6290,
-goes from position 6501702..6515328 and 1..279596.
+goes from position `6501702..6515328` and `1..279596`, as identified by
+ACT.
 
 ``` bash
 seqret -sequence ./bakta_annotated/pQBR47/pQBR47.fna \
@@ -873,9 +955,10 @@ bakta --db /pub60/jamesh/db --prefix ${PLASMID} \
 
 #### pQBR106 plasmid-specific portion
 
-The plasmid-specific portion goes from position 1..14487 (running into a
-copy of Tn6290) and 6236623 (running from a copy of Tn6290) to the end
-of the contig at 6320937.
+The plasmid-specific portion goes from position `1..14487` (running into
+a copy of Tn6290) and `6236623` (running from a copy of Tn6290) to the
+end of the contig at `6320937`. The remaining plasmid-specific part of
+pQBR106 is much smaller than it is for pQBR47.
 
 ``` bash
 seqret -sequence ./bakta_annotated/pQBR106/pQBR106.fna \
@@ -910,6 +993,15 @@ bakta --db /pub60/jamesh/db --prefix ${PLASMID} \
   --meta \
   pQBR106p.fasta
 ```
+
+Annotated sequences for downstream analysis are in the subdirectory
+`./bakta_annotated`.
+
+Note that the suffix ‘R’ indicates ‘resequenced’, ‘d’ indicates ‘draft’
+(i.e. manual editing/concatenation of contigs necessary to generate the
+final sequence, as described above), and ‘p’ indicates the
+plasmid-specific portion of a (potentially) chromosomally-integrated
+assembly.
 
 ------------------------------------------------------------------------
 
