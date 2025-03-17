@@ -1,0 +1,4 @@
+./MASH_sketches/pQBR57_backbone.fasta	1172_1	0.312952	1.29529e-28	7/10000
+./MASH_sketches/pQBR57_backbone.fasta	634_1	0.300994	7.98559e-37	9/10000
+./MASH_sketches/pQBR57_backbone.fasta	1096_1	0.295981	5.86941e-42	10/10000
+./MASH_sketches/pQBR57_backbone.fasta	638_1	0.306598	2.44872e-32	8/10000

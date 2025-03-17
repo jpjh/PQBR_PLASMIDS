@@ -1,0 +1,9 @@
+./MASH_sketches/pQBR103_backbone.fasta	247_1	0.121912	0	402/10000
+./MASH_sketches/pQBR103_backbone.fasta	858_1	0.291447	3.82083e-44	11/10000
+./MASH_sketches/pQBR103_backbone.fasta	1265_1	0.291447	3.94372e-44	11/10000
+./MASH_sketches/pQBR103_backbone.fasta	82_1	0.287309	7.43699e-49	12/10000
+./MASH_sketches/pQBR103_backbone.fasta	1041	0.300994	1.86146e-35	9/10000
+./MASH_sketches/pQBR103_backbone.fasta	1288_1	0.291447	4.36424e-44	11/10000
+./MASH_sketches/pQBR103_backbone.fasta	1281_1	0.0301493	0	3614/10000
+./MASH_sketches/pQBR103_backbone.fasta	313_1	0.109076	0	533/10000
+./MASH_sketches/pQBR103_backbone.fasta	467_2	0.295981	8.90115e-48	10/10000

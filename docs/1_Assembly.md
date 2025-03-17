@@ -320,7 +320,7 @@ plasmid_reorder <- order.dendrogram(pqbr_dendro)
 ![](1_Assembly_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
-png(file = "./figs_1/short_read_heatmap.png", height=6, width=8, units="in", res=300)
+png(file = "./figs/short_read_heatmap.png", height=6, width=8, units="in", res=300)
 short_read_heatmap
 dev.off()
 ```
@@ -350,11 +350,18 @@ described in various lab studies with other pQBR plasmids. We were not
 able to detect conjugation in the lab, further supporting our inference
 that the plasmid has been lost.
 
-**pQBR8**: Illumina sequencing inducated low coverage for regions of
-interest, suggesting that the plasmid was in the process of being lost
-when the sample was sequenced. We were not able to detect conjugation in
-the lab, further supporting our inference that the plasmid has been
-lost.
+**pQBR8**: Illumina sequencing indicated low coverage for regions of
+interest, except for a chromsomal-matching contig encoding an integrated
+*mer* operon, suggesting that the plasmid was in the process of being
+lost when the sample was sequenced. We were not able to detect
+conjugation in the lab, further supporting our inference that the
+plasmid is unstable/lost.
+
+**pQBR58**: Illumina sequencing indicated low coverage for regions of
+interest (except for a short contig encoding a *mer* operon), suggesting
+that the plasmid was in the process of being lost when the sample was
+sequenced. We were not able to detect conjugation in the lab, further
+supporting our inference that the plasmid is unstable/lost.
 
 **pQBR127**: MASH distance clustering indicated that this sample matched
 both Group I and Group III sequences, which may indicate that more than
@@ -450,7 +457,7 @@ bandage plot shows matches to pQBR55 (Group III, blue) and pQBR103
 (Group I, green).
 
 <figure>
-<img src="../figs_1/pQBR127_bandage.png" alt="pQBR127_bandage.png" />
+<img src="../figs/pQBR127_bandage.png" alt="pQBR127_bandage.png" />
 <figcaption aria-hidden="true">pQBR127_bandage.png</figcaption>
 </figure>
 
@@ -651,11 +658,11 @@ quick Prokka annotation and identify a putative replicase.
 prokka ./polished/pQBR23_polished.fasta -out ./working/pQBR23_annot
 ```
 
-Finds a putative dnaA gene at position 307883..308686. Extract and blast
-against pQBR24.
+Finds a putative pair of plasmid replication genes, the first of which
+is at position 147660..149189. Extract and blast against pQBR24.
 
 ``` bash
-awk -v seq="PROKKA_00415" -v RS='>' '$1 == seq {print RS $0}' ./working/pQBR23_annot/PROKKA_12212023.ffn \
+awk -v seq="PROKKA_00168" -v RS='>' '$1 == seq {print RS $0}' ./working/pQBR23_annot/PROKKA_12212023.ffn \
   > ./working/pQBR23_repA.fasta
   
 makeblastdb -in ./working/pQBR23_repA.fasta -dbtype nucl
@@ -664,20 +671,20 @@ blastn -query ./polished/pQBR24_polished.fasta -db ./working/pQBR23_repA.fasta -
   >  ./working/pQBR24_rep.blastn
 ```
 
-Identifies the sequence in pQBR24 at 224536..225339, in reverse. So
-225339 is the start of the gene, and 224536 is the end.
+Identifies the sequence in pQBR24 at 384040..385569, in reverse. So
+385569 is the start of the gene, and 384040 is the end.
 
 ``` bash
 seqret -sequence ./polished/pQBR23_polished.fasta \
   -sformat1 fasta \
   -osformat2 fasta \
-  -sbegin 307883 \
+  -sbegin 147660 \
   -outseq tmp1.fasta
 seqret -sequence ./polished/pQBR23_polished.fasta \
   -sformat1 fasta \
   -osformat2 fasta \
   -sbegin 1 \
-  -send1 307882 \
+  -send1 147659 \
   -outseq tmp2.fasta
 cat tmp1.fasta tmp2.fasta \
   | union -filter -osname2 pQBR23 \
@@ -688,13 +695,13 @@ seqret -sequence ./polished/pQBR24_polished.fasta \
   -sformat1 fasta \
   -osformat2 fasta \
   -sbegin 1 \
-  -send1 225339 \
+  -send1 385569 \
   -srev \
   -outseq tmp1.fasta
 seqret -sequence ./polished/pQBR24_polished.fasta \
   -sformat1 fasta \
   -osformat2 fasta \
-  -sbegin 225339 \
+  -sbegin 385570 \
   -srev \
   -outseq tmp2.fasta
 cat tmp1.fasta tmp2.fasta \
@@ -838,9 +845,11 @@ cat tmp1.fasta tmp2.fasta \
 gzip ./originals/pQBR55.fasta
 ```
 
-Annotate with Bakta. Use metagenome mode to ensure that the same CDS
-prediction model is used across all of the plasmids, to aid
-identification of homologues on related sequences.
+Annotate with Bakta version 1.8.2. Database is version 5.0 full.
+
+Use metagenome mode to ensure that the same CDS prediction model is used
+across all of the plasmids, to aid identification of homologues on
+related sequences.
 
 ``` bash
 find ./complete -name "pQBR*.fasta" -exec gzip {} \;
@@ -876,12 +885,13 @@ grep "Length: " ./bakta_annotated/*/*.txt \
 ```
 
     ## pQBR106p 98802
-    ## pQBR50   119014
     ## pQBR132  139938
     ## pQBR127  140415
     ## pQBR55R  140432
     ## pQBR28   141505
+    ## pQBR44d  143197
     ## pQBR53   157450
+    ## pQBR55   157450
     ## pQBR105  161330
     ## pQBR26   228742
     ## pQBR47p  293223
@@ -893,7 +903,7 @@ grep "Length: " ./bakta_annotated/*/*.txt \
     ## pQBR150  366385
     ## pQBR51   366385
     ## pQBR23   393597
-    ## pQBR24   393605
+    ## pQBR24   393604
     ## pQBR124  424568
     ## pQBR103  425094
     ## pQBR103R 425094
@@ -1002,6 +1012,92 @@ Note that the suffix ‘R’ indicates ‘resequenced’, ‘d’ indicates ‘d
 final sequence, as described above), and ‘p’ indicates the
 plasmid-specific portion of a (potentially) chromosomally-integrated
 assembly.
+
+### Sequence distance/similarity plot for assembled plasmids
+
+Generate a heatmap like that above, but just for the assembled/annotated
+plasmids used in downstream analyses.
+
+``` bash
+find ./bakta_annotated/*/*.fna | awk -v FS="/" '{print $3}' > ./1_sketches/annotated_plasmids.list
+
+cat ./1_sketches/annotated_plasmids.list | while read PLASMID
+do
+mash sketch ./bakta_annotated/${PLASMID}/${PLASMID}.fna -S 42 -s 100000 -k 21 -p 4 -o ./1_sketches/${PLASMID}.msh
+done
+
+mash triangle ./1_sketches/pQBR*.msh -i -k 21 -p 4 > ./1_sketches/bakta_annotated_mash.dst
+```
+
+Plot as a heatmap in R. Make distance matrix square
+
+``` r
+pqbra_dist <- read.table("./1_sketches/bakta_annotated_mash.dst", fill=TRUE, skip=1,
+                        col.names=c("V0",paste("V", 1:31, sep=""))) 
+pqbra_dist$V0 <- gsub(".*/(pQBR[0-9Rpd]+)/.*.fna", "\\1", pqbra_dist$V0)
+pqbra_dist <- column_to_rownames(pqbra_dist, "V0")
+pqbra_distmat <- as.dist(pqbra_dist, upper=TRUE, diag=TRUE)
+pqbra_sqmat <- as.matrix(pqbra_distmat)
+
+plasmida_order <- colnames(pqbra_sqmat)
+
+pqbra_dist_df <- pqbra_sqmat %>% as.data.frame() %>%
+  mutate(a = plasmida_order) %>%
+  pivot_longer(-a, names_to = "b", values_to = "mash_distance") %>%
+  filter(!is.na(mash_distance)) %>%
+  mutate(a = factor(a, levels=plasmida_order), b=factor(b, levels=plasmida_order))
+
+ggplot(data=pqbra_dist_df) +
+  geom_tile(aes(x=a, y=b, fill=mash_distance)) +
+  scale_fill_gradient(low = "dodgerblue", high = "black")
+```
+
+![](1_Assembly_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
+
+Cluster according to similarities.
+
+``` r
+pqbra_dendro <- as.dendrogram(hclust(pqbra_distmat))
+
+plasmida_reorder <- order.dendrogram(pqbra_dendro)
+
+(annotated_heatmap <- pqbra_dist_df %>%
+  mutate(a = factor(a, levels=plasmida_order[plasmida_reorder]), 
+         b = factor(b, levels=plasmida_order[plasmida_reorder])) %>%
+  ggplot() +
+  geom_tile(aes(x=a, y=b, fill=mash_distance)) +
+  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.25,1), name = "mash distance") +
+  theme(axis.text.x = element_text(angle=45, hjust=1), axis.title.x = element_blank(), axis.title.y = element_blank(), 
+        legend.position="right"))
+```
+
+![](1_Assembly_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
+
+Remove pQBR47 and pQBR106 from the heatmap, as these erroneously include
+the whole chromosome as well.
+
+``` r
+(annotated_heatmap_edit <- pqbra_dist_df %>%
+   filter(!(a %in% c("pQBR47", "pQBR106")) & !(b %in% c("pQBR47", "pQBR106"))) %>%
+   mutate(a = factor(a, levels=plasmida_order[plasmida_reorder]), 
+          b = factor(b, levels=plasmida_order[plasmida_reorder])) %>%
+   ggplot() +
+   geom_tile(aes(x=a, y=b, fill=mash_distance)) +
+   scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.25,1), name = "mash distance") +
+   theme(axis.text.x = element_text(angle=45, hjust=1), axis.title.x = element_blank(), axis.title.y = element_blank(), 
+         legend.position="right"))
+```
+
+![](1_Assembly_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
+
+``` r
+png(file = "./figs/annotated_heatmap_edit.png", height=6, width=8, units="in", res=300)
+annotated_heatmap_edit
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
 
 ------------------------------------------------------------------------
 

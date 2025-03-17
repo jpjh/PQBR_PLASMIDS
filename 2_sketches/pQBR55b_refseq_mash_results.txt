@@ -1,0 +1,4 @@
+./MASH_sketches/pQBR55_backbone.fasta	GCF_001728855.1_1D4v1.0_genomic.fna.gz	0.219531	1.93991e-25	5/1000
+./MASH_sketches/pQBR55_backbone.fasta	ref|NC_003892.2|	0.12101	4.41235e-292	41/1000
+./MASH_sketches/pQBR55_backbone.fasta	ref|NZ_CP006257.1|	0.23011	2.23653e-22	4/1000
+./MASH_sketches/pQBR55_backbone.fasta	ref|NZ_CP017887.1|	0.203604	5.35474e-37	7/1000

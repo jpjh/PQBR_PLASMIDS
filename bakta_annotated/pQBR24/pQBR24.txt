@@ -1,8 +1,8 @@
 Sequence(s):
-Length: 393605
+Length: 393604
 Count: 1
 GC: 57.5
-N50: 393605
+N50: 393604
 N ratio: 0.0
 coding density: 81.6
 

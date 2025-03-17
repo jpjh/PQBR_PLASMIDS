@@ -1,0 +1,95 @@
+---
+title: "Attempted classification of pQBR plasmids"
+date: "revised 2025"
+output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+rm(list=ls())
+
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+
+source("./func/theme_pub.r")
+theme_github <- function(x){
+  theme_pub(base_size=12)
+}
+
+theme_set(theme_github())
+```
+
+
+## Classification
+
+Attempt to classify the plasmids according to the IncP scheme outlined by [Nishimura et al. 2024](https://doi.org/10.1101/2024.09.03.610885)
+
+Download sequences described in the paper.
+
+```{r}
+incp_groups <- read.csv("./ref/Nishimura2024.csv", header=TRUE, sep=",")
+
+incp_groups %>% kable()
+```
+
+Download the sequences. 
+
+```{bash, eval=FALSE}
+mkdir -p 3_incp_groups/seqs
+
+tail -n+2  ./ref/Nishimura2024.csv \
+  | awk -v FS="," -v OFS="\t" '{print $4}' | while read ACCESSION
+  do
+  curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=${ACCESSION}&amp;rettype=fasta" > ./3_incp_groups/seqs/${ACCESSION}.fasta
+  done
+  
+cat ./3_incp_groups/seqs/*.fasta > ./3_incp_groups/seqs.fasta
+```
+
+Do a MASH comparison.
+
+```{bash, eval=FALSE}
+mkdir ./3_incp_groups/mash_results
+
+mash sketch -i -s 100000 ./3_incp_groups/seqs.fasta -o ./3_incp_groups/seqs.msh
+
+cat ./1_sketches/annotated_plasmids.list | while read PLASMID
+do
+mash dist -p 64 \
+  ./1_sketches/${PLASMID}.msh \
+  ./3_incp_groups/seqs.msh \
+  | sort -gk3 \
+  > ./3_incp_groups/mash_results/${PLASMID}_incpref_mash_results.txt
+head -n1 ./3_incp_groups/mash_results/${PLASMID}_incpref_mash_results.txt >> ./3_incp_groups/mash_tophits.tsv
+done
+```
+
+Examine in R.
+
+```{r}
+mash_tophits <- read.table("./3_incp_groups/mash_tophits.tsv", header=FALSE,
+           col.names=c("query","subject","dist","e_val","num_hits")) %>%
+  mutate(plasmid = gsub(".*(pQBR[0-9Rpd]+).fna", "\\1", query),
+         Accession = gsub("\\.[0-9]", "", subject),
+         N_hits = gsub("/100000", "", num_hits))
+
+mash_tophits %>% left_join(incp_groups, by = "Accession") %>% 
+  select(plasmid, dist, N_hits, Inc_group, Alt_group, Representative, Accession, MOB, MPF) %>% 
+  arrange(-dist) %>% kable()
+```
+
+This table indicates:
+
+- The Group I plasmids match the pQBR103 IncP group defined by Nishimura et al. (pQBR103), as expected. 
+- The Group II plasmids (roughly) match the IncPSTY group defined by Nishimura et al. (pSTY)
+- The Group IIb plasmid pQBR26 roughly matches the IncP-7 group (pCAR1)
+- The plasmids matching the IncP-9 plasmid (pWW0) are likely matching through the Tn4652 transposon, since they include representatives of Group III and Group IV that have Tn4652, and pWW0 has the complete version of this *tol* transposon. 
+- The Group III plasmids and Group IV plasmids do not match one of the defined IncP groups. 
+
+---
+
+**[Back to index.](../README.md)**
