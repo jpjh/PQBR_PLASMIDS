@@ -259,7 +259,7 @@ However, there are also some other observations, supported by manual examination
 
 **pQBR8**: Illumina sequencing indicated low coverage for regions of interest, except for a chromsomal-matching contig encoding an integrated *mer* operon, suggesting that the plasmid was in the process of being lost when the sample was sequenced. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid is unstable/lost.  
 
-**pQBR58**: Illumina sequencing indicated low coverage for regions of interest (except for a short contig encoding a *mer* operon), suggesting that the plasmid was in the process of being lost when the sample was sequenced. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid is unstable/lost. 
+**pQBR58**: Illumina sequencing indicated a ~75 kb fragment, but this was at lower coverage (~0.3x) compared with the chromosome. The *mer* containing region (~8.5 kb) was connected to the chromosome and at ~1x, suggesting that the plasmid was in the process of being lost when the sample was sequenced. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid is unstable/lost. 
 
 **pQBR127**: MASH distance clustering indicated that this sample matched both Group I and Group III sequences, which may indicate that more than one plasmid is present in the sample. 
 
@@ -860,10 +860,249 @@ Remove pQBR47 and pQBR106 from the heatmap, as these erroneously include the who
    theme(axis.text.x = element_text(angle=45, hjust=1), axis.title.x = element_blank(), axis.title.y = element_blank(), 
          legend.position="right"))
 
-png(file = "./figs/annotated_heatmap_edit.png", height=6, width=8, units="in", res=300)
+png(file = "./figs/annotated_heatmap_edit.png", height=8, width=11, units="in", res=300)
 annotated_heatmap_edit
 dev.off()
 ```
+
+## Comparison of all-against-all using average nucleotide identity (ANI) rather than mash
+
+Average nucleotide identity (ANI) is a more intuitive measure than mash distance.
+
+Perform all-vs-all comparison using fastANI. Remove the whole-genome plasmids from the comparison. 
+
+```{bash, eval=FALSE}
+find ./bakta_annotated/*/ -name "*.fna" \
+  | grep -v "pQBR106.fna" | grep -v "pQBR47.fna" > ./working/genome_list.txt
+
+fastani --ql ./working/genome_list.txt \
+        --rl ./working/genome_list.txt \
+        --output ./1_sketches/ani.tsv --fragLen 500 \
+        --minFraction 0.2 --threads 1 \
+        --matrix
+```
+
+## Summary of plasmid features
+
+```{bash, eval=FALSE}
+find ./bakta_annotated/ -name "pQBR*.txt" > ./3_summaries/summary_filenames.txt
+
+cat ./3_summaries/summary_filenames.txt | while read FILE
+do
+PLASMID=`echo $FILE | sed -E 's/.*(pQBR[0-9Rdp]+).txt/\1/'`
+LENGTH=`grep "Length" $FILE | sed 's/Length: //g'`
+GC=`grep "GC:" $FILE | sed 's/GC: //g'`
+DENSITY=`grep "coding density:" $FILE | sed 's/coding density: //g'`
+CDS=`grep "CDSs:" $FILE | sed 's/CDSs: //g'`
+echo -e "$PLASMID\t$LENGTH\t$GC\t$DENSITY\t$CDS"
+done > ./3_summaries/summaries.txt
+```
+
+Input to R and format.
+
+```{r}
+summaries <- read.table("./3_summaries/summaries.txt", sep="\t", 
+                        col.names=c("plasmid","length","GC","coding_density","n_cds")) %>%
+  mutate(last_char = substr(plasmid, nchar(plasmid), nchar(plasmid)),
+         assembly_details = case_when(last_char == "R" ~ "resequenced",
+                                      last_char == "d" ~ "draft",
+                                      last_char == "p" ~ "nonchromosomal_only",
+                                      .default = "assembled"),
+         Plasmid = gsub("([0-9])[a-zA-Z]", "\\1", plasmid)) %>%
+  select(-last_char)
+
+lilley <- read.table("./ref/Lilley.csv", sep=",", header=TRUE)
+
+(full_summaries <- left_join(summaries, lilley, by="Plasmid") %>% 
+  arrange(Group, Plasmid) %>% 
+    select(Group, Plasmid, assembly_details, length, GC, coding_density, n_cds)) %>% kable()
+
+problem_assemblies <- c("pQBR47","pQBR106")
+
+(cropped_summaries <- full_summaries %>%
+  filter(!(Plasmid %in% problem_assemblies) & assembly_details == "assembled" | assembly_details == "draft") %>%
+  mutate(revised_group = case_when(Plasmid == "pQBR106" ~ "I",
+                                   Plasmid == "pQBR127" ~ "III",
+                                   Plasmid == "pQBR132" ~ "III",
+                                   Plasmid == "pQBR150" ~ "IV",
+                                   Plasmid == "pQBR51" ~ "IV",
+                                   .default = Group)) %>%
+    select(Group, revised_group, Plasmid, assembly_details, length, GC, coding_density, n_cds) %>%
+    arrange(revised_group, Plasmid)) %>% kable()
+
+cropped_summaries %>% filter(assembly_details == "assembled" & (length == min(length) | length == max(length)))
+
+(cropped_summaries %>% group_by(revised_group) %>% 
+  summarise(n = n(),
+            mean_length_kb = mean(length/1000),
+            max_length = max(length),
+            min_length = min(length),
+            mean_gc = mean(GC),
+            max_gc = max(GC),
+            min_gc = min(GC),
+            mean_cd = mean(coding_density),
+            max_cd = max(coding_density),
+            min_cd = min(coding_density))) %>% kable()
+```
+
+### Compare with 'complete' Pseudomonasdb genomes.
+
+Genome length and GC content of PseudomonasDB (DB version 22.1 (2023-10-06))
+
+```{bash, eval=FALSE}
+echo -e "file\tlength\tgc_content" > fna_complete_summary.tsv
+
+INPUT_DIR="/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete"
+
+for file in "$INPUT_DIR"/*.fna; do
+    if [[ -f "$file" ]]; then
+        # Extract filename
+        filename=$(basename "$file")
+        
+        echo $file
+        
+        # Remove FASTA headers and concatenate all sequence lines
+        sequence=$(grep -v '^>' "$file" | tr -d '\n' | tr '[:lower:]' '[:upper:]')
+        
+        # Calculate total length
+        total_length=${#sequence}
+        
+        # Count G and C bases
+        gc_count=$(echo "$sequence" | grep -o '[GC]' | wc -l)
+
+        # Calculate GC content percentage
+        if [[ $total_length -gt 0 ]]; then
+            gc_content=$(awk "BEGIN { printf \"%.2f\", ($gc_count / $total_length) * 100 }")
+        else
+            gc_content="0.00"
+        fi
+        
+        echo -e "$filename\t$total_length\t$gc_content" >> fna_complete_summary.tsv
+    fi
+done 
+```
+
+Get the summary from this file. Add a filter to remove unlikely sequences. 
+
+```{r}
+pseudomonasdb_complete <- read.table("/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete_summary.tsv",
+                                     header=TRUE) %>% filter(length > 2e6)
+
+(psdb_complete_summ <- pseudomonasdb_complete %>% 
+  summarise(n = n(),
+            mean_length = mean(length),
+            median_length = median(length),
+            max_length = max(length),
+            min_length = min(length),
+            sd_length = sd(length),
+            mean_gc = mean(gc_content),
+            median_gc = median(gc_content),
+            max_gc = max(gc_content),
+            min_gc = min(gc_content),
+            sd_gc = sd(gc_content))) %>%
+  kable()
+
+(pqbr132_ratio <- (filter(cropped_summaries, Plasmid == "pQBR132") %>% select(length) %>% pull()) /
+  psdb_complete_summ$median_length) # 0.0215135
+
+(pqbr49_ratio <- (filter(cropped_summaries, Plasmid == "pQBR49") %>% select(length) %>% pull()) /
+  psdb_complete_summ$median_length) # 0.09034386
+```
+
+Calculate whether the GC content of each plasmid was significantly lower than the chromosome.
+
+```{r}
+ggplot(data = pseudomonasdb_complete, aes(x=gc_content)) + geom_histogram()
+
+## Not normally distributed; use a nonparametric test
+
+testGCvsChr <- function(x){
+  test <- wilcox.test(pseudomonasdb_complete$gc_content, mu = x)
+  return(test$p.value)
+}
+
+cropped_summaries %>% 
+  rowwise() %>%
+  mutate(wilcox_gc_vs_chromosome = testGCvsChr(GC)) %>% kable()
+```
+
+All plasmids have a GC content significantly lower than the chromosome. 
+
+Examine ANI data for the different Groups.
+
+```{r}
+ani <- read.table("./1_sketches/ani.tsv", header=FALSE,
+                 col.names = c("q", "r", "ani", "frags", "total_frags")) %>%
+  mutate(query = sub(".*/(pQBR[0-9]+).*.fna", "\\1", q),
+         ref = sub(".*/(pQBR[0-9]+).*.fna", "\\1", r),
+         q = basename(q),
+         r = basename(r))
+
+match_groups <- cropped_summaries %>% 
+  mutate(ref = Plasmid, ref_group = revised_group,
+         query = Plasmid, query_group = revised_group) %>%
+  select(ref, query, ref_group, query_group)
+
+ani_annot <- ani %>% 
+  left_join(select(match_groups, query, query_group), by="query") %>%
+  left_join(select(match_groups, ref, ref_group), by="ref") %>%
+  mutate(frag_rat = frags/total_frags) %>%
+  select(query, query_group, ref, ref_group, ani, frag_rat)
+  
+(within_groups_summ <- ani_annot %>% filter(ref_group == query_group) %>%
+  group_by(ref_group) %>% summarise(n = sqrt(n()),
+                                    min_ani = min(ani),
+                                    mean_ani = mean(ani),
+                                    max_ani = max(ani),
+                                    minfrags = min(frag_rat),
+                                    meanfrags = mean(frag_rat),
+                                    maxfrags = max(frag_rat))) %>% kable()
+
+(between_groups <- ani_annot %>% filter(ref_group != query_group))
+
+
+ani_annot %>% filter(ref_group == "I" & query_group == "I") %>% arrange(-frag_rat)
+```
+
+Output a nicely formatted table.
+
+```{r}
+cropped_summaries %>% 
+  select(Plasmid, assembly_details, length, GC, n_cds, coding_density, revised_group) %>%
+  arrange(revised_group, Plasmid) %>% write.table("./tabs/tab1.tsv", sep="\t",
+                                                  quote=FALSE, row.names=FALSE)
+```
+
+
+### Extract transposon sequences for the plasmids that were lost
+
+pQBR1, pQBR8 and pQBR58 did not give complete plasmid assemblies, and instead were indicative of plasmid loss (but transposon maintenance).
+
+```{r}
+filter(summary, seq %in% c("UWC1pQBR1","UWC1pQBR8","UWC1pQBR58")) %>%
+  ggplot(aes(x=log10(length), y=log10(cov), colour=node)) + geom_point() + facet_wrap(~seq) +
+  geom_hline(yintercept=log10(10), linetype="dotted") + geom_vline(xintercept=log10(5000), linetype="dotted")
+```
+
+Extract the transposon-encoding sequences from each of these. Blastn analysis indicated that the assembled sequence from pQBR1 exactly matched the higher-depth region from pQBR58. There's a region at the end of the pQBR1 (~850 bp) sequence that matches two other regions from pQBR58. pQBR8 exactly matched that from pQBR1 and pQBR58 (from position 15-8463 in pQBR8), without this additional region.
+
+Annotate with Bakta.
+
+```{bash, eval=FALSE}
+for TRANSPOSON in pQBR1 pQBR8 pQBR58; do
+bakta --db /pub60/jamesh/db --prefix ${TRANSPOSON}tn \
+  --complete \
+  --locus ${TRANSPOSON}tn_contig \
+  --verbose \
+  --output ${TRANSPOSON}tn \
+  --threads 128 \
+  --locus-tag ${TRANSPOSON}tn \
+  --meta \
+  ./${TRANSPOSON}_transposon.fasta
+done
+```
+
+The transposon is 8,449 bp, with detactable transposase and a merRTPFADE *mer* operon. Blast on TnCentral shows high identity (>97%) and coverage (>98%) to transposon Tn512, a known *Pseudomonas* mercury resistance transposon.
 
 
 ---

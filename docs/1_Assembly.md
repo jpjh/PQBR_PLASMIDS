@@ -357,11 +357,12 @@ lost when the sample was sequenced. We were not able to detect
 conjugation in the lab, further supporting our inference that the
 plasmid is unstable/lost.
 
-**pQBR58**: Illumina sequencing indicated low coverage for regions of
-interest (except for a short contig encoding a *mer* operon), suggesting
-that the plasmid was in the process of being lost when the sample was
-sequenced. We were not able to detect conjugation in the lab, further
-supporting our inference that the plasmid is unstable/lost.
+**pQBR58**: Illumina sequencing indicated a ~75 kb fragment, but this
+was at lower coverage (~0.3x) compared with the chromosome. The *mer*
+containing region (~8.5 kb) was connected to the chromosome and at ~1x,
+suggesting that the plasmid was in the process of being lost when the
+sample was sequenced. We were not able to detect conjugation in the lab,
+further supporting our inference that the plasmid is unstable/lost.
 
 **pQBR127**: MASH distance clustering indicated that this sample matched
 both Group I and Group III sequences, which may indicate that more than
@@ -1091,13 +1092,513 @@ the whole chromosome as well.
 ![](1_Assembly_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
 
 ``` r
-png(file = "./figs/annotated_heatmap_edit.png", height=6, width=8, units="in", res=300)
+png(file = "./figs/annotated_heatmap_edit.png", height=8, width=11, units="in", res=300)
 annotated_heatmap_edit
 dev.off()
 ```
 
     ## quartz_off_screen 
     ##                 2
+
+## Comparison of all-against-all using average nucleotide identity (ANI) rather than mash
+
+Average nucleotide identity (ANI) is a more intuitive measure than mash
+distance.
+
+Perform all-vs-all comparison using fastANI. Remove the whole-genome
+plasmids from the comparison.
+
+``` bash
+find ./bakta_annotated/*/ -name "*.fna" \
+  | grep -v "pQBR106.fna" | grep -v "pQBR47.fna" > ./working/genome_list.txt
+
+fastani --ql ./working/genome_list.txt \
+        --rl ./working/genome_list.txt \
+        --output ./1_sketches/ani.tsv --fragLen 500 \
+        --minFraction 0.2 --threads 1 \
+        --matrix
+```
+
+## Summary of plasmid features
+
+``` bash
+find ./bakta_annotated/ -name "pQBR*.txt" > ./3_summaries/summary_filenames.txt
+
+cat ./3_summaries/summary_filenames.txt | while read FILE
+do
+PLASMID=`echo $FILE | sed -E 's/.*(pQBR[0-9Rdp]+).txt/\1/'`
+LENGTH=`grep "Length" $FILE | sed 's/Length: //g'`
+GC=`grep "GC:" $FILE | sed 's/GC: //g'`
+DENSITY=`grep "coding density:" $FILE | sed 's/coding density: //g'`
+CDS=`grep "CDSs:" $FILE | sed 's/CDSs: //g'`
+echo -e "$PLASMID\t$LENGTH\t$GC\t$DENSITY\t$CDS"
+done > ./3_summaries/summaries.txt
+```
+
+Input to R and format.
+
+``` r
+summaries <- read.table("./3_summaries/summaries.txt", sep="\t", 
+                        col.names=c("plasmid","length","GC","coding_density","n_cds")) %>%
+  mutate(last_char = substr(plasmid, nchar(plasmid), nchar(plasmid)),
+         assembly_details = case_when(last_char == "R" ~ "resequenced",
+                                      last_char == "d" ~ "draft",
+                                      last_char == "p" ~ "nonchromosomal_only",
+                                      .default = "assembled"),
+         Plasmid = gsub("([0-9])[a-zA-Z]", "\\1", plasmid)) %>%
+  select(-last_char)
+
+lilley <- read.table("./ref/Lilley.csv", sep=",", header=TRUE)
+
+(full_summaries <- left_join(summaries, lilley, by="Plasmid") %>% 
+  arrange(Group, Plasmid) %>% 
+    select(Group, Plasmid, assembly_details, length, GC, coding_density, n_cds)) %>% kable()
+```
+
+| Group | Plasmid | assembly_details    |  length |   GC | coding_density | n_cds |
+|:------|:--------|:--------------------|--------:|-----:|---------------:|------:|
+| I     | pQBR103 | resequenced         |  425094 | 53.2 |           86.0 |   550 |
+| I     | pQBR103 | assembled           |  425094 | 53.2 |           86.0 |   550 |
+| I     | pQBR11  | draft               |  430820 | 53.2 |           86.3 |   558 |
+| I     | pQBR124 | assembled           |  424568 | 53.2 |           85.9 |   547 |
+| I     | pQBR4   | assembled           |  525650 | 53.7 |           85.8 |   658 |
+| I     | pQBR43  | assembled           |  510643 | 53.8 |           86.1 |   614 |
+| I     | pQBR44  | draft               |  143197 | 53.7 |           85.3 |   191 |
+| I     | pQBR47  | assembled           | 6515328 | 61.1 |           89.6 |  5985 |
+| I     | pQBR47  | nonchromosomal_only |  293223 | 53.3 |           86.7 |   338 |
+| I     | pQBR49  | assembled           |  587656 | 53.7 |           85.5 |   712 |
+| I     | pQBR5   | assembled           |  466604 | 53.4 |           85.8 |   590 |
+| I     | pQBR50  | draft               |  563271 | 54.0 |           85.9 |   684 |
+| I     | pQBR51  | assembled           |  366385 | 54.2 |           84.9 |   462 |
+| II    | pQBR23  | assembled           |  393597 | 57.5 |           81.5 |   499 |
+| II    | pQBR24  | assembled           |  393604 | 57.5 |           81.6 |   499 |
+| II    | pQBR26  | assembled           |  228742 | 57.1 |           87.3 |   273 |
+| III   | pQBR28  | assembled           |  141505 | 51.5 |           84.9 |   176 |
+| III   | pQBR53  | assembled           |  157450 | 52.2 |           85.3 |   199 |
+| III   | pQBR55  | assembled           |  157450 | 52.2 |           85.3 |   198 |
+| III   | pQBR55  | resequenced         |  140432 | 51.6 |           84.9 |   174 |
+| IV    | pQBR102 | assembled           |  334884 | 53.6 |           85.1 |   421 |
+| IV    | pQBR127 | assembled           |  140415 | 51.6 |           85.3 |   177 |
+| IV    | pQBR30  | assembled           |  310323 | 53.7 |           84.6 |   390 |
+| IV    | pQBR56  | assembled           |  307330 | 53.8 |           84.6 |   395 |
+| IV    | pQBR57  | resequenced         |  324348 | 53.9 |           84.8 |   419 |
+| IV    | pQBR57  | assembled           |  307330 | 53.8 |           84.6 |   395 |
+| ND    | pQBR105 | assembled           |  161330 | 56.4 |           88.3 |   172 |
+| ND    | pQBR106 | nonchromosomal_only |   98802 | 53.7 |           82.4 |   144 |
+| ND    | pQBR106 | assembled           | 6320937 | 61.4 |           89.7 |  5803 |
+| ND    | pQBR132 | assembled           |  139938 | 51.6 |           85.8 |   176 |
+| ND    | pQBR150 | assembled           |  366385 | 54.2 |           84.9 |   462 |
+
+``` r
+problem_assemblies <- c("pQBR47","pQBR106")
+
+(cropped_summaries <- full_summaries %>%
+  filter(!(Plasmid %in% problem_assemblies) & assembly_details == "assembled" | assembly_details == "draft") %>%
+  mutate(revised_group = case_when(Plasmid == "pQBR106" ~ "I",
+                                   Plasmid == "pQBR127" ~ "III",
+                                   Plasmid == "pQBR132" ~ "III",
+                                   Plasmid == "pQBR150" ~ "IV",
+                                   Plasmid == "pQBR51" ~ "IV",
+                                   .default = Group)) %>%
+    select(Group, revised_group, Plasmid, assembly_details, length, GC, coding_density, n_cds) %>%
+    arrange(revised_group, Plasmid)) %>% kable()
+```
+
+| Group | revised_group | Plasmid | assembly_details | length |   GC | coding_density | n_cds |
+|:------|:--------------|:--------|:-----------------|-------:|-----:|---------------:|------:|
+| I     | I             | pQBR103 | assembled        | 425094 | 53.2 |           86.0 |   550 |
+| I     | I             | pQBR11  | draft            | 430820 | 53.2 |           86.3 |   558 |
+| I     | I             | pQBR124 | assembled        | 424568 | 53.2 |           85.9 |   547 |
+| I     | I             | pQBR4   | assembled        | 525650 | 53.7 |           85.8 |   658 |
+| I     | I             | pQBR43  | assembled        | 510643 | 53.8 |           86.1 |   614 |
+| I     | I             | pQBR44  | draft            | 143197 | 53.7 |           85.3 |   191 |
+| I     | I             | pQBR49  | assembled        | 587656 | 53.7 |           85.5 |   712 |
+| I     | I             | pQBR5   | assembled        | 466604 | 53.4 |           85.8 |   590 |
+| I     | I             | pQBR50  | draft            | 563271 | 54.0 |           85.9 |   684 |
+| II    | II            | pQBR23  | assembled        | 393597 | 57.5 |           81.5 |   499 |
+| II    | II            | pQBR24  | assembled        | 393604 | 57.5 |           81.6 |   499 |
+| II    | II            | pQBR26  | assembled        | 228742 | 57.1 |           87.3 |   273 |
+| IV    | III           | pQBR127 | assembled        | 140415 | 51.6 |           85.3 |   177 |
+| ND    | III           | pQBR132 | assembled        | 139938 | 51.6 |           85.8 |   176 |
+| III   | III           | pQBR28  | assembled        | 141505 | 51.5 |           84.9 |   176 |
+| III   | III           | pQBR53  | assembled        | 157450 | 52.2 |           85.3 |   199 |
+| III   | III           | pQBR55  | assembled        | 157450 | 52.2 |           85.3 |   198 |
+| IV    | IV            | pQBR102 | assembled        | 334884 | 53.6 |           85.1 |   421 |
+| ND    | IV            | pQBR150 | assembled        | 366385 | 54.2 |           84.9 |   462 |
+| IV    | IV            | pQBR30  | assembled        | 310323 | 53.7 |           84.6 |   390 |
+| I     | IV            | pQBR51  | assembled        | 366385 | 54.2 |           84.9 |   462 |
+| IV    | IV            | pQBR56  | assembled        | 307330 | 53.8 |           84.6 |   395 |
+| IV    | IV            | pQBR57  | assembled        | 307330 | 53.8 |           84.6 |   395 |
+| ND    | ND            | pQBR105 | assembled        | 161330 | 56.4 |           88.3 |   172 |
+
+``` r
+cropped_summaries %>% filter(assembly_details == "assembled" & (length == min(length) | length == max(length)))
+```
+
+    ##   Group revised_group Plasmid assembly_details length   GC coding_density n_cds
+    ## 1     I             I  pQBR49        assembled 587656 53.7           85.5   712
+    ## 2    ND           III pQBR132        assembled 139938 51.6           85.8   176
+
+``` r
+(cropped_summaries %>% group_by(revised_group) %>% 
+  summarise(n = n(),
+            mean_length_kb = mean(length/1000),
+            max_length = max(length),
+            min_length = min(length),
+            mean_gc = mean(GC),
+            max_gc = max(GC),
+            min_gc = min(GC),
+            mean_cd = mean(coding_density),
+            max_cd = max(coding_density),
+            min_cd = min(coding_density))) %>% kable()
+```
+
+| revised_group | n | mean_length_kb | max_length | min_length | mean_gc | max_gc | min_gc | mean_cd | max_cd | min_cd |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| I | 9 | 453.0559 | 587656 | 143197 | 53.54444 | 54.0 | 53.2 | 85.84444 | 86.3 | 85.3 |
+| II | 3 | 338.6477 | 393604 | 228742 | 57.36667 | 57.5 | 57.1 | 83.46667 | 87.3 | 81.5 |
+| III | 5 | 147.3516 | 157450 | 139938 | 51.82000 | 52.2 | 51.5 | 85.32000 | 85.8 | 84.9 |
+| IV | 6 | 332.1062 | 366385 | 307330 | 53.88333 | 54.2 | 53.6 | 84.78333 | 85.1 | 84.6 |
+| ND | 1 | 161.3300 | 161330 | 161330 | 56.40000 | 56.4 | 56.4 | 88.30000 | 88.3 | 88.3 |
+
+### Compare with ‘complete’ Pseudomonasdb genomes.
+
+Genome length and GC content of PseudomonasDB (DB version 22.1
+(2023-10-06))
+
+``` bash
+echo -e "file\tlength\tgc_content" > fna_complete_summary.tsv
+
+INPUT_DIR="/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete"
+
+for file in "$INPUT_DIR"/*.fna; do
+    if [[ -f "$file" ]]; then
+        # Extract filename
+        filename=$(basename "$file")
+        
+        echo $file
+        
+        # Remove FASTA headers and concatenate all sequence lines
+        sequence=$(grep -v '^>' "$file" | tr -d '\n' | tr '[:lower:]' '[:upper:]')
+        
+        # Calculate total length
+        total_length=${#sequence}
+        
+        # Count G and C bases
+        gc_count=$(echo "$sequence" | grep -o '[GC]' | wc -l)
+
+        # Calculate GC content percentage
+        if [[ $total_length -gt 0 ]]; then
+            gc_content=$(awk "BEGIN { printf \"%.2f\", ($gc_count / $total_length) * 100 }")
+        else
+            gc_content="0.00"
+        fi
+        
+        echo -e "$filename\t$total_length\t$gc_content" >> fna_complete_summary.tsv
+    fi
+done 
+```
+
+Get the summary from this file. Add a filter to remove unlikely
+sequences.
+
+``` r
+pseudomonasdb_complete <- read.table("/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete_summary.tsv",
+                                     header=TRUE) %>% filter(length > 2e6)
+
+(psdb_complete_summ <- pseudomonasdb_complete %>% 
+  summarise(n = n(),
+            mean_length = mean(length),
+            median_length = median(length),
+            max_length = max(length),
+            min_length = min(length),
+            sd_length = sd(length),
+            mean_gc = mean(gc_content),
+            median_gc = median(gc_content),
+            max_gc = max(gc_content),
+            min_gc = min(gc_content),
+            sd_gc = sd(gc_content))) %>%
+  kable()
+```
+
+| n | mean_length | median_length | max_length | min_length | sd_length | mean_gc | median_gc | max_gc | min_gc | sd_gc |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1321 | 6430819 | 6504659 | 7840830 | 3217366 | 621661.5 | 63.61528 | 65.16 | 67.43 | 38.05 | 2.940273 |
+
+``` r
+(pqbr132_ratio <- (filter(cropped_summaries, Plasmid == "pQBR132") %>% select(length) %>% pull()) /
+  psdb_complete_summ$median_length) # 0.0215135
+```
+
+    ## [1] 0.0215135
+
+``` r
+(pqbr49_ratio <- (filter(cropped_summaries, Plasmid == "pQBR49") %>% select(length) %>% pull()) /
+  psdb_complete_summ$median_length) # 0.09034386
+```
+
+    ## [1] 0.09034386
+
+Calculate whether the GC content of each plasmid was significantly lower
+than the chromosome.
+
+``` r
+ggplot(data = pseudomonasdb_complete, aes(x=gc_content)) + geom_histogram()
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](1_Assembly_files/figure-gfm/unnamed-chunk-43-1.png)<!-- -->
+
+``` r
+## Not normally distributed; use a nonparametric test
+
+testGCvsChr <- function(x){
+  test <- wilcox.test(pseudomonasdb_complete$gc_content, mu = x)
+  return(test$p.value)
+}
+
+cropped_summaries %>% 
+  rowwise() %>%
+  mutate(wilcox_gc_vs_chromosome = testGCvsChr(GC)) %>% kable()
+```
+
+| Group | revised_group | Plasmid | assembly_details | length | GC | coding_density | n_cds | wilcox_gc_vs_chromosome |
+|:---|:---|:---|:---|---:|---:|---:|---:|---:|
+| I | I | pQBR103 | assembled | 425094 | 53.2 | 86.0 | 550 | 0 |
+| I | I | pQBR11 | draft | 430820 | 53.2 | 86.3 | 558 | 0 |
+| I | I | pQBR124 | assembled | 424568 | 53.2 | 85.9 | 547 | 0 |
+| I | I | pQBR4 | assembled | 525650 | 53.7 | 85.8 | 658 | 0 |
+| I | I | pQBR43 | assembled | 510643 | 53.8 | 86.1 | 614 | 0 |
+| I | I | pQBR44 | draft | 143197 | 53.7 | 85.3 | 191 | 0 |
+| I | I | pQBR49 | assembled | 587656 | 53.7 | 85.5 | 712 | 0 |
+| I | I | pQBR5 | assembled | 466604 | 53.4 | 85.8 | 590 | 0 |
+| I | I | pQBR50 | draft | 563271 | 54.0 | 85.9 | 684 | 0 |
+| II | II | pQBR23 | assembled | 393597 | 57.5 | 81.5 | 499 | 0 |
+| II | II | pQBR24 | assembled | 393604 | 57.5 | 81.6 | 499 | 0 |
+| II | II | pQBR26 | assembled | 228742 | 57.1 | 87.3 | 273 | 0 |
+| IV | III | pQBR127 | assembled | 140415 | 51.6 | 85.3 | 177 | 0 |
+| ND | III | pQBR132 | assembled | 139938 | 51.6 | 85.8 | 176 | 0 |
+| III | III | pQBR28 | assembled | 141505 | 51.5 | 84.9 | 176 | 0 |
+| III | III | pQBR53 | assembled | 157450 | 52.2 | 85.3 | 199 | 0 |
+| III | III | pQBR55 | assembled | 157450 | 52.2 | 85.3 | 198 | 0 |
+| IV | IV | pQBR102 | assembled | 334884 | 53.6 | 85.1 | 421 | 0 |
+| ND | IV | pQBR150 | assembled | 366385 | 54.2 | 84.9 | 462 | 0 |
+| IV | IV | pQBR30 | assembled | 310323 | 53.7 | 84.6 | 390 | 0 |
+| I | IV | pQBR51 | assembled | 366385 | 54.2 | 84.9 | 462 | 0 |
+| IV | IV | pQBR56 | assembled | 307330 | 53.8 | 84.6 | 395 | 0 |
+| IV | IV | pQBR57 | assembled | 307330 | 53.8 | 84.6 | 395 | 0 |
+| ND | ND | pQBR105 | assembled | 161330 | 56.4 | 88.3 | 172 | 0 |
+
+All plasmids have a GC content significantly lower than the chromosome.
+
+Examine ANI data for the different Groups.
+
+``` r
+ani <- read.table("./1_sketches/ani.tsv", header=FALSE,
+                 col.names = c("q", "r", "ani", "frags", "total_frags")) %>%
+  mutate(query = sub(".*/(pQBR[0-9]+).*.fna", "\\1", q),
+         ref = sub(".*/(pQBR[0-9]+).*.fna", "\\1", r),
+         q = basename(q),
+         r = basename(r))
+
+match_groups <- cropped_summaries %>% 
+  mutate(ref = Plasmid, ref_group = revised_group,
+         query = Plasmid, query_group = revised_group) %>%
+  select(ref, query, ref_group, query_group)
+
+ani_annot <- ani %>% 
+  left_join(select(match_groups, query, query_group), by="query") %>%
+  left_join(select(match_groups, ref, ref_group), by="ref") %>%
+  mutate(frag_rat = frags/total_frags) %>%
+  select(query, query_group, ref, ref_group, ani, frag_rat)
+  
+(within_groups_summ <- ani_annot %>% filter(ref_group == query_group) %>%
+  group_by(ref_group) %>% summarise(n = sqrt(n()),
+                                    min_ani = min(ani),
+                                    mean_ani = mean(ani),
+                                    max_ani = max(ani),
+                                    minfrags = min(frag_rat),
+                                    meanfrags = mean(frag_rat),
+                                    maxfrags = max(frag_rat))) %>% kable()
+```
+
+| ref_group |   n |  min_ani |  mean_ani | max_ani |  minfrags | meanfrags |  maxfrags |
+|:----------|----:|---------:|----------:|--------:|----------:|----------:|----------:|
+| I         |  10 |  98.5342 |  99.58990 |     100 | 0.2178723 | 0.8389526 | 1.0000000 |
+| II        |   3 |  93.5298 |  97.26161 |     100 | 0.1410419 | 0.6406145 | 0.9974587 |
+| III       |   6 |  95.5494 |  98.62566 |     100 | 0.7961783 | 0.9390469 | 1.0000000 |
+| IV        |   7 |  99.1892 |  99.69788 |     100 | 0.8237705 | 0.9480383 | 1.0000000 |
+| ND        |   1 | 100.0000 | 100.00000 |     100 | 0.8757764 | 0.8757764 | 0.8757764 |
+
+``` r
+(between_groups <- ani_annot %>% filter(ref_group != query_group))
+```
+
+    ##     query query_group     ref ref_group     ani   frag_rat
+    ## 1 pQBR150          IV   pQBR4         I 95.1008 0.22540984
+    ## 2   pQBR4           I pQBR150        IV 95.4101 0.15699334
+    ## 3   pQBR4           I  pQBR51        IV 95.4101 0.15699334
+    ## 4   pQBR4           I  pQBR53       III 94.1893 0.06089439
+    ## 5   pQBR4           I  pQBR55       III 94.1893 0.06089439
+    ## 6  pQBR51          IV   pQBR4         I 95.1008 0.22540984
+    ## 7  pQBR55         III   pQBR4         I 94.4375 0.20063694
+
+``` r
+ani_annot %>% filter(ref_group == "I" & query_group == "I") %>% arrange(-frag_rat)
+```
+
+    ##       query query_group     ref ref_group      ani  frag_rat
+    ## 1   pQBR103           I pQBR103         I 100.0000 1.0000000
+    ## 2   pQBR103           I pQBR103         I 100.0000 1.0000000
+    ## 3   pQBR103           I pQBR103         I 100.0000 1.0000000
+    ## 4   pQBR103           I pQBR103         I 100.0000 1.0000000
+    ## 5    pQBR11           I  pQBR11         I 100.0000 1.0000000
+    ## 6   pQBR124           I pQBR124         I 100.0000 1.0000000
+    ## 7   pQBR124           I   pQBR5         I  99.9984 1.0000000
+    ## 8   pQBR124           I   pQBR4         I  99.9887 1.0000000
+    ## 9   pQBR124           I  pQBR49         I  99.9812 1.0000000
+    ## 10   pQBR44           I  pQBR44         I 100.0000 1.0000000
+    ## 11    pQBR5           I   pQBR5         I 100.0000 1.0000000
+    ## 12    pQBR5           I   pQBR4         I  99.9864 1.0000000
+    ## 13    pQBR5           I  pQBR49         I  99.9804 1.0000000
+    ## 14   pQBR44           I   pQBR4         I  99.9445 0.9965035
+    ## 15  pQBR103           I pQBR124         I  99.5550 0.9964706
+    ## 16  pQBR103           I   pQBR5         I  99.5533 0.9964706
+    ## 17  pQBR103           I pQBR124         I  99.5550 0.9964706
+    ## 18  pQBR103           I   pQBR5         I  99.5533 0.9964706
+    ## 19  pQBR103           I   pQBR4         I  99.5408 0.9952941
+    ## 20  pQBR103           I   pQBR4         I  99.5408 0.9952941
+    ## 21  pQBR124           I pQBR103         I  99.5689 0.9952886
+    ## 22  pQBR124           I pQBR103         I  99.5689 0.9952886
+    ## 23  pQBR103           I  pQBR49         I  99.5565 0.9941176
+    ## 24  pQBR103           I  pQBR49         I  99.5565 0.9941176
+    ## 25  pQBR103           I  pQBR11         I  98.9089 0.9800000
+    ## 26  pQBR103           I  pQBR11         I  98.9089 0.9800000
+    ## 27  pQBR124           I  pQBR11         I  98.6480 0.9776207
+    ## 28    pQBR5           I  pQBR50         I  99.9894 0.9753483
+    ## 29  pQBR124           I  pQBR50         I  99.9921 0.9729093
+    ## 30   pQBR11           I pQBR103         I  98.7993 0.9721254
+    ## 31   pQBR11           I pQBR103         I  98.7993 0.9721254
+    ## 32  pQBR103           I  pQBR50         I  99.5325 0.9705882
+    ## 33  pQBR103           I  pQBR50         I  99.5325 0.9705882
+    ## 34   pQBR11           I pQBR124         I  98.6698 0.9651568
+    ## 35   pQBR11           I  pQBR49         I  98.6737 0.9639954
+    ## 36   pQBR11           I   pQBR4         I  98.6643 0.9639954
+    ## 37   pQBR11           I   pQBR5         I  98.6725 0.9628339
+    ## 38   pQBR11           I  pQBR50         I  98.6370 0.9372822
+    ## 39    pQBR5           I  pQBR43         I  99.9964 0.9303323
+    ## 40  pQBR124           I  pQBR43         I  99.9907 0.9257951
+    ## 41    pQBR4           I   pQBR4         I 100.0000 0.9257850
+    ## 42  pQBR103           I  pQBR43         I  99.5192 0.9200000
+    ## 43  pQBR103           I  pQBR43         I  99.5192 0.9200000
+    ## 44    pQBR5           I pQBR124         I  99.9978 0.9099678
+    ## 45    pQBR5           I pQBR103         I  99.5245 0.9078242
+    ## 46    pQBR5           I pQBR103         I  99.5245 0.9078242
+    ## 47   pQBR11           I  pQBR43         I  98.5543 0.8931475
+    ## 48    pQBR5           I  pQBR11         I  98.6367 0.8906752
+    ## 49    pQBR4           I   pQBR5         I  99.9833 0.8905804
+    ## 50    pQBR4           I  pQBR49         I  99.9839 0.8896289
+    ## 51   pQBR44           I  pQBR49         I  99.8283 0.8846154
+    ## 52   pQBR44           I pQBR124         I  99.8746 0.8811189
+    ## 53   pQBR44           I  pQBR50         I  99.8579 0.8811189
+    ## 54   pQBR44           I   pQBR5         I  99.8859 0.8776224
+    ## 55   pQBR44           I  pQBR43         I  99.8530 0.8776224
+    ## 56   pQBR44           I  pQBR11         I  98.7026 0.8741259
+    ## 57    pQBR4           I  pQBR50         I  99.9935 0.8696480
+    ## 58   pQBR44           I pQBR103         I  99.2941 0.8636364
+    ## 59   pQBR44           I pQBR103         I  99.2941 0.8636364
+    ## 60   pQBR49           I  pQBR49         I 100.0000 0.8621277
+    ## 61   pQBR43           I  pQBR50         I  99.9934 0.8589618
+    ## 62   pQBR43           I  pQBR43         I 100.0000 0.8579824
+    ## 63   pQBR43           I   pQBR5         I  99.9904 0.8550441
+    ## 64   pQBR43           I   pQBR4         I  99.9891 0.8550441
+    ## 65   pQBR43           I  pQBR49         I  99.9824 0.8550441
+    ## 66    pQBR4           I  pQBR43         I  99.9950 0.8296860
+    ## 67   pQBR50           I  pQBR50         I 100.0000 0.8214920
+    ## 68   pQBR50           I   pQBR4         I  99.9915 0.8108348
+    ## 69   pQBR50           I  pQBR49         I  99.9806 0.8099467
+    ## 70   pQBR50           I   pQBR5         I  99.9939 0.8090586
+    ## 71    pQBR4           I pQBR124         I  99.9876 0.8078021
+    ## 72    pQBR4           I pQBR103         I  99.5469 0.8058991
+    ## 73    pQBR4           I pQBR103         I  99.5469 0.8058991
+    ## 74   pQBR49           I   pQBR4         I  99.9888 0.7957447
+    ## 75   pQBR49           I   pQBR5         I  99.9861 0.7957447
+    ## 76    pQBR4           I  pQBR11         I  98.6053 0.7916270
+    ## 77   pQBR49           I  pQBR50         I  99.9845 0.7812766
+    ## 78   pQBR50           I  pQBR43         I  99.9959 0.7753108
+    ## 79   pQBR43           I pQBR124         I  99.9393 0.7717924
+    ## 80   pQBR43           I pQBR103         I  99.5070 0.7688541
+    ## 81   pQBR43           I pQBR103         I  99.5070 0.7688541
+    ## 82   pQBR43           I  pQBR11         I  98.5342 0.7522037
+    ## 83   pQBR49           I  pQBR43         I  99.9891 0.7421277
+    ## 84   pQBR50           I pQBR124         I  99.9903 0.7335702
+    ## 85   pQBR50           I pQBR103         I  99.5607 0.7317940
+    ## 86   pQBR50           I pQBR103         I  99.5607 0.7317940
+    ## 87   pQBR49           I pQBR124         I  99.9506 0.7234043
+    ## 88   pQBR49           I pQBR103         I  99.5227 0.7217021
+    ## 89   pQBR49           I pQBR103         I  99.5227 0.7217021
+    ## 90   pQBR50           I  pQBR11         I  98.6054 0.7193606
+    ## 91   pQBR49           I  pQBR11         I  98.6329 0.7072340
+    ## 92  pQBR124           I  pQBR44         I  99.7527 0.2968198
+    ## 93  pQBR103           I  pQBR44         I  99.1167 0.2952941
+    ## 94  pQBR103           I  pQBR44         I  99.1167 0.2952941
+    ## 95   pQBR11           I  pQBR44         I  98.6863 0.2903600
+    ## 96    pQBR4           I  pQBR44         I  99.7393 0.2740247
+    ## 97    pQBR5           I  pQBR44         I  99.7500 0.2711683
+    ## 98   pQBR43           I  pQBR44         I  99.5474 0.2497551
+    ## 99   pQBR50           I  pQBR44         I  99.7461 0.2246892
+    ## 100  pQBR49           I  pQBR44         I  99.4830 0.2178723
+
+Output a nicely formatted table.
+
+``` r
+cropped_summaries %>% 
+  select(Plasmid, assembly_details, length, GC, n_cds, coding_density, revised_group) %>%
+  arrange(revised_group, Plasmid) %>% write.table("./tabs/tab1.tsv", sep="\t",
+                                                  quote=FALSE, row.names=FALSE)
+```
+
+### Extract transposon sequences for the plasmids that were lost
+
+pQBR1, pQBR8 and pQBR58 did not give complete plasmid assemblies, and
+instead were indicative of plasmid loss (but transposon maintenance).
+
+``` r
+filter(summary, seq %in% c("UWC1pQBR1","UWC1pQBR8","UWC1pQBR58")) %>%
+  ggplot(aes(x=log10(length), y=log10(cov), colour=node)) + geom_point() + facet_wrap(~seq) +
+  geom_hline(yintercept=log10(10), linetype="dotted") + geom_vline(xintercept=log10(5000), linetype="dotted")
+```
+
+![](1_Assembly_files/figure-gfm/unnamed-chunk-46-1.png)<!-- -->
+
+Extract the transposon-encoding sequences from each of these. Blastn
+analysis indicated that the assembled sequence from pQBR1 exactly
+matched the higher-depth region from pQBR58. There’s a region at the end
+of the pQBR1 (~850 bp) sequence that matches two other regions from
+pQBR58. pQBR8 exactly matched that from pQBR1 and pQBR58 (from position
+15-8463 in pQBR8), without this additional region.
+
+Annotate with Bakta.
+
+``` bash
+for TRANSPOSON in pQBR1 pQBR8 pQBR58; do
+bakta --db /pub60/jamesh/db --prefix ${TRANSPOSON}tn \
+  --complete \
+  --locus ${TRANSPOSON}tn_contig \
+  --verbose \
+  --output ${TRANSPOSON}tn \
+  --threads 128 \
+  --locus-tag ${TRANSPOSON}tn \
+  --meta \
+  ./${TRANSPOSON}_transposon.fasta
+done
+```
+
+The transposon is 8,449 bp, with detactable transposase and a merRTPFADE
+*mer* operon. Blast on TnCentral shows high identity (\>97%) and
+coverage (\>98%) to transposon Tn512, a known *Pseudomonas* mercury
+resistance transposon.
 
 ------------------------------------------------------------------------
 
