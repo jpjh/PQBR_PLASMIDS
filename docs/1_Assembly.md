@@ -1,12 +1,12 @@
 Assembling complete pQBR plasmids using long and short reads
 ================
-revised 2025
 
 ## Overview of approach
 
 The plasmids were sequenced inside *P. putida* UWC1, a derivative of *P.
 putida* KT2440. Initial Illumina sequencing was performed by MicrobesNG
-and provided by Damian Rivett (Manchester Metropolitan University).
+and provided by [Damian Rivett (Manchester Metropolitan
+University)](https://www.mmu.ac.uk/staff/profile/dr-damian-rivett).
 These data were analysed in a preliminary attempt to generate closed
 plasmid sequences as follows:
 
@@ -351,9 +351,9 @@ able to detect conjugation in the lab, further supporting our inference
 that the plasmid has been lost.
 
 **pQBR8**: Illumina sequencing indicated low coverage for regions of
-interest, except for a chromsomal-matching contig encoding an integrated
-*mer* operon, suggesting that the plasmid was in the process of being
-lost when the sample was sequenced. We were not able to detect
+interest, except for a chromosomal-matching contig encoding an
+integrated *mer* operon, suggesting that the plasmid was in the process
+of being lost when the sample was sequenced. We were not able to detect
 conjugation in the lab, further supporting our inference that the
 plasmid is unstable/lost.
 
@@ -410,15 +410,15 @@ unmapped read assembly.
 
 This sequence didn’t fully resolve owing to a duplicate sequence in the
 chromosome. Two possibilities: both the chromosome and the plasmid
-contain the same duplicated element (likely a Tn6290 transposon) but
-remain separate replicons, or the plasmid has integrated into the
-chromosome, flanked by copies of the duplication.
+contain the same duplicated element (a Tn6290 transposon) but remain
+separate replicons, or the plasmid has integrated into the chromosome,
+flanked by copies of the duplication.
 
 Resolving this is complex, as the duplicated element is 42 kb long and
 there are insufficient reads overlapping the junction.
 
 A path containing the plasmid contigs and Tn6290 transposon was
-extracted for analysis.
+extracted for subsequent analysis.
 
 #### pQBR50 (Group I)
 
@@ -465,7 +465,7 @@ bandage plot shows matches to pQBR55 (Group III, blue) and pQBR103
 Performed long-read sequencing to resolve, which showed a distinct Group
 III replicon and no Group I replicon. Infer that two plasmids were
 present in the Illumina sequencing, of which only one remains in our
-sample.
+sample. Only the Group III sequence is retained in subsequent analysis.
 
 #### pQBR47 (Group I)
 
@@ -478,7 +478,7 @@ straightforward.
 The whole contig was used for downstream analysis, and the
 plasmid-specific portion was extracted (see below).
 
-#### pQBR106 (ND)
+#### pQBR106 (ND according to Lilley et al.)
 
 Similarly, this sequence didn’t fully resolve, in a similar manner to
 pQBR47, with a single contig including the chromosome.
@@ -578,7 +578,8 @@ position. Use the first coding base of the putative replicase.
 - For pQBR103-like (Group I) this is at 388361 in the reference sequence
   AM235768 (PQBR0445).
 - For pQBR55-like (Group III), use the first of the dnaB genes referred
-  to in Turner et al. (2002), which is PQBR55_0049.
+  to in Turner et al. (2002), which is PQBR55_0049 in the reference
+  sequence LN713927.
 
 For the others, do an analysis to check they are oriented correctly
 relative to one another.
@@ -885,38 +886,6 @@ grep "Length: " ./bakta_annotated/*/*.txt \
   | sed 's:./bakta_annotated/::g' | sed 's;/pQBR[0-9Rpd]*.txt:Length: ;\t;g' | sort -n -k2
 ```
 
-    ## pQBR106p 98802
-    ## pQBR132  139938
-    ## pQBR127  140415
-    ## pQBR55R  140432
-    ## pQBR28   141505
-    ## pQBR44d  143197
-    ## pQBR53   157450
-    ## pQBR55   157450
-    ## pQBR105  161330
-    ## pQBR26   228742
-    ## pQBR47p  293223
-    ## pQBR56   307330
-    ## pQBR57   307330
-    ## pQBR30   310323
-    ## pQBR57R  324348
-    ## pQBR102  334884
-    ## pQBR150  366385
-    ## pQBR51   366385
-    ## pQBR23   393597
-    ## pQBR24   393604
-    ## pQBR124  424568
-    ## pQBR103  425094
-    ## pQBR103R 425094
-    ## pQBR11d  430820
-    ## pQBR5    466604
-    ## pQBR43   510643
-    ## pQBR4    525650
-    ## pQBR50d  563271
-    ## pQBR49   587656
-    ## pQBR106  6320937
-    ## pQBR47   6515328
-
 Shows that pQBR106 and pQBR47 are abnormally large. The specific
 plasmid-encoding portions were identified using ACT with comparison to
 the KT2440 chromosome.
@@ -928,7 +897,8 @@ Note that the concatenation between pQBR44 contigs is at position
 
 The plasmid-specific portion, with a single integrated copy of Tn6290,
 goes from position `6501702..6515328` and `1..279596`, as identified by
-ACT.
+ACT. Extract this sequence, and append with a ‘p’ to indicate
+plasmid-specific portion.
 
 ``` bash
 seqret -sequence ./bakta_annotated/pQBR47/pQBR47.fna \
@@ -969,7 +939,8 @@ bakta --db /pub60/jamesh/db --prefix ${PLASMID} \
 The plasmid-specific portion goes from position `1..14487` (running into
 a copy of Tn6290) and `6236623` (running from a copy of Tn6290) to the
 end of the contig at `6320937`. The remaining plasmid-specific part of
-pQBR106 is much smaller than it is for pQBR47.
+pQBR106 is much smaller than it is for pQBR47. Extract this sequence,
+and append with a ‘p’ to indicate plasmid-specific portion.
 
 ``` bash
 seqret -sequence ./bakta_annotated/pQBR106/pQBR106.fna \
@@ -1055,19 +1026,22 @@ ggplot(data=pqbra_dist_df) +
 
 ![](1_Assembly_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
 
-Cluster according to similarities.
+Cluster according to similarities. NB: the order was rearranged to place
+Group I and Group IV adjacent.
 
 ``` r
 pqbra_dendro <- as.dendrogram(hclust(pqbra_distmat))
 
 plasmida_reorder <- order.dendrogram(pqbra_dendro)
 
+levs <- plasmida_order[plasmida_reorder][c(1:4,18:31,5:17)]
+
 (annotated_heatmap <- pqbra_dist_df %>%
-  mutate(a = factor(a, levels=plasmida_order[plasmida_reorder]), 
-         b = factor(b, levels=plasmida_order[plasmida_reorder])) %>%
+  mutate(a = factor(a, levels=levs), 
+         b = factor(b, levels=levs)) %>%
   ggplot() +
   geom_tile(aes(x=a, y=b, fill=mash_distance)) +
-  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.25,1), name = "mash distance") +
+  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.15,1), name = "mash distance") +
   theme(axis.text.x = element_text(angle=45, hjust=1), axis.title.x = element_blank(), axis.title.y = element_blank(), 
         legend.position="right"))
 ```
@@ -1075,16 +1049,24 @@ plasmida_reorder <- order.dendrogram(pqbra_dendro)
 ![](1_Assembly_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
 
 Remove pQBR47 and pQBR106 from the heatmap, as these erroneously include
-the whole chromosome as well.
+the whole chromosome as well. Adjust the scales to exaggerate the
+differences between the sequences, noting that mash distances are
+inaccurate beyond 0.25.
 
 ``` r
 (annotated_heatmap_edit <- pqbra_dist_df %>%
    filter(!(a %in% c("pQBR47", "pQBR106")) & !(b %in% c("pQBR47", "pQBR106"))) %>%
-   mutate(a = factor(a, levels=plasmida_order[plasmida_reorder]), 
-          b = factor(b, levels=plasmida_order[plasmida_reorder])) %>%
+   mutate(a = factor(a, levels=levs), 
+          b = factor(b, levels=levs)) %>%
    ggplot() +
    geom_tile(aes(x=a, y=b, fill=mash_distance)) +
-   scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.25,1), name = "mash distance") +
+   scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), 
+                        values=c(0,0.2,1), 
+                        breaks=c(0,0.1,0.2),
+                        labels=c(0, 0.1, 0.2),
+                        limits=c(0,0.25), 
+                        oob = scales::squish,
+                        name = "mash distance") +
    theme(axis.text.x = element_text(angle=45, hjust=1), axis.title.x = element_blank(), axis.title.y = element_blank(), 
          legend.position="right"))
 ```
@@ -1092,7 +1074,16 @@ the whole chromosome as well.
 ![](1_Assembly_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
 
 ``` r
-png(file = "./figs/annotated_heatmap_edit.png", height=8, width=11, units="in", res=300)
+png(file = "./figs/annotated_heatmap_edit.png", height=6, width=8, units="in", res=300)
+annotated_heatmap_edit
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+``` r
+svglite::svglite(file = "./figs/annotated_heatmap_edit.svg", height=6, width=8)
 annotated_heatmap_edit
 dev.off()
 ```
@@ -1269,7 +1260,7 @@ Genome length and GC content of PseudomonasDB (DB version 22.1
 ``` bash
 echo -e "file\tlength\tgc_content" > fna_complete_summary.tsv
 
-INPUT_DIR="/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete"
+INPUT_DIR="/pseudomonasdb/fna_complete"
 
 for file in "$INPUT_DIR"/*.fna; do
     if [[ -f "$file" ]]; then
@@ -1303,7 +1294,7 @@ Get the summary from this file. Add a filter to remove unlikely
 sequences.
 
 ``` r
-pseudomonasdb_complete <- read.table("/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete_summary.tsv",
+pseudomonasdb_complete <- read.table("./working/fna_complete_summary.tsv",
                                      header=TRUE) %>% filter(length > 2e6)
 
 (psdb_complete_summ <- pseudomonasdb_complete %>% 
@@ -1340,13 +1331,13 @@ pseudomonasdb_complete <- read.table("/Volumes/bottlenose/DATABASES/pseudomonasd
     ## [1] 0.09034386
 
 Calculate whether the GC content of each plasmid was significantly lower
-than the chromosome.
+than the whole assembly.
 
 ``` r
 ggplot(data = pseudomonasdb_complete, aes(x=gc_content)) + geom_histogram()
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+    ## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 
 ![](1_Assembly_files/figure-gfm/unnamed-chunk-43-1.png)<!-- -->
 
@@ -1390,7 +1381,7 @@ cropped_summaries %>%
 | IV | IV | pQBR57 | assembled | 307330 | 53.8 | 84.6 | 395 | 0 |
 | ND | ND | pQBR105 | assembled | 161330 | 56.4 | 88.3 | 172 | 0 |
 
-All plasmids have a GC content significantly lower than the chromosome.
+All plasmids have a GC content significantly lower than the assemblies.
 
 Examine ANI data for the different Groups.
 

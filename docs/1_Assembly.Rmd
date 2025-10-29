@@ -1,6 +1,5 @@
 ---
 title: "Assembling complete pQBR plasmids using long and short reads"
-date: "revised 2025"
 output: rmarkdown::github_document
 editor_options: 
   chunk_output_type: console
@@ -26,7 +25,7 @@ theme_set(theme_github())
 
 ## Overview of approach
 
-The plasmids were sequenced inside *P. putida* UWC1, a derivative of *P. putida* KT2440. Initial Illumina sequencing was performed by MicrobesNG and provided by Damian Rivett (Manchester Metropolitan University). These data were analysed in a preliminary attempt to generate closed plasmid sequences as follows:
+The plasmids were sequenced inside *P. putida* UWC1, a derivative of *P. putida* KT2440. Initial Illumina sequencing was performed by MicrobesNG and provided by [Damian Rivett (Manchester Metropolitan University)](https://www.mmu.ac.uk/staff/profile/dr-damian-rivett). These data were analysed in a preliminary attempt to generate closed plasmid sequences as follows:
 
 1. Map all reads against the reference Pseudomonas chromosomes using `bwa-mem` 0.7.17-r1188. 
 2. Collect all reads that did not map to the chromosome and assemble *de novo* using SPAdes v3.15.5 with k-mer length of 21, 33, 55, 77. 
@@ -257,7 +256,7 @@ However, there are also some other observations, supported by manual examination
 
 **pQBR1**:  Illumina sequencing indicated no plasmid present. Instead, and in contrast to the ~70-kb plasmid referred to by [Lilley et al. (1996)](https://doi.org/10.1111/j.1574-6941.1996.tb00320.x), an integrated analysis of the assembly of all and unmapped reads shows a 9.9 kb sequence that has integrated into the chromosome. This suggests that the stock strain has lost the plasmid but kept the transposon, as described in various lab studies with other pQBR plasmids. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid has been lost.
 
-**pQBR8**: Illumina sequencing indicated low coverage for regions of interest, except for a chromsomal-matching contig encoding an integrated *mer* operon, suggesting that the plasmid was in the process of being lost when the sample was sequenced. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid is unstable/lost.  
+**pQBR8**: Illumina sequencing indicated low coverage for regions of interest, except for a chromosomal-matching contig encoding an integrated *mer* operon, suggesting that the plasmid was in the process of being lost when the sample was sequenced. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid is unstable/lost.  
 
 **pQBR58**: Illumina sequencing indicated a ~75 kb fragment, but this was at lower coverage (~0.3x) compared with the chromosome. The *mer* containing region (~8.5 kb) was connected to the chromosome and at ~1x, suggesting that the plasmid was in the process of being lost when the sample was sequenced. We were not able to detect conjugation in the lab, further supporting our inference that the plasmid is unstable/lost. 
 
@@ -282,11 +281,11 @@ pQBR11 produced Group I-like contigs when the short reads were analysed. However
 
 #### pQBR43 (Group I)
 
-This sequence didn't fully resolve owing to a duplicate sequence in the chromosome. Two possibilities: both the chromosome and the plasmid contain the same duplicated element (likely a Tn6290 transposon) but remain separate replicons, or the plasmid has integrated into the chromosome, flanked by copies of the duplication. 
+This sequence didn't fully resolve owing to a duplicate sequence in the chromosome. Two possibilities: both the chromosome and the plasmid contain the same duplicated element (a Tn6290 transposon) but remain separate replicons, or the plasmid has integrated into the chromosome, flanked by copies of the duplication. 
 
-Resolving this is complex, as the duplicated element is 42 kb long and there are insufficient reads overlapping the junction. 
+Resolving this is complex, as the duplicated element is 42 kb long and there are insufficient reads overlapping the junction.
 
-A path containing the plasmid contigs and Tn6290 transposon was extracted for analysis.
+A path containing the plasmid contigs and Tn6290 transposon was extracted for subsequent analysis.
 
 #### pQBR50 (Group I)
 
@@ -315,7 +314,7 @@ Analysis of short-read sequencing suggested that this strain harboured replicons
 
 ![pQBR127_bandage.png](../figs/pQBR127_bandage.png)
 
-Performed long-read sequencing to resolve, which showed a distinct Group III replicon and no Group I replicon. Infer that two plasmids were present in the Illumina sequencing, of which only one remains in our sample. 
+Performed long-read sequencing to resolve, which showed a distinct Group III replicon and no Group I replicon. Infer that two plasmids were present in the Illumina sequencing, of which only one remains in our sample. Only the Group III sequence is retained in subsequent analysis. 
 
 #### pQBR47 (Group I)
 
@@ -323,12 +322,11 @@ This sequence didn't fully resolve owing to a duplicate Tn6290 sequence, and the
 
 The whole contig was used for downstream analysis, and the plasmid-specific portion was extracted (see below).
 
-#### pQBR106 (ND)
+#### pQBR106 (ND according to Lilley et al.)
 
 Similarly, this sequence didn't fully resolve, in a similar manner to pQBR47, with a single contig including the chromosome. 
 
 The whole contig was used for downstream analysis, and the plasmid-specific portion was extracted (see below).
-
 
 #### pQBR44 (Group I)
 
@@ -412,7 +410,7 @@ Next, orient the sequences so they start at a similar/comparable position. Use t
 
 - For pQBR57-like (Group IV), use PQBR57_0001 in the reference sequence LN713926.
 - For pQBR103-like (Group I) this is at 388361 in the reference sequence AM235768 (PQBR0445).
-- For pQBR55-like (Group III), use the first of the dnaB genes referred to in Turner et al. (2002), which is PQBR55_0049. 
+- For pQBR55-like (Group III), use the first of the dnaB genes referred to in Turner et al. (2002), which is PQBR55_0049 in the reference sequence LN713927. 
 
 For the others, do an analysis to check they are oriented correctly relative to one another.
 
@@ -701,7 +699,7 @@ These annotations (bakta_annotated) used for subsequent analyses.
 
 Make a table of information for each sequence:
 
-```{bash}
+```{bash, eval=FALSE}
 grep "Length: " ./bakta_annotated/*/*.txt \
   | sed 's:./bakta_annotated/::g' | sed 's;/pQBR[0-9Rpd]*.txt:Length: ;\t;g' | sort -n -k2
 ```
@@ -712,7 +710,7 @@ Note that the concatenation between pQBR44 contigs is at position 92628-92629 in
 
 #### pQBR47 plasmid-specific portion
 
-The plasmid-specific portion, with a single integrated copy of Tn6290, goes from position `6501702..6515328` and `1..279596`, as identified by ACT. 
+The plasmid-specific portion, with a single integrated copy of Tn6290, goes from position `6501702..6515328` and `1..279596`, as identified by ACT. Extract this sequence, and append with a 'p' to indicate plasmid-specific portion.
 
 ```{bash, eval=FALSE}
 seqret -sequence ./bakta_annotated/pQBR47/pQBR47.fna \
@@ -751,7 +749,7 @@ bakta --db /pub60/jamesh/db --prefix ${PLASMID} \
 
 #### pQBR106 plasmid-specific portion
 
-The plasmid-specific portion goes from position `1..14487` (running into a copy of Tn6290) and `6236623` (running from a copy of Tn6290) to the end of the contig at `6320937`. The remaining plasmid-specific part of pQBR106 is much smaller than it is for pQBR47.
+The plasmid-specific portion goes from position `1..14487` (running into a copy of Tn6290) and `6236623` (running from a copy of Tn6290) to the end of the contig at `6320937`. The remaining plasmid-specific part of pQBR106 is much smaller than it is for pQBR47. Extract this sequence, and append with a 'p' to indicate plasmid-specific portion.
 
 ```{bash, eval=FALSE}
 seqret -sequence ./bakta_annotated/pQBR106/pQBR106.fna \
@@ -830,37 +828,49 @@ ggplot(data=pqbra_dist_df) +
   scale_fill_gradient(low = "dodgerblue", high = "black")
 ```
 
-Cluster according to similarities.
+Cluster according to similarities. NB: the order was rearranged to place Group I and Group IV adjacent.
 
 ```{r}
 pqbra_dendro <- as.dendrogram(hclust(pqbra_distmat))
 
 plasmida_reorder <- order.dendrogram(pqbra_dendro)
 
+levs <- plasmida_order[plasmida_reorder][c(1:4,18:31,5:17)]
+
 (annotated_heatmap <- pqbra_dist_df %>%
-  mutate(a = factor(a, levels=plasmida_order[plasmida_reorder]), 
-         b = factor(b, levels=plasmida_order[plasmida_reorder])) %>%
+  mutate(a = factor(a, levels=levs), 
+         b = factor(b, levels=levs)) %>%
   ggplot() +
   geom_tile(aes(x=a, y=b, fill=mash_distance)) +
-  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.25,1), name = "mash distance") +
+  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.15,1), name = "mash distance") +
   theme(axis.text.x = element_text(angle=45, hjust=1), axis.title.x = element_blank(), axis.title.y = element_blank(), 
         legend.position="right"))
 ```
 
-Remove pQBR47 and pQBR106 from the heatmap, as these erroneously include the whole chromosome as well.
+Remove pQBR47 and pQBR106 from the heatmap, as these erroneously include the whole chromosome as well. Adjust the scales to exaggerate the differences between the sequences, noting that mash distances are inaccurate beyond 0.25.
 
 ```{r}
 (annotated_heatmap_edit <- pqbra_dist_df %>%
    filter(!(a %in% c("pQBR47", "pQBR106")) & !(b %in% c("pQBR47", "pQBR106"))) %>%
-   mutate(a = factor(a, levels=plasmida_order[plasmida_reorder]), 
-          b = factor(b, levels=plasmida_order[plasmida_reorder])) %>%
+   mutate(a = factor(a, levels=levs), 
+          b = factor(b, levels=levs)) %>%
    ggplot() +
    geom_tile(aes(x=a, y=b, fill=mash_distance)) +
-   scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), values=c(0,0.25,1), name = "mash distance") +
+   scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), 
+                        values=c(0,0.2,1), 
+                        breaks=c(0,0.1,0.2),
+                        labels=c(0, 0.1, 0.2),
+                        limits=c(0,0.25), 
+                        oob = scales::squish,
+                        name = "mash distance") +
    theme(axis.text.x = element_text(angle=45, hjust=1), axis.title.x = element_blank(), axis.title.y = element_blank(), 
          legend.position="right"))
 
-png(file = "./figs/annotated_heatmap_edit.png", height=8, width=11, units="in", res=300)
+png(file = "./figs/annotated_heatmap_edit.png", height=6, width=8, units="in", res=300)
+annotated_heatmap_edit
+dev.off()
+
+svglite::svglite(file = "./figs/annotated_heatmap_edit.svg", height=6, width=8)
 annotated_heatmap_edit
 dev.off()
 ```
@@ -952,7 +962,7 @@ Genome length and GC content of PseudomonasDB (DB version 22.1 (2023-10-06))
 ```{bash, eval=FALSE}
 echo -e "file\tlength\tgc_content" > fna_complete_summary.tsv
 
-INPUT_DIR="/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete"
+INPUT_DIR="/pseudomonasdb/fna_complete"
 
 for file in "$INPUT_DIR"/*.fna; do
     if [[ -f "$file" ]]; then
@@ -985,7 +995,7 @@ done
 Get the summary from this file. Add a filter to remove unlikely sequences. 
 
 ```{r}
-pseudomonasdb_complete <- read.table("/Volumes/bottlenose/DATABASES/pseudomonasdb/fna_complete_summary.tsv",
+pseudomonasdb_complete <- read.table("./working/fna_complete_summary.tsv",
                                      header=TRUE) %>% filter(length > 2e6)
 
 (psdb_complete_summ <- pseudomonasdb_complete %>% 
@@ -1009,7 +1019,7 @@ pseudomonasdb_complete <- read.table("/Volumes/bottlenose/DATABASES/pseudomonasd
   psdb_complete_summ$median_length) # 0.09034386
 ```
 
-Calculate whether the GC content of each plasmid was significantly lower than the chromosome.
+Calculate whether the GC content of each plasmid was significantly lower than the whole assembly.
 
 ```{r}
 ggplot(data = pseudomonasdb_complete, aes(x=gc_content)) + geom_histogram()
@@ -1026,7 +1036,7 @@ cropped_summaries %>%
   mutate(wilcox_gc_vs_chromosome = testGCvsChr(GC)) %>% kable()
 ```
 
-All plasmids have a GC content significantly lower than the chromosome. 
+All plasmids have a GC content significantly lower than the assemblies.
 
 Examine ANI data for the different Groups.
 
@@ -1059,7 +1069,6 @@ ani_annot <- ani %>%
                                     maxfrags = max(frag_rat))) %>% kable()
 
 (between_groups <- ani_annot %>% filter(ref_group != query_group))
-
 
 ani_annot %>% filter(ref_group == "I" & query_group == "I") %>% arrange(-frag_rat)
 ```

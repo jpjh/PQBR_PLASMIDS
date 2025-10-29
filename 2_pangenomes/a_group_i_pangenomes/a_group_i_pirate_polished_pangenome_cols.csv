@@ -1,0 +1,662 @@
+Name,Product,Colour
+g0018,Addiction module protein,#2A90FD
+g0024,TNase-like domain-containing protein,#000000
+g0030,Transcriptional regulator,#276AB8
+g0583,3HCDH domain-containing protein,#4290F7
+g0597,DUF222 domain-containing protein,#3590FB
+g0568,Regulatory protein,#000000
+g0540,Aminoacyl-tRNA hydrolase,#2A90FD
+g0226,TraG-N domain-containing protein,#3890FA
+g0232,Radical SAM protein,#000000
+g0554,DUF1232 domain-containing protein,#000000
+g0391,DUF998 domain-containing protein,#000000
+g0352,EAL domain-containing protein,#000000
+g0346,DUF89 domain-containing protein,#000000
+g0420,Putative transmembrane protein,#000000
+g0193,Znf/thioredoxin-put domain-containing protein,#D4A23F
+g0187,WH2 domain-containing protein,#4F91F2
+g0178,Peroxin-19,#3890FA
+g0150,Tail assembly chaperone,#5191F1
+g0636,hypothetical protein,#000000
+g0144,MOSC domain-containing protein,#A096B2
+g0623,HNH endonuclease,#000000
+g0145,KfrA-N domain-containing protein,#9094C5
+g0151,Tellurium resistance protein,#6F92E1
+g0179,Putative response regulator domain-only transcriptional regulator,#C59D71
+g0186,Secreted protein,#C79E6A
+g0192,DUF4367 domain-containing protein,#9F96B3
+g0347,TonB family protein,#000000
+g0435,Lipoprotein,#000000
+g0409,CxC5 domain-containing protein,#000000
+g0384,Uncharacterized protein PA14_35840,#000000
+g0390,Conjugal transfer protein,#000000
+g0233,PAPS-reduct domain-containing protein,#3D90F8
+g0555,AbiEi antitoxin of type IV toxin-antitoxin system,#000000
+g0541,DUF1330 domain-containing protein,#2490FE
+g0227,Methyl-accepting transducer domain-containing protein,#151D2C
+g0569,Putative exported protein,#000000
+g0582,Secreted protein,#000000
+g0031,RNA polymerase sigma factor RpoH,#182235
+g0025,PRTRC system protein C,#2579D5
+g0019,PRTRC system protein B,#000000
+g0033,mercury resistance system periplasmic binding protein MerP,#000000
+g0027,organomercurial transporter MerC,#000000
+g0594,Zinc-finger,#2F90FC
+g0580,Conjugal transfer protein,#000000
+g0557,Inner membrane protein,#000000
+g0225,VWFA domain-containing protein,#3590FA
+g0543,ClpS domain-containing protein,#000000
+g0386,Abasic site processing protein,#000000
+g0392,ribonuclease HII,#000000
+g0379,AAA-5 domain-containing protein,#276CBD
+g0423,PDDEXK-5 domain-containing protein,#000000
+g0345,Lipoprotein,#000000
+g0184,Transcriptional regulator,#9F96B4
+g0190,Crp/Fnr family transcriptional regulator,#7F93D5
+g0609,Tail fiber protein,#7B92D8
+g0147,N6-Mtase domain-containing protein,#5E91EB
+g0621,MBL fold metallo-hydrolase,#000000
+g0635,Type III secretion effector protein,#000000
+g0153,Dynein-AAA-lid domain-containing protein,#A396AF
+g0634,hypothetical protein,#000000
+g0152,Chemotaxis protein,#5E91EB
+g0146,Integral membrane protein,#4C91F3
+g0608,Phage protein,#000000
+g0191,DUF1989 domain-containing protein,#AA97A4
+g0185,Nitro-FeMo-Co domain-containing protein,#4991F4
+g0350,Crp/Fnr family transcriptional regulator,#000000
+g0436,DUF3768 domain-containing protein,#244778
+g0422,Putative transmembrane pilus-related protein,#2C90FD
+g0344,N-acetyltransferase,#275B9E
+g0378,SMI1/KNR4 family protein,#000000
+g0393,Aminopyrimidine aminohydrolase,#2760A7
+g0224,LPD1 domain-containing protein,#121620
+g0230,Restriction endonuclease subunit S,#121722
+g0218,Autotransporter domain-containing protein,#1A273E
+g0595,DUF3077 domain-containing protein,#2290FE
+g0026,DNA-binding protein,#000000
+g0032,HTH cro/C1-type domain-containing protein,#23426F
+g0036,DUF2185 domain-containing protein,#000000
+g0022,Response regulator,#22406C
+g0591,DUF3480 domain-containing protein,#000000
+g0234,Conjugal transfer protein TraG,#192439
+g0546,DUF4253 domain-containing protein,#000000
+g0220,Putative UvrD/Rep family helicase,#161D2D
+g0208,hypothetical protein,#ECB322
+g0383,DNA-binding protein,#2090FF
+g0397,DUF922 domain-containing protein,#1F3355
+g0426,NADAR domain-containing protein,#000000
+g0432,Putative transmembrane protein,#000000
+g0354,Ig-like domain-containing protein,#2090FF
+g0181,Barstar domain-containing protein,#5091F1
+g0195,Inner membrane protein,#4d4d4d
+g0624,Transposase,#000000
+g0142,DUF1376 domain-containing protein,#7292DF
+g0156,DUF1330 domain-containing protein,#7492DE
+g0630,hypothetical protein,#000000
+g0618,Ada-Zn-binding domain-containing protein,#2290FE
+g0619,SH3 domain-containing protein,#000000
+g0631,Phage protein,#000000
+g0625,Talin-middle domain-containing protein,#2490FE
+g0143,Prepilin leader peptidase/N-methyltransferase,#A697AA
+g0194,tRNA-edit domain-containing protein,#E5AD21
+g0139_2,Putative pilin-related protein,#1C2B45
+g0180,Tail protein,#6191E9
+g0369,CBAH domain-containing protein,#3090FC
+g0433,DUF1281 domain-containing protein,#000000
+g0355,CPBP family intramembrane metalloprotease,#275EA3
+g0341,Pentapeptide repeat-containing protein,#3F90F8
+g0427,ABC2-membrane domain-containing protein,#000000
+g0382,Fe2OG dioxygenase domain-containing protein,#000000
+g0209,hypothetical protein,#4F91F2
+g0547,DUF4379 domain-containing protein,#000000
+g0221,Putative exodeoxyribonuclease,#11151E
+g0235,AAA domain-containing protein,#19253B
+g0553,IS3 family ISPpu33 transposase ORF A,#000000
+g0584,Peroxisomal membrane protein PEX16,#2A90FD
+g0023,Protein-tyrosine-phosphatase,#000000
+g0037,Ferredoxin,#000000
+g0021,Transcriptional regulator,#000000
+g0035,Transposase,#000000
+g0009,3-phosphoshikimate 1-carboxyvinyltransferase,#2768B6
+g0586,IS3 family transposase ORF A,#000000
+g0223,VWFA domain-containing protein,#182338
+g0545,hypothetical protein,#000000
+g0551,Secreted protein,#2672C7
+g0579,DNA-binding protein HU,#000000
+g0380,Putative cyclic amp receptor-family protein,#2690FE
+g0357,DNA-binding protein,#000000
+g0431,DUF3800 domain-containing protein,#9E95B5
+g0425,Transposase,#1F90FF
+g0419,N-acetyltransferase domain-containing protein,#000000
+g0196,DUF5611 domain-containing protein,#5791EF
+g0182,L-rhamnose mutarotase,#7692DC
+g0633,Fumarase D,#5791EE
+g0141,DUF808 domain-containing protein,#C79E6B
+g0169,YbjN domain-containing protein,#8593D0
+g0168,Putative DNAJ family protein,#6191E9
+g0140,MIB/HERC2 domain-containing protein,#4490F6
+g0626,DNA primase,#3690FA
+g0632,Conserved membrane protein,#000000
+g0154,Morphogenetic protein,#A797A8
+g0139_1,Prepilin-type N-terminal cleavage/methylation domain-containing protein,#223E68
+g0183,DUF5615 domain-containing protein,#4A91F4
+g0197,Intracellular multiplication protein IcmV,#F3B823
+g0418,DUF4265 domain-containing protein,#000000
+g0424,Phage tail protein,#000000
+g0342,Transcription-repair coupling factor,#000000
+g0356,DUF3846 domain-containing protein,#1F3354
+g0430,hypothetical protein,#000000
+g0381,DUF2170 domain-containing protein,#000000
+g0395,Putative transmembrane protein,#265898
+g0578,hypothetical protein,#000000
+g0550,DUF4065 domain-containing protein,#2090FF
+g0236,TPR-REGION domain-containing protein,#000000
+g0544,Pept-C1 domain-containing protein,#000000
+g0593,Integral membrane protein,#000000
+g0587,Carbam-trans-N domain-containing protein,#000000
+g0008,Replication protein,#141B28
+g0034,Hypothetical exported protein,#000000
+g0020,Alpha-carbonic anhydrase domain-containing protein,#000000
+g0084,Putative cold shock domain transmembrane protein,#4991F4
+g0090,Transmembrane protein,#276CBD
+g0047,RNase III domain-containing protein,#2990FD
+g0053,DUF2958 domain-containing protein,#2C90FD
+g0286,Ni(II)/Co(II) efflux transporter permease subunit MrdH,#000000
+g0292,Radical SAM protein,#265898
+g0279,ATP-binding protein,#000000
+g0537,DUF3301 domain-containing protein,#3190FC
+g0494,Putative conjugative transfer protein,#265898
+g0480,GCR1-C domain-containing protein,#2390FE
+g0319,LAM-G-DOMAIN domain-containing protein,#2767B4
+g0331,DUF3800 domain-containing protein,#1B2840
+g0325,putative chromosome-partitioning protein ParB,#213A62
+g0133,PAPS-reduct domain-containing protein,#D0A151
+g0127,Tyr recombinase domain-containing protein,#9094C5
+g0641,DUF3265 domain-containing protein,#000000
+g0126,Peptigoglycan-binding protein LysM,#5391F0
+g0640,hypothetical protein,#2E90FC
+g0654,hypothetical protein,#000000
+g0132,Putative phage-related integrase/recombinase,#7192E0
+g0442,ERF1-2 domain-containing protein,#6191E9
+g0324,Thioredoxin-like-fold domain-containing protein,#1B2A43
+g0318,Transmembrane protein,#4691F6
+g0481,RNAse-A-bac domain-containing protein,#2383E8
+g0536,YHS domain-containing protein,#4390F7
+g0250,Response regulator receiver modulated diguanylate cyclase,#141B28
+g0244,RNA-pol-sigma70 domain-containing protein,#000000
+g0522,ParA family protein,#000000
+g0278,Transmembrane protein,#000000
+g0287,Radical SAM core domain-containing protein,#2671C5
+g0052,Insecticidal toxin protein,#3790FA
+g0046,Lipoprotein,#1C2B46
+g0091,Restriction endonuclease subunit S,#3690FA
+g0085,DNA-LIGASE-A3 domain-containing protein,#6291E9
+g0093,Rieske domain-containing protein,#2671C6
+g0087,UPF0033 domain-containing protein,#5791EE
+g0078,Lipoprotein,#2290FE
+g0050,DUF882 domain-containing protein,#276DBE
+g0044,Putative helicase,#2B90FD
+g0291,ALP-N domain-containing protein,#000000
+g0285,Radical SAM core domain-containing protein,#000000
+g0508,MT domain-containing protein,#3290FB
+g0534,DUF1281 domain-containing protein,#000000
+g0520,DUF3077 domain-containing protein,#000000
+g0483,Transcriptional regulator,#2670C5
+g0497,Roadblock/LC7 domain-containing protein,#4691F5
+g0326,AAA-31 domain-containing protein,#213B63
+g0440,Restriction endonuclease,#24487A
+g0454,EamA domain-containing protein,#000000
+g0332,Alpha/beta hydrolase,#1C2D49
+g0118,DNA repair protein,#A196B1
+g0642,Transposase,#2A90FD
+g0130,SAVED domain-containing protein,#6F92E1
+g0131,Nup96 domain-containing protein,#DCA620
+g0643,ANTAR domain-containing protein,#000000
+g0125,Putative DNA-binding protein,#DDA720
+g0333,Peptidase-M48 domain-containing protein,#254E85
+g0327,S4 RNA-binding domain-containing protein,#26528D
+g0441,CheW-like domain-containing protein,#000000
+g0469,DUF4359 domain-containing protein,#000000
+g0496,Diacylglycerol kinase,#000000
+g0482,Putative transmembrane protein,#265490
+g0521,Lipoprotein,#000000
+g0247,Conjugal transfer protein TraB,#265999
+g0253,HD domain-containing protein,#1A273E
+g0535,Bacitracin resistance protein,#000000
+g0509,RNA-dependent RNA polymerase,#2390FE
+g0284,GSP-synth domain-containing protein,#1E304F
+g0290,DNA polymerase III subunit beta,#000000
+g0045,OmpA-like domain-containing protein,#1B2841
+g0051,DUF1611 domain-containing protein,#2F90FC
+g0079,YbjN domain-containing protein,#3B90F9
+g0086,PIN domain-containing protein,#1E90FF
+g0092,YebG family protein,#6391E8
+g0096,Peroxin-19,#3790FA
+g0082,HD-domain domain-containing protein,#2F90FC
+g0055,HTH araC/xylS-type domain-containing protein,#257CDB
+g0041,DUF2574 domain-containing protein,#000000
+g0069,RNHCP domain-containing protein,#24487B
+g0294,T2SP-E domain-containing protein,#000000
+g0280,AAA-5 domain-containing protein,#000000
+g0531,Arginine--tRNA ligase,#000000
+g0257,Conjugal transfer protein TraH,#151D2C
+g0243,Radical SAM protein,#213A61
+g0519,DUF2793 domain-containing protein,#000000
+g0486,30S ribosomal protein S10,#000000
+g0492,Transglut-core3 domain-containing protein,#2890FD
+g0445,HTH-17 domain-containing protein,#24497C
+g0323,DUF1471 domain-containing protein,#1A263C
+g0337,DUF58 domain-containing protein,#1F3354
+g0451,Lipoprotein,#2763AC
+g0479,Transmembrane protein,#000000
+g0121,Lactate permease,#B89A8D
+g0647,hypothetical protein,#000000
+g0653,hypothetical protein,#000000
+g0135,Sel1 repeat family protein,#4490F6
+g0109,OrfB-Zn-ribbon domain-containing protein,#4090F7
+g0108,Single-stranded DNA-binding protein,#2E90FC
+g0134,DUF3800 domain-containing protein,#9394C2
+g0120,Putative transmembrane thiol:disulfide interchange protein DsbD,#6A92E4
+g0646,AbrB/MazE/SpoVT family DNA-binding domain-containing protein,#3B90F9
+g0478,Putative transmembrane protein,#000000
+g0336,Sel1 repeat family protein,#000000
+g0450,Type II secretion system protein GspD,#244A7D
+g0444,Lipoprotein,#6091EA
+g0322,ANK-REP-REGION domain-containing protein,#1D2E4C
+g0493,LPD25 domain-containing protein,#000000
+g0487,Interferon alpha inducible protein 27 like 1,#000000
+g0518,Peptidyl-prolyl cis-trans isomerase,#000000
+g0524,Conjugal transfer protein,#2764AF
+g0256,Exodeoxyribonuclease I,#000000
+g0281,T2SSF domain-containing protein,#255089
+g0068,VRR-NUC domain-containing protein,#276CBC
+g0040,organomercurial lyase MerB,#000000
+g0054,Histidine kinase,#121621
+g0083,Replication protein,#3890FA
+g0097,Reelin domain-containing protein,#3990F9
+g0081,ParB domain-containing protein,#4891F5
+g0095,Antitoxin HicB,#5091F2
+g0042,Roadblock/LC7 domain-containing protein,#000000
+g0056,Exported protein,#2890FD
+g0283,DNA helicase,#20375B
+g0240,Phosphoglycerol transferase MdoB/OpgB%2C AlkP superfamily,#000000
+g0268,Radical SAM protein,#000000
+g0491,SHSP domain-containing protein,#265795
+g0485,Restriction endonuclease,#5691EF
+g0452,Pilus assembly protein,#000000
+g0334,DUF551 domain-containing protein,#4590F6
+g0320,IS3 family ISPpu33 transposase ORF B,#000000
+g0446,DUF4303 domain-containing protein,#2990FD
+g0308,Integrase catalytic domain-containing protein,#182236
+g0136,Putative transmembrane protein,#DCA720
+g0650,DNA-binding protein,#4490F6
+g0644,SAM-dependent methyltransferase,#000000
+g0122,DUF4942 domain-containing protein,#6B92E4
+g0645,hypothetical protein,#000000
+g0123,DNA helicase,#C39C74
+g0137,Transcriptional regulator,#A296AF
+g0651,Programmed cell death antitoxin YdcD,#000000
+g0309,Tetratricopeptide repeat protein,#000000
+g0321,DUF659 domain-containing protein,#19253B
+g0447,4a-hydroxytetrahydrobiopterin dehydratase,#2676CE
+g0453,ParB domain-containing protein,#000000
+g0335,Pirin-C domain-containing protein,#254B81
+g0484,DksA C4-type domain-containing protein,#000000
+g0490,Type III effector protein,#2890FD
+g0269,AH domain-containing protein,#3E90F8
+g0255,TrwB-AAD-bind domain-containing protein,#141A28
+g0533,Reductase,#000000
+g0241,Radical SAM protein,#192439
+g0296,hypothetical protein,#000000
+g0282,Transcriptional regulator,#000000
+g0057,LPD18 domain-containing protein,#3C90F9
+g0043,mercuric ion transporter MerT,#000000
+g0094,DUF5598 domain-containing protein,#3D90F8
+g0080,Lipoprotein,#4190F7
+g0099,Beta-ketoacyl synthase,#3690FA
+g0066,Hg(II)-responsive transcriptional regulator,#276BBB
+g0072,Cupin,#265897
+g0258,DNA primase,#151D2C
+g0112_1,NAD-dependent protein deacylase,#1D2F4D
+g0264,PLD phosphodiesterase domain-containing protein,#161F30
+g0502,Lipoprotein,#4691F5
+g0516,Cobalt-zinc-cadmium resistance protein CzcI,#000000
+g0270,DUF3800 domain-containing protein,#254C83
+g0489,Methyltransferase,#2690FE
+g0338,Type-F conjugative transfer system secretin TraK,#000000
+g0310,Site-specific recombinase XerD,#000000
+g0476,TrbC/VirB2 family protein,#26528C
+g0462,DUF4129 domain-containing protein,#000000
+g0304,Tn4652 cointegrate resolution protein,#000000
+g0648,hypothetical protein,#000000
+g0106,ABC transporter permease,#4891F5
+g0107,Response regulatory domain-containing protein,#2890FD
+g0649,hypothetical protein,#000000
+g0305,RsbR%2C positive regulator of sigma-B,#1B2A44
+g0311,Transmembrane protein,#182337
+g0339,CheR-type methyltransferase domain-containing protein,#1A263C
+g0488,AsmA-2 domain-containing protein,#000000
+g0517,Lytic transglycosylase,#000000
+g0265,RNase NYN domain-containing protein,#000000
+g0503,Inner membrane protein,#000000
+g0073,Glycine dehydrogenase,#3190FC
+g0067,Transmembrane protein,#2F90FC
+g0098,hypothetical protein,#5991ED
+g0059,Lipoprotein,#26518B
+g0071,Peptidase-M78 domain-containing protein,#2C90FD
+g0065,Integral membrane protein,#213A61
+g0529,Putative transmembrane protein,#000000
+g0273,HEPN-Apea domain-containing protein,#265796
+g0501,Transcriptional regulator,#2286EC
+g0449,CHAD domain-containing protein,#000000
+g0307,ParB domain-containing protein,#208BF5
+g0461,Translation initiation factor IF-2,#000000
+g0475,hypothetical protein,#000000
+g0313,Lipoprotein,#4490F6
+g0105,recombination-associated protein RdgC,#5691EF
+g0111,Myb-like domain-containing protein,#BE9B7F
+g0104,Arc domain-containing protein,#4E91F2
+g0138,PLDc-2 domain-containing protein,#AA97A5
+g0474,DUF2958 domain-containing protein,#000000
+g0312,Conserved hypothetical exported protein,#1A273E
+g0306,DNA-binding protein,#182134
+g0460,PaREP2b,#000000
+g0448,AbiV family abortive infection protein,#000000
+g0500,Transmembrane protein,#000000
+g0266,Toprim domain-containing protein,#3290FB
+g0272,Transmembrane protein,#172031
+g0514,Tn3 family transposase post-transcriptional regulator TnpC,#000000
+g0528,Transmembrane protein,#000000
+g0299,Transposase,#19253B
+g0064,Lipoprotein,#23416D
+g0070,FGGY-N domain-containing protein,#2190FF
+g0058,Prevent-host-death protein,#3090FC
+g0074,DUF262 domain-containing protein,#3390FB
+g0060,YbjN domain-containing protein,#2760A6
+g0048,Exported protein,#23426F
+g0289,Endonuclease/exonuclease/phosphatase family protein,#254D84
+g0510,Transglut-core3 domain-containing protein,#4891F5
+g0276,Radical SAM protein,#000000
+g0262,Methyltransferase,#000000
+g0504,DUF2591 domain-containing protein,#000000
+g0538,Malate synthase,#3990FA
+g0316,CheB-type methylesterase domain-containing protein,#000000
+g0470,AsnC family protein,#000000
+g0458,Alpha/beta hydrolase,#000000
+g0100,HD domain-containing protein,#6191EA
+g0129,zf-C2H2-3 domain-containing protein,#DAA523
+g0115,Transmembrane protein,#6B92E4
+g0101,Conserved domain protein,#2C90FD
+g0459,BRCT domain-containing protein,#000000
+g0317,Transmembrane protein,#192439
+g0471,AraC family transcriptional regulator,#000000
+g0465,SLT domain-containing protein,#000000
+g0303,Twin-arginine translocation signal domain-containing protein,#1F3354
+g0539,DUF4262 domain-containing protein,#2490FE
+g0263,UmuC domain-containing protein,#000000
+g0505,YkgJ family cysteine cluster protein,#000000
+g0511,SCP2 domain-containing protein,#2B90FD
+g0288,DUF1963 domain-containing protein,#182236
+g0049,KilA-N domain-containing protein,#4A91F4
+g0061,Phage protein,#265999
+g0075,WYL domain-containing protein,#2762AA
+g0088,Tetratricopeptide repeat protein,#257AD7
+g0063,Sulfate exporter family transporter,#2E90FC
+g0077,Amidohydro-3 domain-containing protein,#234371
+g0507,Phytanoyl-CoA dioxygenase,#000000
+g0261,HNHc domain-containing protein,#5F91EA
+g0275,Arylsulfatase regulatory protein,#161E2D
+g0513,Putative transmembrane protein,#2490FE
+g0498,Mrr-N domain-containing protein,#2290FE
+g0473,Transferred entry: 5-62-1,#3790FA
+g0315,SCP domain-containing protein,#000000
+g0301,nucleoid-associated protein YejK,#19253B
+g0467,Putative exported protein,#000000
+g0117,DUF2829 domain-containing protein,#8293D2
+g0103,Curli production assembly/transport component CsgG,#5991EE
+g0102,hypothetical protein,#8393D2
+g0116,DUF222 domain-containing protein,#5091F2
+g0328,HTH psq-type domain-containing protein,#000000
+g0466,Putative exported protein,#2A90FD
+g0472,Peptidase-S24 domain-containing protein,#000000
+g0314,PDDEXK-1 domain-containing protein,#213A61
+g0499,Bestrophin-like protein,#000000
+g0248,Transmembrane protein,#131824
+g0274,ParB domain-containing protein,#5791EE
+g0512,PilZ domain-containing protein,#000000
+g0506,Copper resistance protein,#000000
+g0260,PLD phosphodiesterase domain-containing protein,#000000
+g0076,Menaquinone-specific isochorismate synthase,#244A7D
+g0062,Amidophosphoribosyltransferase,#24487B
+g0089,DUF4371 domain-containing protein,#2290FE
+g0039,Nicotinamide riboside transporter PnuC,#5691EF
+g0005,Antiholin-like protein LrgA,#2674CC
+g0011,mercury(II) reductase,#000000
+g0549,HTH merR-type domain-containing protein,#2670C5
+g0561,DUF3700 domain-containing protein,#2675CD
+g0207,Transposase,#9B95B9
+g0213,DNA helicase,#2766B2
+g0398,YIP1 family protein,#000000
+g0429,Nucleoside 2-deoxyribosyltransferase,#3D90F8
+g0415,Putative transmembrane rhomboid family protein,#000000
+g0373,Putative transmembrane protein,#203659
+g0367,RusA family crossover junction endodeoxyribonuclease,#244A7D
+g0159,Zpr1 domain-containing protein,#3F90F8
+g0171,PRTRC system protein E,#7092E0
+g0617,Transposase,#000000
+g0603,MFS domain-containing protein,#000000
+g0165,DUF913 domain-containing protein,#6F92E1
+g0164,DUF2059 domain-containing protein,#9194C4
+g0170,DUF3568 domain-containing protein,#6291E9
+g0616,DUF190 domain-containing protein,#7292DF
+g0158,Putative transmembrane protein,#AF989C
+g0366,Type IV pilus biogenesis protein PilP,#1D2F4D
+g0400,MIF4G domain-containing protein,#000000
+g0414,Phage tail protein,#000000
+g0372,PG-binding-3 domain-containing protein,#2390FE
+g0428,ADF-H domain-containing protein,#000000
+g0399,PH domain-containing protein,#2990FD
+g0212,DUF4350 domain-containing protein,#254F88
+g0574,Thiolase-N domain-containing protein,#1F8FFD
+g0560,metal-sensing transcriptional repressor MreA,#000000
+g0206,Transposase,#9194C4
+g0548,TRAP transporter large permease subunit,#000000
+g0010,DUF2513 domain-containing protein,#2672C7
+g0004,carbon storage regulator CsrA,#218AF4
+g0038,IS66 family insertion sequence element accessory protein TnpB,#000000
+g0012,Arc family DNA-binding protein,#2190FF
+g0006,DUF1963 domain-containing protein,#000000
+g0589,Phage protein,#2590FE
+g0238,Pilus assembly protein,#1F3557
+g0576,Phage protein,#2B90FD
+g0210,histidine kinase,#141B29
+g0204,Ald-Xan-dh-C2 domain-containing protein,#DAA520
+g0562,Exported protein,#3890FA
+g0358,PspA/IM30 family protein,#1D2E4B
+g0402,Translation initiation factor IF-2,#000000
+g0364,Glyco-hydro-15 domain-containing protein,#2190FF
+g0370,Octopine-DH domain-containing protein,#1E90FF
+g0416,Sel1 repeat family protein,#2676CF
+g0199,VbhA domain-containing protein,#3C90F9
+g0628,AbrB family transcriptional regulator,#000000
+g0166,DUF2511 domain-containing protein,#7F93D5
+g0600,CheW-like domain-containing protein,#000000
+g0614,Sporulation protein YjcZ,#3090FC
+g0172,DUF4376 domain-containing protein,#AB97A3
+g0615,Phage tail protein,#000000
+g0173,hypothetical protein,#C09B7D
+g0167,Putative transmembrane protein,#DDA820
+g0601,DNA-damage-inducible protein J,#000000
+g0629,PAC domain-containing protein,#4E91F2
+g0198,CNNM transmembrane domain-containing protein,#5991EE
+g0371,DUF2491 domain-containing protein,#000000
+g0417,RNA-binding protein,#23426F
+g0365,Restriction endonuclease,#4290F7
+g0359,DUF4261 domain-containing protein,#3C90F9
+g0205,Small CPxCG-related zinc finger protein,#9494C1
+g0563,Signal peptide protein,#5091F1
+g0577,Glyco-hydro-3 domain-containing protein,#2E90FC
+g0239,TPR-REGION domain-containing protein,#000000
+g0588,Ribosomal protein S3,#3290FB
+g0007,TnpR protein,#000000
+g0013,ThiF domain-containing protein,#192338
+g0017,Phasin-2 domain-containing protein,#276ABA
+g0003,YheU family protein,#2990FD
+g0598,Type III secretion system protein,#000000
+g0215,Tn3 family transposase,#000000
+g0567,DUF1421 domain-containing protein,#000000
+g0229,PHB domain-containing protein,#23416D
+g0128_2,Invasin,#000000
+g0361,SprT-like domain-containing protein,#1D2E4B
+g0407,DUF262 domain-containing protein,#2579D4
+g0375,MEDS domain-containing protein,#203659
+g0349,Sigma-70 family RNA polymerase sigma factor,#000000
+g0188,DUF1330 domain-containing protein,#AB97A2
+g0605,Peptidase,#000000
+g0163,Sema domain-containing protein,#DBA620
+g0177,DUF551 domain-containing protein,#6191E9
+g0611,TFIIB-type domain-containing protein,#000000
+g0639,ATPase,#000000
+g0638,Conserved domain protein,#2890FD
+g0176,Transposase,#C99E66
+g0610,Zf-TFIIB domain-containing protein,#2190FF
+g0604,hypothetical protein,#000000
+g0162,Bacteriophage protein,#7492DD
+g0189,Tail assembly chaperone,#AF989D
+g0348,Protein phosphatase 2C domain-containing protein,#1E3150
+g0412,CHAT domain-containing protein,#000000
+g0374,VWFA domain-containing protein,#000000
+g0360,Nucleotidyl transferase AbiEii/AbiGii toxin family protein,#2F90FC
+g0406,GST C-terminal domain-containing protein,#000000
+g0228,Protein kinase domain-containing protein,#121721
+g0566,DUF2090 domain-containing protein,#000000
+g0200,HPr kinase/phosphorylase,#5891EE
+g0572,Phospholipid scramblase,#000000
+g0599,Plasmid stabilization protein,#000000
+g0002,Transposase,#000000
+g0016,IS66 family transposase,#000000
+g0014,CBM-48 domain-containing protein,#000000
+g0028,DUF3995 domain-containing protein,#2674CC
+g0202,Oxidase,#6E92E2
+g0564,Phage protein,#2287EF
+g0216,P-loop-TraG domain-containing protein,#3190FC
+g0389,TENA-THI-4 domain-containing protein,#266FC3
+g0128_1,BIG2 domain-containing protein,#161E2E
+g0410,oligoribonuclease,#000000
+g0404,DUF3846 domain-containing protein,#1E90FF
+g0362,Putative acetyltransferase,#000000
+g0438,DUF2591 domain-containing protein,#1E90FF
+g0612,VbhA domain-containing protein,#000000
+g0174,TM2 domain-containing protein,#BD9B81
+g0160,Lipoprotein,#DEA821
+g0606,Transposase,#4F91F2
+g0148,Putative transmembrane protein,#9595C0
+g0149,Putative partitioning protein,#7C93D8
+g0161,FAA-hydrolase domain-containing protein,#4590F6
+g0607,Cytochrome B5,#000000
+g0613,HEPN domain-containing protein,#000000
+g0175,Putative transmembrane protein,#A496AD
+g0405,TPR-REGION domain-containing protein,#000000
+g0363,SLT domain-containing protein,#000000
+g0377,WLM domain-containing protein,#000000
+g0411,Integrase,#000000
+g0388,hypothetical protein,#000000
+g0559,Transcriptional regulator,#000000
+g0571,Transposase,#000000
+g0217,PDDEXK-1 domain-containing protein,#1C2D49
+g0203,Transposase,#4C91F3
+g0565,RNA-binding protein,#4691F5
+g0029,Helicase ATP-binding domain-containing protein,#223E67
+g0015,Conserved domain protein,#1F90FF
+g0001,Holin,#000000
+g0620,hypothetical protein,#4d4d4d
+g0110_1,Uncharacterized conserved protein involved in copper resistance,#4d4d4d
+g0585,Xre-MbcA-ParS-C domain-containing protein,#4d4d4d
+g0245,TnsD domain-containing protein,#4d4d4d
+g0277,TniQ protein,#4d4d4d
+g0351,Ig-GlcNase domain-containing protein,#4d4d4d
+g0119,Transposase,#4d4d4d
+g0558,Small CPxCG-related zinc finger protein,#4d4d4d
+g0408,Glyco-hydro-42C domain-containing protein,#4d4d4d
+g0542,Transposase InsE and inactivated derivatives,#4d4d4d
+g0330,Aminopropyltransferase BpsA%2C N(4)-bis(aminopropyl)spermidine biosynthesis,#4d4d4d
+g0246,heavy metal translocating P-type ATPase,#4d4d4d
+g0376,Protein-S-isoprenylcysteine O-methyltransferase Ste14,#4d4d4d
+g0252,IS66 family ISPpu14 transposase,#4d4d4d
+g0627,Copper chaperone CopZ,#4d4d4d
+g0113,Uncharacterized conserved protein involved in copper resistance,#4d4d4d
+g0110_2,Copper resistance system multicopper oxidase,#4d4d4d
+g0515,Periplasmic heavy metal sensor,#4d4d4d
+g0343,Cation-transporting P-type ATPase,#4d4d4d
+g0439,Archaeal adenylate kinase,#4d4d4d
+g0112_2,NAD-dependent protein deacylase,#4d4d4d
+g0437,PLDc-2 domain-containing protein,#4d4d4d
+g0495,AsnC family protein,#4d4d4d
+g0124,Signal transduction histidine kinase,#4d4d4d
+g0297,40-residue YVTN family beta-propeller repeat protein,#4d4d4d
+g0622,Signal peptide protein,#4d4d4d
+g0114_1,Cystathionine gamma-lyase,#4d4d4d
+g0570,DUF1722 domain-containing protein,#4d4d4d
+g0368,DNA-binding response regulator%2C OmpR family%2C contains REC and winged-helix (wHTH) domain,#4d4d4d
+g0155,Phage protein,#4d4d4d
+g0259,Transposase,#4d4d4d
+g0530,IS66 family insertion sequence element accessory protein TnpB,#4d4d4d
+g0581,DUF2933 domain-containing protein,#4d4d4d
+g0532,DUF2790 domain-containing protein,#4d4d4d
+g0527,Periplasmic Cu and Ag efflux protein CusF,#4d4d4d
+g0214,Cu/Ag efflux pump CusA,#4d4d4d
+g0267,Outer membrane protein TolC,#4d4d4d
+g0254,Periplasmic Cu and Ag efflux protein CusF,#4d4d4d
+g0464,DUF411 domain-containing protein,#4d4d4d
+g0114_2,Transposase,#4d4d4d
+g0385,PINc domain-containing protein,#4d4d4d
+g0463,Signal peptide protein,#4d4d4d
+g0300,ImmA/IrrE family metallo-endopeptidase,#4d4d4d
+g0231,Tyr recombinase domain-containing protein,#4d4d4d
+g0222,Tyr recombinase domain-containing protein,#4d4d4d
+g0443,hypothetical protein,#4d4d4d
+g0271,Tyr recombinase domain-containing protein,#4d4d4d
+g0526,hypothetical protein,#4d4d4d
+g0211,NACHT domain-containing protein,#4d4d4d
+g0396,Site-specific recombinase XerC,#4d4d4d
+g0552,Phage protein,#4d4d4d
+g0403,hypothetical protein,#4d4d4d
+g0329,Oxidoreductase%2C short chain dehydrogenase/reductase family,#4d4d4d
+g0219,Putative flavoprotein involved in K+ transport,#4d4d4d
+g0237,Alcohol dehydrogenase AlkJ,#4d4d4d
+g0298,Transcriptional regulator%2C AraC family,#4d4d4d
+g0556,QslA-E domain-containing protein,#4d4d4d
+g0251,MFS transporter,#4d4d4d
+g0387,KstR2_1 protein,#4d4d4d
+g0401,Serine hydrolase family protein,#4d4d4d
+g0573,hypothetical protein,#4d4d4d
+g0575,Similarity,#4d4d4d
+g0523,Peptidase A1 domain-containing protein,#4d4d4d
+g0602,Lipoprotein,#4d4d4d
+g0592,hypothetical protein,#4d4d4d
+g0590,DUF1801 domain-containing protein,#4d4d4d
+g0652,hypothetical protein,#4d4d4d
+g0302,DUF3829 domain-containing protein,#4d4d4d
+g0249,Molecular chaperone DnaJ,#4d4d4d
+g0596,hypothetical protein,#4d4d4d
+g0353,Methyltransf-12 domain-containing protein,#4d4d4d
+g0295,DUF5677 domain-containing protein,#4d4d4d
+g0421,Alpha-E domain-containing protein,#4d4d4d
+g0112_3,NAD-dependent protein deacylase,#4d4d4d
+g0457,Nicotinamide-nucleotide adenylyltransferase,#4d4d4d
+g0456,Fis family transcriptional regulator,#4d4d4d
+g0340,DSHCT domain-containing protein,#4d4d4d
+g0637,Six-cysteine peptide SCIFF,#4d4d4d
+g0242,Vitamin B12-dependent ribonucleoside-diphosphate reductase,#4d4d4d
+g0394,Thymidylate kinase,#4d4d4d
+g0413,hypothetical protein,#4d4d4d
+g0468,CPBP family intramembrane metalloprotease,#4d4d4d
+g0293,Mu-like prophage tail protein gpP,#4d4d4d
+g0157,Lipoprotein,#4d4d4d
+g0434,hypothetical protein,#4d4d4d
+g0477,hypothetical protein,#4d4d4d
+g0525,CopL family metal-binding regulatory protein,#4d4d4d
+g0455,hypothetical protein,#4d4d4d
+g0201,GMC-OxRdtase-N domain-containing protein,#4d4d4d
+g0114_3,Transposase,#4d4d4d

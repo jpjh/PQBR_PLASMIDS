@@ -1,6 +1,5 @@
 Analysis of related pQBR plasmids
 ================
-revised 2025
 
 ## Pangenome analysis
 
@@ -78,8 +77,7 @@ mash dist -p 64 \
 ```
 
 Note that all the MASH results described in this document here were
-trimmed to only include matches with e-value \< 1e-20 when transferring
-off the server to save space
+trimmed to only include matches with e-value \< 1e-20
 (`awk '$4 < 1e-20 {print $0}' $RESULTS > ../${RESULTS}`).
 
 Pull out sequences and aggregate. Extract sequences with e-value \<
@@ -162,7 +160,7 @@ blastn -query ./2_sketches/pQBR103_backbone.fasta -db ./2_relatives/blastdb/pQBR
 ```
 
 Extract, reorient, and Bakta the sequences. Extract sequences with \>5
-kb match and an e-value \< 1e-40
+kb match and an e-value \< 1e-40 in BLASTn.
 
 ``` bash
 awk -v FS="\t" '$11 < 1e-40 && $4 > 5000 {print $2}' ./2_relatives/pQBR103_relatives.blastn \
@@ -211,7 +209,8 @@ find ./2_relatives/pQBR103_seqs_plasmids -name "*.fa" \
 
 Use this output to realign the sequences using EMBOSS. Note: some
 sequences did not match the full (putative) replicase, suggesting these
-are divergent.
+are divergent, and one sequence (NZ_AOUH01000028.1_Contig28) did not
+match the replicase at all and was removed from subsequent analysis.
 
 ``` bash
 cat ./2_relatives/pQBR103_relatives_complete_blast_rep.blastn | awk '$4 < 1130 {print $0}'
@@ -309,15 +308,89 @@ cat ./2_relatives/group_i_relatives.list
     ## 08 ./pQBR103_seqs_plasmid_orient/NZ_QPAO01000007.1_Contig_7_o.fasta
     ## 09 ./pQBR103_seqs_plasmid_orient/NZ_RBOH01000219.1_PlaYM8003_Contig_17_o.fasta
 
+Make a plot of mash distances for Group I plasmids and their relatives.
+
+Calculate distances.
+
+``` bash
+mash sketch ./2_relatives/pQBR103_relatives_complete.fasta -i -S 42 -s 100000 -k 21 -p 4 -o ./2_relatives/pQBR103_relatives_complete.msh
+
+mash triangle \
+  ./1_sketches/pQBR103.msh \
+  ./1_sketches/pQBR106p.msh \
+  ./1_sketches/pQBR124.msh \
+  ./1_sketches/pQBR4.msh \
+  ./1_sketches/pQBR43.msh \
+  ./1_sketches/pQBR47p.msh \
+  ./1_sketches/pQBR49.msh \
+  ./1_sketches/pQBR5.msh \
+  ./1_sketches/pQBR50d.msh \
+  ./1_sketches/pQBR11d.msh \
+  ./1_sketches/pQBR44d.msh \
+  ./2_relatives/pQBR103_relatives_complete.msh \
+  -k 21 -p 4 > ./2_relatives/pQBR103_relatives_complete_mash.dst
+```
+
+Plot.
+
+Cluster according to similarities.
+
+``` r
+plotMashDistances <- function(infile) {
+  n_cols <- as.numeric(trimws(readLines(infile, n = 1)))
+  dist <- read.table(infile, fill=TRUE, skip=1,
+                     col.names=c(paste("V", 1:(n_cols+1), sep="")))
+  dist$V1 <- gsub(".*(pQBR[0-9pdR]+).fna", "\\1", dist$V1)
+  dist <- column_to_rownames(dist, "V1")
+  distmat <- as.dist(dist, upper=TRUE, diag=TRUE)
+  sqmat <- as.matrix(distmat)
+  order <- colnames(sqmat)
+  dist_df <- sqmat %>% as.data.frame() %>%
+    mutate(a = order) %>%
+    pivot_longer(-a, names_to = "b", values_to = "mash_distance") %>%
+    filter(!is.na(mash_distance)) %>%
+    mutate(a = factor(a, levels=order), b=factor(b, levels=order))
+  dendro <- as.dendrogram(hclust(distmat))
+  reorder <- order.dendrogram(dendro)
+  heatmap <- dist_df %>%
+    mutate(a = factor(a, levels=order[reorder]), 
+           b = factor(b, levels=order[reorder])) %>%
+    ggplot() +
+    geom_tile(aes(x=a, y=b, fill=mash_distance))
+  return(heatmap)
+}
+
+(group_i_relatives_heatmap <- plotMashDistances("./2_relatives/pQBR103_relatives_complete_mash.dst")) +
+  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), 
+                       values=c(0,0.25,1), name = "mash distance") +
+  theme(axis.text.x = element_text(angle=45, hjust=1), 
+        axis.title.x = element_blank(), axis.title.y = element_blank(), 
+        legend.position="right")
+```
+
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
 #### Analyse pangenomes of pQBR103-like plasmids
 
+First, compare pQBR103 against the resequenced version. Are they
+identical?
+
+``` bash
+diff ./bakta_annotated/pQBR103/pQBR103.fna ./bakta_annotated/pQBR103R/pQBR103R.fna
+```
+
+They differ only in the heading line, which means that subsequent
+analysis can be performed with only one sequence.
+
 Run [PIRATE](https://github.com/SionBayliss/PIRATE) ([Bayliss et
-al. 2019](https://doi.org/10.1093/gigascience/giz119)).
+al. 2019](https://doi.org/10.1093/gigascience/giz119)). Note that PIRATE
+results for each set of plasmids were tarballed in
+`2_pangenomes/a_group_X_pangenomes.tar.gz` to reduce number of files to
+be uploaded/downloaded.
 
 ``` bash
 mkdir ./a_group_i_gff
 cp ./bakta_a/pQBR103/pQBR103.gff3 ./a_group_i_gff/pQBR103.gff
-cp ./bakta_a/pQBR103R/pQBR103R.gff3 ./a_group_i_gff/pQBR103R.gff
 cp ./bakta_a/pQBR106p/pQBR106p.gff3  ./a_group_i_gff/pQBR106p.gff
 cp ./bakta_a/pQBR124/pQBR124.gff3  ./a_group_i_gff/pQBR124.gff
 cp ./bakta_a/pQBR4/pQBR4.gff3    ./a_group_i_gff/pQBR4.gff
@@ -349,8 +422,12 @@ First, investigate just the pQBR plasmids.
 Open data, cluster according to grouping patterns, and make a rough
 plot.
 
+``` bash
+cp ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/PIRATE.gene_families.ordered.tsv ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate.gene_families.ordered.tsv
+```
+
 ``` r
-group_i_pirate <- read.table("./2_pangenomes/a_group_i_pirate_polished/PIRATE.gene_families.ordered.tsv", 
+group_i_pirate <- read.table("./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate.gene_families.ordered.tsv", 
                              header=TRUE, sep="\t")
 
 gip_matrix <- data.frame(cbind(group_i_pirate[2], ifelse(group_i_pirate[23:length(group_i_pirate)]=="", 0, 1))) %>%
@@ -371,12 +448,16 @@ gip_long <- group_i_pirate %>% select(gene_family, threshold, starts_with("pQBR"
 ggplot(gip_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 Look at the broader family members too.
 
+``` bash
+cp ./2_pangenomes/a_group_i_pangenomes/a_group_i_rel_pirate_polished/PIRATE.gene_families.ordered.tsv ./2_pangenomes/a_group_i_pangenomes/a_group_i_rel_pirate.gene_families.ordered.tsv
+```
+
 ``` r
-group_i_rel_pirate <- read.table("./2_pangenomes/a_group_i_rel_pirate_polished/PIRATE.gene_families.ordered.tsv",
+group_i_rel_pirate <- read.table("./2_pangenomes/a_group_i_pangenomes/a_group_i_rel_pirate.gene_families.ordered.tsv",
                                  header=TRUE, sep="\t")
 
 giprel_matrix <- data.frame(cbind(group_i_rel_pirate[2], ifelse(group_i_rel_pirate[23:length(group_i_rel_pirate)]=="", 0, 1))) %>%
@@ -397,53 +478,57 @@ giprel_long <- group_i_rel_pirate %>% select(gene_family, threshold, starts_with
 ggplot(giprel_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
-Calculate distances within each group (raw p-distance), and aggregate.
+Calculate distances within each group (raw p-distance) for both
+nucleotide and amino acid, and aggregate.
 
 ``` bash
-find ./2_pangenomes/a_group_i_pirate_polished/feature_sequences -name "*.nucleotide.fasta" \
-  | awk -v FS="/" '{print $5}' | sed 's/\.nu.*//g' | while read GROUP
+find ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/feature_sequences -name "*.nucleotide.fasta" \
+  | awk -v FS="/" '{print $6}' | sed 's/\.nu.*//g' | while read GROUP
   do
   megacc -a ./ref/distance_estimation_overall_mean_nucleotide_p.mao \
-    -d ./2_pangenomes/a_group_i_pirate_polished/feature_sequences/${GROUP}.nucleotide.fasta \
-    -o ./2_pangenomes/a_group_i_distances/${GROUP}
+    -d ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/feature_sequences/${GROUP}.nucleotide.fasta \
+    -o ./2_pangenomes/a_group_i_pangenomes/a_group_i_distances/nt/${GROUP}
+  megacc -a ./ref/distance_estimation_overall_mean_aminoacid_p.mao \
+    -d ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/feature_sequences/${GROUP}.aa.fasta \
+    -o ./2_pangenomes/a_group_i_pangenomes/a_group_i_distances/aa/${GROUP}
   done
   
-find ./2_pangenomes/a_group_i_distances -name "*.csv" \
-  | awk -v FS="/" '{print $4}' | sed 's/\..*//g' \
+find ./2_pangenomes/a_group_i_pangenomes/a_group_i_distances/nt -name "*.csv" \
+  | awk -v FS="/" '{print $6}' | sed 's/\..*//g' \
   | while read GROUP
   do
-  dist=`tail -n +3 ./2_pangenomes/a_group_i_distances/${GROUP}.csv`
+  dist=`tail -n +3 ./2_pangenomes/a_group_i_pangenomes/a_group_i_distances/nt/${GROUP}.csv`
   echo $GROUP $dist
-  done > ./2_pangenomes/a_group_i_distances.txt
+  done > ./2_pangenomes/a_group_i_pangenomes/a_group_i_distances.txt
 ```
 
 Pull out interesting information about these groups.
 
 ``` r
-a_group_i_distances <- read.table("./2_pangenomes/a_group_i_distances.txt",
+a_group_i_distances <- read.table("./2_pangenomes/a_group_i_pangenomes/a_group_i_distances.txt",
                                   header = FALSE, col.names=c("gene_family","dist"), sep=" ")
 
 group_i_pirate %>% left_join(a_group_i_distances, by="gene_family") %>%
   filter(dist>0) %>%
   arrange(-dist) %>% 
-  select(gene_family, dist, consensus_product, threshold) %>% 
+  select(gene_family, pQBR103, dist, consensus_product, threshold) %>% 
   head(n = 10) %>% kable()
 ```
 
-| gene_family | dist | consensus_product | threshold |
-|:---|---:|:---|---:|
-| g0194 | 0.1496599 | Inner membrane protein | 70 |
-| g0196 | 0.1379928 | Intracellular multiplication protein IcmV | 60 |
-| g0207 | 0.1163522 | hypothetical protein | 60 |
-| g0193 | 0.0920635 | tRNA-edit domain-containing protein | 70 |
-| g0203 | 0.0586854 | Ald-Xan-dh-C2 domain-containing protein | 90 |
-| g0159 | 0.0555556 | Lipoprotein | 60 |
-| g0166 | 0.0534736 | Putative transmembrane protein | 60 |
-| g0132 | 0.0530789 | PAPS-reduct domain-containing protein | 90 |
-| g0192 | 0.0530303 | Znf/thioredoxin-put domain-containing protein | 80 |
-| g0125 | 0.0526887 | Putative DNA-binding protein | 50 |
+| gene_family | pQBR103 | dist | consensus_product | threshold |
+|:---|:---|---:|:---|---:|
+| g0195 | pQBR103_00158 | 0.2244898 | Inner membrane protein | 70 |
+| g0197 | pQBR103_00325 | 0.1182796 | Intracellular multiplication protein IcmV | 60 |
+| g0208 | pQBR103_00326 | 0.0997305 | hypothetical protein | 60 |
+| g0194 | pQBR103_00327 | 0.0789116 | tRNA-edit domain-containing protein | 70 |
+| g0160 | pQBR103_00454 | 0.0606061 | Lipoprotein | 60 |
+| g0167 | pQBR103_00169 | 0.0591168 | Putative transmembrane protein | 60 |
+| g0125 | pQBR103_00148 | 0.0575361 | Putative DNA-binding protein | 50 |
+| g0136 | pQBR103_00149 | 0.0555556 | Putative transmembrane protein | 70 |
+| g0131 | pQBR103_00145 | 0.0546394 | Nup96 domain-containing protein | 60 |
+| g0163 | pQBR103_00155 | 0.0526915 | Sema domain-containing protein | 70 |
 
 **NOTE** the locus tags outputted by PIRATE are different to those in
 the Bakta annotations! Details are provided in the `modified_gffs`
@@ -482,9 +567,9 @@ gene is pQBR103_0005, which was renamed to pQBR103_0001 in the PIRATE
 output. The last gene is:
 
 ``` bash
-tail -n1 ./2_/pQBR103.tsv
+tail -n1 ./bakta_annotated/pQBR103/pQBR103.tsv
 
-grep "pQBR103_02750" ./2_pangenomes/a_group_i_pirate_polished/modified_gffs/pQBR103.gff
+grep "pQBR103_02750" ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/modified_gffs/pQBR103.gff
 ```
 
 pQBR103_00550 (in the PIRATE output). The corresponding groups for these
@@ -496,16 +581,16 @@ group_i_pirate %>% filter(pQBR103 %in% c("pQBR103_00001","pQBR103_00550")) %>%
 ```
 
     ##   gene_family
-    ## 1       g0035
-    ## 2       g0092
+    ## 1       g0008
+    ## 2       g0088
 
 Gene families g0035 and g0092. Add a link to the `pangenome.gfa` file.
 
 ``` bash
-cp ./2_pangenomes/a_group_i_pirate_polished/pangenome.gfa \
-  ./2_pangenomes/a_group_i_pirate_polished_pangenome.gfa
+cp ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/pangenome.gfa \
+  ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished_pangenome.gfa
   
-echo -e 'L\tg0035\t+\tg0092\t+\t0M' >> ./2_pangenomes/a_group_i_pirate_polished_pangenome.gfa
+echo -e 'L\tg0035\t+\tg0092\t+\t0M' >> ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished_pangenome.gfa
 ```
 
 Part 2 is defined within Bandage preferences, by setting ‘Depth effect
@@ -518,7 +603,7 @@ distances be scaled with colour?
 a_group_i_distances %>% ggplot(aes(x = dist)) + geom_density()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 ``` r
 a_group_i_distances %>% ggplot(aes(x = log10(dist))) + geom_density()
@@ -527,7 +612,7 @@ a_group_i_distances %>% ggplot(aes(x = log10(dist))) + geom_density()
     ## Warning: Removed 213 rows containing non-finite outside the scale range
     ## (`stat_density()`).
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-22-2.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-27-2.png)<!-- -->
 
 ``` r
 a_group_i_distances %>% 
@@ -539,7 +624,7 @@ a_group_i_distances %>%
 
 | min |      mean |    median |       max |
 |----:|----------:|----------:|----------:|
-|   0 | 0.0044543 | 0.0005291 | 0.1496599 |
+|   0 | 0.0043671 | 0.0004682 | 0.2244898 |
 
 Shows that in most cases, there is 0-0.1% distance within a group, with
 a long tail up to ~14% distance within a group.
@@ -560,7 +645,7 @@ a_group_i_distances %>%
          Product = consensus_product,
          Colour = ifelse(is.na(hex_from_scales), "#4d4d4d", hex_from_scales)) %>%
   select(Name, Product, Colour) %>% 
-  write.table(file = "./2_pangenomes/a_group_i_pirate_polished_pangenome_cols.csv",
+  write.table(file = "./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished_pangenome_cols.csv",
               sep=",", quote=FALSE, row.names=FALSE)
 ```
 
@@ -590,7 +675,7 @@ gip_long %>%
   scale_fill_identity()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 This figure shows the single transposon in grey that was uncoloured in
 the graph above, and (presumably) another transposon that is present in
@@ -621,12 +706,16 @@ gip_long %>%
   scale_fill_identity()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+
+It seems like gene presence/absence doesn’t directly affect sequence
+diversity: genes which are absent from some sequences are no more
+apparently divergent amongst the remaining sequences.
 
 #### Re-make the pangenomes to include the duplicated transposons
 
 ``` bash
-script_path=/pub60/jamesh/miniforge3/envs/pirate_env/scripts
+script_path=/jamesh/miniforge3/envs/pirate_env/scripts
 pirate_dir=a_group_i_pirate_polished
 
 perl $script_path/pangenome_graph.pl\
@@ -645,11 +734,120 @@ alt="Group I bandage plot with distances (all groups)" />
 groups)</figcaption>
 </figure>
 
-Next steps:
+#### Generate an overview figure using the canonical pQBR103 sequence
 
-- Probably will want to remove pQBR103R from the analysis
-- Complete pangenome graph analysis for the pQBR103 relatives
-- Complete analyses for other plasmid groups
+pQBR103 lacks the additional transposons, and so could be considered a
+canonical sequence.
+
+Get the nucleotide divergence information for the core genes, and plot
+this onto the CDS from pQBR103.
+
+``` bash
+awk -v FS="\t" '$3 == "CDS" {print $9}' ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/modified_gffs/pQBR103.gff \
+  | sed -n 's/.*D=\([^;]*\).*prev_ID=\([^;]*\).*/\1 \2/p' > ./2_pangenomes/a_group_i_pangenomes/pQBR103_trans_table.txt
+```
+
+Load up, link with Bakta annotations and distances.
+
+``` r
+pQBR103_trans <- read.table("./2_pangenomes/a_group_i_pangenomes/pQBR103_trans_table.txt", sep=" ",
+                           col.names=c("pQBR103", "locus_tag"))
+
+pQBR103 <- read.table("./bakta_annotated/pQBR103/pQBR103.tsv", sep="\t",
+                      col.names=c("contig","type","start","end","strand","locus_tag","gene","product","dbxref"))
+
+pQBR103_distances <- group_i_pirate %>% select(gene_family, consensus_product, threshold, number_genomes, pQBR103) %>%
+  left_join(pQBR103_trans, by="pQBR103") %>% 
+  right_join(pQBR103, by="locus_tag") %>% 
+  left_join(a_group_i_distances, by="gene_family") %>%
+  mutate(strand = case_when(strand == "+" ~ 1,
+                            strand == "-" ~-1)) %>%
+  select(locus_tag, gene_family, product, start, end, strand, dist, hex_from_scales)
+
+pQBR103_plot <- ggplot(data=pQBR103_distances) +
+  geom_segment(y = 0, yend = 0, x = 0, xend = 425094) +
+  geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
+  scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
+                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+  scale_y_continuous(limits=c(-1.5, 2.5)) +
+  theme(legend.position="right") 
+```
+
+Add regions annotated by [Hall et
+al. 2015](dx.doi.org/10.1111/1462-2920.12901). Note that this has a
+different replication region than was used to orient, as sequence
+orientation here was intended to make Group I and Group IV plasmids
+syntenic.
+
+``` r
+pQBR103_length <- 425094
+
+pQBR103_regions <- data.frame(
+  start_ref = c(27,24398,34307,167179,170292,259339,338400,375222,410934),
+  end_ref = c(2600,34265,55063,168880,197117,259639,341600,382212,421365),
+  name =   c("par","pil","sam","uvr","tra","oriv","rep","Tn5042","che")
+) %>%
+  mutate(start = start_ref-388360, 
+         end = end_ref-388360) %>%
+  mutate(start = ifelse(start < 0, start + pQBR103_length, start),
+         end = ifelse(end < 0, end + pQBR103_length, end))
+
+(pQBR103_plot_annot <- pQBR103_plot + 
+  geom_segment(data=pQBR103_regions,
+               aes(x=start, xend=end, y=1.2, yend=1.2)) +
+  geom_text_repel(data=pQBR103_regions, nudge_y = 0.3, force = 1,
+                  min.segment.length = 0, direction = "y",
+                  aes(x=start + (end - start)/2,
+                      y = 1.2,
+                      label=name)) +
+  scale_x_continuous(limits = c(0,pQBR103_length),
+                     expand = c(0, 0),
+                     breaks = seq(0,4e5, by=1e5),
+                     labels = seq(0,400, by=100),
+                     name = "position (kb)") +
+  theme_void() + 
+  theme(
+    legend.position = "bottom",
+    axis.line.x = element_line(),   
+    axis.ticks.x = element_line(),  
+    axis.text.x = element_text(),   
+    axis.title.x = element_text(margin = margin(t=10, b=5)), 
+    axis.line.y = element_blank(),  
+    axis.ticks.y = element_blank(), 
+    axis.text.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.length = unit(5, "pt"),
+    plot.margin = margin(t = 100, r = 20, b = 150, l = 20)
+  ))
+```
+
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
+
+``` r
+svglite::svglite(file = "./figs/pQBR103_plot_annot.svg", 
+                 height=6, width=8)
+pQBR103_plot_annot
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+Get detail of the relatives, for subsequent annotations.
+
+``` bash
+grep "Length: " ./2_relatives/bakta/pQG1rel*/*.txt \
+  | sed 's:./2_relatives/bakta/::g' | sed 's;/pQG1rel0[0-9].txt:Length: ;\t;g' | sort -n -k1 \
+  > ./2_relatives/group_i_relatives_length.list
+  
+cat ./2_relatives/group_i_relatives.list | while read NUMBER SEQUENCE
+do
+head -n1 ./2_relatives/${SEQUENCE} | tr -d ">"
+done > ./2_relatives/group_i_relatives_headers.list
+  
+paste ./2_relatives/group_i_relatives_length.list ./2_relatives/group_i_relatives.list ./2_relatives/group_i_relatives_headers.list \
+  > ./2_relatives/group_i_relatives_details.txt
+```
 
 ### Group IV plasmids (pQBR57-like)
 
@@ -772,6 +970,7 @@ awk -v FS="\t" '$11 < 1e-40 && $4 > 5000 {print $2}' "./2_relatives/pQBR57_relat
 ```
 
 There is only one single-contig sequence here: NZ_JANHLM010000005.1.
+This will be labelled pQG4rel01.
 
 #### Reorient and annotate pQBR57-like plasmid
 
@@ -847,6 +1046,39 @@ bakta --db /pub60/jamesh/db --prefix pQG4rel01 \
   pQG4rel01_o.fasta
 ```
 
+Make a plot of mash distances for Group IV plasmids and their relatives.
+
+Calculate distances.
+
+``` bash
+mash sketch ./2_relatives/pQBR57_seqs_plasmid_orient/pQG4rel01_o.fasta -i -S 42 -s 100000 -k 21 -p 4 -o ./2_relatives/pQBR57_relatives_complete.msh
+
+mash triangle \
+  ./1_sketches/pQBR30.msh \
+  ./1_sketches/pQBR102.msh \
+  ./1_sketches/pQBR56.msh \
+  ./1_sketches/pQBR57.msh \
+  ./1_sketches/pQBR150.msh \
+  ./1_sketches/pQBR51.msh \
+  ./2_relatives/pQBR57_relatives_complete.msh \
+  -k 21 -p 4 > ./2_relatives/pQBR57_relatives_mash_complete.dst
+```
+
+Plot.
+
+Cluster according to similarities.
+
+``` r
+(group_iv_relatives_heatmap <- plotMashDistances("./2_relatives/pQBR57_relatives_mash_complete.dst")) +
+  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), 
+                       values=c(0,0.25,1), name = "mash distance") +
+  theme(axis.text.x = element_text(angle=45, hjust=1), 
+        axis.title.x = element_blank(), axis.title.y = element_blank(), 
+        legend.position="right")
+```
+
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-46-1.png)<!-- -->
+
 #### Analyse pangenomes of pQBR57-like plasmids
 
 Run [PIRATE](https://github.com/SionBayliss/PIRATE) ([Bayliss et
@@ -882,8 +1114,12 @@ First, investigate just the pQBR plasmids.
 Open data, cluster according to grouping patterns, and make a rough
 plot.
 
+``` bash
+cp ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished/PIRATE.gene_families.ordered.tsv ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate.gene_families.ordered.tsv
+```
+
 ``` r
-group_iv_pirate <- read.table("./2_pangenomes/a_group_iv_pirate_polished/PIRATE.gene_families.ordered.tsv", 
+group_iv_pirate <- read.table("./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate.gene_families.ordered.tsv", 
                              header=TRUE, sep="\t")
 
 givp_matrix <- data.frame(cbind(group_iv_pirate[2], ifelse(group_iv_pirate[23:length(group_iv_pirate)]=="", 0, 1))) %>%
@@ -904,14 +1140,18 @@ givp_long <- group_iv_pirate %>% select(gene_family, threshold, starts_with("pQB
 ggplot(givp_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-38-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-50-1.png)<!-- -->
 
 More straightforward than pQBR103-like plasmids.
 
 Look at the broader family members too.
 
+``` bash
+cp ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_rel_pirate_polished/PIRATE.gene_families.ordered.tsv ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_rel_pirate.gene_families.ordered.tsv
+```
+
 ``` r
-group_iv_rel_pirate <- read.table("./2_pangenomes/a_group_iv_rel_pirate_polished/PIRATE.gene_families.ordered.tsv",
+group_iv_rel_pirate <- read.table("./2_pangenomes/a_group_iv_pangenomes/a_group_iv_rel_pirate_polished/PIRATE.gene_families.ordered.tsv",
                                  header=TRUE, sep="\t")
 
 givprel_matrix <- data.frame(cbind(group_iv_rel_pirate[2], ifelse(group_iv_rel_pirate[23:length(group_iv_rel_pirate)]=="", 0, 1))) %>%
@@ -932,7 +1172,7 @@ givprel_long <- group_iv_rel_pirate %>% select(gene_family, threshold, starts_wi
 ggplot(givprel_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-39-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-52-1.png)<!-- -->
 
 The relative lacks a chunk present in all other Group IV plasmids, and
 contains a different segment.
@@ -940,27 +1180,30 @@ contains a different segment.
 Calculate distances within each group (raw p-distance), and aggregate.
 
 ``` bash
-find ./2_pangenomes/a_group_iv_pirate_polished/feature_sequences -name "*.nucleotide.fasta" \
-  | awk -v FS="/" '{print $5}' | sed 's/\.nu.*//g' | while read GROUP
+find ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished/feature_sequences -name "*.nucleotide.fasta" \
+  | awk -v FS="/" '{print $6}' | sed 's/\.nu.*//g' | while read GROUP
   do
   megacc -a ./ref/distance_estimation_overall_mean_nucleotide_p.mao \
-    -d ./2_pangenomes/a_group_iv_pirate_polished/feature_sequences/${GROUP}.nucleotide.fasta \
-    -o ./2_pangenomes/a_group_iv_distances/${GROUP}
+    -d ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished/feature_sequences/${GROUP}.nucleotide.fasta \
+    -o ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_distances/nt/${GROUP}
+  megacc -a ./ref/distance_estimation_overall_mean_aminoacid_p.mao \
+    -d ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished/feature_sequences/${GROUP}.aa.fasta \
+    -o ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_distances/aa/${GROUP}
   done
   
-find ./2_pangenomes/a_group_iv_distances -name "*.csv" \
-  | awk -v FS="/" '{print $4}' | sed 's/\..*//g' \
+find ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_distances/nt -name "*.csv" \
+  | awk -v FS="/" '{print $6}' | sed 's/\..*//g' \
   | while read GROUP
   do
-  dist=`tail -n +3 ./2_pangenomes/a_group_iv_distances/${GROUP}.csv`
+  dist=`tail -n +3 ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_distances/nt/${GROUP}.csv`
   echo $GROUP $dist
-  done > ./2_pangenomes/a_group_iv_distances.txt
+  done > ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_distances.txt
 ```
 
 Pull out interesting information about these groups.
 
 ``` r
-a_group_iv_distances <- read.table("./2_pangenomes/a_group_iv_distances.txt",
+a_group_iv_distances <- read.table("./2_pangenomes/a_group_iv_pangenomes/a_group_iv_distances.txt",
                                   header = FALSE, col.names=c("gene_family","dist"), sep=" ")
 
 group_iv_pirate %>% left_join(a_group_iv_distances, by="gene_family") %>%
@@ -1012,10 +1255,10 @@ group_iv_pirate %>% filter(pQBR57 %in% c("pQBR57_00001","pQBR57_00395")) %>%
 Gene families g0037 and g0200. Add a link to the `pangenome.gfa` file.
 
 ``` bash
-cp ./2_pangenomes/a_group_iv_pirate_polished/pangenome.gfa \
-  ./2_pangenomes/a_group_iv_pirate_polished_pangenome.gfa
+cp ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished/pangenome.gfa \
+  ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished_pangenome.gfa
   
-echo -e 'L\tg0037\t+\tg0200\t+\t0M' >> ./2_pangenomes/a_group_iv_pirate_polished_pangenome.gfa
+echo -e 'L\tg0037\t+\tg0200\t+\t0M' >> ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished_pangenome.gfa
 ```
 
 Adding a label `.csv` file, as above.
@@ -1024,16 +1267,16 @@ Adding a label `.csv` file, as above.
 a_group_iv_distances %>% ggplot(aes(x = dist)) + geom_density()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-45-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-58-1.png)<!-- -->
 
 ``` r
 a_group_iv_distances %>% ggplot(aes(x = log10(dist))) + geom_density()
 ```
 
-    ## Warning: Removed 298 rows containing non-finite outside the scale range
+    ## Warning: Removed 596 rows containing non-finite outside the scale range
     ## (`stat_density()`).
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-45-2.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-58-2.png)<!-- -->
 
 ``` r
 a_group_iv_distances %>% 
@@ -1062,7 +1305,7 @@ a_group_iv_distances %>%
          Product = consensus_product,
          Colour = ifelse(is.na(hex_from_scales), "#4d4d4d", hex_from_scales)) %>%
   select(Name, Product, Colour) %>% 
-  write.table(file = "./2_pangenomes/a_group_iv_pirate_polished_pangenome_cols.csv",
+  write.table(file = "./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished_pangenome_cols.csv",
               sep=",", quote=FALSE, row.names=FALSE)
 ```
 
@@ -1101,7 +1344,104 @@ givp_long %>%
   scale_fill_identity()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-47-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-60-1.png)<!-- -->
+
+#### Generate an overview figure using the canonical pQBR57 sequence
+
+pQBR57 lacks the additional transposons, and so could be considered a
+canonical sequence.
+
+Get the nucleotide divergence information for the core genes, and plot
+this onto the CDS from pQBR57.
+
+``` bash
+awk -v FS="\t" '$3 == "CDS" {print $9}' ./2_pangenomes/a_group_iv_pangenomes/a_group_iv_pirate_polished/modified_gffs/pQBR57.gff \
+  | sed -n 's/.*D=\([^;]*\).*prev_ID=\([^;]*\).*/\1 \2/p' > ./2_pangenomes/a_group_iv_pangenomes/pQBR57_trans_table.txt
+```
+
+Load up, link with Bakta annotations and distances.
+
+``` r
+pQBR57_trans <- read.table("./2_pangenomes/a_group_iv_pangenomes/pQBR57_trans_table.txt", sep=" ",
+                           col.names=c("pQBR57", "locus_tag"))
+
+pQBR57 <- read.table("./bakta_annotated/pQBR57/pQBR57.tsv", sep="\t",
+                      col.names=c("contig","type","start","end","strand","locus_tag","gene","product","dbxref"))
+
+pQBR57_distances <- group_iv_pirate %>% select(gene_family, consensus_product, threshold, number_genomes, pQBR57) %>%
+  left_join(pQBR57_trans, by="pQBR57") %>% 
+  right_join(pQBR57, by="locus_tag") %>% 
+  left_join(a_group_i_distances, by="gene_family") %>%
+  mutate(strand = case_when(strand == "+" ~ 1,
+                            strand == "-" ~-1)) %>%
+  select(locus_tag, gene_family, product, start, end, strand, dist, hex_from_scales)
+
+pQBR57_plot <- ggplot(data=pQBR57_distances) +
+  geom_segment(y = 0, yend = 0, x = 0, xend = 307330) +
+  geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
+  scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
+                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+  scale_y_continuous(limits=c(-1.5, 2.5)) +
+  theme(legend.position="right")
+```
+
+Add regions annotated by [Hall et
+al. 2015](dx.doi.org/10.1111/1462-2920.12901). Require minor
+reorientation.
+
+``` r
+pQBR57_length <- 307330
+
+pQBR57_regions <- data.frame(
+  start_ref = c(542,28595,43015,63401,73111,104134,157003,166906),
+  end_ref =  c(1732,38795,45381,73101,93469,111187,158693,181901),
+  name =    c("rep","che","par","pil","sam","Tn5042","uvr","tra")
+) %>%
+  mutate(start = start_ref-541, 
+         end = end_ref-541) %>%
+  mutate(start = ifelse(start < 0, start + pQBR57_length, start),
+         end = ifelse(end < 0, end + pQBR57_length, end))
+
+(pQBR57_plot_annot <- pQBR57_plot + 
+  geom_segment(data=pQBR57_regions,
+               aes(x=start, xend=end, y=1.2, yend=1.2)) +
+  geom_text_repel(data=pQBR57_regions, nudge_y = 0.3, force = 10,
+                  min.segment.length = 0, direction = "y",
+                  aes(x=start + (end - start)/2,
+                      y = 1.2,
+                      label=name)) +
+  scale_x_continuous(limits = c(0,pQBR57_length),
+                     expand = c(0, 0),
+                     breaks = seq(0,4e5, by=1e5),
+                     labels = seq(0,400, by=100),
+                     name = "position (kb)") +
+  theme_void() + 
+  theme(
+    legend.position = "bottom",
+    axis.line.x = element_line(),   
+    axis.ticks.x = element_line(),  
+    axis.text.x = element_text(),   
+    axis.title.x = element_text(margin = margin(t=10, b=5)), 
+    axis.line.y = element_blank(),  
+    axis.ticks.y = element_blank(), 
+    axis.text.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.length = unit(5, "pt"),
+    plot.margin = margin(t = 100, r = 20, b = 150, l = 20)
+  ))
+```
+
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-63-1.png)<!-- -->
+
+``` r
+svglite::svglite(file = "./figs/pQBR57_plot_annot.svg", 
+                 height=6, width=8)
+pQBR57_plot_annot
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
 
 ### Group III plasmids (pQBR55-like)
 
@@ -1256,7 +1596,7 @@ awk -v FS="\t" '$11 < 1e-40 && $4 > 5000 {print $2}' ./2_relatives/pQBR55_relati
 Removed duplicates and saved in
 `2_relatives/pQBR55_relatives_complete.list`
 
-#### Reorient and annotate pQBR103-like plasmids
+#### Reorient and annotate pQBR55-like plasmids
 
 ``` bash
 seqtk subseq ./2_relatives/pQBR55_relatives.fasta ./2_relatives/pQBR55_relatives_complete.list \
@@ -1377,6 +1717,37 @@ cat ./2_relatives/group_iii_relatives.list
     ## 05 ./pQBR55_seqs_plasmid_orient/NZ_LHPA01000022.1_contig_15_o.fasta
     ## 06 ./pQBR55_seqs_plasmid_orient/NZ_QTTH01000012.1_._o.fasta
 
+Make a plot of mash distances for Group I plasmids and their relatives.
+
+Calculate distances.
+
+``` bash
+mash sketch ./2_relatives/pQBR55_relatives_complete.fasta -i -S 42 -s 100000 -k 21 -p 4 -o ./2_relatives/pQBR55_relatives_complete.msh
+
+mash triangle \
+  ./1_sketches/pQBR55.msh \
+  ./1_sketches/pQBR132.msh \
+  ./1_sketches/pQBR53.msh \
+  ./1_sketches/pQBR28.msh \
+  ./2_relatives/pQBR55_relatives_complete.msh \
+  -k 21 -p 4 > ./2_relatives/pQBR55_relatives_complete_mash.dst
+```
+
+Plot.
+
+Cluster according to similarities.
+
+``` r
+(group_iii_relatives_heatmap <- plotMashDistances("./2_relatives/pQBR55_relatives_complete_mash.dst")) +
+  scale_fill_gradientn(colours = c("skyblue","dodgerblue","black"), 
+                       values=c(0,0.25,1), name = "mash distance") +
+  theme(axis.text.x = element_text(angle=45, hjust=1), 
+        axis.title.x = element_blank(), axis.title.y = element_blank(), 
+        legend.position="right")
+```
+
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-77-1.png)<!-- -->
+
 #### Analyse pangenomes of pQBR55-like plasmids
 
 Run [PIRATE](https://github.com/SionBayliss/PIRATE) ([Bayliss et
@@ -1411,8 +1782,12 @@ First, investigate just the pQBR plasmids.
 Open data, cluster according to grouping patterns, and make a rough
 plot.
 
+``` bash
+cp ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate_polished/PIRATE.gene_families.ordered.tsv ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate.gene_families.ordered.tsv
+```
+
 ``` r
-group_iii_pirate <- read.table("./2_pangenomes/a_group_iii_pirate_polished/PIRATE.gene_families.ordered.tsv", 
+group_iii_pirate <- read.table("./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate.gene_families.ordered.tsv", 
                              header=TRUE, sep="\t")
 
 giiip_matrix <- data.frame(cbind(group_iii_pirate[2], ifelse(group_iii_pirate[23:length(group_iii_pirate)]=="", 0, 1))) %>%
@@ -1433,14 +1808,18 @@ giiip_long <- group_iii_pirate %>% select(gene_family, threshold, starts_with("p
 ggplot(giiip_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-62-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-81-1.png)<!-- -->
 
 Also more straightforward than pQBR103-like plasmids.
 
 Look at the broader family members too.
 
+``` bash
+cp ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_rel_pirate_polished/PIRATE.gene_families.ordered.tsv ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_rel_pirate.gene_families.ordered.tsv
+```
+
 ``` r
-group_iii_rel_pirate <- read.table("./2_pangenomes/a_group_iii_rel_pirate_polished/PIRATE.gene_families.ordered.tsv",
+group_iii_rel_pirate <- read.table("./2_pangenomes/a_group_iii_pangenomes/a_group_iii_rel_pirate.gene_families.ordered.tsv",
                                  header=TRUE, sep="\t")
 
 giiiprel_matrix <- data.frame(cbind(group_iii_rel_pirate[2], ifelse(group_iii_rel_pirate[23:length(group_iii_rel_pirate)]=="", 0, 1))) %>%
@@ -1461,7 +1840,7 @@ giiiprel_long <- group_iii_rel_pirate %>% select(gene_family, threshold, starts_
 ggplot(giiiprel_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-63-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-83-1.png)<!-- -->
 
 pQG3rel01 has a huge section absent from the other plasmids, possibly
 indicating that it is a plasmid fusion. There are some other transposons
@@ -1470,27 +1849,27 @@ evident in the sequences, and a large conserved region.
 Calculate distances within each group (raw p-distance), and aggregate.
 
 ``` bash
-find ./2_pangenomes/a_group_iii_pirate_polished/feature_sequences -name "*.nucleotide.fasta" \
-  | awk -v FS="/" '{print $5}' | sed 's/\.nu.*//g' | while read GROUP
+find ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate_polished/feature_sequences -name "*.nucleotide.fasta" \
+  | awk -v FS="/" '{print $6}' | sed 's/\.nu.*//g' | while read GROUP
   do
   megacc -a ./ref/distance_estimation_overall_mean_nucleotide_p.mao \
-    -d ./2_pangenomes/a_group_iii_pirate_polished/feature_sequences/${GROUP}.nucleotide.fasta \
-    -o ./2_pangenomes/a_group_iii_distances/${GROUP}
+    -d ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate_polished/feature_sequences/${GROUP}.nucleotide.fasta \
+    -o ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_distances/${GROUP}
   done
   
-find ./2_pangenomes/a_group_iii_distances -name "*.csv" \
-  | awk -v FS="/" '{print $4}' | sed 's/\..*//g' \
+find ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_distances -name "*.csv" \
+  | awk -v FS="/" '{print $5}' | sed 's/\..*//g' \
   | while read GROUP
   do
-  dist=`tail -n +3 ./2_pangenomes/a_group_iii_distances/${GROUP}.csv`
+  dist=`tail -n +3 ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_distances/${GROUP}.csv`
   echo $GROUP $dist
-  done > ./2_pangenomes/a_group_iii_distances.txt
+  done > ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_distances.txt
 ```
 
 Pull out interesting information about these groups.
 
 ``` r
-a_group_iii_distances <- read.table("./2_pangenomes/a_group_iii_distances.txt",
+a_group_iii_distances <- read.table("./2_pangenomes/a_group_iii_pangenomes/a_group_iii_distances.txt",
                                   header = FALSE, col.names=c("gene_family","dist"), sep=" ")
 
 group_iii_pirate %>% left_join(a_group_iii_distances, by="gene_family") %>%
@@ -1524,7 +1903,7 @@ pQBR55_00001, the last gene is:
 ``` bash
 tail -n1 ./bakta_annotated/pQBR55/pQBR55.tsv
 
-grep "PQBR55_00990" ./2_pangenomes/a_group_iii_pirate_polished/modified_gffs/pQBR55.gff
+grep "PQBR55_00990" ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate_polished/modified_gffs/pQBR55.gff
 ```
 
 pQBR55_00198 (in the PIRATE output). The corresponding groups for these
@@ -1554,7 +1933,7 @@ Adding a label `.csv` file, as above.
 a_group_iii_distances %>% ggplot(aes(x = dist)) + geom_density()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-69-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-89-1.png)<!-- -->
 
 ``` r
 a_group_iii_distances %>% ggplot(aes(x = log10(dist))) + geom_density()
@@ -1563,7 +1942,7 @@ a_group_iii_distances %>% ggplot(aes(x = log10(dist))) + geom_density()
     ## Warning: Removed 48 rows containing non-finite outside the scale range
     ## (`stat_density()`).
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-69-2.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-89-2.png)<!-- -->
 
 ``` r
 a_group_iii_distances %>% 
@@ -1592,7 +1971,7 @@ a_group_iii_distances %>%
          Product = consensus_product,
          Colour = ifelse(is.na(hex_from_scales), "#4d4d4d", hex_from_scales)) %>%
   select(Name, Product, Colour) %>% 
-  write.table(file = "./2_pangenomes/a_group_iii_pirate_polished_pangenome_cols.csv",
+  write.table(file = "./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate_polished_pangenome_cols.csv",
               sep=",", quote=FALSE, row.names=FALSE)
 ```
 
@@ -1631,11 +2010,119 @@ giiip_long %>%
   scale_fill_identity()
 ```
 
-![](2_Pangenomes_files/figure-gfm/unnamed-chunk-71-1.png)<!-- -->
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-91-1.png)<!-- -->
 
-Next steps:
+#### Generate an overview figure using the canonical pQBR55 sequence
 
-- Go through the analysis with pQBR26
+Plot for pQBR55, even though we know it has an additional Tn4652.
+
+Get the nucleotide divergence information for the core genes, and plot
+this onto the CDS from pQBR55.
+
+``` bash
+awk -v FS="\t" '$3 == "CDS" {print $9}' ./2_pangenomes/a_group_iii_pangenomes/a_group_iii_pirate_polished/modified_gffs/pQBR55.gff \
+  | sed -n 's/.*D=\([^;]*\).*prev_ID=\([^;]*\).*/\1 \2/p' > ./2_pangenomes/a_group_iii_pangenomes/pQBR55_trans_table.txt
+```
+
+Load up, link with Bakta annotations and distances.
+
+``` r
+pQBR55_trans <- read.table("./2_pangenomes/a_group_iii_pangenomes/pQBR55_trans_table.txt", sep=" ",
+                           col.names=c("pQBR55", "locus_tag"))
+
+pQBR55 <- read.table("./bakta_annotated/pQBR55/pQBR55.tsv", sep="\t",
+                      col.names=c("contig","type","start","end","strand","locus_tag","gene","product","dbxref"))
+
+pQBR55_distances <- group_iii_pirate %>% select(gene_family, consensus_product, threshold, number_genomes, pQBR55) %>%
+  left_join(pQBR55_trans, by="pQBR55") %>% 
+  right_join(pQBR55, by="locus_tag") %>% 
+  left_join(a_group_i_distances, by="gene_family") %>%
+  mutate(strand = case_when(strand == "+" ~ 1,
+                            strand == "-" ~-1)) %>%
+  select(locus_tag, gene_family, product, start, end, strand, dist, hex_from_scales)
+
+pQBR55_plot <- ggplot(data=pQBR55_distances) +
+  geom_segment(y = 0, yend = 0, x = 0, xend = 307330) +
+  geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
+  scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
+                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+  scale_y_continuous(limits=c(-1.5, 2.5)) +
+  theme(legend.position="right")
+```
+
+Add regions annotated by [Hall et
+al. 2015](dx.doi.org/10.1111/1462-2920.12901). Require minor
+reorientation.
+
+``` r
+pQBR55_length <- 157450
+
+pQBR55_regions <- data.frame(
+  start_ref = c(4077,34006,44299,49229,78217,85257,113494,151416),
+  end_ref =  c(10604,39736,45977,66260,80003,90662,140884,152014),
+  name =    c("Tn5042","rep","uvr","Tn4652","par","tra","tra","chp")
+) %>%
+  mutate(start = start_ref-34005, 
+         end = end_ref-34005) %>%
+  mutate(start = ifelse(start < 0, start + pQBR55_length, start),
+         end = ifelse(end < 0, end + pQBR55_length, end))
+
+(pQBR55_plot_annot <- pQBR55_plot + 
+  geom_segment(data=pQBR55_regions,
+               aes(x=start, xend=end, y=1.2, yend=1.2)) +
+  geom_text_repel(data=pQBR55_regions, nudge_y = 0.3, force = 10,
+                  min.segment.length = 0, direction = "y",
+                  aes(x=start + (end - start)/2,
+                      y = 1.2,
+                      label=name)) +
+  scale_x_continuous(limits = c(0,pQBR55_length),
+                     expand = c(0, 0),
+                     breaks = seq(0,4e5, by=1e5),
+                     labels = seq(0,400, by=100),
+                     name = "position (kb)") +
+  theme_void() + 
+  theme(
+    legend.position = "bottom",
+    axis.line.x = element_line(),   
+    axis.ticks.x = element_line(),  
+    axis.text.x = element_text(),   
+    axis.title.x = element_text(margin = margin(t=10, b=5)), 
+    axis.line.y = element_blank(),  
+    axis.ticks.y = element_blank(), 
+    axis.text.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.length = unit(5, "pt"),
+    plot.margin = margin(t = 100, r = 20, b = 150, l = 20)
+  ))
+```
+
+![](2_Pangenomes_files/figure-gfm/unnamed-chunk-94-1.png)<!-- -->
+
+``` r
+svglite::svglite(file = "./figs/pQBR55_plot_annot.svg", 
+                 height=6, width=8)
+pQBR55_plot_annot
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+Get detail of the relatives, for subsequent annotations.
+
+``` bash
+grep "Length: " ./2_relatives/bakta/pQG3rel*/*.txt \
+  | sed 's:./2_relatives/bakta/::g' | sed 's;/pQG3rel0[0-9].txt:Length: ;\t;g' | sort -n -k1 \
+  > ./2_relatives/group_iii_relatives_length.list
+  
+cat ./2_relatives/group_iii_relatives.list | while read NUMBER SEQUENCE
+do
+head -n1 ./2_relatives/${SEQUENCE} | tr -d ">"
+done > ./2_relatives/group_iii_relatives_headers.list
+  
+paste ./2_relatives/group_iii_relatives_length.list ./2_relatives/group_iii_relatives.list ./2_relatives/group_iii_relatives_headers.list \
+  > ./2_relatives/group_iii_relatives_details.txt
+```
 
 ### Group II plasmids
 
