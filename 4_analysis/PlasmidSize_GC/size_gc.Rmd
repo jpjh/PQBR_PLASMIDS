@@ -1,0 +1,133 @@
+---
+title: "PLSDB_size_gc"
+author: "Victoria Orr"
+date: "2025-10-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), and James P.J. Hall. 
+
+Prerequisite files:
+-nuccore.csv - from PLSDB
+-pqbr2.csv - size, GC content information for pQBR plasmids
+
+
+Creating a figure comparing pQBR plasmd sizes and GC content to PLSDB Pseudomonas plasmids
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+
+plsdb <- read.csv("nuccore.csv")
+pqbr <- read.csv("pqbr2.csv")
+
+pseuds <- plsdb %>% filter(grepl("Pseudomonas", NUCCORE_Description, ignore.case = TRUE))
+
+pseuds <- pseuds%>%
+  mutate(size_kb = NUCCORE_Length / 1000)
+pseuds <- pseuds%>%
+  mutate(p_GC = NUCCORE_GC * 100)
+
+pseuds <- pseuds %>% select (NUCCORE_Description,p_GC, size_kb)
+
+pseuds <- pseuds %>%
+  rename(
+    GC = p_GC,
+    plasmid = NUCCORE_Description) %>%
+  select(size_kb, plasmid,GC) 
+
+pseuds$group <- "0"
+pseuds$group <- as.numeric(pseuds$group)
+
+
+combined_df <- bind_rows(pseuds, pqbr) %>%
+  mutate(logsize = log10(size_kb*1000))
+
+group_df <- combined_df %>%
+  filter(grepl("^group", plasmid, ignore.case = TRUE)) %>%
+  mutate(
+    pqbr_label = plasmid,
+  )
+
+group_pqbr <- combined_df %>%
+  filter(grepl("^pqbr", plasmid, ignore.case = TRUE)) %>%
+  mutate(
+    pqbr_point = plasmid,
+  )
+
+group_pqbr$group <- factor(group_pqbr$group,
+                        levels = c("1", "2", "3", "4", "5"),
+                        labels = c("I", "II", "III", "IV", "pQBR105"))
+
+group_df$group <- factor(group_df$group,
+                        levels = c("1", "2", "3", "4", "5"),
+                        labels = c("I", "II", "III", "IV", "pQBR105"))
+
+pseud_value <- 325000
+log_x <- log10(pseud_value)
+
+
+ggplot(combined_df, aes(x = logsize)) +
+  geom_density(aes(y = ..count..), fill = "lightgrey", alpha = 0.7) +
+  geom_point(data = group_pqbr, aes(x = logsize, y = 150, shape=as.character(group)), position = position_jitter(width = 0, height = 150), color = "black", size = 3)+
+  geom_point(data = group_df, aes(x = logsize, y = 150 ,shape = as.character(group)), position = position_jitter(width = 0, height = 150), color = "purple", size = 3) +
+  labs(x = "Log10 Plasmid Size (bp)",
+       y = "Number of Plasmids",
+       shape = "pQBR group") +
+  scale_shape_manual(
+  values = c("I" = 16, "II" = 17, "III" = 3, "IV" = 15, "pQBR105" = 6)) +
+  geom_vline(aes(xintercept = log_x), color = "black", linewidth = 0.5) +
+  theme_minimal()+
+  theme(axis.title = element_text(size = 20),axis.text = element_text(size = 20),legend.title = element_text(size = 22),
+        legend.text = element_text(size = 20))+
+  guides(shape = guide_legend(override.aes = list(color = "black")))
+
+ggsave("PLSBDvsPQBR_size2.png", dpi = 1000, width = 9, height = 7)
+
+
+group_df2 <- combined_df %>%
+  filter(grepl("^group", plasmid, ignore.case = TRUE)) %>%
+  mutate(
+    pqbr_label = plasmid,
+ #   y_jitter = runif(n(), min =-40, max = -10)
+ )
+
+group_pqbr2 <- combined_df %>%
+  filter(grepl("^pqbr", plasmid, ignore.case = TRUE)) %>%
+  mutate(
+    pqbr_point = plasmid,
+  #  y_jitter = runif(n(), min = 1, max = 40)
+  )
+
+group_pqbr2$group <- factor(group_pqbr2$group,
+                        levels = c("1", "2", "3", "4", "5"),
+                        labels = c("I", "II", "III", "IV", "pQBR105"))
+
+group_df2$group <- factor(group_df2$group,
+                        levels = c("1", "2", "3", "4", "5"),
+                        labels = c("I", "II", "III", "IV", "pQBR105"))
+
+ggplot(combined_df, aes(x = GC)) +
+  geom_density(aes(y = ..count..), fill = "lightgrey", alpha = 0.7) +
+  geom_point(data = group_pqbr2, aes(x = GC, y = 50, shape=as.character(group)), position = position_jitter(width = 0, height = 50), color = "black", size = 3)+
+  geom_point(data = group_df2, aes(x = GC, y = 50,shape = as.character(group)), position = position_jitter(width = 0, height = 50), color = "purple", size = 3) +
+  labs(x = "Plasmid GC content (%)",
+       y = "Number of Plasmids",
+       shape = "pQBR group") +
+  #ylim(-40,160)+
+  scale_shape_manual(
+  values = c("I" = 16, "II" = 17, "III" = 3, "IV" = 15, "pQBR105" = 6)) +
+  theme_minimal()+
+  theme(axis.title = element_text(size = 20),axis.text = element_text(size = 20),legend.title = element_text(size = 22),
+        legend.text = element_text(size = 20)) +
+  guides(shape = guide_legend(override.aes = list(color = "black")))
+
+ggsave("PLSBDvsPQBR_GC2.png", dpi = 1000, width = 9, height = 7)
+```
+
+

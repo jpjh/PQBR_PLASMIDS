@@ -26,7 +26,7 @@ lacking Tn5042, by removing sequence from 412026 (Transposase) to 418657
 (merR regulator).
 
 ``` bash
-mkdir ./MASH_sketches
+mkdir ./2_sketches
 
 seqret -sequence ./bakta_a/pQBR103/pQBR103.fna \
   -sformat1 fasta \
@@ -42,7 +42,7 @@ seqret -sequence ./bakta_a/pQBR103/pQBR103.fna \
   -outseq tmp2.fasta
 cat tmp1.fasta tmp2.fasta \
   | union -filter -osname2 pQBR103_backbone \
-  > ./MASH_sketches/pQBR103_backbone.fasta
+  > ./2_sketches/pQBR103_backbone.fasta
   
 rm tmp*.fasta
 ```
@@ -52,32 +52,32 @@ Sketch sequence and run against databases. Include also the
 provided by mash.
 
 ``` bash
-mash sketch -s 10000 ./MASH_sketches/pQBR103_backbone.fasta \
-  -o ./MASH_sketches/pQBR103_backbone.msh
+mash sketch -s 10000 ./2_sketches/pQBR103_backbone.fasta \
+  -o ./2_sketches/pQBR103_backbone.msh
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR103_backbone.msh \
+  ./2_sketches/pQBR103_backbone.msh \
   ../MASH_DBS/refseq.genomes+plasmid.k21s1000.msh \
-  > ./MASH_sketches/pQBR103b_refseq_mash_results.txt
+  > ./2_sketches/pQBR103b_refseq_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR103_backbone.msh \
+  ./2_sketches/pQBR103_backbone.msh \
   ../MASH_DBS/pseudomonas_complete.fasta.msh \
-  > ./MASH_sketches/pQBR103b_ps_comp_mash_results.txt
+  > ./2_sketches/pQBR103b_ps_comp_mash_results.txt
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR103_backbone.msh \
+  ./2_sketches/pQBR103_backbone.msh \
   ../MASH_DBS/pseudomonas_draft.fasta.msh \
-  > ./MASH_sketches/pQBR103b_ps_draft_mash_results.txt  
+  > ./2_sketches/pQBR103b_ps_draft_mash_results.txt  
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR103_backbone.msh \
+  ./2_sketches/pQBR103_backbone.msh \
   ../MASH_DBS/plsdb.fasta.msh \
-  > ./MASH_sketches/pQBR103b_plsdb_mash_results.txt  
+  > ./2_sketches/pQBR103b_plsdb_mash_results.txt  
 ```
 
-Note that all the MASH results described in this document here were
-trimmed to only include matches with e-value \< 1e-20
+Note that all the MASH results described in here were trimmed to only
+include matches with e-value \< 1e-20
 (`awk '$4 < 1e-20 {print $0}' $RESULTS > ../${RESULTS}`).
 
 Pull out sequences and aggregate. Extract sequences with e-value \<
@@ -480,8 +480,9 @@ ggplot(giprel_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 
 ![](2_Pangenomes_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
-Calculate distances within each group (raw p-distance) for both
-nucleotide and amino acid, and aggregate.
+To investigate variation between homologues within a group, calculate
+distances within each group (raw p-distance) for both nucleotide and
+amino acid, and aggregate.
 
 ``` bash
 find ./2_pangenomes/a_group_i_pangenomes/a_group_i_pirate_polished/feature_sequences -name "*.nucleotide.fasta" \
@@ -871,7 +872,7 @@ seqret -sequence ./bakta_a/pQBR57/pQBR57.fna \
   -outseq tmp2.fasta
 cat tmp1.fasta tmp2.fasta \
   | union -filter -osname2 pQBR57_backbone \
-  > ./MASH_sketches/pQBR57_backbone.fasta
+  > ./2_sketches/pQBR57_backbone.fasta
   
 rm tmp*.fasta
 ```
@@ -881,28 +882,28 @@ Sketch sequence and run against databases. Include also the
 provided by mash.
 
 ``` bash
-mash sketch -s 10000 ./MASH_sketches/pQBR57_backbone.fasta \
-  -o ./MASH_sketches/pQBR57_backbone.msh
+mash sketch -s 10000 ./2_sketches/pQBR57_backbone.fasta \
+  -o ./2_sketches/pQBR57_backbone.msh
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR57_backbone.msh \
+  ./2_sketches/pQBR57_backbone.msh \
   ../MASH_DBS/refseq.genomes+plasmid.k21s1000.msh \
-  > ./MASH_sketches/pQBR57b_refseq_mash_results.txt
+  > ./2_sketches/pQBR57b_refseq_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR57_backbone.msh \
+  ./2_sketches/pQBR57_backbone.msh \
   ../MASH_DBS/pseudomonas_complete.fasta.msh \
-  > ./MASH_sketches/pQBR57b_ps_comp_mash_results.txt
+  > ./2_sketches/pQBR57b_ps_comp_mash_results.txt
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR57_backbone.msh \
+  ./2_sketches/pQBR57_backbone.msh \
   ../MASH_DBS/pseudomonas_draft.fasta.msh \
-  > ./MASH_sketches/pQBR57b_ps_draft_mash_results.txt  
+  > ./2_sketches/pQBR57b_ps_draft_mash_results.txt  
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR57_backbone.msh \
+  ./2_sketches/pQBR57_backbone.msh \
   ../MASH_DBS/plsdb.fasta.msh \
-  > ./MASH_sketches/pQBR57b_plsdb_mash_results.txt  
+  > ./2_sketches/pQBR57b_plsdb_mash_results.txt  
 ```
 
 Pull out sequences and aggregate. Extract sequences with e-value \<
@@ -1468,7 +1469,7 @@ seqret -sequence ./bakta_a/pQBR55R/pQBR55R.fna \
   -outseq tmp2.fasta
 cat tmp1.fasta tmp2.fasta \
   | union -filter -osname2 pQBR55_backbone \
-  > ./MASH_sketches/pQBR55_backbone.fasta
+  > ./2_sketches/pQBR55_backbone.fasta
   
 rm tmp*.fasta
 ```
@@ -1478,28 +1479,28 @@ Sketch sequence and run against databases. Include also the
 provided by mash.
 
 ``` bash
-mash sketch -s 10000 ./MASH_sketches/pQBR55_backbone.fasta \
-  -o ./MASH_sketches/pQBR55_backbone.msh
+mash sketch -s 10000 ./2_sketches/pQBR55_backbone.fasta \
+  -o ./2_sketches/pQBR55_backbone.msh
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR55_backbone.msh \
+  ./2_sketches/pQBR55_backbone.msh \
   ../MASH_DBS/refseq.genomes+plasmid.k21s1000.msh \
-  > ./MASH_sketches/pQBR55b_refseq_mash_results.txt
+  > ./2_sketches/pQBR55b_refseq_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR55_backbone.msh \
+  ./2_sketches/pQBR55_backbone.msh \
   ../MASH_DBS/pseudomonas_complete.fasta.msh \
-  > ./MASH_sketches/pQBR55b_ps_comp_mash_results.txt
+  > ./2_sketches/pQBR55b_ps_comp_mash_results.txt
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR55_backbone.msh \
+  ./2_sketches/pQBR55_backbone.msh \
   ../MASH_DBS/pseudomonas_draft.fasta.msh \
-  > ./MASH_sketches/pQBR55b_ps_draft_mash_results.txt  
+  > ./2_sketches/pQBR55b_ps_draft_mash_results.txt  
   
 mash dist -p 64 \
-  ./MASH_sketches/pQBR55_backbone.msh \
+  ./2_sketches/pQBR55_backbone.msh \
   ../MASH_DBS/plsdb.fasta.msh \
-  > ./MASH_sketches/pQBR55b_plsdb_mash_results.txt  
+  > ./2_sketches/pQBR55b_plsdb_mash_results.txt  
 ```
 
 Pull out sequences and aggregate. Extract sequences with e-value \<
@@ -2144,27 +2145,27 @@ Try running the whole sequence against the databases, as above.
 
 ``` bash
 mash sketch -s 10000 ./bakta_annotated/pQBR26/pQBR26.fna \
-  -o ./MASH_sketches/pQBR26.msh
+  -o ./2_sketches/pQBR26.msh
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR26.msh \
+  ./2_sketches/pQBR26.msh \
   ../MASH_DBS/refseq.genomes+plasmid.k21s1000.msh \
-  > ./MASH_sketches/pQBR26_refseq_mash_results.txt
+  > ./2_sketches/pQBR26_refseq_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR26.msh \
+  ./2_sketches/pQBR26.msh \
   ../MASH_DBS/pseudomonas_complete.fasta.msh \
-  > ./MASH_sketches/pQBR26_ps_comp_mash_results.txt
+  > ./2_sketches/pQBR26_ps_comp_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR26.msh \
+  ./2_sketches/pQBR26.msh \
   ../MASH_DBS/pseudomonas_draft.fasta.msh \
-  > ./MASH_sketches/pQBR26_ps_draft_mash_results.txt
+  > ./2_sketches/pQBR26_ps_draft_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR26.msh \
+  ./2_sketches/pQBR26.msh \
   ../MASH_DBS/plsdb.fasta.msh \
-  > ./MASH_sketches/pQBR26_plsdb_mash_results.txt
+  > ./2_sketches/pQBR26_plsdb_mash_results.txt
 ```
 
 There are lots of matches in both databases — much more than for the
@@ -2196,27 +2197,27 @@ current study.
 
 ``` bash
 mash sketch -s 10000 ./bakta_annotated/pQBR23/pQBR23.fna \
-  -o ./MASH_sketches/pQBR23.msh
+  -o ./2_sketches/pQBR23.msh
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR23.msh \
+  ./2_sketches/pQBR23.msh \
   ../MASH_DBS/refseq.genomes+plasmid.k21s1000.msh \
-  > ./MASH_sketches/pQBR23_refseq_mash_results.txt
+  > ./2_sketches/pQBR23_refseq_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR23.msh \
+  ./2_sketches/pQBR23.msh \
   ../MASH_DBS/pseudomonas_complete.fasta.msh \
-  > ./MASH_sketches/pQBR23_ps_comp_mash_results.txt
+  > ./2_sketches/pQBR23_ps_comp_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR23.msh \
+  ./2_sketches/pQBR23.msh \
   ../MASH_DBS/pseudomonas_draft.fasta.msh \
-  > ./MASH_sketches/pQBR23_ps_draft_mash_results.txt
+  > ./2_sketches/pQBR23_ps_draft_mash_results.txt
 
 mash dist -p 64 \
-  ./MASH_sketches/pQBR23.msh \
+  ./2_sketches/pQBR23.msh \
   ../MASH_DBS/plsdb.fasta.msh \
-  > ./MASH_sketches/pQBR23_plsdb_mash_results.txt
+  > ./2_sketches/pQBR23_plsdb_mash_results.txt
 ```
 
 There are lots of matches in both databases — even compared with pQBR26!

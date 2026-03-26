@@ -1,0 +1,79 @@
+---
+title: "PAES_heatmap"
+author: "Victoria Orr"
+date: "2025-11-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+```
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), and James P.J. Hall. 
+
+
+First get mash distances for plasmids:
+2_pP19E3.1.fna
+4_pJBCL41.fna
+6_pBT2436.fna
+9_pQBR103.fna
+10_pQBR57.fna
+
+
+```{bash}
+
+mash sketch -o plasmids *.fna
+mash dist plasmids.msh plasmids.msh > mash_distances.tab
+```
+
+```{r}
+mash <- read.table("mash_distances.tab", header = FALSE, sep = "\t")
+colnames(mash) <- c("query", "reference", "distance", "p_value", "shared_hashes")
+
+plasmid_names <- c(
+  "10_pQBR57.fna" = "pQBR57 (IV)",
+  "9_pQBR103.fna" = "pQBR103 (I)",
+  "4_pJBCL41.fna" = "pJBCL41",
+  "2_pP19E3.1.fna" = "pP19E3.1",
+  "6_pBT2436.fna" = "pBT2436"
+)
+
+mash$query <- plasmid_names[mash$query]
+mash$reference <- plasmid_names[mash$reference]
+
+plasmids <- unique(c(mash$query, mash$reference))
+dist_mat <- matrix(0, nrow = length(plasmids), ncol = length(plasmids),
+                   dimnames = list(plasmids, plasmids))
+
+for (i in seq_len(nrow(mash))) {
+  q <- mash$query[i]
+  r <- mash$reference[i]
+  d <- mash$distance[i]
+  dist_mat[q, r] <- d
+  dist_mat[r, q] <- d
+}
+dist_obj <- as.dist(dist_mat)
+hc <- hclust(dist_obj, method = "average")
+plasmid_order <- hc$labels[hc$order]
+
+mash_long <- as.data.frame(as.table(dist_mat)) %>%
+  rename(query = Var1, reference = Var2, distance = Freq)
+
+
+ggplot(mash_long, aes(
+  x = factor(reference, levels = plasmid_order),
+  y = factor(query, levels = rev(plasmid_order)),   # reverse for top-down match
+  fill = distance
+)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "lightblue", high = "black", name = "MASH Distance") +
+  labs(x = "Plasmid", y = "Plasmid") +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 10)
+  )
+
+ggsave("PAESheatmap.png", dpi=500, height = 5, width = 6)

@@ -1,0 +1,414 @@
+---
+title: 'pQBR PLasmids
+author: "VTO"
+date: "2025-03-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), supervised by James P.J. Hall. 
+
+Prerequisite file:
+
+-"Hybrid_data.csv" - data collected from conjguation/fitness experiments (excluding growth curves)
+
+Packages and colour scheme:
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(nlme)
+library(forcats)
+library(ggtext)
+library(patchwork)
+
+pd <- position_dodge(width=0.5)
+col1 <- "#FFB000"
+col2 <- "#DC267F"
+col4 <- "#FE6100"
+col3<- "#785EF0"
+col5<- "#000000"
+col6<-"#0101DF"
+col7<-"#18B6DA"
+COL=c(col4,col7)
+
+```
+
+Hybrid_data.csv consists of several datasets on differnt dates. As Nov_23 yields unusual counts compared with other datasets,therefore we chose to exclude. 
+
+We chose to include Dec24 and Jan25 datasets due to small difference in time conducted, with the exception of pQBR55 (Oct-22) as this was the only dataset for this plasmid and preliminary testing had yielded a consistent conjugation rate and lack of transposon mobilisation detected in this assay. pQBR56 and pQBR51 were excluded due to minimal datapoints and genetic similarity to pQBR57 and pQBR150.
+
+```{r}
+conj_exp<-read.csv("Hybrid_data.csv",header=TRUE,sep=",")
+
+`%notin%` <- Negate(`%in%`)
+
+conj_exp<- conj_exp %>% filter(Plas_group != "Con") %>% 
+  mutate(Start_D=(Start_DC*10^(Dilution_S))/Quantity_S,
+         Start_R=(Start_RC*10^(Dilution_S))/Quantity_S,
+         Start_N=(Start_NC*10^(Dilution_S))/Quantity_S,
+         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
+         End_R=(End_RC*10^(Dilution_E))/Quantity_E,
+         End_N=(End_NC*10^(Dilution_E))/Quantity_E,
+         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
+         Plas_T=(Plas_TC*10^(Dilution_P))/Quantity_P,
+         Tran_T=(Tran_TC*10^(Dilution_T))/Quantity_T,
+         psi = log(End_N/Start_N)/24,
+         gamma.p = psi * log(1+((Plas_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)),
+         gamma.t = psi * log(1+((Tran_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)))
+
+conj_exp_filtered<- conj_exp %>% 
+  select(Label,Plasmid,Plas,Plas_group,Strain_Rep,Plas_Rep, gamma.p, gamma.t, Dat_rep, Data) %>%
+  pivot_longer(cols=c(gamma.p, gamma.t), names_to = "type", values_to = "gamma") %>%
+  filter(Data %notin% "Nov_23") %>%
+  filter(Plasmid %notin% c("pQBR56", "pQBR57", "pQBR51")) %>%
+  filter(!(Data == "Oct_22" & Plasmid != "pQBR55_L")) %>%
+  mutate(Plasmid = case_when(
+    Plasmid == "pQBR57_L" ~ "pQBR57",
+    Plasmid == "pQBR55_L" ~ "pQBR55",  
+    Plasmid == "pQBR103_L" ~ "pQBR103",
+    Plasmid == "pP19E3_L" ~ "pP19E3",
+    TRUE ~ Plasmid 
+  )) 
+
+Limits <- filter(conj_exp_filtered, Plasmid == "LIM") %>%
+  filter(type=="gamma.t")
+
+conj_exp_filtered <-conj_exp_filtered %>%
+  filter(Plas_Rep != "13") %>%
+  group_by(Plasmid, Plas_Rep) %>%
+  filter(!any(is.na(gamma))) %>%
+  ungroup()
+
+conj_exp_filtered <- conj_exp_filtered %>%
+  group_by(Plasmid) %>%
+  mutate(plas_label = dense_rank(Plas)) %>%
+  ungroup()
+
+conj_summ <- conj_exp_filtered %>%
+     group_by(Plasmid,Plas_group,type) %>%
+    summarise(gamma = mean(gamma, na.rm=TRUE))
+
+pd <- position_dodge(width=0.5)
+
+conj_exp_log <- conj_exp_filtered %>%
+  mutate(conj_exp_filtered, log_gamma = log10(gamma))
+
+conj_exp_log <- conj_exp_log %>%
+   mutate(log_gamma = replace(log_gamma, log_gamma == -Inf, -21))
+
+conj_summstat <- conj_exp_log %>%
+  group_by(Plasmid, type) %>%
+  summarise(
+    mean = mean(log_gamma, na.rm=TRUE),
+    std = sd(log_gamma, na.rm = TRUE)) %>%
+  left_join(conj_exp_log %>% select(Plasmid,
+                              type,Dat_rep,Plas_group) %>%
+              distinct(), by = c("Plasmid", "type")) %>%
+  mutate(ymin = mean - std, ymax = mean + std)
+
+conj_exp_log$Plas_group <- as.numeric(conj_exp_log$Plas_group)
+
+conj_summstat<- rename(conj_summstat, "log_gamma"="mean")
+
+plasgroup_colors <- c(
+  "1" = "#f68600ff", #GroupII
+  "2" = "#5900abff", #GroupIII
+  "3" = "#00ab2fff", #GroupI
+  "4" = "#00ab2fff", #GroupI
+  "5" = "#AA8800", #pP19E3
+  "6" = "#00a9abff" #GroupIV
+  # Add all Plas_group levels and their desired colors
+)
+label_lookup <- unique(conj_exp_log[, c("Plasmid", "Plas_group")])
+
+label_lookup$Plasmid_col <- paste0(
+  "<span style='color:", 
+  plasgroup_colors[label_lookup$Plas_group], 
+  "'>", 
+  label_lookup$Plasmid, 
+  "</span>")
+
+conj_exp_log$Plasmid_col <- NULL
+conj_exp_log <- merge(conj_exp_log, label_lookup, by = c("Plasmid", "Plas_group"))
+conj_summstat$Plasmid_col <- NULL
+conj_summstat <- merge(conj_summstat, label_lookup, by = "Plasmid")
+
+conj_exp_log$Plasmid_col <- 
+  fct_reorder(conj_exp_log$Plasmid_col, conj_exp_log$Plas_group)
+conj_summstat$Plasmid_col <-
+  factor(conj_summstat$Plasmid_col,
+         levels = levels(conj_exp_log$Plasmid_col))
+
+pd2=position_jitter(height=0, width=0.15)
+
+ggplot(conj_exp_log, aes(x=Plasmid_col, y=log_gamma,
+                   ymax=log_gamma,
+                   colour=type, fill=type,
+                   shape=as.factor(plas_label))) +
+  geom_point(position=pd2, size=4) +
+  theme_bw() +
+  theme(
+    axis.text=element_text(size=20),
+    axis.title=element_text(size=25),
+    legend.text=element_text(size=25),
+    legend.title=element_blank(),
+    axis.text.x=element_markdown(angle=45, hjust=1),  
+    legend.position = "bottom",
+    panel.grid = element_blank()) +
+  labs(x="Plasmid", y=expression(log[10](gamma))) +
+  scale_colour_manual(values = COL,
+                      labels=c("Plasmid transfer", "Transposon transfer")) +
+  scale_fill_manual(values = COL,
+                    labels=c("Plasmid transfer", "Transposon transfer")) +
+  scale_shape_manual(values = c(0,16,2,3,18,4,7,8,9,11)) +
+  guides(shape = "none") +
+  geom_pointrange(data=conj_summstat,
+                  aes(x=Plasmid_col, ymin=ymin, ymax=ymax, shape=NULL),
+                  size=2, alpha=0.3) + 
+  scale_y_continuous(limits = c(min(conj_exp_log$log_gamma-1,
+                                    na.rm = TRUE), NA), expand = c(0, 0)) +
+  geom_hline(yintercept=log10(Limits$gamma), linetype='dotted', col='black')
+
+ggsave("Hybrid_paper.png",dpi=1200,width=15,height=10)
+
+
+```
+
+Analysing conjugation/transposon transfer rates - updated with refined dataset for preprint
+```{r}
+
+lod <-Limits$gamma
+
+conj_m <- conj_exp_log %>% select(Label,Plasmid,Plas,plas_label,Plas_group,
+                                  Strain_Rep,Plas_Rep,Dat_rep,type,gamma) %>%
+  pivot_wider(names_from = "type", values_from = "gamma") %>%
+  mutate(gamma.t_adj = ifelse(gamma.t < lod, lod, gamma.t),
+         ratio = (gamma.t_adj/gamma.p),
+         ratio_log = log10(ratio))
+
+conj_m$ratio_group <- ifelse(conj_m$gamma.t_adj < 6e-21, 
+                             "Positive", 
+                             "Negative")
+conj_m_summ <- conj_m %>%
+  group_by(Plasmid) %>%
+  summarise(
+    log_ratio = mean(ratio_log),
+    std = sd(ratio_log)) %>%
+  left_join(label_lookup %>% select(Plasmid, Plasmid_col) %>%
+  distinct(), by = c("Plasmid")) %>%
+  mutate(ymin = log_ratio - std, ymax = log_ratio + std)
+
+conj_m$Plasmid_col <- NULL
+conj_m <- merge(conj_m, label_lookup, by = c("Plasmid", "Plas_group"))
+conj_m_summ$Plasmid_col <- NULL
+conj_m_summ <- merge(conj_m_summ, label_lookup, by = "Plasmid")
+
+conj_m$Plas_group <- as.numeric(as.character(conj_m$Plas_group))
+
+conj_m <-conj_m %>% mutate(log_ratio=ratio_log)
+
+conj_m$Plasmid_col <- fct_reorder(conj_m$Plasmid_col,
+                                  conj_m$Plas_group)
+conj_m_summ$Plasmid_col <- factor(conj_m_summ$Plasmid_col,
+                                  levels = levels(conj_m$Plasmid_col))
+
+ggplot(conj_m, aes(x=Plasmid_col, y=log_ratio,
+                   ymax=log_ratio, shape=as.factor(plas_label),color=ratio_group)) +
+  geom_point(position=pd2, size=4) +
+  theme_bw() +
+  theme(
+    axis.text=element_text(size=20),
+    axis.title=element_text(size=25),
+    legend.text=element_text(size=25),
+    legend.title=element_blank(),
+    axis.text.x=element_markdown(angle=45, hjust=1),  # Enable markdown for colored labels
+    panel.grid = element_blank()
+  ) +
+  labs(x="Plasmid", y=expression(log[10](Ratio))) +
+  scale_shape_manual(values = c(0,16,2,3,18,4,7,8,9,11)) +
+  scale_color_manual(values = c("Positive"="purple",
+                                "Negative"="black"))+
+  guides(shape = "none", colour = "none") +
+  geom_pointrange(data=conj_m_summ,
+                  aes(x=Plasmid_col, y = log_ratio, ymin=ymin, ymax=ymax, shape=NULL),inherit.aes=FALSE,
+                  size=2, alpha=0.3)
+
+ggsave("Conj_Ratios_paper.png",dpi=1200,width=15,height=10)
+
+conj_m$Plas_group <- factor(conj_m$Plas_group)
+
+
+conj_mod1 <- lm(ratio_log ~ Plasmid, data = conj_m)
+summary(conj_mod1)
+TukeyHSD(aov(conj_mod1))
+
+conj_mod2 <- lm(ratio_log ~ Plas_group, data = conj_m)
+summary(conj_mod2)
+TukeyHSD(aov(conj_mod2))
+
+summary(aov(data = conj_m, gamma.t~gamma.p))
+
+conj_mod3<- lm(gamma.p ~ Plasmid, data=conj_m)
+summary(conj_mod3)
+TukeyHSD(aov(conj_mod3))
+
+conj_mod4<- lm(gamma.p ~ Plas_group, data=conj_m)
+summary(conj_mod4)
+TukeyHSD(aov(conj_mod4))
+
+
+#Getting some exact numbers for how many tns per plasmid transferc
+p57 <- conj_m %>%
+  filter(Plasmid == "pQBR57") %>%
+  summarise(
+    plasmid_mean_log10 = mean(log10(gamma.p), na.rm = TRUE),
+    plasmid_sd_log10   = sd(log10(gamma.p), na.rm = TRUE),
+    transposon_mean_log10 = mean(log10(gamma.t), na.rm = TRUE),
+    transposon_sd_log10   = sd(log10(gamma.t), na.rm = TRUE)
+  )
+
+p102 <- conj_m %>%
+  filter(Plasmid == "pQBR102") %>%
+  summarise(
+    plasmid_mean_log10 = mean(log10(gamma.p), na.rm = TRUE),
+    plasmid_sd_log10   = sd(log10(gamma.p), na.rm = TRUE),
+    transposon_mean_log10 = mean(log10(gamma.t), na.rm = TRUE),
+    transposon_sd_log10   = sd(log10(gamma.t), na.rm = TRUE)
+  )
+
+log10_ratio_57 <- p57$plasmid_mean_log10 - p57$transposon_mean_log10
+sd_log10_ratio_57 <- sqrt(p57$plasmid_sd_log10^2 +
+                            p57$transposon_sd_log10^2)
+
+ratio_57 <- 10^log10_ratio_57
+
+log10_ratio_102 <- p102$plasmid_mean_log10 - p102$transposon_mean_log10
+sd_log10_ratio_102 <- sqrt(p102$plasmid_sd_log10^2 +
+                             p102$transposon_sd_log10^2)
+
+ratio_102 <- 10^log10_ratio_102
+
+ci_57 <- 10^(log10_ratio_57 + c(-1, 1) * 1.96 * sd_log10_ratio_57)
+ci_102 <- 10^(log10_ratio_102 + c(-1, 1) * 1.96 * sd_log10_ratio_102)
+
+```
+
+Now analysing the comparative fitness data
+```{r}
+fit_exp<-read.csv("Hybrid_data.csv",header=TRUE,sep=",")
+
+fit_exp<- fit_exp %>% mutate(Start_D=(Start_DC*10^(Dilution_S))/Quantity_S,
+         Start_R=(Start_RC*10^(Dilution_S))/Quantity_S,
+         Start_N=(Start_NC*10^(Dilution_S))/Quantity_S,
+         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
+         End_R=(End_RC*10^(Dilution_E))/Quantity_E,
+         End_N=(End_NC*10^(Dilution_E))/Quantity_E,
+         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
+         Plas_T=(Plas_TC*10^(Dilution_P))/Quantity_P,
+         Tran_T=(Tran_TC*10^(Dilution_T))/Quantity_T,
+         psi = log(End_N/Start_N)/24,
+         gamma.p = psi * log(1+((Plas_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)),
+         gamma.t = psi * log(1+((Tran_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)))
+
+comp1 <- fit_exp %>%
+  mutate(Mlac = (log(End_R/(Start_R/100))/24)) %>%
+  mutate(Mvs = (log(End_D/(Start_D/100))/24))
+
+#calculating fitness - w
+comp2 <- comp1 %>%
+  mutate(w = Mvs/Mlac)
+comp2.5 <- comp2 %>%
+  group_by(Plasmid) %>%
+  summarise(mean=mean(w),std=sd(w))%>%
+  mutate(ymin = mean - std,
+         ymax = mean + std)
+
+con_mean <-   1.018404 
+
+con <- subset(comp2, Plasmid =="Con")
+
+t.test(con$w, mu=1, data=con)
+
+comp3<- comp2 %>% mutate(w_corr = w/con_mean)
+comp3[comp3 ==-Inf]<-0
+
+comp3 <- comp3 %>% filter(Plasmid != "pQBR57_L") %>% 
+  mutate(Plasmid = case_when(
+    Plasmid == "pQBR55_L" ~ "pQBR55",  
+    Plasmid == "pQBR103_L" ~ "pQBR103",
+    Plasmid == "pP19E3_L" ~ "pP19E3",
+    TRUE ~ Plasmid)) %>%
+  filter(Plasmid !="Con", Plasmid !="LIM")
+
+comp3$Plas_group <- as.numeric(comp3$Plas_group)
+comp3$Plasmid <- as.factor(comp3$Plasmid)
+comp3stat <- comp3 %>%
+  group_by(Plasmid) %>%
+  summarise(mean=mean(w_corr),
+            std=sd(w_corr))%>%
+  mutate(ymin = mean - std,
+         ymax = mean + std)
+
+comp3stat<- rename(comp3stat, "w_corr"="mean")
+
+plasgroup_colors2 <- c(
+  "1" = "#f68600ff", #GroupII
+  "2" = "#5900abff", #GroupIII
+  "3" = "#00ab2fff", #GroupI
+  "4" = "#00ab2fff", #GroupI
+  "5" = "#AA8800", #pP19E3
+  "6" = "#00a9abff", #GroupIV
+  "Con" = "black"
+  # Add all Plas_group levels and their desired colors
+)
+
+label_lookup2 <- unique(comp3[, c("Plasmid", "Plas_group")])
+label_lookup2$Plasmid_col <- paste0(
+  "<span style='color:", 
+  plasgroup_colors2[label_lookup2$Plas_group], 
+  "'>", 
+  label_lookup2$Plasmid, 
+  "</span>")
+
+comp3$Plasmid_col <- NULL
+comp3 <- merge(comp3, label_lookup2,
+               by = c("Plasmid", "Plas_group"))
+comp3stat$Plasmid_col <- NULL
+comp3stat <- merge(comp3stat,
+                   label_lookup2, by = "Plasmid")
+
+comp3$Plasmid_col <- fct_reorder(comp3$Plasmid_col,
+                                 comp3$Plas_group)
+comp3stat$Plasmid_col <- factor(comp3stat$Plasmid_col,
+                                levels = levels(comp3$Plasmid_col))
+
+
+pd <- position_jitterdodge(dodge.width=0.6, jitter.width = 0.1)
+pd2<-position_dodge(width=0.6)
+
+ggplot(comp3, aes(x=Plasmid_col,y=w_corr))+ 
+  geom_point(position=pd2,size=4)+
+  geom_hline(yintercept = 1, linetype="dashed")+
+  theme_bw()+
+  theme(axis.text=element_text(size=20),axis.title=element_text(size=25), legend.text=element_text(size=25),legend.title=element_text(size=25),
+        axis.text.x = ggtext::element_markdown(angle = 45, hjust = 1))+labs(x="Plasmid", y="Relative Fitness (W)")+ 
+  geom_pointrange(data=comp3stat,aes(x=Plasmid_col,ymin=w_corr-std,ymax=w_corr+std),size=2,alpha=0.3,position=pd2) +
+   scale_y_continuous(breaks = seq(0.5, max(comp3$w_corr) + 0.2, by = 0.2))
+  
+ggsave("Comp_fit.png",dpi=1200,width=12,height=10)
+
+```
+
+Analysing fitness values
+```{r}
+fit <- comp3
+
+F3 <- aov(w_corr ~ Plasmid, data = fit) 
+
+F4<- aov(w_corr~as.factor(Plas_group), data=fit)
+
+```

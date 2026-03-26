@@ -1,0 +1,384 @@
+---
+title: 'Chapter 3: Simon Growth Curve'
+author: "VTO"
+date: "2025-03-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), and James P.J. Hall and Prajwal Vishwanath Bharadwaj.
+
+## Extracting data from multi-read platereader outputs
+
+These first lines should be run in bash, or in the 'Terminal' window in Rstudio.
+
+```{bash, eval=FALSE}
+grep -a -A 9 "Cycles / Well" rawdata/Growth_25-10-24.csv | grep -a -v "Cycles / Well"> tmp/Growth_pQBR57.csv
+```
+
+These subsequent lines are run in R.
+
+You can match up the wells with information about their contents. Make another table called `ARRANGEMENT.csv` (or whatever you like, but modify the following code accordingly). Format `ARRANGEMENT.csv` so that one column is called `well` and contains one row for each well A1-H12. Other columns can be titled and include whatever information you like.
+
+Code edited
+
+```{r }
+
+library(tidyverse)
+library(ggplot2)
+library(gcplyr)
+library(patchwork)
+
+# -----------------------------------------------------------------
+# Input File Names
+exptdat <- read.csv("tmp/Growth_pQBR57.csv", header=FALSE, sep=",")
+arrangement <- read.csv("tmp/Arrangement_pQBR57.csv", header=TRUE, sep=",")
+parent_in_this_file <- seq(1, 28, by=4)
+# -----------------------------------------------------------------
+
+exptdat_list <- list()
+
+for(j in 1:96){
+  i = ((j-1)*10)+1
+  well = exptdat[i,"V1"]
+  welldata = data.frame(t(exptdat[(i+1):(i+8),c(2:140)]))
+  colnames(welldata) <-  c("time","temp","mean","stdev","m01","m11","m10","m00")
+  welldata$cycle <- c(1:nrow(welldata))
+  welldata$well <- well
+  exptdat_list[[j]] <- welldata
+}
+
+exptdat_long <- bind_rows(exptdat_list) %>%
+  rowwise() %>%
+  mutate(median_value = median(c(m01, m11, m10, m00), na.rm=TRUE))
+
+
+exptdat_long$row <- substr(exptdat_long$well,1,1)
+exptdat_long$col <- as.numeric(gsub("[A-H]","",exptdat_long$well))
+
+exptdat_long <- exptdat_long %>% left_join(arrangement, by="well")
+
+sorder <- 1:200
+exptdat_long.1 <- subset(exptdat_long, strain!="blank")
+exptdat_long.1 <- exptdat_long.1 %>% mutate(hours = time/3600)
+
+exptdat_summ <- exptdat_long.1 %>%
+  group_by(hours,plasmid) %>%
+  summarise(OD = mean(median_value))
+
+exptdat_long.1 <- exptdat_long.1 %>% mutate(OD = median_value)
+
+select_medians<- filter(exptdat_long, strain == "blank" & cycle == 100 & median_value > 0.5) #taking mean measurement for non-growing blanks over the first hour as a measure of the blank.
+
+blank_measure <- filter(exptdat_long, strain == "blank" & col != 4 & cycle < 5) %>% pull(median_value) %>% mean()
+
+exptdat_long.1 <- mutate(exptdat_long.1, 
+                         od600_corr = median_value - blank_measure) %>%
+  select(hours, well, row, col, strain, parent, plasmid, replicate, od600_corr)
+
+
+```
+
+ Pre-processing using `gcplyr`
+ De-noising the data
+
+## Data has been smoothed using:
+##    moving-average stored in `ods1` 
+##    moving-average and moving-media stored in `ods2`
+```{r}
+dat <- mutate(group_by(exptdat_long.1, well, strain, plasmid),
+              ods1 = smooth_data(x=hours, y = od600_corr, sm_method = "moving-median",
+                                     window_width_n = 5),
+              ods2 = smooth_data(x = hours, y = od600_corr, sm_method = "moving-average",
+                                 window_width_n = 5))
+
+dat <- dat %>% mutate(ods = ods2)
+```
+
+Calculating Growth Rate
+
+This calculates the slope of the original density data and the per-capita growth rate.
+
+```{r}
+
+dat1 <-dat %>% mutate(ods_adj = ifelse(ods <= 0, 1e-30, ods))
+
+dat1 <-dat1 %>% group_by(well, strain, plasmid) %>% 
+  mutate(sidervi = calc_deriv(x=hours, y=ods_adj, blank=0, window_width_n = 5),
+         percap3 = calc_deriv(x=hours, y=ods_adj, percapita=TRUE, blank=0,
+                              window_width_n = 3, trans_y='log'),
+         doub_time = doubling_time(y = percap3))
+
+
+
+dat1 %>% filter(ods_adj > 0.01) %>% ggplot(aes(x=hours, y=percap3)) +
+   geom_line() +
+    ylim(-0.2, 0.2) +
+   facet_wrap(~well)
+```
+
+Plotting Graphs for the four Growth Metrics
+
+```{r}
+dat_gg <- dat1 %>% filter(ods > 0.01) %>%
+  group_by(well, strain, plasmid, replicate) %>%
+  summarize(lag_time = lag_time(y = ods_adj, x = hours, deriv = percap3),
+            max_percap = max_gc(percap3),
+            max_percap_time = hours[which_max_gc(percap3)],
+            max_percap_dens = ods_adj[which_max_gc((percap3))],
+            min_dens = first_minima(ods_adj, return="y"),
+            auc = auc(x=hours, y=ods_adj),
+            max_dens = max_gc(ods_adj, na.rm = TRUE),
+            max_time = extr_val(hours, which_max_gc(ods_adj)),
+            thresh = first_above(y=ods_adj, x=hours,
+                                 threshold = 0.75, return = "x")
+  )
+
+  dat_gg$strain <- as.factor(dat_gg$strain)
+  dat_gg <- as.data.frame(dat_gg)
+  
+dat_gg <- dat_gg %>% filter(strain != "Free", strain != "pQBR57_L")
+
+  ## Max Growth Rate
+ ggplot(data=dat_gg, aes(x=strain, y=max_percap , fill=strain)) +
+      geom_boxplot() +
+    geom_point(position=position_jitterdodge(dodge.width = 0), 
+               pch=21, aes(fill=replicate), show.legend = F) +
+    theme_bw()+
+    theme(legend.position="none", plot.title = element_text(hjust = 0.48,size=45),
+          axis.title=element_text(size=30),axis.text=element_text(size=25))+
+    ggtitle('Maximum Per Capita Growth Rate')+
+    labs(y="Growth Rate", x="Plasmid")
+  
+   ggsave("MaxGrowth.png",dpi=500,width=15,height=10)
+   
+  ## Lagtime
+ ggplot(data=dat_gg, aes(x=strain, y=lag_time, fill=strain)) +
+      geom_boxplot() +
+    geom_point(position=position_jitterdodge(dodge.width = 0), 
+               pch=21, aes(fill=replicate), show.legend = F) +
+    ggtitle('Lag Time') +
+    labs(y="Lag Time", x="Plasmid")+
+    theme_bw()+
+    theme(legend.position="none", plot.title = element_text(hjust = 0.48,size=45),
+          axis.title=element_text(size=30),axis.text=element_text(size=25))
+  
+ ggsave("LagTime.png",dpi=500,width=15,height=10)
+  
+  ## AUC
+  dat_gg2 <- dat_gg
+ dat_gg2 <- dat_gg2 %>%
+  mutate(Plas_group = recode(strain,
+                            "Free_Tn" = 1,
+                            "pQBR103" = 2,
+                            "pQBR102" = 3,
+                            "pQBR150" = 3,
+                            "pQBR30" = 3,
+                            "pQBR56" = 3,
+                            "pQBR57" = 3))
+ 
+ ggplot(data=dat_gg2, aes(x=fct_reorder(strain,Plas_group), y=auc, fill=strain)) +
+      geom_boxplot(outliers = FALSE) +
+    geom_point(position=position_jitterdodge(dodge.width = 0), 
+               pch=21, aes(fill=replicate), show.legend = F) +
+    theme_bw()+
+    labs(y="Area Under the Curve", x="Plasmid")+
+    ggtitle('Area Under The Curve') +
+    theme(legend.position="none", plot.title = element_text(hjust = 0.48,size=45),
+          axis.title=element_text(size=30),axis.text=element_text(size=25))
+  
+ ggsave("AUC_nooutlier.png",dpi=500,width=15,height=10)
+ 
+## Max Growth Density
+  ggplot(data=dat_gg, aes(x=strain, y=max_dens, fill=strain)) +
+      geom_boxplot(outliers = FALSE) +
+    geom_point(position=position_jitterdodge(dodge.width = 0), 
+               pch=21, aes(fill=replicate), show.legend = F) +
+    ggtitle('Maximum Growth Density') +
+    theme_bw()+
+    theme(legend.position="none", plot.title = element_text(hjust = 0.48,size=45),
+          axis.title=element_text(size=30),axis.text=element_text(size=25))+
+    labs(y="Growth Density",x="Plasmid")
+  
+   ggsave("MaxGrowthDens_nooutlier.png",dpi=500,width=15,height=10)
+
+```
+
+```{r}
+col3 <- "#FE6100"
+col5<- "#785EF0"
+col7<-"#18B6DA"
+COLS<-c(col3,col5,col7)
+exptdat_clean <- dat_1 %>%
+  group_by(hours, strain, plasmid) %>%
+  summarise( mean_OD = mean(od600_corr),
+             std = sd(od600_corr)
+             )   
+
+curve_102 <- exptdat_clean %>% filter(strain %in% c("Free_Tn", "pQBR102"))
+curve_103 <- exptdat_clean %>% filter(strain %in% c("Free_Tn", "pQBR103"))
+curve_150 <- exptdat_clean %>% filter(strain %in% c("Free_Tn", "pQBR150"))
+curve_30 <- exptdat_clean %>% filter(strain %in% c("Free_Tn", "pQBR30"))
+curve_56 <- exptdat_clean %>% filter(strain %in% c("Free_Tn", "pQBR56"))
+curve_57 <- exptdat_clean %>% filter(strain %in% c("Free_Tn", "pQBR57"))
+curve_57_L <- exptdat_clean %>% filter(strain %in% c("Free_Tn", "pQBR57_L"))
+
+A <- ggplot(data=curve_102, 
+        aes(x=hours, y=mean_OD, color=plasmid, group=strain, fill=plasmid)) +
+   geom_line(size=1) +
+   geom_ribbon(aes(ymin=mean_OD-std, ymax=mean_OD+std), alpha=0.2, color=NA) +
+   scale_fill_manual(values =COLS,labels=c("Free","Plasmid"))+
+  scale_colour_manual(values=COLS,labels=c("Free","Plasmid"))+
+  theme_bw()+
+   theme(axis.line = element_line(color = "black"),
+         axis.text=element_text(size=20),
+        axis.title=element_text(size=25),
+       # axis.title=element_blank(),
+        legend.text=element_text(size=25),
+        legend.title=element_blank(),
+        axis.text.x=element_text(angle=45,hjust = 1)) +
+ #  ymax(1.5) +
+   labs(x="Time (in hours)", y="Optical Density at 600nm")+
+  ggtitle("pQBR102")
+#ggsave("Growth_pQBR102.png",dpi=500,width=10,height=10)
+
+B <- ggplot(data=curve_103, 
+        aes(x=hours, y=mean_OD, color=plasmid, group=strain, fill=plasmid)) +
+   geom_line(size=1) +
+   geom_ribbon(aes(ymin=mean_OD-std, ymax=mean_OD+std), alpha=0.2, color=NA) +
+    # scale_x_continuous(breaks = mybreaks, labels = mylabs) +
+   scale_fill_manual(values =COLS,labels=c("Free","Plasmid"))+
+  scale_colour_manual(values=COLS,labels=c("Free","Plasmid"))+
+   theme_bw()+
+   theme(axis.line = element_line(color = "black"),
+         axis.text=element_text(size=20),
+        axis.title=element_text(size=25),
+      #  axis.title=element_blank(),
+        legend.text=element_text(size=25),
+        legend.title=element_blank(),
+        axis.text.x=element_text(angle=45,hjust = 1))+
+#   ylim(0, 1.5) +
+   labs(x="Time (in hours)", y="Optical Density at 600nm")+
+  ggtitle("pQBR103")
+#ggsave("Growth_pQBR103.png",dpi=500,width=10,height=10)
+
+C <- ggplot(data=curve_150, 
+        aes(x=hours, y=mean_OD, color=plasmid, group=strain, fill=plasmid)) +
+   geom_line(size=1) +
+   geom_ribbon(aes(ymin=mean_OD-std, ymax=mean_OD+std), alpha=0.2, color=NA) +
+  #   scale_x_continuous(breaks = mybreaks, labels = mylabs) +
+   scale_fill_manual(values =COLS,labels=c("Free","Plasmid"))+
+  scale_colour_manual(values=COLS,labels=c("Free","Plasmid"))+
+    theme_bw()+
+   theme(axis.line = element_line(color = "black"),
+         axis.text=element_text(size=20),
+        axis.title=element_text(size=25),
+       # axis.title=element_blank(),
+        legend.text=element_text(size=25),
+        legend.title=element_blank(),
+        axis.text.x=element_text(angle=45,hjust = 1))+
+#   ylim(0, 1.5) +
+   labs(x="Time (in hours)", y="Optical Density at 600nm")+
+  ggtitle("pQBR150")
+#ggsave("Growth_pQBR150.png",dpi=500,width=10,height=10)
+
+D <- ggplot(data=curve_30, 
+        aes(x=hours, y=mean_OD, color=plasmid, group=strain, fill=plasmid)) +
+   geom_line(size=1) +
+   geom_ribbon(aes(ymin=mean_OD-std, ymax=mean_OD+std), alpha=0.2, color=NA) +
+ #    scale_x_continuous(breaks = mybreaks, labels = mylabs) +
+   scale_fill_manual(values =COLS,labels=c("Free","Plasmid"))+
+  scale_colour_manual(values=COLS,labels=c("Free","Plasmid"))+
+    theme_bw()+
+   theme(axis.line = element_line(color = "black"),
+         axis.text=element_text(size=20),
+        axis.title=element_text(size=25),
+        #axis.title=element_blank(),
+        legend.text=element_text(size=25),
+        legend.title=element_blank(),
+        axis.text.x=element_text(angle=45,hjust = 1))+
+#   ylim(0, 1.5) +
+   labs(x="Time (in hours)", y="Optical Density at 600nm")+
+  ggtitle("pQBR30")
+#ggsave("Growth_pQBR30.png",dpi=500,width=10,height=10)
+
+E <- ggplot(data=curve_56, 
+        aes(x=hours, y=mean_OD, color=plasmid, group=strain, fill=plasmid)) +
+   geom_line(size=1) +
+   geom_ribbon(aes(ymin=mean_OD-std, ymax=mean_OD+std), alpha=0.2, color=NA) +
+ #    scale_x_continuous(breaks = mybreaks, labels = mylabs) +
+   scale_fill_manual(values =COLS,labels=c("Free","Plasmid"))+
+  scale_colour_manual(values=COLS,labels=c("Free","Plasmid"))+
+   theme_bw()+
+   theme(axis.line = element_line(color = "black"),
+         axis.text=element_text(size=20),
+        axis.title=element_text(size=25),
+      #  axis.title=element_blank(),
+        legend.text=element_text(size=25),
+        legend.title=element_blank(),
+        axis.text.x=element_text(angle=45,hjust = 1))+
+  # ylim(0, 1.5) +
+   labs(x="Time (in hours)", y="Optical Density at 600nm")+
+  ggtitle("pQBR56")
+#ggsave("Growth_pQBR56.png",dpi=500,width=10,height=10)
+
+F <- ggplot(data=curve_57, 
+        aes(x=hours, y=mean_OD, color=plasmid, group=strain, fill=plasmid)) +
+   geom_line(size=1) +
+   geom_ribbon(aes(ymin=mean_OD-std, ymax=mean_OD+std), alpha=0.2, color=NA) +
+#     scale_x_continuous(breaks = mybreaks, labels = mylabs) +
+   scale_fill_manual(values =COLS,labels=c("Free","Plasmid"))+
+  scale_colour_manual(values=COLS,labels=c("Free","Plasmid"))+
+  theme_bw()+
+  theme(axis.line = element_line(color = "black"),
+         axis.text=element_text(size=20),
+        axis.title=element_text(size=25),
+      #  axis.title=element_blank(),
+        legend.text=element_text(size=25),
+        legend.title=element_blank(),
+        axis.text.x=element_text(angle=45,hjust = 1))+
+#   ylim(0, 1.5) +
+   labs(x="Time (in hours)", y="Optical Density at 600nm")+
+  ggtitle("pQBR57")
+#ggsave("Growth_pQBR57.png",dpi=500,width=10,height=10)
+
+
+patch1 <- (F+D+E+A+C+B) +plot_layout(ncol = 3, nrow = 2, axes = "collect", axis_titles = "collect",guides="collect")
+ggsave("Growth_all.png",dpi=500,width=15,height=10)
+
+
+```
+
+Calculating statistics from growth curves.
+
+```{r}
+library(multcomp)
+library(FSA)
+
+# Maximum Growth Rate
+
+# Running a linear model on dat_gg
+dat_gg$strain <- as.factor(dat_gg$strain)
+mod1 <- lm(max_percap  ~ strain, data=dat_gg)
+
+aovres1 <- aov(data=dat_gg, max_percap  ~ strain)
+tukey1 <- cld(glht(aovres1, linfct = mcp(strain = "Tukey")), decreasing = TRUE)
+tukey1$mcletters$Letters
+
+#lag time
+mod2 <- lm(lag_time ~ strain, data=dat_gg)
+aovres2 <- aov(data=dat_gg, lag_time ~ strain)
+tukey2 <- cld(glht(aovres2, linfct = mcp(strain = "Tukey")), decreasing = TRUE)
+tukey2$mcletters$Letters
+
+# AUC
+mod3 <- lm(auc ~ strain, data=dat_gg)
+aovres3 <- aov(data=dat_gg, auc ~ strain)
+tukey3 <- cld(glht(aovres3, linfct = mcp(strain = "Tukey")), decreasing = TRUE)
+tukey3$mcletters$Letters
+
+#Growth Density
+kruskal.test(data=dat_gg, max_dens ~ strain)
+dunnTest(dat_gg$max_dens, dat_gg$strain, method = "bonferroni")

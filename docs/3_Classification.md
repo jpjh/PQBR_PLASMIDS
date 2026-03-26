@@ -1,8 +1,7 @@
 Attempted classification of pQBR plasmids
 ================
-revised 2025
 
-## Classification
+## PInc classification
 
 Attempt to classify the plasmids according to the IncP scheme outlined
 by [Nishimura et al. 2024](https://doi.org/10.1101/2024.09.03.610885)
@@ -125,12 +124,104 @@ This table indicates:
 - The Group II plasmids (roughly) match the IncPSTY group defined by
   Nishimura et al. (pSTY)
 - The Group IIb plasmid pQBR26 roughly matches the IncP-7 group (pCAR1)
+- The non-determined plasmid pQBR105 matches IncP-12 group (R716)
 - The plasmids matching the IncP-9 plasmid (pWW0) are likely matching
   through the Tn4652 transposon, since they include representatives of
   Group III and Group IV that have Tn4652, and pWW0 has the complete
   version of this *tol* transposon.
 - The Group III plasmids and Group IV plasmids do not match one of the
   defined IncP groups.
+
+Run a BLAST comparison to visualise.
+
+``` bash
+makeblastdb -dbtype nucl -in ./3_incp_groups/seqs/NC_022739.fasta
+makeblastdb -dbtype nucl -in ./3_incp_groups/seqs/AB088420.fasta
+makeblastdb -dbtype nucl -in ./3_incp_groups/seqs/LC685026.fasta
+
+
+mkdir ./3_incp_groups/blast
+
+tblastx -query ./bakta_annotated/pQBR23/pQBR23.fna -db ./3_incp_groups/seqs/NC_022739.fasta \
+  -outfmt 6 > ./3_incp_groups/blast/pQBR23_pSTY.tblastx
+  
+tblastx -query ./bakta_annotated/pQBR26/pQBR26.fna -db ./3_incp_groups/seqs/AB088420.fasta \
+  -outfmt 6 > ./3_incp_groups/blast/pQBR26_pCAR1.tblastx
+  
+tblastx -query ./bakta_annotated/pQBR105/pQBR105.fna -db ./3_incp_groups/seqs/LC685026.fasta \
+  -outfmt 6 > ./3_incp_groups/blast/pQBR105_R716.tblastx
+```
+
+Examined using ACT. Rough plots here with ggplot.
+
+``` r
+blast_columns <- c("queryId","subjectId","percIdentity", "alnLength",
+                   "mismatchCount", "gapOpenCount", "queryStart", "queryEnd", 
+                   "subjectStart", "subjectEnd", "eVal", "bitScore")
+
+pQBR23_pSTY_tblastx <- read.table("./3_incp_groups/blast/pQBR23_pSTY.tblastx",
+                                  col.names=blast_columns)
+
+makeComparison <- function(x){
+  vals <- x %>% mutate(id = row_number()) %>%
+    filter(eVal < 1e-100 & alnLength > 100) %>%
+    select(id, percIdentity, queryStart, queryEnd, subjectEnd, subjectStart) %>%
+    mutate(direction = case_when(queryEnd > queryStart & subjectEnd > subjectStart ~ "F",
+                                 queryEnd < queryStart & subjectEnd > subjectStart ~ "R",
+                                 queryEnd > queryStart & subjectEnd < subjectStart ~ "R",
+                                 queryEnd < queryStart & subjectEnd < subjectStart ~ "F")) %>%
+    pivot_longer(cols = c("queryStart","queryEnd","subjectEnd","subjectStart"),
+                 names_to = "type",
+                 values_to = "x_coord")
+  
+  vals <- vals %>%
+    mutate(y_coord = rep(c(1,1,2,2), length.out = nrow(vals)))
+  
+  ggplot(data = vals) +
+    geom_polygon(aes(x = x_coord, y=(0-y_coord), group=id, fill = direction, alpha=percIdentity))
+}
+
+(pQBR23_pSTY_comparisons <- makeComparison(pQBR23_pSTY_tblastx))
+```
+
+![](3_Classification_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+pQBR26_pCAR1_tblastx <- read.table("./3_incp_groups/blast/pQBR26_pCAR1.tblastx",
+                                  col.names=blast_columns)
+(pQBR26_pCAR1_comparisons <- makeComparison(pQBR26_pCAR1_tblastx))
+```
+
+![](3_Classification_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
+
+``` r
+pQBR105_R716_tblastx <- read.table("./3_incp_groups/blast/pQBR105_R716.tblastx",
+                                  col.names=blast_columns)
+(pQBR105_R716_comparisons <- makeComparison(pQBR105_R716_tblastx))
+```
+
+![](3_Classification_files/figure-gfm/unnamed-chunk-6-3.png)<!-- -->
+
+pQBR23 and pQBR26 match their corresponding groups well, but pQBR105
+matches its corresponding plasmid R716 only through a transposon.
+
+``` bash
+blastn -query ./bakta_annotated/pQBR23/pQBR23.fna -db ./3_incp_groups/seqs/NC_022739.fasta \
+  -perc_identity 80 \
+  -outfmt "6 std qcovus" # 56% coverage at >80% identity
+  
+blastn -query ./bakta_annotated/pQBR24/pQBR24.fna -db ./3_incp_groups/seqs/NC_022739.fasta \
+  -perc_identity 80 \
+  -outfmt "6 std qcovus" # 56% coverage at >80% identity
+
+blastn -query ./bakta_annotated/pQBR26/pQBR26.fna -db ./3_incp_groups/seqs/AB088420.fasta \
+  -perc_identity 80 \
+  -outfmt "6 std qcovus" # 42% coverage at >80% identity
+
+blastn -query ./bakta_annotated/pQBR105/pQBR105.fna -db ./3_incp_groups/seqs/LC685026.fasta  \
+  -perc_identity 80 \
+  -outfmt "6 std qcovus" # only 4% coverage at >80% identity
+```
 
 ------------------------------------------------------------------------
 
