@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 3: Simon Growth Curve'
+title: 'Growth Curve'
 author: "VTO"
 date: "2025-03-11"
 output: html_document
@@ -18,11 +18,7 @@ These first lines should be run in bash, or in the 'Terminal' window in Rstudio.
 grep -a -A 9 "Cycles / Well" rawdata/Growth_25-10-24.csv | grep -a -v "Cycles / Well"> tmp/Growth_pQBR57.csv
 ```
 
-These subsequent lines are run in R.
 
-You can match up the wells with information about their contents. Make another table called `ARRANGEMENT.csv` (or whatever you like, but modify the following code accordingly). Format `ARRANGEMENT.csv` so that one column is called `well` and contains one row for each well A1-H12. Other columns can be titled and include whatever information you like.
-
-Code edited
 
 ```{r }
 
