@@ -14,7 +14,7 @@ Raw data and rmarkdown code for analyis of plasmid conjugation rates and transpo
 - Hybrid_data.csv is the raw data files for mobilisation rate analyis and comparative fitness analysis. Dataset includes 3 experiments conducted and includes multiple donor strains (strains with plasmid and target chromosomal tranposon) created independently. Headers:
   - Label (labelling of donor strains for lab use), 
   - Plasmid (plasmid used in replicate, "Con" refers to control replicates, "_L" refers to in-house strain. "pQBR57_L", "pQBR103_L", "pQBR55_L" are the strain analyses in Hall et al. 2021. "pQBR57" is "pQBR57R".
-  - Plas_group - groups that plasmids belong to 1:	pQBR Group II	2: pQBR Group III	3: pQBR Group I	4:	5: IncP-2 (pP19E3.1)	6: pQBR Group IV
+  - Plas_group - groups that plasmids belong to 1:	pQBR26	2: pQBR Group III	3: pQBR Group I	4:	5: IncP-2 (pP19E3.1)	6: pQBR Group IV
   - Strain_rep - replicate number of that particular donor strain
   - Plas_rep - replicate number of that particular plasmid
   - Plas - labelling of donor strains for each plasmid
