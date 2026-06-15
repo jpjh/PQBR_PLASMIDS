@@ -1,8 +1,10 @@
 ---
-title: 'pQBR PLasmids
+title: "pQBR Plasmids: Experimental Analysis"
 author: "VTO"
 date: "2025-03-11"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -13,10 +15,13 @@ Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set 
 
 Prerequisite file:
 
--"Hybrid_data.csv" - data collected from conjguation/fitness experiments (excluding growth curves)
+- "Hybrid_data.csv" - data collected from conjguation/fitness experiments (excluding growth curves)
 
 Packages and colour scheme:
+
 ```{r}
+rm(list=ls())
+
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
@@ -25,46 +30,74 @@ library(forcats)
 library(ggtext)
 library(patchwork)
 
+`%notin%` <- Negate(`%in%`)
+
 pd <- position_dodge(width=0.5)
 col1 <- "#FFB000"
 col2 <- "#DC267F"
 col4 <- "#FE6100"
-col3<- "#785EF0"
-col5<- "#000000"
-col6<-"#0101DF"
-col7<-"#18B6DA"
-COL=c(col4,col7)
-
+col3 <- "#785EF0"
+col5 <- "#000000"
+col6 <- "#0101DF"
+col7 <- "#18B6DA"
 ```
 
-Hybrid_data.csv consists of several datasets on differnt dates. As Nov_23 yields unusual counts compared with other datasets,therefore we chose to exclude. 
+Hybrid_data.csv consists of several datasets collected on different dates. **As Nov_23 yields unusual counts compared with other datasets,therefore we chose to exclude.** <-- ??
 
-We chose to include Dec24 and Jan25 datasets due to small difference in time conducted, with the exception of pQBR55 (Oct-22) as this was the only dataset for this plasmid and preliminary testing had yielded a consistent conjugation rate and lack of transposon mobilisation detected in this assay. pQBR56 and pQBR51 were excluded due to minimal datapoints and genetic similarity to pQBR57 and pQBR150.
+For analysis, we aggregated the data from the Dec_24 and Jan_25 experiments, since these were performed just one month apart. We additionally included the pQBR55 data from Oct_22 as this was the only dataset for this plasmid, and results for the other plasmids tested (pP19E3, pQBR57, pQBR103) were consistent with those from later experiments. 
 
 ```{r}
-conj_exp<-read.csv("Hybrid_data.csv",header=TRUE,sep=",")
+exp_df <- read.csv("Hybrid_data.csv", header = TRUE, sep = ",", 
+                     colClasses = c(rep("factor",6), rep("numeric",14),"factor","factor")) %>%
+  mutate(Start_D = 0.01 * (Start_DC*10^(Dilution_S))/Quantity_S,
+         Start_R = 0.01 * (Start_RC*10^(Dilution_S))/Quantity_S,
+         Start_N = Start_D + Start_R,
+         End_D = (End_DC*10^(Dilution_E))/Quantity_E,
+         End_R = (End_RC*10^(Dilution_E))/Quantity_E,
+         End_N = End_D + End_R)
 
-`%notin%` <- Negate(`%in%`)
-
-conj_exp<- conj_exp %>% filter(Plas_group != "Con") %>% 
-  mutate(Start_D=(Start_DC*10^(Dilution_S))/Quantity_S,
-         Start_R=(Start_RC*10^(Dilution_S))/Quantity_S,
-         Start_N=(Start_NC*10^(Dilution_S))/Quantity_S,
-         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
-         End_R=(End_RC*10^(Dilution_E))/Quantity_E,
-         End_N=(End_NC*10^(Dilution_E))/Quantity_E,
-         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
-         Plas_T=(Plas_TC*10^(Dilution_P))/Quantity_P,
-         Tran_T=(Tran_TC*10^(Dilution_T))/Quantity_T,
+conj_exp <- exp_df %>%
+  filter(!(is.na(Plas_TC))) %>% # remove data without conjugation measurements
+  mutate(Plas_T = (Plas_TC*10^(Dilution_P))/Quantity_P,
+         Tran_T = (Tran_TC*10^(Dilution_T))/Quantity_T,
          psi = log(End_N/Start_N)/24,
          gamma.p = psi * log(1+((Plas_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)),
          gamma.t = psi * log(1+((Tran_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)))
 
-conj_exp_filtered<- conj_exp %>% 
-  select(Label,Plasmid,Plas,Plas_group,Strain_Rep,Plas_Rep, gamma.p, gamma.t, Dat_rep, Data) %>%
+# calculate minimal limits
+
+lims <- data.frame(
+  Start_N = 0.01 * (125*10^6)/0.05,
+  End_N = (100*10^7)/0.05,
+  End_D = (36*10^7)/0.05,
+  End_R = (64*10^7)/0.05,
+  Plas_T = 1*10^2/0.05, # using the least diluted plate, and most plated
+  Tran_T = 1*10^0/0.2 # using the least diluted plate, and most plated
+) %>% 
+  mutate(psi = log(End_N/Start_N)/24,
+         gamma.p = psi * log(1+((Plas_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)),
+         gamma.t = psi * log(1+((Tran_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)))
+
+# plot
+
+ggplot(data=conj_exp, aes(x=Plasmid, shape=Plas)) + 
+  geom_point(aes(y=log10(gamma.p)), colour="darkred") + 
+  geom_point(aes(y=log10(gamma.t)), colour="darkblue") + 
+  facet_grid(.~Data) + theme(axis.text.x=element_text(angle=45, hjust=1))
+
+ggplot(data=conj_exp, aes(x=Plasmid, colour=Data)) + 
+  geom_point(aes(y=log10(gamma.p)), shape=16, position=pd) + 
+  geom_point(aes(y=log10(gamma.t)), shape=17, position=pd) + 
+  theme(axis.text.x=element_text(angle=45, hjust=1))
+```
+
+Filter and wrangle the dataset for analysis. 
+
+```{r}
+conj_exp_filtered <- conj_exp %>% 
+  select(Label, Plasmid, Plas, Plas_group, Strain_Rep, 
+         Plas_Rep, gamma.p, gamma.t, Dat_rep, Data) %>%
   pivot_longer(cols=c(gamma.p, gamma.t), names_to = "type", values_to = "gamma") %>%
-  filter(Data %notin% "Nov_23") %>%
-  filter(Plasmid %notin% c("pQBR56", "pQBR57", "pQBR51")) %>%
   filter(!(Data == "Oct_22" & Plasmid != "pQBR55_L")) %>%
   mutate(Plasmid = case_when(
     Plasmid == "pQBR57_L" ~ "pQBR57",
@@ -74,76 +107,78 @@ conj_exp_filtered<- conj_exp %>%
     TRUE ~ Plasmid 
   )) 
 
-Limits <- filter(conj_exp_filtered, Plasmid == "LIM") %>%
+Limits <- pivot_longer(lims, cols=c(gamma.p, gamma.t), names_to = "type", values_to = "gamma") %>%
   filter(type=="gamma.t")
 
-conj_exp_filtered <-conj_exp_filtered %>%
-  filter(Plas_Rep != "13") %>%
+conj_exp_filtered <- conj_exp_filtered %>%
   group_by(Plasmid, Plas_Rep) %>%
   filter(!any(is.na(gamma))) %>%
-  ungroup()
-
-conj_exp_filtered <- conj_exp_filtered %>%
+  ungroup() %>%
   group_by(Plasmid) %>%
   mutate(plas_label = dense_rank(Plas)) %>%
   ungroup()
 
-conj_summ <- conj_exp_filtered %>%
-     group_by(Plasmid,Plas_group,type) %>%
-    summarise(gamma = mean(gamma, na.rm=TRUE))
-
 pd <- position_dodge(width=0.5)
 
 conj_exp_log <- conj_exp_filtered %>%
-  mutate(conj_exp_filtered, log_gamma = log10(gamma))
+  mutate(log_gamma = log10(gamma),
+         log_gamma = replace(log_gamma, log_gamma == -Inf, -20))
 
-conj_exp_log <- conj_exp_log %>%
-   mutate(log_gamma = replace(log_gamma, log_gamma == -Inf, -21))
+conj_summ <- conj_exp_log %>%
+  group_by(Plasmid,Plas_group,type) %>%
+  summarise(mean = mean(gamma, na.rm=TRUE),
+            mean_log = mean(log_gamma),
+            sd = sd(log_gamma)) %>%
+  rename(log_gamma = mean_log)
+```
 
-conj_summstat <- conj_exp_log %>%
-  group_by(Plasmid, type) %>%
-  summarise(
-    mean = mean(log_gamma, na.rm=TRUE),
-    std = sd(log_gamma, na.rm = TRUE)) %>%
-  left_join(conj_exp_log %>% select(Plasmid,
-                              type,Dat_rep,Plas_group) %>%
-              distinct(), by = c("Plasmid", "type")) %>%
-  mutate(ymin = mean - std, ymax = mean + std)
+Calculate summary statistics and plot.
 
-conj_exp_log$Plas_group <- as.numeric(conj_exp_log$Plas_group)
+```{r}
+# conj_summstat <- conj_exp_log %>%
+#   group_by(Plasmid, type) %>%
+#   summarise(
+#     mean = mean(log_gamma, na.rm=TRUE),
+#     std = sd(log_gamma, na.rm = TRUE)) %>%
+#   left_join(conj_exp_log %>% select(Plasmid,
+#                               type,Dat_rep,Plas_group) %>%
+#               distinct(), by = c("Plasmid", "type")) %>%
+#   mutate(ymin = mean - std, ymax = mean + std)
+# 
+# conj_summstat<- rename(conj_summstat, "log_gamma"="mean")
 
-conj_summstat<- rename(conj_summstat, "log_gamma"="mean")
-
-plasgroup_colors <- c(
-  "1" = "#f68600ff", #GroupII
-  "2" = "#5900abff", #GroupIII
-  "3" = "#00ab2fff", #GroupI
-  "4" = "#00ab2fff", #GroupI
-  "5" = "#AA8800", #pP19E3
-  "6" = "#00a9abff" #GroupIV
+plasgroup_colours <- data.frame(
+  Plas_group = c("1","2","3","5","6"),
+  colour = c("#f68600ff", #GroupII
+             "#5900abff", #GroupIII
+             "#00ab2fff", #GroupI
+             "#AA8800", #pP19E3
+             "#00a9abff") #GroupIV
   # Add all Plas_group levels and their desired colors
 )
-label_lookup <- unique(conj_exp_log[, c("Plasmid", "Plas_group")])
 
-label_lookup$Plasmid_col <- paste0(
-  "<span style='color:", 
-  plasgroup_colors[label_lookup$Plas_group], 
-  "'>", 
-  label_lookup$Plasmid, 
-  "</span>")
+label_lookup <- unique(conj_exp_log[, c("Plasmid", "Plas_group")]) %>%
+  left_join(plasgroup_colours, by="Plas_group") %>%
+  mutate(Plasmid_col = paste0("<span style='color:", 
+                              colour, 
+                              "'>", 
+                              Plasmid, 
+                              "</span>")) %>%
+  select(-colour)
 
-conj_exp_log$Plasmid_col <- NULL
-conj_exp_log <- merge(conj_exp_log, label_lookup, by = c("Plasmid", "Plas_group"))
-conj_summstat$Plasmid_col <- NULL
-conj_summstat <- merge(conj_summstat, label_lookup, by = "Plasmid")
+# conj_exp_log$Plasmid_col <- NULL
+conj_exp_log <- merge(conj_exp_log, label_lookup, by = c("Plasmid", "Plas_group")) %>%
+  mutate(Plasmid_col = fct_reorder(Plasmid_col, as.numeric(Plas_group)))
+# conj_summstat$Plasmid_col <- NULL
+conj_summ <- merge(conj_summ, label_lookup, by = "Plasmid") %>%
+  mutate(Plasmid_col = factor(Plasmid_col,
+                              levels = levels(conj_exp_log$Plasmid_col)))
+```
 
-conj_exp_log$Plasmid_col <- 
-  fct_reorder(conj_exp_log$Plasmid_col, conj_exp_log$Plas_group)
-conj_summstat$Plasmid_col <-
-  factor(conj_summstat$Plasmid_col,
-         levels = levels(conj_exp_log$Plasmid_col))
+Plot.
 
-pd2=position_jitter(height=0, width=0.15)
+```{r}
+pd2 <- position_jitter(height=0, width=0.15)
 
 ggplot(conj_exp_log, aes(x=Plasmid_col, y=log_gamma,
                    ymax=log_gamma,
@@ -160,61 +195,50 @@ ggplot(conj_exp_log, aes(x=Plasmid_col, y=log_gamma,
     legend.position = "bottom",
     panel.grid = element_blank()) +
   labs(x="Plasmid", y=expression(log[10](gamma))) +
-  scale_colour_manual(values = COL,
+  scale_colour_manual(values = c(col4, col7),
                       labels=c("Plasmid transfer", "Transposon transfer")) +
-  scale_fill_manual(values = COL,
+  scale_fill_manual(values = c(col4, col7),
                     labels=c("Plasmid transfer", "Transposon transfer")) +
   scale_shape_manual(values = c(0,16,2,3,18,4,7,8,9,11)) +
   guides(shape = "none") +
-  geom_pointrange(data=conj_summstat,
-                  aes(x=Plasmid_col, ymin=ymin, ymax=ymax, shape=NULL),
+  geom_pointrange(data=conj_summ,
+                  aes(x=Plasmid_col, ymin=log_gamma-sd, ymax=log_gamma+sd, shape=NULL),
                   size=2, alpha=0.3) + 
   scale_y_continuous(limits = c(min(conj_exp_log$log_gamma-1,
                                     na.rm = TRUE), NA), expand = c(0, 0)) +
   geom_hline(yintercept=log10(Limits$gamma), linetype='dotted', col='black')
 
-ggsave("Hybrid_paper.png",dpi=1200,width=15,height=10)
+# ggsave("Hybrid_paper_.png",dpi=300,width=7.2,height=8)
+
+ggsave("Hybrid_paper_.png",dpi=1200,width=15,height=10)
 
 
 ```
 
 Analysing conjugation/transposon transfer rates - updated with refined dataset for preprint
-```{r}
 
+```{r}
 lod <-Limits$gamma
 
-conj_m <- conj_exp_log %>% select(Label,Plasmid,Plas,plas_label,Plas_group,
-                                  Strain_Rep,Plas_Rep,Dat_rep,type,gamma) %>%
+conj_m <- conj_exp_log %>% select(Label,Plasmid,Plas,plas_label,Plas_group,Plasmid_col,
+                                  Strain_Rep,Plas_Rep,Dat_rep,Data,type,gamma) %>%
   pivot_wider(names_from = "type", values_from = "gamma") %>%
   mutate(gamma.t_adj = ifelse(gamma.t < lod, lod, gamma.t),
          ratio = (gamma.t_adj/gamma.p),
-         ratio_log = log10(ratio))
+         log_ratio = log10(ratio))
 
-conj_m$ratio_group <- ifelse(conj_m$gamma.t_adj < 6e-21, 
+conj_m$ratio_group <- ifelse(conj_m$gamma.t < 6e-21, 
                              "Positive", 
                              "Negative")
+
 conj_m_summ <- conj_m %>%
-  group_by(Plasmid) %>%
-  summarise(
-    log_ratio = mean(ratio_log),
-    std = sd(ratio_log)) %>%
+  group_by(Plasmid, Plas_group) %>%
+  summarise(mean = mean(log_ratio),
+            std = sd(log_ratio)) %>%
+  rename(log_ratio = mean) %>%
   left_join(label_lookup %>% select(Plasmid, Plasmid_col) %>%
-  distinct(), by = c("Plasmid")) %>%
+              distinct(), by = c("Plasmid")) %>%
   mutate(ymin = log_ratio - std, ymax = log_ratio + std)
-
-conj_m$Plasmid_col <- NULL
-conj_m <- merge(conj_m, label_lookup, by = c("Plasmid", "Plas_group"))
-conj_m_summ$Plasmid_col <- NULL
-conj_m_summ <- merge(conj_m_summ, label_lookup, by = "Plasmid")
-
-conj_m$Plas_group <- as.numeric(as.character(conj_m$Plas_group))
-
-conj_m <-conj_m %>% mutate(log_ratio=ratio_log)
-
-conj_m$Plasmid_col <- fct_reorder(conj_m$Plasmid_col,
-                                  conj_m$Plas_group)
-conj_m_summ$Plasmid_col <- factor(conj_m_summ$Plasmid_col,
-                                  levels = levels(conj_m$Plasmid_col))
 
 ggplot(conj_m, aes(x=Plasmid_col, y=log_ratio,
                    ymax=log_ratio, shape=as.factor(plas_label),color=ratio_group)) +
@@ -238,30 +262,94 @@ ggplot(conj_m, aes(x=Plasmid_col, y=log_ratio,
                   size=2, alpha=0.3)
 
 ggsave("Conj_Ratios_paper.png",dpi=1200,width=15,height=10)
+```
 
-conj_m$Plas_group <- factor(conj_m$Plas_group)
+Statistical tests. First run through all the data together.
 
-
-conj_mod1 <- lm(ratio_log ~ Plasmid, data = conj_m)
+```{r}
+# ratio depends on the plasmid
+conj_mod1 <- lm(log_ratio ~ Plasmid, data = conj_m)
+plot(conj_mod1)
 summary(conj_mod1)
+anova(conj_mod1) #F(8,62) = 3.34, p < 1e-15
 TukeyHSD(aov(conj_mod1))
 
-conj_mod2 <- lm(ratio_log ~ Plas_group, data = conj_m)
+# ratio depends on the plasmid group
+conj_mod2 <- lm(log_ratio ~ Plas_group, data = conj_m)
+plot(conj_mod2)
 summary(conj_mod2)
+anova(conj_mod2) #F(4,66) = 28.3, p < 1e-12
 TukeyHSD(aov(conj_mod2))
 
-summary(aov(data = conj_m, gamma.t~gamma.p))
+# directly compare conjugation rate and transposon transfer rates
 
-conj_mod3<- lm(gamma.p ~ Plasmid, data=conj_m)
+ggplot(conj_m, aes(x=log10(gamma.p), y=log10(gamma.t_adj))) + 
+  geom_point(aes(colour=Plasmid)) + geom_smooth(method="lm")
+
+cor.test(x=conj_m$gamma.p, y=conj_m$gamma.t_adj, method="spearman")
+# significant correlation, 0.463, p < 1e-4
+# but these data include pQBR103 and pQBR55 that had rare/no transposon mobilisation and low conjugation rates
+# remove and retest
+
+conj_m_flt <- conj_m %>% filter(!(Plasmid %in% c("pQBR103","pQBR55")))
+
+cor.test(x=conj_m_flt$gamma.p, 
+         y=conj_m_flt$gamma.t_adj, method="spearman")
+
+# rho = 0.19, p = 0.167
+# nb can compare non-transformed values, since spearman's rho considers rank order
+
+# conjugation rate depends on plasmid
+conj_mod3<- lm(log10(gamma.p) ~ Plasmid, data=conj_m)
+plot(conj_mod3)
 summary(conj_mod3)
+anova(conj_mod3) #F(8,62)=182, p < 1e-15
 TukeyHSD(aov(conj_mod3))
+```
 
-conj_mod4<- lm(gamma.p ~ Plas_group, data=conj_m)
-summary(conj_mod4)
-TukeyHSD(aov(conj_mod4))
+These analyses look at the aggregated data. Are the results consistent if each experiment is analysed separately?
 
+Main results: 
 
-#Getting some exact numbers for how many tns per plasmid transferc
+- correlation between gamma.p and gamma.t, which is lost if the low-conjugation rate plasmids are removed
+- significant difference between plasmids
+
+```{r}
+ggplot(data=conj_m, aes(x=Plasmid, colour=Data)) + 
+  geom_point(aes(y=log10(gamma.p)), shape=16, position=pd) + 
+  geom_point(aes(y=log10(gamma.t)), shape=17, position=pd) + 
+  theme(axis.text.x=element_text(angle=45, hjust=1))
+
+conj_m_24 <- filter(conj_m_flt, Data=="Dec_24")
+conj_m_25 <- filter(conj_m_flt, Data=="Jan_25")
+
+cor.test(x=conj_m_24$gamma.p, 
+         y=conj_m_24$gamma.t_adj, method="spearman")
+cor.test(x=conj_m_25$gamma.p, 
+         y=conj_m_25$gamma.t_adj, method="spearman")
+# both of these results are nonsignificant, because pQBR55 is omitted from these experiments, as above. 
+
+conj_mod1_24 <- lm(log_ratio ~ Plasmid, data = filter(conj_m, Data=="Dec_24"))
+anova(conj_mod1_24) # significant effect of plasmid
+conj_mod1_24_results <- as.data.frame(TukeyHSD(aov(conj_mod1_24))$Plasmid) %>%
+  rownames_to_column("comparison") %>% mutate(star = ifelse(`p adj` < 0.05, "*", ""))
+
+conj_mod1_25 <- lm(log_ratio ~ Plasmid, data = filter(conj_m, Data=="Jan_25"))
+anova(conj_mod1_25) # significant effect of plasmid
+conj_mod1_25_results <- as.data.frame(TukeyHSD(aov(conj_mod1_25))$Plasmid) %>%
+  rownames_to_column("comparison") %>% mutate(star = ifelse(`p adj` < 0.05, "*", ""))
+
+left_join(conj_mod1_24_results, conj_mod1_25_results, by="comparison",
+          suffix = c(".24",".25")) %>%
+  select(comparison, `p adj.24`, `p adj.25`, star.24, star.25) %>% kable()
+```
+
+Where there is a significant effect for one experiment, there's usually a significant effect for the other (and vice versa). A few exceptions, mostly because pP19E3 had only 2 replicates in the Jan_25 dataset and hence large standard error. Some minor discrepancies between the pQBR102 and pQBR57 data also (better than expected mobilisation for pQBR57 in the January dataset).
+
+The main results thus stand when the experiments are analysed separately, justifying aggregation in the figure. 
+
+```{r}
+#Getting some exact numbers for how many tns per plasmid transfer
 p57 <- conj_m %>%
   filter(Plasmid == "pQBR57") %>%
   summarise(
@@ -284,84 +372,60 @@ log10_ratio_57 <- p57$plasmid_mean_log10 - p57$transposon_mean_log10
 sd_log10_ratio_57 <- sqrt(p57$plasmid_sd_log10^2 +
                             p57$transposon_sd_log10^2)
 
-ratio_57 <- 10^log10_ratio_57
+(ratio_57 <- 10^log10_ratio_57) #7255
 
 log10_ratio_102 <- p102$plasmid_mean_log10 - p102$transposon_mean_log10
 sd_log10_ratio_102 <- sqrt(p102$plasmid_sd_log10^2 +
                              p102$transposon_sd_log10^2)
 
-ratio_102 <- 10^log10_ratio_102
+(ratio_102 <- 10^log10_ratio_102) #2359
 
-ci_57 <- 10^(log10_ratio_57 + c(-1, 1) * 1.96 * sd_log10_ratio_57)
-ci_102 <- 10^(log10_ratio_102 + c(-1, 1) * 1.96 * sd_log10_ratio_102)
-
+(ci_57 <- 10^(log10_ratio_57 + c(-1, 1) * 1.96 * sd_log10_ratio_57)) #60 to 8.74e5
+(ci_102 <- 10^(log10_ratio_102 + c(-1, 1) * 1.96 * sd_log10_ratio_102)) #842 to 6604
 ```
 
 Now analysing the comparative fitness data
+
 ```{r}
-fit_exp<-read.csv("Hybrid_data.csv",header=TRUE,sep=",")
-
-fit_exp<- fit_exp %>% mutate(Start_D=(Start_DC*10^(Dilution_S))/Quantity_S,
-         Start_R=(Start_RC*10^(Dilution_S))/Quantity_S,
-         Start_N=(Start_NC*10^(Dilution_S))/Quantity_S,
-         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
-         End_R=(End_RC*10^(Dilution_E))/Quantity_E,
-         End_N=(End_NC*10^(Dilution_E))/Quantity_E,
-         End_D=(End_DC*10^(Dilution_E))/Quantity_E,
-         Plas_T=(Plas_TC*10^(Dilution_P))/Quantity_P,
-         Tran_T=(Tran_TC*10^(Dilution_T))/Quantity_T,
-         psi = log(End_N/Start_N)/24,
-         gamma.p = psi * log(1+((Plas_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)),
-         gamma.t = psi * log(1+((Tran_T/End_R)*(End_N/End_D))) * (1/(End_N-Start_N)))
-
-comp1 <- fit_exp %>%
-  mutate(Mlac = (log(End_R/(Start_R/100))/24)) %>%
-  mutate(Mvs = (log(End_D/(Start_D/100))/24))
-
 #calculating fitness - w
-comp2 <- comp1 %>%
-  mutate(w = Mvs/Mlac)
-comp2.5 <- comp2 %>%
-  group_by(Plasmid) %>%
-  summarise(mean=mean(w),std=sd(w))%>%
-  mutate(ymin = mean - std,
-         ymax = mean + std)
+comp1 <- exp_df %>%
+  mutate(Mlac = (log(End_R/(Start_R/100))/24),
+         Mvs  = (log(End_D/(Start_D/100))/24),
+         w = Mvs/Mlac)
 
-con_mean <-   1.018404 
+con <- filter(comp1, Plasmid == "Con")
 
-con <- subset(comp2, Plasmid =="Con")
+(con_mean <- con %>%
+  select(w) %>% summarise(w = mean(w)) %>% pull()) # 1.009498
 
-t.test(con$w, mu=1, data=con)
+t.test(con$w, mu=1, data=con) # t = 0.82179, df = 9, p = 0.4324
 
-comp3<- comp2 %>% mutate(w_corr = w/con_mean)
-comp3[comp3 ==-Inf]<-0
-
-comp3 <- comp3 %>% filter(Plasmid != "pQBR57_L") %>% 
+comp3 <- comp1 %>% mutate(w_corr = w/con_mean) %>% #filter(Plasmid != "pQBR57_L") %>% 
   mutate(Plasmid = case_when(
     Plasmid == "pQBR55_L" ~ "pQBR55",  
     Plasmid == "pQBR103_L" ~ "pQBR103",
     Plasmid == "pP19E3_L" ~ "pP19E3",
+    Plasmid == "pQBR57_L" ~ "pQBR57",
     TRUE ~ Plasmid)) %>%
-  filter(Plasmid !="Con", Plasmid !="LIM")
+  filter(Plasmid != "Con")
 
 comp3$Plas_group <- as.numeric(comp3$Plas_group)
 comp3$Plasmid <- as.factor(comp3$Plasmid)
+
 comp3stat <- comp3 %>%
   group_by(Plasmid) %>%
   summarise(mean=mean(w_corr),
             std=sd(w_corr))%>%
   mutate(ymin = mean - std,
-         ymax = mean + std)
-
-comp3stat<- rename(comp3stat, "w_corr"="mean")
+         ymax = mean + std) %>%
+  rename("w_corr"="mean")
 
 plasgroup_colors2 <- c(
   "1" = "#f68600ff", #GroupII
   "2" = "#5900abff", #GroupIII
   "3" = "#00ab2fff", #GroupI
-  "4" = "#00ab2fff", #GroupI
-  "5" = "#AA8800", #pP19E3
-  "6" = "#00a9abff", #GroupIV
+  "4" = "#AA8800", #pP19E3
+  "5" = "#00a9abff", #GroupIV
   "Con" = "black"
   # Add all Plas_group levels and their desired colors
 )
@@ -400,15 +464,15 @@ ggplot(comp3, aes(x=Plasmid_col,y=w_corr))+
    scale_y_continuous(breaks = seq(0.5, max(comp3$w_corr) + 0.2, by = 0.2))
   
 ggsave("Comp_fit.png",dpi=1200,width=12,height=10)
-
 ```
 
 Analysing fitness values
+
 ```{r}
 fit <- comp3
 
 F3 <- aov(w_corr ~ Plasmid, data = fit) 
 
-F4<- aov(w_corr~as.factor(Plas_group), data=fit)
+F4 <- aov(w_corr~as.factor(Plas_group), data=fit)
 
 ```

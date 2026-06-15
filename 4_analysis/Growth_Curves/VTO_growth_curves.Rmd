@@ -12,7 +12,7 @@ Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set 
 
 ## Extracting data from multi-read platereader outputs
 
-These first lines should be run in bash, or in the 'Terminal' window in Rstudio.
+These first lines should be run in bash, or in the 'Terminal' window in RStudio.
 
 ```{bash, eval=FALSE}
 grep -a -A 9 "Cycles / Well" rawdata/Growth_25-10-24.csv | grep -a -v "Cycles / Well"> tmp/Growth_pQBR57.csv

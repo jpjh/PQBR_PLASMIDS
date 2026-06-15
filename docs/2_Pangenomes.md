@@ -167,9 +167,9 @@ awk -v FS="\t" '$11 < 1e-40 && $4 > 5000 {print $2}' ./2_relatives/pQBR103_relat
  | sort | uniq > ./2_relatives/pQBR103_relatives.list
 ```
 
-Note: many sequences likely have multiple contigs. It will be difficult
-to reorient and analyse synteny with these, so focus on the complete
-plasmid sequences:
+Note: many sequences appear to have multiple contigs. It will be
+difficult to reorient and analyse synteny with these, so focus on the
+sequences with a single contig match per genome:
 
 - NC_009444.1
 - NZ_CP047261.1
@@ -208,9 +208,11 @@ find ./2_relatives/pQBR103_seqs_plasmids -name "*.fa" \
 ```
 
 Use this output to realign the sequences using EMBOSS. Note: some
-sequences did not match the full (putative) replicase, suggesting these
-are divergent, and one sequence (NZ_AOUH01000028.1_Contig28) did not
-match the replicase at all and was removed from subsequent analysis.
+sequences did not match the full (putative) replicase used to orient the
+other Group I plasmids, suggesting these are divergent, and one sequence
+(NZ_AOUH01000028.1_Contig28) did not match the replicase at all and
+follow-up analyses suggested only a short region of matching, so it was
+removed from subsequent analysis.
 
 ``` bash
 cat ./2_relatives/pQBR103_relatives_complete_blast_rep.blastn | awk '$4 < 1130 {print $0}'
@@ -533,7 +535,9 @@ group_i_pirate %>% left_join(a_group_i_distances, by="gene_family") %>%
 
 **NOTE** the locus tags outputted by PIRATE are different to those in
 the Bakta annotations! Details are provided in the `modified_gffs`
-folder in the PIRATE output.
+folder in the PIRATE output, but essentially PIRATE numbers using
+consecutive integers so the PIRATE tags can be linked to those in the
+Bakta annotations by multiplying the tag number by 5.
 
 #### Generate and visualise pangenome graph in Bandage
 
@@ -769,7 +773,11 @@ pQBR103_plot <- ggplot(data=pQBR103_distances) +
   geom_segment(y = 0, yend = 0, x = 0, xend = 425094) +
   geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
   scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
-                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+                       values= c(0, 0.001, 0.05, 0.1)/0.1, limits=c(0,0.1), 
+                       breaks = c(0, 0.001, 0.05, 0.1),
+                       labels = c("0","", "0.05","≥0.1"),
+                       oob = scales::squish,
+                       name = "distance") +
   scale_y_continuous(limits=c(-1.5, 2.5)) +
   theme(legend.position="right") 
 ```
@@ -1381,7 +1389,11 @@ pQBR57_plot <- ggplot(data=pQBR57_distances) +
   geom_segment(y = 0, yend = 0, x = 0, xend = 307330) +
   geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
   scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
-                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+                       values= c(0, 0.001, 0.05, 0.1)/0.1, limits=c(0,0.1), 
+                       breaks = c(0, 0.001, 0.05, 0.1),
+                       labels = c("0","","0.05","≥0.1"),
+                       oob = scales::squish,
+                       name = "distance") +
   scale_y_continuous(limits=c(-1.5, 2.5)) +
   theme(legend.position="right")
 ```
@@ -2046,7 +2058,11 @@ pQBR55_plot <- ggplot(data=pQBR55_distances) +
   geom_segment(y = 0, yend = 0, x = 0, xend = 307330) +
   geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
   scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
-                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+                       values= c(0, 0.001, 0.05, 0.1)/0.1, limits=c(0,0.1), 
+                       breaks = c(0, 0.001, 0.05, 0.1),
+                       labels = c("0","","0.05","≥0.1"),
+                       oob = scales::squish,
+                       name = "distance") +
   scale_y_continuous(limits=c(-1.5, 2.5)) +
   theme(legend.position="right")
 ```

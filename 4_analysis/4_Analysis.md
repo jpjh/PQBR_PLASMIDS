@@ -30,9 +30,8 @@ Raw data and rmarkdown code for analyis of plasmid conjugation rates and transpo
   - Start_RC - population counts at start of experiment for recipient strain
   - End_DC - population counts at end of experiment for donor strain
   - End_RC - population counts at end of experiment for recipient strain
-  - End_NC - total population counts at end of experiment
-  - Plas_TC - transconjugant counts of plasmid selective plates, includes both "just plasmid" and "plasmid + transposon" transconjugants
-  - Tran_TC - transconjugant counts of transpson selective plates, includes only "plasmid + transposon" transconjugants
+  - Plas_TC - transconjugant counts of plasmid selective plates, includes both "just plasmid" and "plasmid + transposon" transconjugants. NA = reliable counts not obtained for this sample. 
+  - Tran_TC - transconjugant counts of transpson selective plates, includes only "plasmid + transposon" transconjugants. NA = reliable counts not obtained for this sample. 
   - Data - Date experimental data was collected
   - Dat_rep - Counting combinations of date and donor e.g. plasmid1 (donor1:date1) = 1, plasmid1 (donor2:date1) = 2, plasmid1 (donor1:date2) = 3, plasmid1 (donor2:date2) = 4
 - VTO_conjugation_comfit.Rmd is R markdown file containing code to analyse data and create plots from manuscript.
@@ -42,7 +41,7 @@ Raw data and rmarkdown code for analyis of plasmid conjugation rates and transpo
 Raw and processed data, and R markdown for analysis from plate reader growth curves.
 
 - rawdata - folder containing plate reader raw data
-- tmp - folder containing information for procesing raw data
+- tmp - folder containing information for processing raw data
 - VTO_growth_curves.Rmd - R markdown file containing analysis and code for production of manuscript plots
 
 ### Heatmaps&Trees

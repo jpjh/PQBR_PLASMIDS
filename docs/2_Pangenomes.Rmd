@@ -498,7 +498,7 @@ group_i_pirate %>% left_join(a_group_i_distances, by="gene_family") %>%
   head(n = 10) %>% kable()
 ```
 
-**NOTE** the locus tags outputted by PIRATE are different to those in the Bakta annotations! Details are provided in the `modified_gffs` folder in the PIRATE output. 
+**NOTE** the locus tags outputted by PIRATE are different to those in the Bakta annotations! Details are provided in the `modified_gffs` folder in the PIRATE output, but essentially PIRATE numbers using consecutive integers so the PIRATE tags can be linked to those in the Bakta annotations by multiplying the tag number by 5. 
 
 #### Generate and visualise pangenome graph in Bandage
 
@@ -667,7 +667,11 @@ pQBR103_plot <- ggplot(data=pQBR103_distances) +
   geom_segment(y = 0, yend = 0, x = 0, xend = 425094) +
   geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
   scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
-                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+                       values= c(0, 0.001, 0.05, 0.1)/0.1, limits=c(0,0.1), 
+                       breaks = c(0, 0.001, 0.05, 0.1),
+                       labels = c("0","", "0.05","≥0.1"),
+                       oob = scales::squish,
+                       name = "distance") +
   scale_y_continuous(limits=c(-1.5, 2.5)) +
   theme(legend.position="right") 
 ```
@@ -1202,7 +1206,11 @@ pQBR57_plot <- ggplot(data=pQBR57_distances) +
   geom_segment(y = 0, yend = 0, x = 0, xend = 307330) +
   geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
   scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
-                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+                       values= c(0, 0.001, 0.05, 0.1)/0.1, limits=c(0,0.1), 
+                       breaks = c(0, 0.001, 0.05, 0.1),
+                       labels = c("0","","0.05","≥0.1"),
+                       oob = scales::squish,
+                       name = "distance") +
   scale_y_continuous(limits=c(-1.5, 2.5)) +
   theme(legend.position="right")
 ```
@@ -1775,7 +1783,11 @@ pQBR55_plot <- ggplot(data=pQBR55_distances) +
   geom_segment(y = 0, yend = 0, x = 0, xend = 307330) +
   geom_rect(aes(ymin = 0, ymax = strand, xmin = start, xmax = end, fill = dist)) +
   scale_fill_gradientn(colours = c("black","dodgerblue","goldenrod","goldenrod1"),
-                       values= c(0, 0.001, 0.05, 0.25)/0.25, limits=c(0,0.25), oob = scales::squish) +
+                       values= c(0, 0.001, 0.05, 0.1)/0.1, limits=c(0,0.1), 
+                       breaks = c(0, 0.001, 0.05, 0.1),
+                       labels = c("0","","0.05","≥0.1"),
+                       oob = scales::squish,
+                       name = "distance") +
   scale_y_continuous(limits=c(-1.5, 2.5)) +
   theme(legend.position="right")
 ```
