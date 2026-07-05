@@ -1,28 +1,27 @@
 ---
 title: "PLSDB_size_gc"
-author: "Victoria Orr"
-date: "2025-10-14"
-output: html_document
+output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(ggplot2)
 ```
 
-Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), and James P.J. Hall. 
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr ([Victoria.Orr@liverpool.ac.uk](mailto:Victoria.Orr@liverpool.ac.uk)), supervised by [James P. J. Hall](mailto:j.p.j.hall@liverpool.ac.uk). 
 
 Prerequisite files:
--nuccore.csv - from PLSDB
--pqbr2.csv - size, GC content information for pQBR plasmids
 
+- nuccore.csv - from PLSDB
+- pqbr2.csv - size, GC content information for pQBR plasmids
 
 Creating a figure comparing pQBR plasmd sizes and GC content to PLSDB Pseudomonas plasmids
 
 ```{r}
-
-library(dplyr)
-library(ggplot2)
-
 plsdb <- read.csv("nuccore.csv")
 pqbr <- read.csv("pqbr2.csv")
 
@@ -130,4 +129,6 @@ ggplot(combined_df, aes(x = GC)) +
 ggsave("PLSBDvsPQBR_GC2.png", dpi = 1000, width = 9, height = 7)
 ```
 
+---
 
+**[Back to index.](../4_Analysis.md)**

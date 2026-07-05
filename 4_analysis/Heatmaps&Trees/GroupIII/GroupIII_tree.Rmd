@@ -1,25 +1,27 @@
 ---
 title: "Creating tree for Group III"
-output: html_document
-date: "2025-10-29"
+output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), and James P.J. Hall. 
 
-Code for creating trees and heatmaps for Group III plasmids.
-```{r}
+library(ggplot2)
+library(tidyr)
+library(readr)
 library(tidyverse)
 library(ggtree)
 library(ape)
 library(phangorn)
-library(ggtree)
 library(tidytree)
 library(patchwork)
-
 ```
+
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr ([Victoria.Orr@liverpool.ac.uk](mailto:Victoria.Orr@liverpool.ac.uk)), supervised by [James P. J. Hall](mailto:j.p.j.hall@liverpool.ac.uk). 
+
+Code for creating trees and heatmaps for Group III plasmids.
 
 ```{r}
 group_iii_rel_pirate <- read.table("PIRATE.gene_families.ordered.tsv",
@@ -72,9 +74,7 @@ mv group_i_tree* ./trees/
 if (!exists("is.waive")) {
   is.waive <- \(x) inherits(x, "waiver") # nolint
 }
-```
 
-```{r}
 gi_tr <- read.tree("./trees/group_i_tree.treefile")
 
 tr_mid <- midpoint(gi_tr)
@@ -111,7 +111,7 @@ tree <- ggtree(tr_mid) + geom_tiplab(size=3, align=TRUE) +xlim(0,0.2)
 
 tree_order <- get_taxa_name(p_sup)
 
-
+giprel_long_filtered <- giprel_long
 giprel_long_filtered$plasmid <- recode(giprel_long$plasmid,
                            "pQG3rel01" = "unnamed1",
                            "pQG3rel02" = "unnamed2",
@@ -135,3 +135,7 @@ tree + heatmap + plot_layout(widths = c(0.9,1))
 
 ggsave("GroupIII_heattree.png", dpi = 500, height=5, width=8)
 ```
+
+---
+
+**[Back to index.](../4_Analysis.md)**

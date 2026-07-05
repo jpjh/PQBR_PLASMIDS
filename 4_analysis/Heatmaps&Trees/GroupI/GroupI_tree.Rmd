@@ -1,26 +1,40 @@
 ---
 title: "Creating tree for Group I"
-output: html_document
-date: "2025-10-29"
+output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
 
-
-Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), and James P.J. Hall. 
-
-Code for creating trees and heatmaps for Group I plasmids.
-```{r}
+library(ggplot2)
+library(tidyr)
+library(readr)
 library(tidyverse)
 library(ggtree)
 library(ape)
 library(phangorn)
-library(ggtree)
 library(tidytree)
 library(patchwork)
 ```
+
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr ([Victoria.Orr@liverpool.ac.uk](mailto:Victoria.Orr@liverpool.ac.uk)), supervised by [James P. J. Hall](mailto:j.p.j.hall@liverpool.ac.uk). 
+
+Code for creating trees and heatmaps for Group I plasmids.
+
+```{r, message=FALSE}
+library(ggplot2)
+library(tidyr)
+library(readr)
+library(tidyverse)
+library(ggtree)
+library(ape)
+library(phangorn)
+library(tidytree)
+library(patchwork)
+```
+
 Prerequisite file:
 - PIRATE.gene_families.ordered.tsv
 
@@ -57,7 +71,8 @@ Check alignment from PIRATE. Trim gappy/misaligned columns. Align using IQtree3.
 --alrt 1000          1000 replicates for SH approximate likelihood ratio test
 -T AUTO              Automatic thread assignment
 ```
-Need Seqkit, TrimAL and IQ-TREE 
+Need Seqkit, TrimAL and IQ-TREE
+
 ```{bash, eval=FALSE}
 seqkit grep -v -p "pQG1rel01" core_alignment.fasta \
 > core_alignment_crop.fasta
@@ -83,9 +98,7 @@ Plot tree.
 if (!exists("is.waive")) {
   is.waive <- \(x) inherits(x, "waiver") # nolint
 }
-```
 
-```{r}
 gi_tr <- read.tree("./trees/group_i_tree.treefile")
 
 tr_mid <- midpoint(gi_tr)
@@ -152,3 +165,6 @@ tree + heatmap + plot_layout(widths = c(0.9,1))
 ggsave("GroupI_heattree.png", dpi = 500, height=10, width=11)
 ```
 
+---
+
+**[Back to index.](../4_Analysis.md)**

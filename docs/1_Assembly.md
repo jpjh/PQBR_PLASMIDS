@@ -995,7 +995,8 @@ Annotated sequences for downstream analysis are in the subdirectory
 Note that the suffix ‘R’ indicates ‘resequenced’, ‘d’ indicates ‘draft’
 (i.e. some manual editing necessary to generate the final sequence, as
 described above), and ‘p’ indicates the plasmid-specific portion of a
-(potentially) chromosomally-integrated assembly.
+(potentially) chromosomally-integrated assembly. NB: suffixes were
+removed for ENA submission to comply with pre-registered locus tags.
 
 ### Sequence distance/similarity plot for assembled plasmids
 

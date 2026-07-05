@@ -1,14 +1,22 @@
 ---
-title: 'Growth Curve'
-author: "VTO"
-date: "2025-03-11"
-output: html_document
+title: "pQBR plasmids: growth curves"
+output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(multcomp)
+library(FSA)
+library(tidyverse)
+library(ggplot2)
+library(gcplyr)
+library(patchwork)
 ```
-Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr (Victoria.Orr@liverpool.ac.uk), and James P.J. Hall and Prajwal Vishwanath Bharadwaj.
+
+Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set of sympatric environmental mobile genetic elements". Code written by Victoria T Orr ([Victoria.Orr@liverpool.ac.uk](mailto:Victoria.Orr@liverpool.ac.uk)), supervised by [James P.J. Hall](mailto:j.p.j.hall@liverpool.ac.uk), with assistance from Prajwal Vishwanath Bharadwaj.
 
 ## Extracting data from multi-read platereader outputs
 
@@ -18,15 +26,9 @@ These first lines should be run in bash, or in the 'Terminal' window in RStudio.
 grep -a -A 9 "Cycles / Well" rawdata/Growth_25-10-24.csv | grep -a -v "Cycles / Well"> tmp/Growth_pQBR57.csv
 ```
 
+Then in R:
 
-
-```{r }
-
-library(tidyverse)
-library(ggplot2)
-library(gcplyr)
-library(patchwork)
-
+```{r}
 # -----------------------------------------------------------------
 # Input File Names
 exptdat <- read.csv("tmp/Growth_pQBR57.csv", header=FALSE, sep=",")
@@ -73,17 +75,16 @@ blank_measure <- filter(exptdat_long, strain == "blank" & col != 4 & cycle < 5) 
 exptdat_long.1 <- mutate(exptdat_long.1, 
                          od600_corr = median_value - blank_measure) %>%
   select(hours, well, row, col, strain, parent, plasmid, replicate, od600_corr)
-
-
 ```
 
  Pre-processing using `gcplyr`
  De-noising the data
 
+```{r}
 ## Data has been smoothed using:
 ##    moving-average stored in `ods1` 
 ##    moving-average and moving-media stored in `ods2`
-```{r}
+
 dat <- mutate(group_by(exptdat_long.1, well, strain, plasmid),
               ods1 = smooth_data(x=hours, y = od600_corr, sm_method = "moving-median",
                                      window_width_n = 5),
@@ -120,7 +121,7 @@ Plotting Graphs for the four Growth Metrics
 ```{r}
 dat_gg <- dat1 %>% filter(ods > 0.01) %>%
   group_by(well, strain, plasmid, replicate) %>%
-  summarize(lag_time = lag_time(y = ods_adj, x = hours, deriv = percap3),
+  summarize(lag_time = lag_time(y = ods_adj, x = hours, deriv = percap3, blank=0),
             max_percap = max_gc(percap3),
             max_percap_time = hours[which_max_gc(percap3)],
             max_percap_dens = ods_adj[which_max_gc((percap3))],
@@ -199,15 +200,17 @@ dat_gg <- dat_gg %>% filter(strain != "Free", strain != "pQBR57_L")
     labs(y="Growth Density",x="Plasmid")
   
    ggsave("MaxGrowthDens_nooutlier.png",dpi=500,width=15,height=10)
-
 ```
+
+Plot.
 
 ```{r}
 col3 <- "#FE6100"
 col5<- "#785EF0"
 col7<-"#18B6DA"
 COLS<-c(col3,col5,col7)
-exptdat_clean <- dat_1 %>%
+
+exptdat_clean <- dat1 %>%
   group_by(hours, strain, plasmid) %>%
   summarise( mean_OD = mean(od600_corr),
              std = sd(od600_corr)
@@ -340,19 +343,13 @@ F <- ggplot(data=curve_57,
   ggtitle("pQBR57")
 #ggsave("Growth_pQBR57.png",dpi=500,width=10,height=10)
 
-
 patch1 <- (F+D+E+A+C+B) +plot_layout(ncol = 3, nrow = 2, axes = "collect", axis_titles = "collect",guides="collect")
 ggsave("Growth_all.png",dpi=500,width=15,height=10)
-
-
 ```
 
 Calculating statistics from growth curves.
 
 ```{r}
-library(multcomp)
-library(FSA)
-
 # Maximum Growth Rate
 
 # Running a linear model on dat_gg
@@ -378,3 +375,8 @@ tukey3$mcletters$Letters
 #Growth Density
 kruskal.test(data=dat_gg, max_dens ~ strain)
 dunnTest(dat_gg$max_dens, dat_gg$strain, method = "bonferroni")
+```
+
+---
+
+**[Back to index.](../4_Analysis.md)**

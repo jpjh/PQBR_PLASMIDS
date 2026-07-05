@@ -1513,7 +1513,7 @@ List the Group III relatives:
 cat ./2_relatives/group_iii_relatives.list
 ```
 
-Make a plot of mash distances for Group I plasmids and their relatives.
+Make a plot of mash distances for Group III plasmids and their relatives.
 
 Calculate distances.
 
@@ -1861,7 +1861,7 @@ paste ./2_relatives/group_iii_relatives_length.list ./2_relatives/group_iii_rela
 
 The 'Group II' plasmids in the collection are pQBR23, pQBR24, and pQBR26. However, as described in [the assembly](1_Assembly.md), pQBR26 seems to harbour both a pQBR23-like plasmid, and a plasmid that is more divergent. It is this latter plasmid that is seemingly mobile from the pQBR26 strain. Therefore, there are two different types of Group II plasmid, which have some distant similarities.
 
-Focus first on the pQBR26 type, which we will call Group IIb.
+Focus first on the pQBR26 type.
 
 #### Identify similar plasmids to pQBR26 from databases using MASH
 

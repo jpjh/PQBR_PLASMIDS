@@ -1730,7 +1730,8 @@ cat ./2_relatives/group_iii_relatives.list
     ## 05 ./pQBR55_seqs_plasmid_orient/NZ_LHPA01000022.1_contig_15_o.fasta
     ## 06 ./pQBR55_seqs_plasmid_orient/NZ_QTTH01000012.1_._o.fasta
 
-Make a plot of mash distances for Group I plasmids and their relatives.
+Make a plot of mash distances for Group III plasmids and their
+relatives.
 
 Calculate distances.
 
@@ -2150,7 +2151,7 @@ divergent. It is this latter plasmid that is seemingly mobile from the
 pQBR26 strain. Therefore, there are two different types of Group II
 plasmid, which have some distant similarities.
 
-Focus first on the pQBR26 type, which we will call Group IIb.
+Focus first on the pQBR26 type.
 
 #### Identify similar plasmids to pQBR26 from databases using MASH
 

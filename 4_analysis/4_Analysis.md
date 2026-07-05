@@ -11,20 +11,20 @@ Analysis scripts are available at https://github.com/jpjh/PQBR_PLASMIDS
 
 Raw data and rmarkdown code for analyis of plasmid conjugation rates and transposon mobilisation rates, as well as comparative fitness experiment. 
 
-- Hybrid_data.csv is the raw data files for mobilisation rate analyis and comparative fitness analysis. Dataset includes 3 experiments conducted and includes multiple donor strains (strains with plasmid and target chromosomal tranposon) created independently. Headers:
+- [Hybrid_data.csv](./Conj_Fit/Hybrid_data.csv) is the raw data files for mobilisation rate analyis and comparative fitness analysis. Dataset includes 3 experiments conducted and includes multiple donor strains (strains with plasmid and target chromosomal tranposon) created independently. Headers:
   - Label (labelling of donor strains for lab use), 
   - Plasmid (plasmid used in replicate, "Con" refers to control replicates, "_L" refers to in-house strain. "pQBR57_L", "pQBR103_L", "pQBR55_L" are the strain analyses in Hall et al. 2021. "pQBR57" is "pQBR57R".
-  - Plas_group - groups that plasmids belong to 1:	pQBR26	2: pQBR Group III	3: pQBR Group I	4:	5: IncP-2 (pP19E3.1)	6: pQBR Group IV
+  - Plas_group - groups that plasmids belong to 1:pQBR26; 2: pQBR Group III; 3: pQBR Group I; 5: IncP-2 (pP19E3.1); 6: pQBR Group IV
   - Strain_rep - replicate number of that particular donor strain
   - Plas_rep - replicate number of that particular plasmid
   - Plas - labelling of donor strains for each plasmid
-  - Quantity_S - quantiy of culture plated at start of experiment for population counts
+  - Quantity_S - quantity of culture plated at start of experiment for population counts
   - Dilution_S - dilution of culture plated at start of experiment for population counts
-  - Quantity_E - quantiy of culture plated at end of experiment for population counts
+  - Quantity_E - quantity of culture plated at end of experiment for population counts
   - Dilution_E - dilution of culture plated at end of experiment for population counts
-  - Quantity_P - quantiy of culture plated at end of experiment for plasmid conjugation counts
+  - Quantity_P - quantity of culture plated at end of experiment for plasmid conjugation counts
   - Dilution_P - dilution of culture plated at end of experiment for plasmid conjugation counts
-  - Quantity_T - quantiy of culture plated at end of experiment for transposon mobilisation counts
+  - Quantity_T - quantity of culture plated at end of experiment for transposon mobilisation counts
   - Dilution_T - dilution of culture plated at end of experiment for transposon mobilisation counts
   - Start_DC - population counts at start of experiment for donor strain
   - Start_RC - population counts at start of experiment for recipient strain
@@ -34,29 +34,32 @@ Raw data and rmarkdown code for analyis of plasmid conjugation rates and transpo
   - Tran_TC - transconjugant counts of transpson selective plates, includes only "plasmid + transposon" transconjugants. NA = reliable counts not obtained for this sample. 
   - Data - Date experimental data was collected
   - Dat_rep - Counting combinations of date and donor e.g. plasmid1 (donor1:date1) = 1, plasmid1 (donor2:date1) = 2, plasmid1 (donor1:date2) = 3, plasmid1 (donor2:date2) = 4
-- VTO_conjugation_comfit.Rmd is R markdown file containing code to analyse data and create plots from manuscript.
+- [VTO_conjugation_comfit.Rmd](./Conj_Fit/VTO_conjugation_comfit.md) is R markdown file containing code to analyse data and create plots from manuscript.
 
 ### Growth_curves
 
 Raw and processed data, and R markdown for analysis from plate reader growth curves.
 
-- rawdata - folder containing plate reader raw data
-- tmp - folder containing information for processing raw data
-- VTO_growth_curves.Rmd - R markdown file containing analysis and code for production of manuscript plots
+- [rawdata](./Growth_Curves/rawdata) - folder containing plate reader raw data
+- [tmp](./Growth_Curves/tmp) - folder containing information for processing raw data
+- [VTO_growth_curves.Rmd](./Growth_Curves/VTO_growth_curves.md) - R markdown file containing analysis and code for production of manuscript plots
 
 ### Heatmaps&Trees
 
-- GroupI: PIRATE genes family analysis results and Rmd for producing plots in manuscript for Group I plasmids
-- GroupIII: PIRATE genes family analysis results and Rmd for producing plots in manuscript for Group III plasmids
-- GroupIV: PIRATE genes family analysis results and Rmd for producing plots in manuscript for Group IV plasmids
+- [GroupI](./Heatmaps&Trees/GroupI/GroupI_tree.md): PIRATE genes family analysis results and Rmd for producing plots in manuscript for Group I plasmids
+- [GroupIII](./Heatmaps&Trees/GroupIII/GroupIII_tree.md): PIRATE genes family analysis results and Rmd for producing plots in manuscript for Group III plasmids
+- [GroupIV](./Heatmaps&Trees/GroupIII/GroupIII_tree.md): PIRATE genes family analysis results and Rmd for producing plots in manuscript for Group IV plasmids
 
 ### PAES_heatmap
 
-Plasmids sequences (*.fna), mash distances and R markdown code to producing plots in manuscript.
+[Folder](./PAES_heatmap) with plasmid sequences (*.fna), mash distances and R markdown code to producing plots in manuscript.
 
 ### PlasmidSize_GC
 
-- nuccore.csv - PLSDB download containing plasmid data
-- pqbr2.csv - plasmid data from pQBR collection
-- size_gc.Rmd - R markdown for analyis and producing manuscript figures. 
+- [nuccore.csv](./PlasmidSize_GC/nuccore.csv) - PLSDB download containing plasmid data
+- [pqbr2.csv](./PlasmidSize_GC/pqbr2.csv) - plasmid data from pQBR collection
+- [size_gc.Rmd](./PlasmidSize_GC/size_gc.md) - R markdown for analysis and producing manuscript figures. 
 
+---
+
+**[Back to main repository index.](../README.md)**
