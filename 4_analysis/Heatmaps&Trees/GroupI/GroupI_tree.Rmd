@@ -23,22 +23,6 @@ Data analysis for manuscript "The pQBR mercury resistance plasmids: a model set 
 
 Code for creating trees and heatmaps for Group I plasmids.
 
-```{r, message=FALSE}
-library(ggplot2)
-library(tidyr)
-library(readr)
-library(tidyverse)
-library(ggtree)
-library(ape)
-library(phangorn)
-library(tidytree)
-library(patchwork)
-```
-
-Prerequisite file:
-- PIRATE.gene_families.ordered.tsv
-
-
 ```{r}
 group_i_rel_pirate <- read.table("PIRATE.gene_families.ordered.tsv",
                                 header=TRUE, sep="\t")
@@ -167,4 +151,4 @@ ggsave("GroupI_heattree.png", dpi = 500, height=10, width=11)
 
 ---
 
-**[Back to index.](../4_Analysis.md)**
+**[Back to index.](../../4_Analysis.md)**

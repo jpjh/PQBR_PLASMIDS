@@ -8,8 +8,6 @@ by [James P.J. Hall](mailto:j.p.j.hall@liverpool.ac.uk).
 
 Code for creating trees and heatmaps for Group IV plasmids.
 
-Get the Group IV and relatives heatmap
-
 ``` r
 group_iv_rel_pirate <- read.table("PIRATE.gene_families.ordered.tsv",
                                  header=TRUE, sep="\t")
@@ -168,4 +166,4 @@ ggsave("GroupIV_heattree.png", dpi = 500, height=10, width=15)
 
 ------------------------------------------------------------------------
 
-**[Back to index.](../4_Analysis.md)**
+**[Back to index.](../../4_Analysis.md)**

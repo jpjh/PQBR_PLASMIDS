@@ -9,20 +9,6 @@ by [James P. J. Hall](mailto:j.p.j.hall@liverpool.ac.uk).
 Code for creating trees and heatmaps for Group I plasmids.
 
 ``` r
-library(ggplot2)
-library(tidyr)
-library(readr)
-library(tidyverse)
-library(ggtree)
-library(ape)
-library(phangorn)
-library(tidytree)
-library(patchwork)
-```
-
-Prerequisite file: - PIRATE.gene_families.ordered.tsv
-
-``` r
 group_i_rel_pirate <- read.table("PIRATE.gene_families.ordered.tsv",
                                 header=TRUE, sep="\t")
 
@@ -44,7 +30,7 @@ giprel_long <- group_i_rel_pirate %>% select(gene_family, threshold, starts_with
 ggplot(giprel_long, aes(x=gene_family, y=plasmid)) + geom_tile()
 ```
 
-![](GroupI_tree_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](GroupI_tree_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 #### Create a core genome tree for Group I and relatives
 
@@ -146,7 +132,7 @@ p_sup
     ## Warning in ifelse(!is.na(supports$ufboot), paste0("SH=",
     ## round(supports$sh_alrt), : NAs introduced by coercion
 
-![](GroupI_tree_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](GroupI_tree_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
 tree <- ggtree(tr_mid) + geom_tiplab(size=6, align=TRUE) +xlim(0,0.2)
@@ -198,7 +184,7 @@ heatmap <- ggplot(giprel_long_filtered,
 tree + heatmap + plot_layout(widths = c(0.9,1))
 ```
 
-![](GroupI_tree_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](GroupI_tree_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
 
 ``` r
 ggsave("GroupI_heattree.png", dpi = 500, height=10, width=11)
@@ -206,4 +192,4 @@ ggsave("GroupI_heattree.png", dpi = 500, height=10, width=11)
 
 ------------------------------------------------------------------------
 
-**[Back to index.](../4_Analysis.md)**
+**[Back to index.](../../4_Analysis.md)**
