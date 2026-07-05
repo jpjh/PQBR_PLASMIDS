@@ -20,7 +20,7 @@ The directory of Bakta-annotated sequences (v1.8.2, database = full v.5.0.0) can
 
 ### Experimental data and analysis
 
-A guide to subdirectories of experimental data and additional analysis scripts can be found [here](./4_analysis/4_analysis.md).
+A guide to subdirectories of experimental data and additional analysis scripts can be found [here](./4_analysis/4_Analysis.md).
 
 ---
 
